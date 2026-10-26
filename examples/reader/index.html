@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src data: blob:; frame-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+    <title>readability-kit · Reader lab</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="wordmark" href="./" aria-label="readability-kit reader lab"><span class="mark" aria-hidden="true">r.</span><span>readability-kit</span></a>
+      <span class="local-note"><span class="status-dot" aria-hidden="true"></span>Runs locally in your browser</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">READER LAB</p>
+        <h1 id="page-title">A little less page.<br>A little more reading.</h1>
+        <p class="intro-copy">Turn a saved page into an article you can read, inspect, and reuse. Start with the sample or paste your own HTML.</p>
+      </section>
+
+      <div class="workspace">
+        <section class="input-panel panel" aria-labelledby="source-title">
+          <div class="section-heading"><div><span class="step">01</span><h2 id="source-title">The source</h2></div><button id="sample-button" class="text-button" type="button">Load sample</button></div>
+          <form id="extract-form">
+            <label for="source-url">Page address</label>
+            <input id="source-url" type="url" inputmode="url" spellcheck="false" required value="https://example.com/stories/quiet-reading" placeholder="https://example.com/article" aria-describedby="url-help">
+            <p id="url-help" class="help-text">Used as the base for links in your HTML. No page is fetched.</p>
+
+            <div class="editor-heading"><label for="source-html">Page HTML</label><span id="input-size" class="count"></span></div>
+            <textarea id="source-html" spellcheck="false" wrap="off" aria-describedby="html-help" placeholder="Paste a complete HTML page here…"></textarea>
+            <p id="html-help" class="help-text">Scripts in pasted HTML are never executed.</p>
+
+            <div class="controls"><div class="engine-control"><label for="engine">Extraction engine</label><select id="engine"><option value="chromium">Chromium enhancements</option><option value="mozilla">Mozilla baseline</option></select></div><button id="extract-button" class="primary-button" type="submit">Extract article <span aria-hidden="true">↗</span></button></div>
+          </form>
+          <p id="status" class="status" role="status" aria-live="polite">The sample is ready to extract.</p>
+        </section>
+
+        <section class="output-panel panel" aria-labelledby="result-title">
+          <div class="section-heading"><div><span class="step">02</span><h2 id="result-title">The article</h2></div><span id="engine-badge" class="badge" hidden></span></div>
+          <div class="result-toolbar"><div class="tabs" role="tablist" aria-label="Result view"><button id="tab-reader" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="view-reader">Reader</button><button id="tab-html" class="tab" type="button" role="tab" aria-selected="false" aria-controls="view-html" tabindex="-1">HTML</button><button id="tab-json" class="tab" type="button" role="tab" aria-selected="false" aria-controls="view-json" tabindex="-1">JSON</button></div><button id="copy-button" class="text-button" type="button" disabled>Copy JSON</button></div>
+          <div id="empty-state" class="empty-state"><span class="empty-symbol" aria-hidden="true">¶</span><h3>The words worth keeping.</h3><p>Your extracted article will appear here, with its metadata and reusable HTML.</p></div>
+          <div id="result" hidden>
+            <div id="metadata" class="metadata"></div>
+            <div id="view-reader" class="result-view" role="tabpanel" aria-labelledby="tab-reader"><iframe id="reader-frame" title="Extracted article preview" sandbox="" referrerpolicy="no-referrer"></iframe><p class="preview-note">Remote media is blocked in this preview.</p></div>
+            <div id="view-html" class="result-view" role="tabpanel" aria-labelledby="tab-html" hidden><pre id="html-output" tabindex="0"></pre></div>
+            <div id="view-json" class="result-view" role="tabpanel" aria-labelledby="tab-json" hidden><pre id="json-output" tabindex="0"></pre></div>
+          </div>
+        </section>
+      </div>
+      <footer><span>Independent article extraction, built from Mozilla Readability and Chromium improvements.</span><span>HTML in. A readable article out.</span></footer>
+    </main>
+  </body>
+</html>

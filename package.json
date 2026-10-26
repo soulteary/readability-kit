@@ -1,0 +1,95 @@
+{
+  "name": "@soulteary/readability-kit",
+  "version": "0.1.0",
+  "description": "Portable article extraction with Chromium and Mozilla Readability, open Shadow DOM support, and sanitized output.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./node": {
+      "import": {
+        "types": "./dist/node.d.ts",
+        "default": "./dist/node.js"
+      },
+      "require": {
+        "types": "./dist/node.d.cts",
+        "default": "./dist/node.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "readability-kit": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "LICENSES",
+    "NOTICE",
+    "README.md",
+    "UPSTREAM.md",
+    "PATCHES.md",
+    "upstream.json"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
+  "license": "Apache-2.0 AND BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soulteary/readability-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soulteary/readability-kit/issues"
+  },
+  "homepage": "https://github.com/soulteary/readability-kit#readme",
+  "keywords": [
+    "readability",
+    "reader-mode",
+    "article-extraction",
+    "chromium",
+    "mozilla",
+    "shadow-dom"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "verify:upstream": "node scripts/verify-upstream.mjs",
+    "test": "npm run build && npm run verify:upstream && node --test test/*.test.mjs",
+    "test:browser": "playwright test",
+    "test:upstream": "mocha \"vendor/mozilla/test/test-*.js\" --reporter dot",
+    "compare": "node scripts/compare-upstream.mjs",
+    "check": "npm test && npm run test:upstream && npm run compare -- --check && npm run test:package",
+    "test:package": "node scripts/check-package.mjs",
+    "demo": "node scripts/serve-example.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "dompurify": "3.4.17",
+    "jsdom": "30.1.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^26.6.5",
+    "chai": "^4.5.0",
+    "esbuild": "^0.28.2",
+    "js-beautify": "^2.0.3",
+    "mocha": "^12.0.3",
+    "sinon": "^14.0.2",
+    "typescript": "^7.0.2",
+    "xml-name-validator": "^5.0.0"
+  }
+}
