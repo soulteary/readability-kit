@@ -5,3 +5,9 @@
 /playwright-report/
 /coverage/
 /upstream-comparison.json
+/target/
+/rust-reports/
+/fuzz/target/
+/fuzz/artifacts/
+/fuzz/corpus/
+/fuzz/coverage/

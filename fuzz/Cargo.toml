@@ -1,0 +1,23 @@
+[package]
+name = "readability-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[workspace]
+members = ["."]
+
+[dependencies]
+libfuzzer-sys = "0.4"
+serde_json = "1"
+readability-core = { path = "../crates/readability-core" }
+
+[[bin]]
+name = "extract_html"
+path = "fuzz_targets/extract_html.rs"
+test = false
+doc = false
+bench = false

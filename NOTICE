@@ -42,3 +42,13 @@ provenance and are not included in the npm package.
 
 This project is independent of Google, Chromium, Mozilla, and Cure53. Their
 names identify source provenance and do not imply endorsement.
+
+Experimental native Rust implementation
+---------------------------------------
+dom_smoothie 0.18.2, Copyright (c) 2024 Mykola Humanov, is vendored under
+crates/readability-core/vendor/dom_smoothie. Its MIT license is preserved in
+that directory's LICENSE. Local ports from the Apache-2.0 Readability engine
+retain their source attribution. READABILITY_KIT_PATCHES.md in the vendored
+directory records changes and test corpus limitations. Native dependencies
+retain their own licenses; Cargo.lock records the resolved versions. Native
+binaries are experimental and are not included in the npm distribution.

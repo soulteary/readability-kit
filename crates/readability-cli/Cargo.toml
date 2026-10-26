@@ -1,0 +1,32 @@
+[package]
+name = "readability-cli"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Experimental native readability-kit command line tools"
+readme = "README.md"
+
+[[bin]]
+name = "readability-kit"
+path = "src/main.rs"
+
+[dependencies]
+readability-core = { path = "../readability-core" }
+serde_json = "1"
+tempfile = "3"
+url = "2"
+
+[[bin]]
+name = "readability-kit-compat"
+path = "src/compat.rs"
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[[bin]]
+name = "readability-kit-bench"
+path = "src/bench.rs"
