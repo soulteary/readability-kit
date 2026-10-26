@@ -118,7 +118,7 @@ const server = createServer(async (request, response) => {
 
 server.on('error', (error) => {
   const message = error.code === 'EADDRINUSE'
-    ? `Port ${demoPort} is busy. Try npm run demo -- --port ${demoPort + 1 <= 65535 ? demoPort + 1 : 4173}.`
+    ? `Port ${demoPort} is busy. Try bun run demo --port ${demoPort + 1 <= 65535 ? demoPort + 1 : 4173}.`
     : error.message;
   console.error(`readability-kit demo: ${message}`);
   process.exitCode = 1;

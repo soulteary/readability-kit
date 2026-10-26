@@ -142,7 +142,7 @@ async function main() {
   const report = {
     schemaVersion: 1, generatedAt: new Date().toISOString(),
     environment: {node: process.version, os: platform(), release: release(), cpu: cpus()[0]?.model, rustc: run('rustc', ['--version']).stdout.trim()},
-    sources: Object.fromEntries(await Promise.all(['Cargo.lock', 'package-lock.json', `target/release/readability-kit-bench${suffix}`, `target/release/readability-kit${suffix}`, 'dist/node.js'].map(async path => [path, createHash('sha256').update(await readFile(join(root, path))).digest('hex')]))),
+    sources: Object.fromEntries(await Promise.all(['Cargo.lock', 'bun.lock', `target/release/readability-kit-bench${suffix}`, `target/release/readability-kit${suffix}`, 'dist/node.js'].map(async path => [path, createHash('sha256').update(await readFile(join(root, path))).digest('hex')]))),
     method: {engine: options.engine, iterations: options.iterations, warmup: options.warmup,
       fixtures: '10th, 50th, 90th input byte percentiles of upstream corpus',
       warm: 'Sequential extraction in separate resident JS/Rust processes; default sanitization; no subprocess in timed region.',

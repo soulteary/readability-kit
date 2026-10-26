@@ -207,8 +207,8 @@ and Shadow DOM bridge experiment. Neither is a completed deliverable here.
 Use a supported Node version from package.json and current stable Rust.
 
 ```sh
-npm ci
-npm run build
+bun install --frozen-lockfile
+bun run build
 cargo build --release --workspace --locked
 cargo fmt --all --check
 cargo clippy --workspace --all-targets --locked -- -D warnings
@@ -221,8 +221,8 @@ node scripts/rust-compatibility.mjs capture-readerable --output rust-reports/rea
 node scripts/rust-compatibility.mjs run --baseline rust-reports/readerable-javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/readerable-native.json --output rust-reports/readerable-differences.json
 node scripts/benchmark-rust.mjs --iterations 20 --output rust-reports/benchmark.json
 python3 scripts/package-rust.py --output rust-reports/native.zip
-npx playwright install chromium
-READABILITY_RUST_BIN="$PWD/target/release/readability-kit" npm run test:browser
+bunx playwright install chromium
+READABILITY_RUST_BIN="$PWD/target/release/readability-kit" bun run test:browser
 node scripts/seed-rust-fuzz.mjs
 cargo +nightly fuzz run extract_html --fuzz-dir fuzz -- -max_total_time=60 -timeout=5 -max_len=262144
 ```

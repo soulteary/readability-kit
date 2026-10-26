@@ -5,14 +5,14 @@ This report compares the pinned Mozilla Readability engine with Chromium's modif
 ## Reproduce
 
 ```bash
-npm ci
-npm run compare -- --output comparison.json
-npm run compare -- --check
+bun install --frozen-lockfile
+bun run compare --output comparison.json
+bun run compare --check
 ```
 
-Without arguments, `npm run compare` prints the complete JSON report. `--output` writes that report to a file and prints a compact summary. `--check` exits with failure if the corpus is empty or either engine throws, returns no article, returns invalid fields, or returns empty HTML/text. Differences between valid articles do not fail the check. The options can be combined.
+Without arguments, `bun run compare` prints the complete JSON report. `--output` writes that report to a file and prints a compact summary. `--check` exits with failure if the corpus is empty or either engine throws, returns no article, returns invalid fields, or returns empty HTML/text. Differences between valid articles do not fail the check. The options can be combined.
 
-The tool calls the raw vendored constructors directly. Run `npm run test:upstream` separately for Mozilla's original expected-output assertions. This comparison does not replace those assertions and does not call the public package wrapper.
+The tool calls the raw vendored constructors directly. Run `bun run test:upstream` separately for Mozilla's original expected-output assertions. This comparison does not replace those assertions and does not call the public package wrapper.
 
 ## Recorded environment
 

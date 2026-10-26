@@ -8,12 +8,14 @@ The package provides a browser API, a Node.js API, and a command-line interface.
 
 Supported Node.js versions are **22.22.2 or later in the 22.x series**, **24.15.0 or later in the 24.x series**, or **26.0.0 and later**. The package's engine range is `^22.22.2 || ^24.15.0 || >=26.0.0`, matching the requirements of its Node DOM adapter, jsdom 30.1.3.
 
+Use **Bun 1.4.2** for dependency installation and repository scripts. Node.js remains the runtime for builds, tests, and the CLI; npm (included with Node.js) is required for package compatibility checks. `bun.lock` is the authoritative dependency lockfile.
+
 ```bash
 git clone https://github.com/soulteary/readability-kit.git
 cd readability-kit
-npm ci
-npm run build
-npm test
+bun install --frozen-lockfile
+bun run build
+bun run test
 ```
 
 The package name is `@soulteary/readability-kit`. To create a local installable package, run `npm pack` and install the generated tarball in your application. These instructions work directly from the repository and do not depend on a registry release.
@@ -143,8 +145,8 @@ Formats are `json` (the default), `html`, and `text`; the default engine is `chr
 ## Browser example
 
 ```bash
-npm run build
-npm run demo
+bun run build
+bun run demo
 ```
 
 Open [the local reader example](http://127.0.0.1:4173/examples/reader/). It accepts pasted HTML and a source URL, offers both engines, and displays the article, HTML, JSON, and metadata. The reading preview disables remote media and navigation. See the [example guide](examples/reader/README.md) for its input and rendering boundaries.
@@ -172,23 +174,25 @@ The Chromium snapshot contains improvements for lead images and captions, JSON-L
 
 ```bash
 # Build, verify pinned sources/history, and run the package's integration tests.
-npm test
+bun run test
 
 # Run Mozilla's original regression suite without changing its source.
-npm run test:upstream
+bun run test:upstream
 
 # Exercise every original article fixture with both raw extraction engines.
-npm run compare -- --check --output upstream-comparison.json
+bun run compare --check --output upstream-comparison.json
 
 # Install the packed artifact in an isolated consumer and check exports/types.
-npm run test:package
+bun run test:package
 
 # Run the actual Chromium browser demo and live-document tests.
-npx playwright install chromium
-npm run test:browser
+bunx playwright install chromium
+bun run test:browser
 ```
 
-`npm run check` combines the source, integration, upstream, comparison, and package checks. CI also runs the browser tests. The [upstream comparison report](docs/UPSTREAM_COMPARISON.md) records the initial corpus results and explains how to interpret differences.
+The package check uses `npm pack` and installs the tarball in an isolated npm consumer. It requires registry access on a cold npm cache, even after a Bun install.
+
+`bun run check` combines type checking with the source, integration, upstream, comparison, and package checks. CI also runs the browser tests. The [upstream comparison report](docs/UPSTREAM_COMPARISON.md) records the initial corpus results and explains how to interpret differences.
 
 - [UPSTREAM.md](UPSTREAM.md): exact revisions, source boundaries, and update procedure.
 - [PATCHES.md](PATCHES.md): imported improvements and standalone adaptations.

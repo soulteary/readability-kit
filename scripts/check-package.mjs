@@ -7,11 +7,13 @@ import {fileURLToPath} from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const packageJSON = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
-const lock = JSON.parse(await readFile(path.join(root, 'package-lock.json'), 'utf8'));
 const workspace = await mkdtemp(path.join(os.tmpdir(), 'readability-kit-package-'));
-const npmCommand = process.env.npm_execpath ? process.execPath :
+// Bun also sets npm_execpath, but its executable is not an npm CLI script.
+const npmCLI = /(?:^|[/\\])npm-cli\.js$/.test(process.env.npm_execpath ?? '')
+  ? process.env.npm_execpath : null;
+const npmCommand = npmCLI ? process.execPath :
   (process.platform === 'win32' ? 'npm.cmd' : 'npm');
-const npmPrefix = process.env.npm_execpath ? [process.env.npm_execpath] : [];
+const npmPrefix = npmCLI ? [npmCLI] : [];
 let success = false;
 
 function run(command, args, cwd = workspace) {
@@ -60,24 +62,9 @@ try {
   };
   await writeFile(path.join(workspace, 'package.json'), JSON.stringify(consumer, null, 2));
 
-  // npm ci supplies every tarball in this lock, even on a cold CI cache. Reuse
-  // that exact dependency resolution so the isolated install needs no registry
-  // metadata, network requests, or lifecycle scripts.
-  const packages = {...lock.packages};
-  packages[''] = consumer;
-  packages[`node_modules/${packageJSON.name}`] = {
-    version: packageJSON.version,
-    resolved: dependency,
-    integrity: packed.integrity,
-    license: packageJSON.license,
-    dependencies: packageJSON.dependencies,
-    bin: packageJSON.bin,
-    engines: packageJSON.engines,
-  };
-  await writeFile(path.join(workspace, 'package-lock.json'), JSON.stringify({
-    name: consumer.name, version: consumer.version, lockfileVersion: 3, requires: true, packages,
-  }, null, 2));
-  npm(['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund'], workspace);
+  // Exercise a real npm consumer install. Bun's cache and lockfile are separate
+  // from npm's, so this check requires registry access on a cold npm cache.
+  npm(['install', '--ignore-scripts', '--no-audit', '--no-fund'], workspace);
 
   const prose = 'A portable reader preserves useful paragraphs, resolves source links, ' +
     'and provides a stable result without executing the original page. ';
@@ -168,7 +155,7 @@ core.extractDocument(document, {engine: 'unknown'});
   }
 
   success = true;
-  console.log(`Package smoke passed: ${files.size} packed files; isolated offline install; ESM/CJS extraction; ESM/CJS types; CLI; browser entry without jsdom.`);
+  console.log(`Package smoke passed: ${files.size} packed files; isolated npm install; ESM/CJS extraction; ESM/CJS types; CLI; browser entry without jsdom.`);
 } finally {
   if (success) await rm(workspace, {recursive: true, force: true});
   else console.error(`Package smoke workspace retained for diagnosis: ${workspace}`);
