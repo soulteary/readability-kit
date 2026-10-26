@@ -119,6 +119,53 @@ fn unicode_and_safe_base_media_survive_complete_pipeline() {
         assert_eq!(article.url, "https://news.example/articles/page");
     }
 }
+
+#[test]
+fn nested_sections_keep_opening_and_closing_prose() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        let html = page("<section>Opening<section><p>Body text</p></section>Closing</section>");
+        let article = extract_html(&html, &options(engine)).unwrap().unwrap();
+        assert!(
+            article.text_content.contains("OpeningBody textClosing"),
+            "{}",
+            article.content
+        );
+    }
+}
+
+#[test]
+fn responsive_image_candidates_survive_resolution_and_sanitization() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        for sanitize in [false, true] {
+            for srcset in [
+                "small.jpg 1x,large.jpg 2x",
+                "small.jpg\t1x,\nlarge.jpg 2x",
+                "small.jpg 320w,large.jpg 640w",
+            ] {
+                let html = page(&format!(
+                    "<figure><picture><source srcset='{srcset}'><img srcset='{srcset}' alt='Article illustration'></picture><figcaption>Article figure</figcaption></figure>"
+                )).replace("<head>", "<head><base href='https://cdn.example/assets/'>");
+                let mut opts = options(engine);
+                opts.sanitize = sanitize;
+                let article = extract_html(&html, &opts).unwrap().unwrap();
+                let doc = Document::from(article.content.as_str());
+                let img = doc.select("img");
+                let actual = img
+                    .attr("srcset")
+                    .expect("srcset-only image keeps candidates");
+                assert!(
+                    actual.contains("https://cdn.example/assets/small.jpg"),
+                    "{actual}"
+                );
+                assert!(
+                    actual.contains("https://cdn.example/assets/large.jpg"),
+                    "{actual}"
+                );
+                assert_eq!(doc.select("source").attr("srcset"), Some(actual));
+            }
+        }
+    }
+}
 #[test]
 fn empty_limits_and_invalid_options_are_distinct() {
     for engine in [Engine::Chromium, Engine::Mozilla] {

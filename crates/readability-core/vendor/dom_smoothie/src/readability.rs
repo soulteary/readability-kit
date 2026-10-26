@@ -1,4 +1,3 @@
-use dom_query::local_name;
 use dom_query::{Document, NodeRef, Selection};
 use foldhash::HashMap;
 use tendril::StrTendril;
@@ -1026,18 +1025,7 @@ impl Readability {
             set_attr_absolute_url(media, "poster", &base_url);
 
             if let Some(srcset) = media.attr("srcset") {
-                let abs_srcset: Vec<String> = srcset
-                    .split(", ")
-                    .map(|s| {
-                        if let Some((src, cond)) = s.split_once(' ') {
-                            let abs_src = to_absolute_url(&base_url, src.trim());
-                            format!("{abs_src} {cond}")
-                        } else {
-                            to_absolute_url(&base_url, s.trim()).into()
-                        }
-                    })
-                    .collect();
-                media.set_attr("srcset", abs_srcset.join(", ").as_str());
+                media.set_attr("srcset", &resolve_srcset(&base_url, &srcset));
             }
         }
     }
@@ -1064,6 +1052,42 @@ fn set_attr_absolute_url(node: &NodeRef, attr_key: &str, base_uri: &str) {
     };
     let abs_url = to_absolute_url(base_uri, &attr);
     node.set_attr(attr_key, &abs_url);
+}
+
+fn resolve_srcset(base_uri: &str, srcset: &str) -> String {
+    let mut remaining = srcset;
+    let mut candidates = Vec::new();
+    loop {
+        remaining = remaining.trim_start_matches(|c: char| c.is_ascii_whitespace() || c == ',');
+        if remaining.is_empty() {
+            break;
+        }
+        // A URL may itself contain commas (notably data URLs). Consume its
+        // entire non-whitespace token before looking for descriptor separators.
+        let url_end = remaining
+            .find(|c: char| c.is_ascii_whitespace())
+            .unwrap_or(remaining.len());
+        let url = &remaining[..url_end];
+        remaining = &remaining[url_end..];
+        let (url, descriptors) = if url.ends_with(',') {
+            (url.trim_end_matches(','), String::new())
+        } else {
+            let end = remaining.find(',').unwrap_or(remaining.len());
+            let descriptors = remaining[..end]
+                .split_ascii_whitespace()
+                .collect::<Vec<_>>()
+                .join(" ");
+            remaining = &remaining[end..];
+            (url, descriptors)
+        };
+        let absolute = to_absolute_url(base_uri, url);
+        candidates.push(if descriptors.is_empty() {
+            absolute.into_owned()
+        } else {
+            format!("{absolute} {descriptors}")
+        });
+    }
+    candidates.join(", ")
 }
 
 fn fix_links(root_sel: &Selection) {
@@ -1110,20 +1134,11 @@ fn simplify_nested_elements(root_sel: &Selection) {
 fn simplify_nested_divs(root_sel: &Selection) {
     let sel = root_sel.select("div, section");
     for parent in sel.nodes().iter().rev() {
-        let Some(node) = parent.first_element_child() else {
+        let Some(node) =
+            single_child_element(parent, "div").or_else(|| single_child_element(parent, "section"))
+        else {
             continue;
         };
-
-        if node.next_element_sibling().is_some() {
-            continue;
-        }
-
-        if !node
-            .qual_name_ref()
-            .is_some_and(|name| matches!(name.local, local_name!("div") | local_name!("section")))
-        {
-            continue;
-        }
 
         for attr in parent.attrs() {
             node.set_attr(&attr.name.local, &attr.value);
@@ -1380,6 +1395,51 @@ mod tests {
 
         simplify_nested_elements(&body_sel);
         assert_eq!(doc.select("div").length(), 1);
+    }
+
+    #[test]
+    fn nested_sections_preserve_surrounding_text() {
+        for (before, after) in [("Opening", "Closing"), ("Opening", ""), ("", "Closing")] {
+            let doc = Document::from(format!(
+                "<section id='outer'>{before}<section><p>Body text</p></section>{after}</section>"
+            ));
+            simplify_nested_divs(&doc.select("body"));
+            assert_eq!(doc.select("section").length(), 2);
+            assert_eq!(
+                doc.select("body").text().as_ref(),
+                format!("{before}Body text{after}")
+            );
+        }
+    }
+
+    #[test]
+    fn nested_wrappers_with_only_whitespace_still_collapse() {
+        let doc = Document::from(
+            "<section id='outer' lang='en'> \n<!-- marker --><div><p>Body text</p></div>\t </section>"
+        );
+        simplify_nested_divs(&doc.select("body"));
+        assert_eq!(doc.select("section").length(), 0);
+        assert_eq!(doc.select("div#outer[lang='en']").length(), 1);
+        assert_eq!(doc.select("body").text().as_ref(), "Body text");
+    }
+
+    #[test]
+    fn srcset_resolves_candidates_with_optional_separator_whitespace() {
+        for (srcset, expected) in [
+            ("small.jpg 1x,large.jpg 2x", "https://example.com/images/small.jpg 1x, https://example.com/images/large.jpg 2x"),
+            ("small.jpg\t1x,\nlarge.jpg\t2x", "https://example.com/images/small.jpg 1x, https://example.com/images/large.jpg 2x"),
+            ("small.jpg 320w,large.jpg 640w", "https://example.com/images/small.jpg 320w, https://example.com/images/large.jpg 640w"),
+            ("small.jpg, large.jpg 2x", "https://example.com/images/small.jpg, https://example.com/images/large.jpg 2x"),
+            ("data:image/png;base64,AAAA 1x,large.jpg 2x", "data:image/png;base64,AAAA 1x, https://example.com/images/large.jpg 2x"),
+            ("a,b.jpg 1x,large.jpg 2x", "https://example.com/images/a,b.jpg 1x, https://example.com/images/large.jpg 2x"),
+        ] {
+            let reader = Readability::new(
+                format!("<img srcset='{srcset}'>"),
+                Some("https://example.com/images/page"), None
+            ).unwrap();
+            reader.fix_relative_uris(&reader.doc.select("body"));
+            assert_eq!(reader.doc.select("img").attr("srcset").as_deref(), Some(expected), "{srcset}");
+        }
     }
 
     #[test]

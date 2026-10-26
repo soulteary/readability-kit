@@ -31,6 +31,13 @@ A second review found and fixed omissions that the first acceptance pass missed:
 These fixes do not make extraction compatible. The 424/604 differing extraction
 cases below remain, and cross-platform jobs have not been executed locally.
 
+PR #2 review additionally found loss of text around a nested section and
+incorrect relative-srcset resolution when a separator comma had no following
+space. Both are corrected with helper-level and complete-pipeline regressions
+for both engines. Whitespace-only wrappers still collapse, URL commas remain
+intact during rewriting, and responsive image candidates survive default
+sanitization. The extraction comparison still reports 424/604 differing cases.
+
 ## Delivered
 
 - Cargo workspace with `readability-core` and `readability-cli`, locked
@@ -98,6 +105,10 @@ report use the `readerable-` prefix. This result does not certify extraction.
 
 ## Performance experiment
 
+These measurements were recorded for the initial audited implementation in
+`98080d3`, before the subsequent PR review corrections. They are not a benchmark
+of the updated PR head.
+
 Environment: Apple M5, macOS Darwin 25.5.0, Node 26.11.1, rustc 1.99.1;
 Rust release build. Three fixtures were selected by 10th/50th/90th percentiles
 of upstream input byte size. Resident measurements use 2 warmups and 20 timed
@@ -123,7 +134,7 @@ Heavy checks/fuzzing were stopped before the recorded final measurement.
 ## Executed validation
 
 - `cargo fmt --all --check` and strict workspace Clippy pass.
-- 84 Rust unit/integration tests pass, including upstream fixture-free tests,
+- 89 Rust unit/integration tests pass, including upstream fixture-free tests,
   10 focused Chromium tests, 18 adversarial payload checks across engine modes,
   128 deterministic malformed inputs, Unicode, URL and output-preservation tests.
 - JS integration/tool tests: 33 pass after the audit, including eight snapshot
@@ -132,7 +143,8 @@ Heavy checks/fuzzing were stopped before the recorded final measurement.
   npm package smoke test.
 - Seven real Chromium tests pass, including native output fragment/document
   reparsing for both modes and the original live Shadow DOM/slot tests.
-- The final seeded libFuzzer run used nightly Rust and AddressSanitizer:
+- The seeded libFuzzer run before the PR review corrections used nightly Rust
+  and AddressSanitizer:
   **3,553 executions in 61 seconds** after strengthening the target, exit 0,
   no discovered crash or timeout. It varies arbitrary class-preservation
   strings, exercises both engines, and checks UTF-16 length plus all serialized

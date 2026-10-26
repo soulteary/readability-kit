@@ -59,3 +59,13 @@ Bounded metadata corrections from differential testing:
   algorithm. Invalid numeric scalar values become U+FFFD instead of surviving
   undecoded or receiving an unrelated HTML named-entity expansion.
 - Element-limit diagnostic wording matches the pinned JS error.
+
+PR review corrections:
+
+- Nested div/section simplification uses the single-child helper, which also
+  rejects non-whitespace text siblings. Opening and closing prose survive;
+  whitespace-only wrappers can still collapse and transfer their attributes.
+- Responsive media URL rewriting tokenizes candidate URLs and descriptors
+  without requiring a space after commas. Tabs/newlines and width/density
+  descriptors work, while commas inside URL tokens are preserved. This does
+  not loosen the public sanitizer's separate conservative srcset policy.
