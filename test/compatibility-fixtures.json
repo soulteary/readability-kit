@@ -1,0 +1,168 @@
+[
+  {
+    "id": "unicode",
+    "html": "<html lang='zh'><title>中文与 Unicode</title><article><h1>中文与 Unicode</h1><p>这是中文正文，用于验证字符长度、标点和内容提取。🙂🧑‍💻 é 中文正文需要完整保留。</p><p>第二段用于增加正文信息，验证换行、空格以及不同 Unicode 字符不会被删除。</p></article></html>",
+    "options": {
+      "charThreshold": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "base-media",
+    "html": "<base href='../assets/'><title>Source URL resolution</title><article><p>This article contains enough useful words, explaining source URL resolution and relative media handling in an extracted document.</p><p><a href='details'>Details</a><img src='photo.jpg' alt='A photo' width='640' height='480'></p></article>",
+    "options": {
+      "charThreshold": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "unsafe-content",
+    "html": "<title>Sanitizer boundary</title><article><p>Useful article text stays available after the sanitizer removes dangerous attributes and interactive content from the original page.</p><p><a href='javascript:alert(1)'>Unsafe link</a><img src='x.jpg' onerror='alert(1)' alt='picture'></p><form><input value='secret'><button>send</button></form><script>alert(1)</script></article>",
+    "options": {
+      "charThreshold": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "no-content",
+    "html": "<html><head><title>Empty page</title></head><body></body></html>",
+    "version": 1
+  },
+  {
+    "id": "jsonld",
+    "html": "<title>Fallback title</title><script type='application/ld+json'>{\"@context\":\"https://schema.org\",\"@type\":\"Article\",\"headline\":\"Metadata title\",\"datePublished\":\"2025-01-01\",\"author\":{\"@type\":\"Person\",\"name\":\"Example Author\"}}</script><article><p>A detailed article body describing metadata extraction, publication dates and author names. The body must survive metadata processing.</p></article>",
+    "options": {
+      "charThreshold": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "invalid-threshold",
+    "html": "<p>Example</p>",
+    "options": {
+      "charThreshold": 0
+    },
+    "version": 1
+  },
+  {
+    "id": "element-limit",
+    "html": "<article><p>One</p><p>Two</p><p>Three</p></article>",
+    "options": {
+      "maxElemsToParse": 1
+    },
+    "version": 1
+  },
+  {
+    "id": "chromium-hero-cite",
+    "version": 1,
+    "description": "Lead image outside prose with cite credit; Chromium hero image selection and caption handling.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>A documented coastal survey</title></head><body><div class=\"hero\"><img src=\"/images/coast.jpg\" width=\"1200\" height=\"800\" alt=\"Coastal survey site\"><cite>Survey photograph by Example Research</cite></div><article><h1>A documented coastal survey</h1><p>This report examines the changing coastal survey site through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of the changing coastal survey site continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of the changing coastal survey site connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p></article></body></html>"
+  },
+  {
+    "id": "chromium-recipe",
+    "version": 1,
+    "description": "Recipe ingredients and instructions containers must remain associated with explanatory prose.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Lentil stew field notes</title></head><body><article><h1>Lentil stew field notes</h1><p>This report examines a lentil stew recipe through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of a lentil stew recipe continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of a lentil stew recipe connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><section class=\"recipe ingredients\"><h2>Ingredients</h2><ul><li>Two cups of lentils and four cups of water</li><li>Onions, carrots, cumin, and olive oil</li></ul></section><section class=\"recipe instructions\"><h2>Instructions</h2><p>Soften the vegetables, add the lentils, and simmer slowly until tender. Taste the broth before adding salt and serve the finished stew with bread.</p></section></article></body></html>"
+  },
+  {
+    "id": "chromium-shopping",
+    "version": 1,
+    "description": "Shopping container embedded between substantial article sections.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>An independent camera review</title></head><body><article><h1>An independent camera review</h1><p>This report examines camera image quality through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of camera image quality continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of camera image quality connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><aside class=\"shopping\"><h2>Shop the featured cameras</h2><p>Retail offers and checkout controls should not replace the independent review.</p><a href=\"https://shop.example/buy\">Buy the camera now</a></aside><p>This report examines the limitations of laboratory camera testing through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of the limitations of laboratory camera testing continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of the limitations of laboratory camera testing connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p></article></body></html>"
+  },
+  {
+    "id": "chromium-ad-break",
+    "version": 1,
+    "description": "Keep continue-read-break prose while removing a true ad-break token.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>A continuous scientific account</title></head><body><article><h1>A continuous scientific account</h1><p>This report examines a laboratory observation through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of a laboratory observation continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of a laboratory observation connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><div class=\"continue-read-break\"><p>The observation continued through the following morning, when a second instrument independently confirmed the initial result and allowed the team to rule out an equipment fault.</p></div><div class=\"ad-break\"><p>Advertisement placeholder unrelated to the laboratory account.</p></div></article></body></html>"
+  },
+  {
+    "id": "disable-jsonld",
+    "version": 1,
+    "description": "JSON-LD contains conflicting metadata but disableJSONLD explicitly bypasses it.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>The visible document headline</title><script type=\"application/ld+json\">{\"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Metadata replacement headline\", \"author\": {\"@type\": \"Person\", \"name\": \"Structured Metadata Author\"}, \"datePublished\": \"2025-03-18T09:00:00Z\"}</script></head><body><article><h1>The visible document headline</h1><p>This report examines structured metadata opt-out through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of structured metadata opt-out continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of structured metadata opt-out connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p></article></body></html>",
+    "options": {
+      "disableJSONLD": true
+    }
+  },
+  {
+    "id": "keep-classes",
+    "version": 1,
+    "description": "Preserve all class names on retained article nodes.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Class preservation report</title></head><body><article><h1>Class preservation report</h1><p>This report examines CSS class preservation through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of CSS class preservation continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of CSS class preservation connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><div class=\"evidence-container\"><p class=\"retain-me discard-me\">The marked paragraph contains evidence that readers need. It must remain part of the article regardless of whether presentation class names are retained.</p></div></article></body></html>",
+    "options": {
+      "keepClasses": true
+    }
+  },
+  {
+    "id": "classes-to-preserve",
+    "version": 1,
+    "description": "Retain configured class token while dropping ordinary presentation tokens.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Selective class preservation</title></head><body><article><h1>Selective class preservation</h1><p>This report examines selective CSS class preservation through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of selective CSS class preservation continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of selective CSS class preservation connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><div class=\"evidence-container\"><p class=\"retain-me discard-me\">The marked paragraph contains evidence that readers need. It must remain part of the article regardless of whether presentation class names are retained.</p></div></article></body></html>",
+    "options": {
+      "classesToPreserve": [
+        "retain-me"
+      ]
+    }
+  },
+  {
+    "id": "sanitize-disabled",
+    "version": 1,
+    "description": "Inert fixture checks explicit sanitize:false; never render this output as trusted HTML.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Explicit unsanitized extraction</title></head><body><article><h1>Explicit unsanitized extraction</h1><p>This report examines the sanitizer escape hatch through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of the sanitizer escape hatch continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of the sanitizer escape hatch connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><p><a href=\"/notes\" onclick=\"window.fixtureActivated=true\">Evidence notes</a><img src=\"/photo.jpg\" onerror=\"window.fixtureActivated=true\" alt=\"Test photograph\"><button>Interactive test control</button></p></article></body></html>",
+    "options": {
+      "sanitize": false
+    }
+  },
+  {
+    "id": "link-density-modifier",
+    "version": 1,
+    "description": "Dense reference section exercises additive link-density configuration.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>A linked research bibliography</title></head><body><article><h1>A linked research bibliography</h1><p>This report examines link-density thresholds through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of link-density thresholds continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of link-density thresholds connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><section><p><a href=\"/reference/0\">Independent research reference 0 discussing measurements and evidence</a> <a href=\"/reference/1\">Independent research reference 1 discussing measurements and evidence</a> <a href=\"/reference/2\">Independent research reference 2 discussing measurements and evidence</a> <a href=\"/reference/3\">Independent research reference 3 discussing measurements and evidence</a> <a href=\"/reference/4\">Independent research reference 4 discussing measurements and evidence</a> <a href=\"/reference/5\">Independent research reference 5 discussing measurements and evidence</a> <a href=\"/reference/6\">Independent research reference 6 discussing measurements and evidence</a> <a href=\"/reference/7\">Independent research reference 7 discussing measurements and evidence</a> <a href=\"/reference/8\">Independent research reference 8 discussing measurements and evidence</a> <a href=\"/reference/9\">Independent research reference 9 discussing measurements and evidence</a> <a href=\"/reference/10\">Independent research reference 10 discussing measurements and evidence</a> <a href=\"/reference/11\">Independent research reference 11 discussing measurements and evidence</a> </p></section></article></body></html>",
+    "options": {
+      "linkDensityModifier": 0.35
+    }
+  },
+  {
+    "id": "custom-top-candidates",
+    "version": 1,
+    "description": "Explicit nondefault candidate count over multiple substantial sections.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Comparing competing content sections</title></head><body><article><h1>Comparing competing content sections</h1><p>This report examines candidate ranking through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of candidate ranking continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of candidate ranking connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><section><h2>Supporting measurements</h2><p>This report examines independent supporting measurements through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of independent supporting measurements continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of independent supporting measurements connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p></section></article></body></html>",
+    "options": {
+      "nbTopCandidates": 2
+    }
+  },
+  {
+    "id": "malformed-namespaces",
+    "version": 1,
+    "description": "Foreign-content namespace transitions and mutation-XSS-shaped malformed markup.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Namespace repair investigation</title></head><body><article><h1>Namespace repair investigation</h1><p>This report examines malformed foreign-content parsing through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of malformed foreign-content parsing continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of malformed foreign-content parsing connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p><math><mtext><table><mglyph><style><!--</style><img title=\"--><img src=x onerror=alert(1)>\"></table></mtext></math><svg><foreignObject><p>Visible text crossing a foreign content boundary.</svg><p>After the malformed boundary, this final observation should still appear in the extracted account.</p></article></body></html>"
+  },
+  {
+    "id": "invalid-url",
+    "version": 1,
+    "description": "API rejects non-HTTP source URL; raw engine construction may accept it.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Invalid source URL contract</title></head><body><article><h1>Invalid source URL contract</h1><p>This report examines source URL validation through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of source URL validation continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of source URL validation connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p></article></body></html>",
+    "options": {
+      "url": "file:///tmp/article.html"
+    }
+  },
+  {
+    "id": "invalid-boolean",
+    "version": 1,
+    "description": "String false must not be silently interpreted as a boolean API option.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Invalid boolean option contract</title></head><body><article><h1>Invalid boolean option contract</h1><p>This report examines boolean option validation through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of boolean option validation continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of boolean option validation connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p></article></body></html>",
+    "options": {
+      "sanitize": "false"
+    }
+  },
+  {
+    "id": "invalid-fractional-threshold",
+    "version": 1,
+    "description": "API rejects fractional character threshold; raw engine behavior recorded independently.",
+    "html": "<!doctype html><html lang=\"en\"><head><title>Invalid threshold contract</title></head><body><article><h1>Invalid threshold contract</h1><p>This report examines integer threshold validation through a reproducible observation. The opening section explains the setting, identifies relevant evidence, and gives readers enough context to understand why this particular case matters.</p><p>The investigation of integer threshold validation continued with a second independent observation. Researchers compared the original records, checked the sequence of events, and documented the assumptions that could affect the interpretation.</p><p>The final analysis of integer threshold validation connects these findings with their practical consequences. Readers should retain the complete explanation, including qualifications, supporting examples, and references, when the surrounding page controls are removed.</p></article></body></html>",
+    "options": {
+      "charThreshold": 1.5
+    }
+  }
+]

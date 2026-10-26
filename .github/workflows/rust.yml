@@ -1,0 +1,141 @@
+name: Experimental Rust
+
+on:
+  push:
+    branches: [main, migrate/reading-core]
+    paths: ['crates/**', 'Cargo.*', 'fuzz/**', 'scripts/*rust*', 'test/compatibility*', 'test/rust-gate.test.mjs', 'NOTICE', 'LICENSE*', 'docs/RUST*', 'test/browser/native.spec.mjs', 'vendor/**', 'src/**', 'package*.json', '.github/workflows/rust.yml']
+  pull_request:
+    paths: ['crates/**', 'Cargo.*', 'fuzz/**', 'scripts/*rust*', 'test/compatibility*', 'test/rust-gate.test.mjs', 'NOTICE', 'LICENSE*', 'docs/RUST*', 'test/browser/native.spec.mjs', 'vendor/**', 'src/**', 'package*.json', '.github/workflows/rust.yml']
+  workflow_dispatch:
+    inputs:
+      run_fuzz:
+        description: Run the seeded 60-second fuzz check
+        type: boolean
+        default: false
+      run_benchmark:
+        description: Record an informational benchmark on the CI runner
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: cargo fetch --locked
+      - run: cargo fmt --all --check
+      - run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - run: cargo test --workspace --locked
+      - run: cargo build --release --workspace --locked
+      - run: python scripts/package-rust.py --output rust-reports/native-${{ matrix.os }}.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-${{ matrix.os }}
+          path: |
+            rust-reports/native-${{ matrix.os }}.zip
+            rust-reports/native-${{ matrix.os }}.zip.sha256
+
+  native-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: npm run build
+      - run: cargo build --release --workspace --locked
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+        env:
+          READABILITY_RUST_BIN: ${{ github.workspace }}/target/release/readability-kit
+
+  # PRs expose the known compatibility gaps as reports. Manual release-gate
+  # runs fail on every difference; no report changes the npm backend.
+  compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: npm run build
+      - run: cargo build --release --workspace --locked
+      - run: mkdir -p rust-reports
+      - run: node scripts/rust-compatibility.mjs capture --output rust-reports/javascript.json
+      - run: node scripts/rust-compatibility.mjs capture-readerable --output rust-reports/readerable-javascript.json
+      - name: Collect strict differences (known gaps remain visible)
+        shell: bash
+        run: |
+          node scripts/rust-compatibility.mjs run --baseline rust-reports/javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/native.json --output rust-reports/differences.json || test "$?" -eq 1
+          node scripts/rust-compatibility.mjs run --baseline rust-reports/readerable-javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/readerable-native.json --output rust-reports/readerable-differences.json || test "$?" -eq 1
+      - name: Publish compatibility status and enforce manual release gate
+        env:
+          STRICT_RELEASE_GATE: ${{ github.event_name == 'workflow_dispatch' }}
+        run: node scripts/report-rust-gate.mjs rust-reports/differences.json rust-reports/readerable-differences.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rust-compatibility
+          path: rust-reports/
+
+  fuzz:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_fuzz
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - uses: dtolnay/rust-toolchain@nightly
+      - run: cargo install cargo-fuzz --locked
+      - run: node scripts/seed-rust-fuzz.mjs
+      - run: cargo +nightly fuzz run extract_html --fuzz-dir fuzz -- -max_total_time=60 -timeout=5 -max_len=262144
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: rust-fuzz-crash
+          path: fuzz/artifacts/
+
+  benchmark:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_benchmark
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+          cache: npm
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: npm run build
+      - run: cargo build --release --workspace --locked
+      - run: mkdir -p rust-reports
+      - run: node scripts/benchmark-rust.mjs --iterations 20 --output rust-reports/benchmark.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rust-benchmark-informational
+          path: rust-reports/benchmark.json
