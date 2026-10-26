@@ -1012,9 +1012,9 @@ impl Readability {
         };
 
         let url_sel = if self.doc_url.as_ref() == Some(&base_url) {
-            r##"a[href]:not([href^="#"]):not([href^="http"])"##
+            r##"a[href]:not([href^="#"])"##
         } else {
-            r#"a[href]:not([href^="http"])"#
+            "a[href]"
         };
         for a in root_sel.select(url_sel).nodes() {
             set_attr_absolute_url(a, "href", &base_url);
@@ -1643,6 +1643,44 @@ mod tests {
         // Ensure fix in parse_base_url wraps in Some(...)
         let base_url = ra.parse_base_url().expect("base url");
         assert_eq!(base_url, "https://example.com/blog/");
+    }
+
+    #[test]
+    fn relative_link_names_starting_with_http_are_resolved() {
+        for base in ["", "<base href='https://cdn.example/assets/'>"] {
+            let reader = Readability::new(
+                format!("{base}<a href='http-guide.html'>Guide</a><a href='https-notes.html'>Notes</a><a href='#part'>Part</a><a href='https://other.example/reference'>Absolute</a>"),
+                Some("https://example.com/articles/page"), None
+            ).unwrap();
+            reader.fix_relative_uris(&reader.doc.select("body"));
+            let root = if base.is_empty() {
+                "https://example.com/articles/"
+            } else {
+                "https://cdn.example/assets/"
+            };
+            let links = reader.doc.select("a");
+            assert_eq!(
+                links.nodes()[0].attr("href").as_deref(),
+                Some(format!("{root}http-guide.html").as_str())
+            );
+            assert_eq!(
+                links.nodes()[1].attr("href").as_deref(),
+                Some(format!("{root}https-notes.html").as_str())
+            );
+            let fragment = if base.is_empty() {
+                "#part".into()
+            } else {
+                format!("{root}#part")
+            };
+            assert_eq!(
+                links.nodes()[2].attr("href").as_deref(),
+                Some(fragment.as_str())
+            );
+            assert_eq!(
+                links.nodes()[3].attr("href").as_deref(),
+                Some("https://other.example/reference")
+            );
+        }
     }
 
     #[test]

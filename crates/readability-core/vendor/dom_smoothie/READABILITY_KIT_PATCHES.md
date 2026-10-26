@@ -69,3 +69,9 @@ PR review corrections:
   without requiring a space after commas. Tabs/newlines and width/density
   descriptors work, while commas inside URL tokens are preserved. This does
   not loosen the public sanitizer's separate conservative srcset policy.
+- Video attribute matching checks suffixes of a boundary-safe prefix rather
+  than subtracting ASCII byte lengths inside arbitrary Unicode text. Regression
+  cases include Chinese, accented characters and emoji before video domains.
+- Anchor URL rewriting no longer skips values starting with the text `http`:
+  relative filenames use the source base, while fragment-only links retain the
+  existing source/base-dependent behavior.

@@ -28,7 +28,7 @@ A second review found and fixed omissions that the first acceptance pass missed:
 - PRs now receive strict extraction/readerability reports. A manual run still
   enforces the release gate; optional manual fuzz and benchmark jobs were added.
 
-These fixes do not make extraction compatible. The 424/604 differing extraction
+These fixes do not make extraction compatible. The 420/604 differing extraction
 cases below remain, and cross-platform jobs have not been executed locally.
 
 PR #2 review additionally found loss of text around a nested section and
@@ -36,7 +36,16 @@ incorrect relative-srcset resolution when a separator comma had no following
 space. Both are corrected with helper-level and complete-pipeline regressions
 for both engines. Whitespace-only wrappers still collapse, URL commas remain
 intact during rewriting, and responsive image candidates survive default
-sanitization. The extraction comparison still reports 424/604 differing cases.
+sanitization. The extraction comparison still reports 420/604 differing cases.
+
+A later review found an unchecked UTF-8 slice in video attribute matching and
+relative link filenames beginning with `http` being skipped. Prefix suffix
+checks now avoid Unicode-boundary panics; applicable links all pass through the
+URL resolver. Regression cases cover both engines, sanitizer opt-out, source
+bases and fragment handling. The fuzz seed generator includes the Unicode
+iframe reproducer.
+The link correction reduces differing extraction cases from 424 to 420 in the
+604-case strict comparison; the compatibility gate remains failed.
 
 ## Delivered
 
@@ -70,10 +79,10 @@ their source remains present and their passage is not claimed.
 Inputs: 130 unchanged upstream HTML fixtures plus 21 versioned project fixtures,
 each tested through two engines and two layers: **604 cases**.
 
-- 180 cases match every compared field; **424 cases differ**.
-- Chromium public API: 110/151 differing cases; raw engine: 102/151.
-- Mozilla public API: 110/151 differing cases; raw engine: 102/151.
-- Field differences: HTML 412, text 372, length 372, byline 8, excerpt 4.
+- 184 cases match every compared field; **420 cases differ**.
+- Chromium public API: 109/151 differing cases; raw engine: 101/151.
+- Mozilla public API: 109/151 differing cases; raw engine: 101/151.
+- Field differences: HTML 408, text 372, length 372, byline 8, excerpt 4.
   There are also 6 raw-layer status differences and 10 diagnostic-message
   differences. Fields overlap within cases; these are not independent failures.
 - Of 372 text differences, 180 match after collapsing whitespace; another 188
@@ -134,7 +143,7 @@ Heavy checks/fuzzing were stopped before the recorded final measurement.
 ## Executed validation
 
 - `cargo fmt --all --check` and strict workspace Clippy pass.
-- 89 Rust unit/integration tests pass, including upstream fixture-free tests,
+- 93 Rust unit/integration tests pass, including upstream fixture-free tests,
   10 focused Chromium tests, 18 adversarial payload checks across engine modes,
   128 deterministic malformed inputs, Unicode, URL and output-preservation tests.
 - JS integration/tool tests: 33 pass after the audit, including eight snapshot
@@ -151,6 +160,9 @@ Heavy checks/fuzzing were stopped before the recorded final measurement.
   article fields, empty results and errors for repeatability.
   Inputs are capped at 256 KiB with a 5-second execution timeout and a 10,000
   element extraction cap. This bounded run is not exhaustive safety evidence.
+- A fresh seeded run after the Unicode video-attribute fix completed **3,478
+  executions in 61 seconds**, exit 0, with no discovered crash or timeout.
+  Its seeds include the reported iframe reproducer alongside the existing corpus.
 - Strict full JS/Rust compatibility: **fails**, as detailed above.
 - Native archive smoke check: all member and archive hashes verified; 105
   normal/build dependency notice records included for the local macOS target.

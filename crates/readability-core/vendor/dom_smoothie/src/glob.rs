@@ -23,9 +23,7 @@ pub(crate) static HTTP_PFX: &str = "http://";
 pub(crate) static HTTPS_PFX: &str = "https://";
 
 pub(crate) static PROTOCOL_PFX: &str = "//";
-pub(crate) static PROTOCOL_PFX_LEN: usize = PROTOCOL_PFX.len();
 pub(crate) static WWW_PFX: &str = "//www.";
-pub(crate) static WWW_PFX_LEN: usize = WWW_PFX.len();
 
 // --- Matchers ---
 

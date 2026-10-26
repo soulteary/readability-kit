@@ -166,6 +166,63 @@ fn responsive_image_candidates_survive_resolution_and_sanitization() {
         }
     }
 }
+
+#[test]
+fn unicode_embed_attributes_do_not_abort_extraction() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        for sanitize in [true, false] {
+            for prefix in ["中", "é", "😀", "中文"] {
+                let html = page(&format!("<iframe title='{prefix}youtube.com'></iframe>"));
+                let mut opts = options(engine);
+                opts.sanitize = sanitize;
+                let article = extract_html(&html, &opts).unwrap().unwrap();
+                assert!(article
+                    .text_content
+                    .contains("Evidence needs careful interpretation"));
+                assert!(!article.content.contains("<iframe"));
+            }
+        }
+    }
+}
+
+#[test]
+fn http_prefixed_relative_links_use_the_source_base() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        for base in [
+            "",
+            "<base href='../assets/'>",
+            "<base href='https://cdn.example/assets/'>",
+        ] {
+            let html = page("<p><a href='http-guide.html'>Source guide</a><a href='https-notes.html'>Source notes</a><a href='#part'>Article section</a></p>")
+                .replace("<head>", &format!("<head>{base}"));
+            let article = extract_html(&html, &options(engine)).unwrap().unwrap();
+            let root = match base {
+                "" => "https://news.example/articles/",
+                "<base href='../assets/'>" => "https://news.example/assets/",
+                _ => "https://cdn.example/assets/",
+            };
+            let doc = Document::from(article.content.as_str());
+            let links = doc.select("a");
+            assert_eq!(
+                links.nodes()[0].attr("href").as_deref(),
+                Some(format!("{root}http-guide.html").as_str())
+            );
+            assert_eq!(
+                links.nodes()[1].attr("href").as_deref(),
+                Some(format!("{root}https-notes.html").as_str())
+            );
+            let fragment = if base.is_empty() {
+                "#part".into()
+            } else {
+                format!("{root}#part")
+            };
+            assert_eq!(
+                links.nodes()[2].attr("href").as_deref(),
+                Some(fragment.as_str())
+            );
+        }
+    }
+}
 #[test]
 fn empty_limits_and_invalid_options_are_distinct() {
     for engine in [Engine::Chromium, Engine::Mozilla] {

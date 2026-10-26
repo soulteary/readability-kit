@@ -16,6 +16,10 @@ async function seed(html) {
   count++;
 }
 for (const item of JSON.parse(await readFile(join(root, 'test/compatibility-fixtures.json'), 'utf8'))) await seed(item.html);
+// Retain the UTF-8 video-attribute crash reproducer in every seeded run.
+for (const prefix of ['中', 'é', '😀', '中文']) {
+  await seed(`<article><p>${'Evidence needs context, careful interpretation, and reproducible observations. '.repeat(20)}</p><iframe title="${prefix}youtube.com"></iframe><p><a href="http-guide.html">Source guide</a></p></article>`);
+}
 const fixtures = join(root, 'vendor/mozilla/test/test-pages');
 for (const entry of await readdir(fixtures, {withFileTypes: true})) {
   if (!entry.isDirectory()) continue;

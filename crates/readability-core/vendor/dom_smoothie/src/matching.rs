@@ -52,14 +52,12 @@ pub(crate) fn is_schema_org_url(url: &str) -> bool {
 
 pub(crate) fn is_video_url(haystack: &str) -> bool {
     VIDEO_DOMAINS.iter().any(|&p| {
-        if let Some(pos) = haystack.find(p) {
-            if pos > 1 && &haystack[pos - PROTOCOL_PFX_LEN..pos] == PROTOCOL_PFX
-                || pos > 5 && &haystack[pos - WWW_PFX_LEN..pos] == WWW_PFX
-            {
-                return true;
-            }
-        }
-        false
+        haystack.find(p).is_some_and(|pos| {
+            // find returns a UTF-8 boundary; subtracting an ASCII prefix's
+            // byte length could instead land inside the preceding character.
+            let prefix = &haystack[..pos];
+            prefix.ends_with(PROTOCOL_PFX) || prefix.ends_with(WWW_PFX)
+        })
     })
 }
 
@@ -327,6 +325,17 @@ mod tests {
         assert!(!is_video_url("//youtubeXcom/watch?v=123")); // invalid domain
         assert!(!is_video_url("//www.notvideo.com")); // non-video domain
         assert!(!is_video_url("")); // empty string
+    }
+
+    #[test]
+    fn video_attribute_prefix_checks_are_utf8_safe() {
+        for domain in VIDEO_DOMAINS {
+            for prefix in ["中", "é", "😀", "中文", "éééé"] {
+                assert!(!is_video_url(&format!("{prefix}{domain}")));
+                assert!(is_video_url(&format!("{prefix}//{domain}")));
+                assert!(is_video_url(&format!("{prefix}//www.{domain}")));
+            }
+        }
     }
 
     #[test]
