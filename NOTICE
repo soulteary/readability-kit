@@ -1,0 +1,44 @@
+readability-kit
+Copyright 2026 readability-kit contributors
+
+The project's original integration code is licensed under Apache-2.0.
+Third-party code retains its original licenses and copyright notices.
+
+Mozilla Readability and Chromium's modified Readability
+------------------------------------------------------
+Copyright (c) 2010 Arc90 Inc
+Copyright the Mozilla and Chromium contributors, as identified in source
+headers and original Git history.
+
+These Readability implementations are licensed under the Apache License,
+Version 2.0. A complete copy is provided in LICENSES/Apache-2.0.txt. The
+original upstream license notices remain in vendor/mozilla/LICENSE.md and
+vendor/chromium/LICENSE. The pinned Mozilla baseline has no NOTICE file.
+
+Chromium cloning, triggering, and content-processing references/adaptations
+--------------------------------------------------------------------------
+Copyright 2015, 2025, 2026 The Chromium Authors
+
+Chromium-authored integration code is licensed under BSD-3-Clause. Preserve
+LICENSES/BSD-3-Clause-Chromium.txt when redistributing the source or bundles.
+The standalone adaptations in src/clone.ts and src/cleanup.ts identify the
+original source files and retain their attribution. Chromium reference files
+are not executed as injected browser scripts by this project.
+
+DOMPurify
+---------
+Copyright Cure53 and other contributors.
+DOMPurify is bundled into the browser entry. Its upstream dual-license text
+is retained in LICENSES/DOMPurify-LICENSE.txt; this distribution uses the
+Apache-2.0 option. Node.js dependencies retain their own package licenses.
+
+Provenance and modifications
+----------------------------
+See UPSTREAM.md and upstream.json for the exact upstream revisions, original
+paths, and source hashes. PATCHES.md describes the standalone adaptations.
+The unmodified upstream regression corpus is retained for reproducibility;
+its page contents, names, and images are test material with their original
+provenance and are not included in the npm package.
+
+This project is independent of Google, Chromium, Mozilla, and Cure53. Their
+names identify source provenance and do not imply endorsement.
