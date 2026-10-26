@@ -279,3 +279,41 @@ fn deterministic_malformed_smoke_corpus_never_panics() {
         }
     }
 }
+
+#[test]
+fn lazy_image_recovery_preserves_blank_sources_until_extraction() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        for sanitize in [true, false] {
+            for base in ["", "<base href='https://cdn.example/assets/'>"] {
+                for source in [None, Some(""), Some(" \t\n "), Some("ready.jpg")] {
+                    let attribute = source.map_or(String::new(), |value| format!(" src='{value}'"));
+                    let html = page(&format!(
+                        "<figure><img loading='lazy'{attribute} data-src='photo.jpg' alt='Article photograph'><figcaption>Photo caption</figcaption></figure>"
+                    )).replace("<head>", &format!("<head>{base}"));
+                    let mut opts = options(engine);
+                    opts.sanitize = sanitize;
+                    let article = extract_html(&html, &opts).unwrap().unwrap();
+                    let doc = Document::from(article.content.as_str());
+                    let root = if base.is_empty() {
+                        "https://news.example/articles/"
+                    } else {
+                        "https://cdn.example/assets/"
+                    };
+                    let filename = if source == Some("ready.jpg") {
+                        "ready.jpg"
+                    } else {
+                        "photo.jpg"
+                    };
+                    assert_eq!(
+                        doc.select("img").attr("src").as_deref(),
+                        Some(format!("{root}{filename}").as_str()),
+                        "engine={engine:?}, sanitize={sanitize}, source={source:?}"
+                    );
+                    assert!(article
+                        .text_content
+                        .contains("Evidence needs careful interpretation"));
+                }
+            }
+        }
+    }
+}

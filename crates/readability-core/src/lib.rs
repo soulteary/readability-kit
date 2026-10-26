@@ -123,6 +123,11 @@ fn prepare(html: &str, options: &ExtractOptions, public: bool) -> Result<(Docume
     ));
     for node in doc.select("img[src]").nodes() {
         if let Some(src) = node.attr("src") {
+            // Blank placeholders must remain blank until lazy-image recovery
+            // can replace them with the real address from data attributes.
+            if src.trim().is_empty() {
+                continue;
+            }
             if let Ok(url) = base.join(&src) {
                 node.set_attr("src", url.as_str());
             }

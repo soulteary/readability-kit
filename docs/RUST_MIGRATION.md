@@ -44,6 +44,9 @@ checks now avoid Unicode-boundary panics; applicable links all pass through the
 URL resolver. Regression cases cover both engines, sanitizer opt-out, source
 bases and fragment handling. The fuzz seed generator includes the Unicode
 iframe reproducer.
+A subsequent public-adapter fix leaves empty and whitespace-only image sources
+untouched until lazy-image recovery. Its full-pipeline regression covers both
+engines, sanitization on/off, missing/blank/nonempty sources and source bases.
 The link correction reduces differing extraction cases from 424 to 420 in the
 604-case strict comparison; the compatibility gate remains failed.
 
@@ -143,7 +146,7 @@ Heavy checks/fuzzing were stopped before the recorded final measurement.
 ## Executed validation
 
 - `cargo fmt --all --check` and strict workspace Clippy pass.
-- 93 Rust unit/integration tests pass, including upstream fixture-free tests,
+- 94 Rust unit/integration tests pass, including upstream fixture-free tests,
   10 focused Chromium tests, 18 adversarial payload checks across engine modes,
   128 deterministic malformed inputs, Unicode, URL and output-preservation tests.
 - JS integration/tool tests: 33 pass after the audit, including eight snapshot
