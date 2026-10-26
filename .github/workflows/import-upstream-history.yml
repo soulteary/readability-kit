@@ -1,0 +1,32 @@
+name: Import pinned upstream history
+
+on:
+  push:
+    branches: [migrate/reading-core]
+    paths:
+      - .github/workflows/import-upstream-history.yml
+      - scripts/import-mozilla-history.sh
+
+permissions:
+  contents: write
+
+concurrency:
+  group: initial-upstream-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    if: github.repository == 'soulteary/readability-kit'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: migrate/reading-core
+      - name: Import original commit objects
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash scripts/import-mozilla-history.sh
+          git push origin HEAD:refs/heads/migrate/reading-core
