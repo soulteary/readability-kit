@@ -75,3 +75,8 @@ PR review corrections:
 - Anchor URL rewriting no longer skips values starting with the text `http`:
   relative filenames use the source base, while fragment-only links retain the
   existing source/base-dependent behavior.
+- Extraction retains the selected node identity through policy and multi-attempt
+  parsing rather than rediscovering a wrapper by a source-controllable ID.
+  Created empty wrappers still fail extraction; internal root scores are removed.
+- Table column counts saturate when untrusted colspan values exceed the total
+  machine-sized count, preventing debug panics and release-mode wraparound.

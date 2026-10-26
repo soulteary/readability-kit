@@ -240,11 +240,12 @@ fn get_row_and_col_count(table: &Selection) -> (usize, usize) {
         rows += 1;
 
         //Now look for column-related info
-        let mut columns_in_this_row = 0;
+        let mut columns_in_this_row = 0usize;
 
         for cell in &tr.select("td") {
             let colspan = cell.attr_or("colspan", "1");
-            columns_in_this_row += colspan.parse::<usize>().unwrap_or(1);
+            columns_in_this_row =
+                columns_in_this_row.saturating_add(colspan.parse::<usize>().unwrap_or(1));
         }
         cols = std::cmp::max(cols, columns_in_this_row);
     }
@@ -504,6 +505,13 @@ mod tests {
     use dom_query::Document;
 
     use super::*;
+
+    #[test]
+    fn table_columns_saturate_at_machine_limit() {
+        let html = format!("<table><tr><td colspan='{}'></td><td></td><td colspan='{}'></td></tr><tr><td></td></tr></table>", usize::MAX, usize::MAX);
+        let doc = Document::from(html.as_str());
+        assert_eq!(get_row_and_col_count(&doc.select("table")), (2, usize::MAX));
+    }
 
     #[test]
     fn test_fix_lazy_images() {

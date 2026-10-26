@@ -444,29 +444,22 @@ impl Readability {
 
         self.prepare();
 
-        if let Some(policy) = policy {
-            // When using a specific policy, make a single attempt to extract content
-            if self
-                .attempt_grab_article(&self.doc, &policy.into(), &metadata)
-                .is_none()
-            {
-                return Err(ReadabilityError::GrabFailed);
-            }
+        let root_id = if let Some(policy) = policy {
+            self.attempt_grab_article(&self.doc, &policy.into(), &metadata)
+                .ok_or(ReadabilityError::GrabFailed)?
+                .id
         } else {
-            // When no policy is specified, use the multi-attempt approach for better results
-            let Some(doc) = self.grab_article(&metadata) else {
-                return Err(ReadabilityError::GrabFailed);
-            };
+            let (doc, root_id) = self
+                .grab_article(&metadata)
+                .ok_or(ReadabilityError::GrabFailed)?;
             self.doc = doc;
-        }
-
-        let root_sel = self.doc.select_single_matcher(&MATCHER_CONTENT_ID);
-
-        let Some(root_node) = root_sel.nodes().first() else {
-            // After `grab_article` successfully returns a document
-            // there is no way that `#readability-page-1 does not exists
-            return Err(ReadabilityError::GrabFailed);
+            root_id
         };
+
+        // Keep the actual extraction result: source HTML may already contain
+        // an element with the internal wrapper's ID.
+        let root_sel = Selection::from(NodeRef::new(root_id, &self.doc.tree));
+        let root_node = &root_sel.nodes()[0];
 
         metadata.dir = get_dir_attr(root_node);
 
@@ -920,6 +913,7 @@ impl Readability {
             .parent()
             .select("*[data-readability-score], *[data-readability-table]");
         score_sel.remove_attrs(&["data-readability-score", "data-readability-table"]);
+        root_sel.remove_attrs(&["data-readability-score", "data-readability-table"]);
 
         if !self.config.keep_classes {
             self.clean_classes(root_sel);
@@ -1307,6 +1301,30 @@ fn is_valid_byline(node: &NodeRef) -> bool {
 mod tests {
     use super::*;
     use dom_query::Document;
+
+    #[test]
+    fn source_id_collisions_do_not_redirect_policy_or_fallback_extraction() {
+        for threshold in [1, 100_000] {
+            let config = Config {
+                char_threshold: threshold,
+                ..Config::default()
+            };
+            let html = format!("<body><section id='readability-page-1'>Unrelated teaser</section><article><p>{}</p></article></body>", "Detailed evidence, context and observations support this report. ".repeat(30));
+            for policy in [
+                None,
+                Some(ParsePolicy::Strict),
+                Some(ParsePolicy::Moderate),
+                Some(ParsePolicy::Clean),
+                Some(ParsePolicy::Raw),
+            ] {
+                let mut reader =
+                    Readability::new(html.as_str(), None, Some(config.clone())).unwrap();
+                let article = reader.parse_impl(policy).unwrap();
+                assert!(article.text_content.contains("Detailed evidence"));
+                assert!(!article.text_content.contains("Unrelated teaser"));
+            }
+        }
+    }
 
     #[test]
     fn preserved_classes_are_literal_tokens_not_selectors() {

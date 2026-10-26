@@ -317,3 +317,32 @@ fn lazy_image_recovery_preserves_blank_sources_until_extraction() {
         }
     }
 }
+
+#[test]
+fn extracted_root_ignores_colliding_source_ids() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        for sanitize in [false, true] {
+            let html = page("").replace(
+                "<article>",
+                "<section id='readability-page-1'>Unrelated teaser</section><article>",
+            );
+            let mut opts = options(engine);
+            opts.sanitize = sanitize;
+            let article = extract_html(&html, &opts).unwrap().unwrap();
+            assert!(article
+                .text_content
+                .contains("Evidence needs careful interpretation"));
+            assert!(!article.text_content.contains("Unrelated teaser"));
+        }
+    }
+}
+
+#[test]
+fn excessive_table_colspans_do_not_overflow() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        let html = page(&format!("<table><tr><td colspan='{}'>First cell</td><td>Second cell</td></tr><tr><td>Third cell</td><td>Fourth cell</td></tr></table>", usize::MAX));
+        let article = extract_html(&html, &options(engine)).unwrap().unwrap();
+        assert!(article.content.contains("<table"));
+        assert!(article.text_content.contains("First cell"));
+    }
+}
