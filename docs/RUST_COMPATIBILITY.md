@@ -9,8 +9,8 @@ compatibility and end-to-end performance have been measured.
 Use a supported Node version from package.json and install locked dependencies.
 
 ```sh
-npm ci
-npm run build
+bun install --frozen-lockfile
+bun run build
 node scripts/rust-compatibility.mjs capture --output /tmp/readability-js.json
 node scripts/rust-compatibility.mjs compare --baseline /tmp/readability-js.json --candidate /tmp/readability-js.json
 node --test test/compatibility.test.mjs

@@ -7,9 +7,9 @@ A small browser playground for comparing Chromium's Readability enhancements wit
 From the repository root:
 
 ```sh
-npm ci
-npm run build
-npm run demo
+bun install --frozen-lockfile
+bun run build
+bun run demo
 ```
 
 Open [http://127.0.0.1:4173/examples/reader/](http://127.0.0.1:4173/examples/reader/), load the built-in sample, and choose **Extract article**. The sample is fictional text written for this project.
@@ -17,7 +17,7 @@ Open [http://127.0.0.1:4173/examples/reader/](http://127.0.0.1:4173/examples/rea
 To choose another port:
 
 ```sh
-npm run demo -- --port 4174
+bun run demo --port 4174
 ```
 
 The server binds to `127.0.0.1` and serves only `examples/reader/` and `dist/`. It rejects private dotfiles and paths outside those directories, including symlink targets. Stop it with Ctrl+C.

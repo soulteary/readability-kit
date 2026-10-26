@@ -22,7 +22,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   webServer: {
-    command: 'npm run demo',
+    command: 'bun run demo',
     url: 'http://127.0.0.1:4173/examples/reader/',
     reuseExistingServer: false,
     timeout: 15_000,
