@@ -4,16 +4,12 @@ import {mkdtemp, readFile, rename, rm, writeFile} from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {resolveNpmCommand} from './npm-command.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const packageJSON = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const workspace = await mkdtemp(path.join(os.tmpdir(), 'readability-kit-package-'));
-// Bun also sets npm_execpath, but its executable is not an npm CLI script.
-const npmCLI = /(?:^|[/\\])npm-cli\.js$/.test(process.env.npm_execpath ?? '')
-  ? process.env.npm_execpath : null;
-const npmCommand = npmCLI ? process.execPath :
-  (process.platform === 'win32' ? 'npm.cmd' : 'npm');
-const npmPrefix = npmCLI ? [npmCLI] : [];
+const {command: npmCommand, prefix: npmPrefix} = resolveNpmCommand();
 let success = false;
 
 function run(command, args, cwd = workspace) {
