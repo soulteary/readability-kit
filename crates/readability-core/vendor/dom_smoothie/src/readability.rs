@@ -1,4 +1,4 @@
-use dom_query::{Document, NodeRef, Selection};
+use dom_query::{Document, NodeId, NodeRef, Selection};
 use foldhash::HashMap;
 use tendril::StrTendril;
 
@@ -116,6 +116,7 @@ pub struct Readability {
     pub doc_url: Option<String>,
     /// Configuration options for the readability
     pub config: Config,
+    selected_root: Option<NodeId>,
 }
 
 impl<T: Into<StrTendril>> From<T> for Readability {
@@ -124,11 +125,18 @@ impl<T: Into<StrTendril>> From<T> for Readability {
             doc: Document::from(html),
             doc_url: None,
             config: Config::default(),
+            selected_root: None,
         }
     }
 }
 
 impl Readability {
+    /// Return the selected article root by identity after a successful parse.
+    pub fn article_root(&self) -> Option<NodeRef<'_>> {
+        self.selected_root
+            .map(|id| NodeRef::new(id, &self.doc.tree))
+    }
+
     /// Create a new `Readability` instance
     ///
     /// # Arguments
@@ -185,6 +193,7 @@ impl Readability {
             doc: document,
             doc_url,
             config: cfg.unwrap_or_default(),
+            selected_root: None,
         })
     }
 }
@@ -424,6 +433,7 @@ impl Readability {
     }
 
     fn parse_impl(&mut self, policy: Option<ParsePolicy>) -> Result<Article, ReadabilityError> {
+        self.selected_root = None;
         self.verify_doc()?;
 
         let ld_meta = if self.config.disable_json_ld {
@@ -435,29 +445,23 @@ impl Readability {
 
         self.prepare();
 
-        if let Some(policy) = policy {
-            // When using a specific policy, make a single attempt to extract content
-            if self
-                .attempt_grab_article(&self.doc, &policy.into(), &mut metadata)
-                .is_none()
-            {
-                return Err(ReadabilityError::GrabFailed);
-            }
+        let root_id = if let Some(policy) = policy {
+            self.attempt_grab_article(&self.doc, &policy.into(), &mut metadata)
+                .ok_or(ReadabilityError::GrabFailed)?
+                .id
         } else {
-            // When no policy is specified, use the multi-attempt approach for better results
-            let Some(doc) = self.grab_article(&mut metadata) else {
-                return Err(ReadabilityError::GrabFailed);
-            };
+            let (doc, root_id) = self
+                .grab_article(&mut metadata)
+                .ok_or(ReadabilityError::GrabFailed)?;
             self.doc = doc;
-        }
-
-        let root_sel = self.doc.select_single_matcher(&MATCHER_CONTENT_ID);
-
-        let Some(root_node) = root_sel.nodes().first() else {
-            // After `grab_article` successfully returns a document
-            // there is no way that `#readability-page-1 does not exists
-            return Err(ReadabilityError::GrabFailed);
+            root_id
         };
+
+        // Keep the actual extraction result: source HTML may already contain
+        // an element with the internal wrapper's ID.
+        self.selected_root = Some(root_id);
+        let root_sel = Selection::from(NodeRef::new(root_id, &self.doc.tree));
+        let root_node = &root_sel.nodes()[0];
 
         metadata.dir = get_dir_attr(root_node);
 
@@ -904,6 +908,7 @@ impl Readability {
             .parent()
             .select("*[data-readability-score], *[data-readability-table]");
         score_sel.remove_attrs(&["data-readability-score", "data-readability-table"]);
+        root_sel.remove_attrs(&["data-readability-score", "data-readability-table"]);
 
         if !self.config.keep_classes {
             self.clean_classes(root_sel);
@@ -1300,6 +1305,30 @@ pub(crate) fn is_valid_byline(node: &NodeRef) -> bool {
 mod tests {
     use super::*;
     use dom_query::Document;
+
+    #[test]
+    fn source_id_collisions_do_not_redirect_policy_or_fallback_extraction() {
+        for threshold in [1, 100_000] {
+            let config = Config {
+                char_threshold: threshold,
+                ..Config::default()
+            };
+            let html = format!("<body><section id='readability-page-1'>Unrelated teaser</section><article><p>{}</p></article></body>", "Detailed evidence, context and observations support this report. ".repeat(30));
+            for policy in [
+                None,
+                Some(ParsePolicy::Strict),
+                Some(ParsePolicy::Moderate),
+                Some(ParsePolicy::Clean),
+                Some(ParsePolicy::Raw),
+            ] {
+                let mut reader =
+                    Readability::new(html.as_str(), None, Some(config.clone())).unwrap();
+                let article = reader.parse_impl(policy).unwrap();
+                assert!(article.text_content.contains("Detailed evidence"));
+                assert!(!article.text_content.contains("Unrelated teaser"));
+            }
+        }
+    }
 
     #[test]
     fn preserved_classes_are_literal_tokens_not_selectors() {

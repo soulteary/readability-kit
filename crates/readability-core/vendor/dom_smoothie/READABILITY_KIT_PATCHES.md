@@ -75,11 +75,17 @@ PR review corrections:
 - Anchor URL rewriting no longer skips values starting with the text `http`:
   relative filenames use the source base, while fragment-only links retain the
   existing source/base-dependent behavior.
+- Extraction retains the selected node identity through policy and multi-attempt
+  parsing rather than rediscovering a wrapper by a source-controllable ID.
+  Created empty wrappers still fail extraction; internal root scores are removed.
+- Table column counts saturate when untrusted colspan values exceed the total
+  machine-sized count, preventing debug panics and release-mode wraparound.
+
 
 
 ## 2026-10-27 exact compatibility acceptance
 
-The complete readability-core pipeline now passes all604 extraction cases and
+The complete readability-core pipeline now passes all 604 extraction cases and
 282 readerability cases with zero exact differences. The following corrections
 supersede the historical gaps above for this measured corpus:
 

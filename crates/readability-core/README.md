@@ -41,3 +41,6 @@ The string API cannot observe browser Shadow DOM. `flattenShadowRoots` is
 accepted to match the options shape; callers needing that behavior must flatten
 an actual browser document before serializing it to this API. Parsing does not
 execute JavaScript, download resources, or change the supplied input.
+
+Blank image source placeholders are left untouched during source-URL preparation
+so lazy-image recovery can restore their data-src address before URL rewriting.

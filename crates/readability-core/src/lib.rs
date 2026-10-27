@@ -122,7 +122,9 @@ fn prepare(html: &str, options: &ExtractOptions, public: bool) -> Result<(Docume
         .unwrap_or_else(|| source.clone());
     for node in doc.select("img[src]").nodes() {
         if let Some(src) = node.attr("src") {
-            if src.is_empty() {
+            // Blank placeholders must remain blank until lazy-image recovery
+            // can replace them with the real address from data attributes.
+            if src.trim().is_empty() {
                 continue;
             }
             if let Ok(url) = base.join(&src) {
@@ -170,12 +172,10 @@ fn extract_impl(
         Err(e) => return Err(e.into()),
     };
     let text_content = raw.text_content.to_string();
-    let root = reader.doc.select("#readability-page-1");
-    let root = root
-        .nodes()
-        .first()
+    let root = reader
+        .article_root()
         .ok_or_else(|| Error::Content("article root missing".into()))?;
-    let serialized = content::exact_outer(*root);
+    let serialized = content::exact_outer(root);
     Ok(Some(Article {
         title: raw.title,
         byline: if public {

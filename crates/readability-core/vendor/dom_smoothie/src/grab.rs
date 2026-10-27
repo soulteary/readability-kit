@@ -21,9 +21,9 @@ use crate::Metadata;
 use crate::Readability;
 
 impl Readability {
-    pub(crate) fn grab_article(&self, metadata: &mut Metadata) -> Option<Document> {
+    pub(crate) fn grab_article(&self, metadata: &mut Metadata) -> Option<(Document, NodeId)> {
         let mut flags: FlagSet<GrabFlags> = FlagSet::full();
-        let mut best_attempt: Option<(Document, usize)> = None;
+        let mut best_attempt: Option<(Document, NodeId, usize)> = None;
         loop {
             let doc = self.doc.clone();
             let article_node = self.attempt_grab_article(&doc, &flags, metadata);
@@ -35,16 +35,17 @@ impl Readability {
 
             if let Some(ref article_node) = article_node {
                 let text_length = inner_text_length(article_node);
+                let root_id = article_node.id;
                 if text_length >= self.config.char_threshold {
-                    return Some(doc);
+                    return Some((doc, root_id));
                 }
 
-                if let Some((_, best_text_length)) = best_attempt {
+                if let Some((_, _, best_text_length)) = best_attempt {
                     if text_length > best_text_length {
-                        best_attempt = Some((doc, text_length));
+                        best_attempt = Some((doc, root_id, text_length));
                     }
                 } else {
-                    best_attempt = Some((doc, text_length));
+                    best_attempt = Some((doc, root_id, text_length));
                 }
             }
             if flags.contains(GrabFlags::StripUnlikelys) {
@@ -56,8 +57,8 @@ impl Readability {
             } else {
                 // No luck after removing flags,
                 // just return the longest text we found during the different loops
-                let (best_doc, _) = best_attempt?;
-                return Some(best_doc);
+                let (best_doc, root_id, _) = best_attempt?;
+                return Some((best_doc, root_id));
             }
         }
     }
@@ -167,15 +168,17 @@ impl Readability {
         prep_article(&article_content, flags, &self.config);
 
         if top_candidate_is_created {
+            // An empty created wrapper is not an extracted article.
+            tc.first_child()?;
             tc.set_attr("id", CONTENT_ID);
             tc.set_attr("class", "page");
+            Some(*tc)
         } else {
             // this code does the same thing as mozilla's implementation, but it is more simpler.
             article_content.set_attr("id", CONTENT_ID);
             article_content.set_attr("class", "page");
+            Some(article_content)
         }
-
-        Some(article_content)
     }
 }
 
@@ -842,7 +845,7 @@ mod tests {
 
         assert_eq!(count_before, 10);
 
-        let clean_doc = ra.grab_article(&mut Metadata::default()).unwrap();
+        let (clean_doc, _) = ra.grab_article(&mut Metadata::default()).unwrap();
         let sel = clean_doc.select("body > *");
         let count_after = sel.nodes().iter().filter(|n| n.is_element()).count();
         assert_eq!(count_after, 1);

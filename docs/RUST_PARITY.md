@@ -94,3 +94,7 @@ The performance rerun uses the unchanged 130-page corpus, seed, warmups,
 repetitions, native serializers, RSS scope and fresh CLI measurement protocol.
 Previous incompatible-Rust measurements remain historical evidence and are not
 silently overwritten. See [performance results](PERFORMANCE.md).
+
+## PR integration with main
+
+The PR additionally retains main's root-identity selection, blank lazy-image source handling and saturating table-column counts. The public serializer obtains the selected root by identity as well. The merged workspace passes 119 Rust tests (one optional audit remains ignored by default); extraction and readerability acceptance are rerun for this integration. Existing performance measurements remain tied to their measured source snapshot; see PERFORMANCE.md.

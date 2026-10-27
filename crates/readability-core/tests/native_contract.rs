@@ -306,3 +306,70 @@ fn dompurify_policy_keeps_safe_foreign_media_and_mixed_image_candidates() {
         );
     }
 }
+
+#[test]
+fn lazy_image_recovery_preserves_blank_sources_until_extraction() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        for sanitize in [true, false] {
+            for base in ["", "<base href='https://cdn.example/assets/'>"] {
+                for source in [None, Some(""), Some(" \t\n "), Some("ready.jpg")] {
+                    let attribute = source.map_or(String::new(), |value| format!(" src='{value}'"));
+                    let html = page(&format!(
+                        "<figure><img loading='lazy'{attribute} data-src='photo.jpg' alt='Article photograph'><figcaption>Photo caption</figcaption></figure>"
+                    )).replace("<head>", &format!("<head>{base}"));
+                    let mut opts = options(engine);
+                    opts.sanitize = sanitize;
+                    let article = extract_html(&html, &opts).unwrap().unwrap();
+                    let doc = Document::from(article.content.as_str());
+                    let root = if base.is_empty() {
+                        "https://news.example/articles/"
+                    } else {
+                        "https://cdn.example/assets/"
+                    };
+                    let filename = if source == Some("ready.jpg") {
+                        "ready.jpg"
+                    } else {
+                        "photo.jpg"
+                    };
+                    assert_eq!(
+                        doc.select("img").attr("src").as_deref(),
+                        Some(format!("{root}{filename}").as_str()),
+                        "engine={engine:?}, sanitize={sanitize}, source={source:?}"
+                    );
+                    assert!(article
+                        .text_content
+                        .contains("Evidence needs careful interpretation"));
+                }
+            }
+        }
+    }
+}
+
+#[test]
+fn extracted_root_ignores_colliding_source_ids() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        for sanitize in [false, true] {
+            let html = page("").replace(
+                "<article>",
+                "<section id='readability-page-1'>Unrelated teaser</section><article>",
+            );
+            let mut opts = options(engine);
+            opts.sanitize = sanitize;
+            let article = extract_html(&html, &opts).unwrap().unwrap();
+            assert!(article
+                .text_content
+                .contains("Evidence needs careful interpretation"));
+            assert!(!article.text_content.contains("Unrelated teaser"));
+        }
+    }
+}
+
+#[test]
+fn excessive_table_colspans_do_not_overflow() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        let html = page(&format!("<table><tr><td colspan='{}'>First cell</td><td>Second cell</td></tr><tr><td>Third cell</td><td>Fourth cell</td></tr></table>", usize::MAX));
+        let article = extract_html(&html, &options(engine)).unwrap().unwrap();
+        assert!(article.content.contains("<table"));
+        assert!(article.text_content.contains("First cell"));
+    }
+}

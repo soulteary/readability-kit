@@ -1,5 +1,7 @@
 # Go、Rust 与 JavaScript 性能对比
 
+> 测量版本：本页最终轮源代码对应 [d820cac](https://github.com/soulteary/readability-kit/commit/d820cacd19c98a1eeb570952909f4c153c719ccf)，可按归档 manifest 核对源码哈希。创建 PR 时随后整合 main 的 Rust 根节点身份、空白图片来源和列数溢出修复；原始采样继续保留为该测量版本的历史结果，PR 整合版本单独复核严格差分，不将旧数据表述为整合后的重新计时。Go 与 JavaScript 运行时代码未随整合改变。
+
 2026-10-27 完成第二轮 Go 优化。与上一轮相同的 130 篇原始 HTML（25,719,900 字节）、URL、随机种子、预热、重复次数和执行顺序规则；JavaScript、Rust、严格比较器、正式驱动及 worker 代码未改。原有 GC/线程配置保留，没有筛选相同输出子集或剔除离群值。
 
 [最终离线报告](performance/2026-10-27-go-memory-final/report.html)新增 Go 分配与 CLI 内存前后对照，并保留三语言耗时、整批 RSS、详细样例和冷启动。另有 [summary.json](performance/2026-10-27-go-memory-final/summary.json)、[分配对照](performance/2026-10-27-go-memory-final/allocations.json)、[严格差分证据](performance/2026-10-27-go-memory-final/compatibility.json)、[原始采样 evidence.zip](performance/2026-10-27-go-memory-final/evidence.zip)及 [三阶段 Go 源码与诊断](performance/2026-10-27-go-memory-final/go-sources.zip)。实现说明见 [GO_MEMORY_OPTIMIZATION.md](GO_MEMORY_OPTIMIZATION.md)。

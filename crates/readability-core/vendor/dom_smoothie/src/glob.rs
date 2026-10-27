@@ -27,7 +27,6 @@ pub(crate) static WWW_PFX: &str = "//www.";
 
 // --- Matchers ---
 
-pub(crate) static MATCHER_CONTENT_ID: Lazy<Matcher> = lazy_matcher!("#readability-page-1");
 pub(crate) static MATCHER_LI_P: Lazy<Matcher> = lazy_matcher!("li p");
 pub(crate) static MATCHER_TITLE: Lazy<Matcher> = lazy_matcher!("head title");
 pub(crate) static MATCHER_SCRIPT: Lazy<Matcher> = lazy_matcher!("script, noscript");
