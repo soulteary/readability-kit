@@ -91,3 +91,16 @@ fn exact_text_keeps_whitespace_and_sanitize_false_keeps_attributes() {
     assert_eq!(html, " \n<p onclick=\"x()\">A\n B&nbsp;C</p>");
     assert_eq!(text, " \nA\n B\u{a0}C");
 }
+
+// Expected output verified against pinned DOMPurify 3.4.17 and the JS API's
+// FORBID_TAGS/FORBID_ATTR options. Policy keys are lowercase; SVG serialization
+// preserves canonical mixed-case names.
+#[test]
+fn preserves_svg_filter_names_and_removes_unsafe_attributes() {
+    let input = r#"<svg><filter id="blur"><feGaussianBlur stdDeviation="2" onload="bad()"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="linear" slope="1"/></feComponentTransfer><feImage href="javascript:alert(1)"/><feUnknown><feOffset dx="1"/></feUnknown></filter></svg>"#;
+    let expected = r#"<svg><filter><feGaussianBlur stdDeviation="2"></feGaussianBlur><feColorMatrix type="saturate" values="0"></feColorMatrix><feComponentTransfer><feFuncR type="linear" slope="1"></feFuncR></feComponentTransfer><feImage></feImage><feOffset dx="1"></feOffset></filter></svg>"#;
+    for html in [input.to_owned(), input.to_ascii_lowercase()] {
+        let (actual, _) = process_content(&html, true).unwrap();
+        assert_eq!(actual, expected);
+    }
+}

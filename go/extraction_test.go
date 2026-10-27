@@ -194,3 +194,44 @@ func TestAbsentArticleMetadataSerializesNull(t *testing.T) {
 		}
 	}
 }
+
+func TestInlineStyleVisibilityMatchesPinnedJS(t *testing.T) {
+	text := strings.Repeat("A complete article sentence, with substantive details. ", 40)
+	for _, engine := range []Engine{Chromium, Mozilla} {
+		for _, tt := range []struct {
+			style               string
+			extract, readerable bool
+		}{
+			{"display:none;display:block", true, true},
+			{"display:none;display:invalid", false, false},
+			{"display:none!important;display:block!important", false, false},
+			{"display:block!important;display:none!important", true, true},
+			{"DISPLAY:NONE", true, true},
+			{"display:none;display:xvar(--x)", false, false},
+			{"display:none;display:VAR(--x)", false, false},
+			{"display:none;display:'var(--x)'", false, false},
+			{"display:none;display:var(--x)", true, true},
+			{"visibility:hidden;visibility:xvar(--x)", false, true},
+			{"visibility:hidden;visibility:VAR(--x)", false, true},
+			{"visibility:hidden;visibility:'var(--x)'", false, true},
+			{"visibility:hidden;visibility:var(--x)", true, true},
+			{"display:/* note */none", false, false},
+			{`background:url('display:none;');display:block`, true, true},
+			{"visibility:hidden;visibility:visible", true, true},
+			{"visibility:hidden;visibility:invalid", false, true},
+			{"visibility:hidden!important;visibility:visible!important", false, true},
+		} {
+			t.Run(string(engine)+"/"+tt.style, func(t *testing.T) {
+				input := `<html><body><p style="` + tt.style + `">` + text + `</p></body></html>`
+				a, err := ExtractHTML(context.Background(), input, ExtractOptions{Engine: engine, URL: "https://example.org/", CharThreshold: threshold(1)})
+				if err != nil || (a != nil) != tt.extract {
+					t.Fatalf("extraction present=%v err=%v want=%v", a != nil, err, tt.extract)
+				}
+				got, err := IsProbablyReaderable(context.Background(), input, ReaderableOptions{Engine: engine})
+				if err != nil || got != tt.readerable {
+					t.Fatalf("readerability=%v err=%v want=%v", got, err, tt.readerable)
+				}
+			})
+		}
+	}
+}

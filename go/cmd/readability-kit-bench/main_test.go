@@ -41,7 +41,9 @@ func TestWorkerProtocol(t *testing.T) {
 			t.Fatalf("invalid response: %+v", r)
 		}
 		for i := range r.DurationsNS {
-			if r.DurationsNS[i] <= 0 || r.Lengths[i] <= 0 || len(r.Checksums[i]) != 16 {
+			// A short extraction can complete within one clock tick on Windows.
+			// Preserve that real zero duration; only negative elapsed time is invalid.
+			if r.DurationsNS[i] < 0 || r.Lengths[i] <= 0 || len(r.Checksums[i]) != 16 {
 				t.Fatalf("invalid measured result: %+v", r)
 			}
 			if (r.OutputBytes[i] > 0) != serialize {

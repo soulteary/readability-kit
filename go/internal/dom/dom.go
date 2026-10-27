@@ -154,8 +154,8 @@ func CloneContext(ctx context.Context, n *html.Node) (*html.Node, error) {
 }
 func Visible(n *html.Node) bool {
 	_, hidden := HasAttr(n, "hidden")
-	style := strings.ToLower(strings.ReplaceAll(Attr(n, "style"), " ", ""))
-	return !hidden && !strings.Contains(style, "display:none") && (Attr(n, "aria-hidden") != "true" || strings.Contains(Attr(n, "class"), "fallback-image"))
+	style := Attr(n, "style")
+	return !hidden && !displayNone(style) && (Attr(n, "aria-hidden") != "true" || strings.Contains(Attr(n, "class"), "fallback-image"))
 }
 func HasAttr(n *html.Node, k string) (string, bool) {
 	for _, a := range n.Attr {

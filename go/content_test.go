@@ -178,3 +178,20 @@ func BenchmarkProcessContent(b *testing.B) {
 		}
 	}
 }
+
+// Expected output was verified against pinned DOMPurify 3.4.17 with the JS
+// API's FORBID_TAGS/FORBID_ATTR options. SVG names serialize in canonical case
+// while the HTML-mode sanitizer policy looks them up in lowercase.
+func TestSanitizerSVGFilterNames(t *testing.T) {
+	input := `<svg><filter id="blur"><feGaussianBlur stdDeviation="2" onload="bad()"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="linear" slope="1"/></feComponentTransfer><feImage href="javascript:alert(1)"/><feUnknown><feOffset dx="1"/></feUnknown></filter></svg>`
+	want := `<svg><filter><feGaussianBlur stdDeviation="2"></feGaussianBlur><feColorMatrix type="saturate" values="0"></feColorMatrix><feComponentTransfer><feFuncR type="linear" slope="1"></feFuncR></feComponentTransfer><feImage></feImage><feOffset dx="1"></feOffset></filter></svg>`
+	out, _, err := processContent(input, true)
+	if err != nil || out != want {
+		t.Fatalf("SVG filters: got %q (%v), want %q", out, err, want)
+	}
+	// The HTML parser canonicalizes both lowercase and mixed-case SVG input.
+	lower, _, err := processContent(strings.ToLower(input), true)
+	if err != nil || lower != want {
+		t.Fatalf("lowercase SVG filters: got %q (%v), want %q", lower, err, want)
+	}
+}

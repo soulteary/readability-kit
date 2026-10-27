@@ -129,7 +129,7 @@ func extract(ctx context.Context, prepared *html.Node, o Options) (*html.Node, e
 			}
 			next := nextElement(n, false)
 			match := dom.Attr(n, "class") + " " + dom.Attr(n, "id")
-			remove := !dom.Visible(n) || strings.Contains(strings.ReplaceAll(strings.ToLower(dom.Attr(n, "style")), " ", ""), "visibility:hidden") || (dom.Attr(n, "aria-modal") == "true" && dom.Attr(n, "role") == "dialog")
+			remove := !dom.Visible(n) || dom.VisibilityHidden(n) || (dom.Attr(n, "aria-modal") == "true" && dom.Attr(n, "role") == "dialog")
 			if !byline && validByline(n, match) {
 				byline = true
 				if o.Fields != nil {
