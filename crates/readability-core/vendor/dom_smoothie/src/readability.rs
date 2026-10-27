@@ -1,4 +1,4 @@
-use dom_query::{Document, NodeRef, Selection};
+use dom_query::{Document, NodeId, NodeRef, Selection};
 use foldhash::HashMap;
 use tendril::StrTendril;
 
@@ -116,6 +116,7 @@ pub struct Readability {
     pub doc_url: Option<String>,
     /// Configuration options for the readability
     pub config: Config,
+    selected_root: Option<NodeId>,
 }
 
 impl<T: Into<StrTendril>> From<T> for Readability {
@@ -124,11 +125,18 @@ impl<T: Into<StrTendril>> From<T> for Readability {
             doc: Document::from(html),
             doc_url: None,
             config: Config::default(),
+            selected_root: None,
         }
     }
 }
 
 impl Readability {
+    /// Return the selected article root by identity after a successful parse.
+    pub fn article_root(&self) -> Option<NodeRef<'_>> {
+        self.selected_root
+            .map(|id| NodeRef::new(id, &self.doc.tree))
+    }
+
     /// Create a new `Readability` instance
     ///
     /// # Arguments
@@ -185,6 +193,7 @@ impl Readability {
             doc: document,
             doc_url,
             config: cfg.unwrap_or_default(),
+            selected_root: None,
         })
     }
 }
@@ -198,7 +207,6 @@ impl Readability {
     /// 4. Remove `style` tags
     /// 5. Replace multiple `br` tags with a single `br` tag
     /// 6. Replace `font` tags with `span` tags
-    /// 7. Remove comments
     fn prepare(&mut self) {
         self.remove_empty_imgs();
 
@@ -215,9 +223,6 @@ impl Readability {
 
         // replace fonts with spans
         self.replace_fonts();
-
-        // remove comments
-        self.remove_comments();
     }
 
     /// Return the title of the article as a `StrTendril`.
@@ -308,7 +313,6 @@ impl Readability {
     fn replace_fonts(&mut self) {
         let sel = self.doc.select_matcher(&MATCHER_FONT);
         sel.rename("span");
-        sel.remove_all_attrs();
     }
 
     fn replace_brs(&mut self) {
@@ -429,6 +433,7 @@ impl Readability {
     }
 
     fn parse_impl(&mut self, policy: Option<ParsePolicy>) -> Result<Article, ReadabilityError> {
+        self.selected_root = None;
         self.verify_doc()?;
 
         let ld_meta = if self.config.disable_json_ld {
@@ -438,19 +443,15 @@ impl Readability {
         };
         let mut metadata = self.get_article_metadata(ld_meta);
 
-        if metadata.byline.is_none() {
-            metadata.byline = self.byline_adjustment();
-        }
-
         self.prepare();
 
         let root_id = if let Some(policy) = policy {
-            self.attempt_grab_article(&self.doc, &policy.into(), &metadata)
+            self.attempt_grab_article(&self.doc, &policy.into(), &mut metadata)
                 .ok_or(ReadabilityError::GrabFailed)?
                 .id
         } else {
             let (doc, root_id) = self
-                .grab_article(&metadata)
+                .grab_article(&mut metadata)
                 .ok_or(ReadabilityError::GrabFailed)?;
             self.doc = doc;
             root_id
@@ -458,6 +459,7 @@ impl Readability {
 
         // Keep the actual extraction result: source HTML may already contain
         // an element with the internal wrapper's ID.
+        self.selected_root = Some(root_id);
         let root_sel = Selection::from(NodeRef::new(root_id, &self.doc.tree));
         let root_node = &root_sel.nodes()[0];
 
@@ -847,9 +849,15 @@ impl Readability {
         metadata.favicon = extract_favicon(&self.doc, self.parse_base_url());
     }
 
+    #[cfg(test)]
     fn byline_adjustment(&self) -> Option<String> {
+        self.byline_adjustment_for(&self.doc, true)
+    }
+
+    #[cfg(test)]
+    fn byline_adjustment_for(&self, doc: &Document, strip_unlikely: bool) -> Option<String> {
         let mut meta_byline: Option<String> = None;
-        let body_node = self.doc.body()?;
+        let body_node = doc.body()?;
         let mut next_node = next_child_or_sibling(&body_node, false);
         while let Some(node) = next_node {
             if !is_probably_visible(&node)
@@ -863,12 +871,12 @@ impl Readability {
             }
             if is_valid_byline(&node) {
                 let byline = Selection::from(node)
-                    .select_single("[itemprop=name]")
+                    .select_single("[itemprop*=name]")
                     .nodes()
                     .first()
                     .map_or_else(|| node.text(), |prop_name| prop_name.text());
 
-                meta_byline = Some(byline.trim().to_string());
+                meta_byline = Some(byline.trim_matches(js_whitespace).to_string());
                 node.remove_from_parent();
                 break;
             }
@@ -880,22 +888,9 @@ impl Readability {
             let unlikely_role = node
                 .attr("role")
                 .is_some_and(|role| UNLIKELY_ROLES.contains(&role));
-            next_node = next_child_or_sibling(&node, unlikely || unlikely_role);
+            next_node = next_child_or_sibling(&node, strip_unlikely && (unlikely || unlikely_role));
         }
         meta_byline
-    }
-
-    fn remove_comments(&self) {
-        let comments: Vec<NodeRef> = self
-            .doc
-            .root()
-            .descendants_it()
-            .filter(NodeRef::is_comment)
-            .collect();
-
-        for comment in comments {
-            comment.remove_from_parent();
-        }
     }
 
     fn get_html_lang(&self) -> Option<StrTendril> {
@@ -985,6 +980,9 @@ impl Readability {
 // Methods related to URL handling
 impl Readability {
     fn parse_base_url(&self) -> Option<String> {
+        if let Some(base) = &self.config.base_url {
+            return Some(base.clone());
+        }
         // TODO: Probably, this should be calculated during `Readability` construction,
         // and later accessed via property `Readability.base_url`
         let Some(base_uri) = self.doc.base_uri() else {
@@ -1044,44 +1042,44 @@ fn set_attr_absolute_url(node: &NodeRef, attr_key: &str, base_uri: &str) {
     let Some(attr) = node.attr(attr_key) else {
         return;
     };
+    if attr.is_empty() {
+        return;
+    }
     let abs_url = to_absolute_url(base_uri, &attr);
     node.set_attr(attr_key, &abs_url);
 }
 
 fn resolve_srcset(base_uri: &str, srcset: &str) -> String {
-    let mut remaining = srcset;
-    let mut candidates = Vec::new();
-    loop {
-        remaining = remaining.trim_start_matches(|c: char| c.is_ascii_whitespace() || c == ',');
-        if remaining.is_empty() {
+    // The upstream replacement preserves descriptors and separators verbatim.
+    let mut out = String::with_capacity(srcset.len());
+    let mut offset = 0;
+    while offset < srcset.len() {
+        let leading = srcset[offset..]
+            .find(|c: char| !js_whitespace(c))
+            .map_or(srcset.len(), |i| offset + i);
+        out.push_str(&srcset[offset..leading]);
+        if leading == srcset.len() {
             break;
         }
-        // A URL may itself contain commas (notably data URLs). Consume its
-        // entire non-whitespace token before looking for descriptor separators.
-        let url_end = remaining
-            .find(|c: char| c.is_ascii_whitespace())
-            .unwrap_or(remaining.len());
-        let url = &remaining[..url_end];
-        remaining = &remaining[url_end..];
-        let (url, descriptors) = if url.ends_with(',') {
-            (url.trim_end_matches(','), String::new())
-        } else {
-            let end = remaining.find(',').unwrap_or(remaining.len());
-            let descriptors = remaining[..end]
-                .split_ascii_whitespace()
-                .collect::<Vec<_>>()
-                .join(" ");
-            remaining = &remaining[end..];
-            (url, descriptors)
-        };
-        let absolute = to_absolute_url(base_uri, url);
-        candidates.push(if descriptors.is_empty() {
-            absolute.into_owned()
-        } else {
-            format!("{absolute} {descriptors}")
-        });
+        let end = srcset[leading..]
+            .find(js_whitespace)
+            .map_or(srcset.len(), |i| leading + i);
+        let token = &srcset[leading..end];
+        if let Some(url) = token.strip_suffix(',') {
+            out.push_str(&to_absolute_url(base_uri, url));
+            out.push(',');
+            offset = end;
+            continue;
+        }
+        out.push_str(&to_absolute_url(base_uri, token));
+        // A descriptor and the comma after it are left byte-for-byte intact.
+        let tail_end = srcset[end..]
+            .find(',')
+            .map_or(srcset.len(), |i| end + i + 1);
+        out.push_str(&srcset[end..tail_end]);
+        offset = tail_end;
     }
-    candidates.join(", ")
+    out
 }
 
 fn fix_links(root_sel: &Selection) {
@@ -1097,49 +1095,42 @@ fn fix_links(root_sel: &Selection) {
                 a.remove_all_attrs();
                 a.rename("span");
             }
-        } else if children.is_empty() {
-            a.remove_from_parent();
         } else {
             a.remove_all_attrs();
             a.rename("span");
         }
     }
-
-    // Handle links without href attributes.
-    for a in root_sel.select("a:not([href])").nodes() {
-        if a.children().is_empty() {
-            a.remove_from_parent();
-        }
-    }
 }
 
 fn simplify_nested_elements(root_sel: &Selection) {
-    for td_node in root_sel.select("*:not(tr) > td").nodes() {
-        if let Some(parent) = td_node.parent() {
-            if let Some(first_child) = td_node.first_child() {
-                parent.append_children(&first_child);
-            }
-        }
-        td_node.remove_from_parent();
-    }
     simplify_nested_divs(root_sel);
 }
 
 fn simplify_nested_divs(root_sel: &Selection) {
+    // Readability walks from outer wrappers inward. That order matters when
+    // successive wrappers carry the same attributes: the outer value wins.
     let sel = root_sel.select("div, section");
-    for parent in sel.nodes().iter().rev() {
+    for parent in sel.nodes() {
+        if parent
+            .id_attr()
+            .is_some_and(|id| id.starts_with("readability"))
+        {
+            continue;
+        }
+        if is_element_without_content(parent) {
+            parent.remove_from_parent();
+            continue;
+        }
         let Some(node) =
             single_child_element(parent, "div").or_else(|| single_child_element(parent, "section"))
         else {
             continue;
         };
-
         for attr in parent.attrs() {
             node.set_attr(&attr.name.local, &attr.value);
         }
         parent.replace_with(&node.id);
     }
-    root_sel.select(":is(div, section):empty").remove();
 }
 
 fn extract_excerpt(sel: &Selection) -> Option<String> {
@@ -1147,7 +1138,7 @@ fn extract_excerpt(sel: &Selection) -> Option<String> {
     if p_sel.is_empty() {
         None
     } else {
-        Some(p_sel.text().trim().to_string())
+        Some(p_sel.text().trim_matches(js_whitespace).to_string())
     }
 }
 
@@ -1283,7 +1274,16 @@ fn decode_opt_html_entities(opt: &mut Option<String>) {
     }
 }
 
-fn is_valid_byline(node: &NodeRef) -> bool {
+pub(crate) fn byline_text(node: &NodeRef) -> String {
+    let selection = Selection::from(*node).select_single("[itemprop*=name]");
+    let text = selection
+        .nodes()
+        .first()
+        .map_or_else(|| node.text(), |name| name.text());
+    text.trim_matches(js_whitespace).to_string()
+}
+
+pub(crate) fn is_valid_byline(node: &NodeRef) -> bool {
     let mut is_byline = MATCHER_BYLINE.match_element(node);
     if !is_byline {
         let match_string = get_node_matching_string(node);
@@ -1293,7 +1293,11 @@ fn is_valid_byline(node: &NodeRef) -> bool {
     if !is_byline {
         return false;
     }
-    let byline_len = node.text().trim().encode_utf16().count();
+    let byline_len = node
+        .text()
+        .trim_matches(js_whitespace)
+        .encode_utf16()
+        .count();
     byline_len > 0 && byline_len < 100
 }
 
@@ -1382,6 +1386,29 @@ mod tests {
     }
 
     #[test]
+    fn byline_fallback_discovers_authors_under_unlikely_wrappers() {
+        let mut reader = Readability::new(
+            "<article><header class='entry-header'><address><a rel='author'>Mike Conley</a></address></header><p>Article content.</p></article>",
+            None,
+            None,
+        ).unwrap();
+        let article = reader.parse().unwrap();
+        assert_eq!(article.byline.as_deref(), Some("Mike Conley"));
+    }
+
+    #[test]
+    fn prepare_preserves_source_comments() {
+        let mut reader = Readability::new(
+            "<article><p>Text<!-- source marker --> after.</p></article>",
+            None,
+            None,
+        )
+        .unwrap();
+        reader.prepare();
+        assert!(reader.doc.html().contains("<!-- source marker -->"));
+    }
+
+    #[test]
     fn author_meta_name_does_not_accept_article_namespace() {
         let reader=Readability::new("<meta name='article:author' content='Wrong'><meta property='article:author' content='Right'><meta name='dc.creator' content='Preferred'>",None,None).unwrap();
         assert_eq!(
@@ -1416,6 +1443,24 @@ mod tests {
     }
 
     #[test]
+    fn nested_wrapper_attributes_follow_outer_to_inner_order() {
+        let doc = Document::from("<div title='outer'><section title='middle'><div title='inner'><p>Body</p></div></section></div>");
+        simplify_nested_divs(&doc.select("body"));
+        assert_eq!(
+            doc.select("body > div").attr("title").as_deref(),
+            Some("outer")
+        );
+    }
+
+    #[test]
+    fn readability_identifiers_protect_nested_wrappers() {
+        let doc =
+            Document::from("<section id='readability-extra'><div><p>Body</p></div></section>");
+        simplify_nested_divs(&doc.select("body"));
+        assert!(doc.select("section#readability-extra > div").exists());
+    }
+
+    #[test]
     fn nested_sections_preserve_surrounding_text() {
         for (before, after) in [("Opening", "Closing"), ("Opening", ""), ("", "Closing")] {
             let doc = Document::from(format!(
@@ -1442,14 +1487,22 @@ mod tests {
     }
 
     #[test]
+    fn link_cleanup_preserves_empty_anchors_and_empty_javascript_containers() {
+        let doc = Document::from("<a id='index'></a><a href='javascript:void(0)'></a>");
+        fix_links(&doc.select("body"));
+        assert!(doc.select("a#index").exists());
+        assert!(doc.select("span:empty").exists());
+    }
+
+    #[test]
     fn srcset_resolves_candidates_with_optional_separator_whitespace() {
         for (srcset, expected) in [
-            ("small.jpg 1x,large.jpg 2x", "https://example.com/images/small.jpg 1x, https://example.com/images/large.jpg 2x"),
-            ("small.jpg\t1x,\nlarge.jpg\t2x", "https://example.com/images/small.jpg 1x, https://example.com/images/large.jpg 2x"),
-            ("small.jpg 320w,large.jpg 640w", "https://example.com/images/small.jpg 320w, https://example.com/images/large.jpg 640w"),
+            ("small.jpg 1x,large.jpg 2x", "https://example.com/images/small.jpg 1x,https://example.com/images/large.jpg 2x"),
+            ("small.jpg\t1x,\nlarge.jpg\t2x", "https://example.com/images/small.jpg\t1x,\nhttps://example.com/images/large.jpg\t2x"),
+            ("small.jpg 320w,large.jpg 640w", "https://example.com/images/small.jpg 320w,https://example.com/images/large.jpg 640w"),
             ("small.jpg, large.jpg 2x", "https://example.com/images/small.jpg, https://example.com/images/large.jpg 2x"),
-            ("data:image/png;base64,AAAA 1x,large.jpg 2x", "data:image/png;base64,AAAA 1x, https://example.com/images/large.jpg 2x"),
-            ("a,b.jpg 1x,large.jpg 2x", "https://example.com/images/a,b.jpg 1x, https://example.com/images/large.jpg 2x"),
+            ("data:image/png;base64,AAAA 1x,large.jpg 2x", "data:image/png;base64,AAAA 1x,https://example.com/images/large.jpg 2x"),
+            ("a,b.jpg 1x,large.jpg 2x", "https://example.com/images/a,b.jpg 1x,https://example.com/images/large.jpg 2x"),
         ] {
             let reader = Readability::new(
                 format!("<img srcset='{srcset}'>"),
@@ -1476,7 +1529,7 @@ mod tests {
 
         debug_assert_eq!(
             &readability.doc.select("span").html(),
-            "<span>Styled Text Here</span>"
+            "<span size=\"4\" color=\"blue\" face=\"Arial\">Styled Text Here</span>"
         );
     }
 
@@ -1760,9 +1813,10 @@ mod tests {
 
         let doc = Document::from(contents);
         let mut ra = Readability::with_document(doc, None, None).unwrap();
-        let _ = ra.parse();
-        // consuming byline during grabbing the article
-        assert!(!ra.doc.select("a").exists());
+        let article = ra.parse().unwrap();
+        // The byline survives across retries. Later attempts restore the source DOM,
+        // so a retry may retain the same author link in the selected content.
+        assert_eq!(article.byline.as_deref(), Some("Cat's Blog"));
     }
 
     #[test]

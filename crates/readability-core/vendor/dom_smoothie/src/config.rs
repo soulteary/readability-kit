@@ -33,6 +33,8 @@ pub enum TextMode {
 pub struct Config {
     /// Enable the pinned Chromium Readability behavior; false retains Mozilla mode.
     pub chromium_mode: bool,
+    /// Explicit base URI supplied by the public wrapper without inserting DOM nodes.
+    pub base_url: Option<String>,
     /// Set to `true` to keep all classes in the document
     pub keep_classes: bool,
     pub link_density_modifier: f32,
@@ -68,6 +70,7 @@ impl Default for Config {
     fn default() -> Self {
         Self {
             chromium_mode: false,
+            base_url: None,
             keep_classes: false,
             link_density_modifier: 0.0,
             classes_to_preserve: Vec::new(),

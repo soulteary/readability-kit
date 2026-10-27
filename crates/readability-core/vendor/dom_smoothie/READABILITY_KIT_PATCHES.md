@@ -80,3 +80,27 @@ PR review corrections:
   Created empty wrappers still fail extraction; internal root scores are removed.
 - Table column counts saturate when untrusted colspan values exceed the total
   machine-sized count, preventing debug panics and release-mode wraparound.
+
+
+
+## 2026-10-27 exact compatibility acceptance
+
+The complete readability-core pipeline now passes all 604 extraction cases and
+282 readerability cases with zero exact differences. The following corrections
+supersede the historical gaps above for this measured corpus:
+
+- Match fragment whitespace trimming, block successor traversal, empty transparent
+  phrasing, >=3 ancestor matching and per-tag conditional cleanup order.
+- Score lengths use UTF-16 and ECMAScript whitespace; title similarity follows
+  JavaScript ASCII word tokenization and joined-token lengths.
+- Discover bylines during candidate traversal in each retry, preserving metadata
+  across attempts without changing the winning DOM's preparation order.
+- Keep comments, FONT attributes and empty anchors. Simplify outer-to-inner,
+  protect readability-prefixed IDs and transfer attributes in source order.
+- Preserve srcset separators/descriptors verbatim, skip empty URL attributes and
+  accept explicit base metadata without synthetic DOM nodes.
+
+The public core wrapper supplies native DOMPurify policy, browser-style attribute
+serialization and JSON raw/public option boundaries. The underlying vendor's
+HTML helper serialization is not separately advertised as the public contract.
+Tests still do not substitute for the missing upstream dom_smoothie fixture corpus.

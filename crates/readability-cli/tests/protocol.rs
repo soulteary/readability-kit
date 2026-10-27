@@ -44,7 +44,7 @@ fn benchmark_measures_each_iteration_and_rejects_zero() {
     let case = serde_json::json!({"id":"empty", "html":"<html><body></body></html>", "options":{"engine":"mozilla", "url":"https://example.com/"}});
     let output = invoke(
         binary,
-        serde_json::json!({"cases":[case], "warmup":1,"iterations":3}),
+        serde_json::json!({"cases":[case], "warmup":1,"iterations":3,"allowEmpty":true}),
     );
     assert!(output.status.success());
     let value: serde_json::Value = serde_json::from_slice(&output.stdout).unwrap();

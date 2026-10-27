@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: Apache-2.0
 //! Machine protocol for the JS/Rust compatibility harness; not the public CLI.
 use readability_core::{
-    extract_html, extract_raw_html, is_probably_readerable, Engine, ExtractOptions,
-    ReaderableOptions,
+    extract_html, extract_raw_html, is_probably_readerable, Engine, ReaderableOptions,
 };
+mod extract_options;
 use serde::Deserialize;
 use serde_json::{json, Value};
 use std::io::{self, Read};
@@ -75,7 +75,7 @@ fn process(input: &str) -> Value {
             Err(error) => json!({"status":"error", "article":null, "error":error.to_string()}),
         };
     }
-    let options: ExtractOptions = match serde_json::from_value(request.options) {
+    let options = match extract_options::decode(&request.options, request.layer == "api") {
         Ok(options) => options,
         Err(error) => return json!({"status":"error", "article":null, "error":error.to_string()}),
     };
@@ -94,6 +94,9 @@ fn process(input: &str) -> Value {
                 let object = article.as_object_mut().expect("Article is an object");
                 object.remove("url");
                 object.remove("engine");
+                if object.get("excerpt") == Some(&Value::Null) {
+                    object.remove("excerpt");
+                }
             }
             json!({"status":"ok", "article":article})
         }

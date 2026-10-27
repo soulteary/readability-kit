@@ -1,7 +1,6 @@
 use std::collections::HashSet;
 
 use foldhash::HashMap;
-use unicode_segmentation::UnicodeSegmentation;
 
 use dom_query::{NodeId, NodeRef, Selection};
 
@@ -10,30 +9,43 @@ use tendril::StrTendril;
 use crate::glob::{MINI_ARIA_HIDDEN, MINI_FALLBACK_IMG, PHRASING_ELEMS};
 use crate::matching::is_invisible_style;
 
-pub(crate) fn text_similarity(text_a: &str, text_b: &str) -> f64 {
-    if text_a.is_empty() || text_b.is_empty() {
-        return 0.0;
-    }
+/// JavaScript `\s` / `trim` set (Rust's Unicode whitespace also includes NEL).
+pub(crate) fn js_whitespace(c: char) -> bool {
+    matches!(c, '\u{0009}'..='\u{000d}' | '\u{0020}' | '\u{00a0}' | '\u{1680}' | '\u{2000}'..='\u{200a}' | '\u{2028}' | '\u{2029}' | '\u{202f}' | '\u{205f}' | '\u{3000}' | '\u{feff}')
+}
 
+/// `_getInnerText(node).length`, measured in UTF-16 code units.
+pub(crate) fn inner_text_length(node: &NodeRef) -> usize {
+    let text = node.text();
+    let mut length = 0;
+    let mut pending_space = false;
+    for c in text.chars() {
+        if js_whitespace(c) {
+            pending_space = length != 0;
+        } else {
+            length += usize::from(pending_space) + c.len_utf16();
+            pending_space = false;
+        }
+    }
+    length
+}
+
+pub(crate) fn text_similarity(text_a: &str, text_b: &str) -> f64 {
+    // JavaScript's /\W+/ is ASCII, including underscore as a word character.
     let a = text_a.to_lowercase();
     let b = text_b.to_lowercase();
-
-    if a.contains(&b) {
-        return 1.0;
+    let tokenize = |c: char| !c.is_ascii_alphanumeric() && c != '_';
+    let tokens_a: HashSet<&str> = a.split(tokenize).filter(|s| !s.is_empty()).collect();
+    let tokens_b: Vec<&str> = b.split(tokenize).filter(|s| !s.is_empty()).collect();
+    if tokens_a.is_empty() || tokens_b.is_empty() {
+        return 0.0;
     }
-
-    let tokens_a: HashSet<&str> = a.unicode_words().collect();
-    let tokens_b: Vec<&str> = b.unicode_words().collect();
-
-    let b_chars_total: usize = tokens_b.iter().map(|s| s.chars().count()).sum();
-    let b_chars_unique: usize = tokens_b
+    let unique: Vec<&str> = tokens_b
         .iter()
-        .filter(|&&s| !tokens_a.contains(s))
-        .map(|s| s.chars().count())
-        .sum();
-
-    let distance_b = b_chars_unique as f64 / b_chars_total as f64;
-    1.0 - distance_b
+        .copied()
+        .filter(|s| !tokens_a.contains(s))
+        .collect();
+    1.0 - unique.join(" ").len() as f64 / tokens_b.join(" ").len() as f64
 }
 
 pub(crate) fn is_phrasing_content(node: &NodeRef) -> bool {
@@ -53,13 +65,13 @@ pub(crate) fn is_phrasing_content(node: &NodeRef) -> bool {
     if matches!(node_name, "a" | "del" | "ins") {
         // There is no big sense to consider link content as phrasing content if they doesn't have children element.
         let children = node.children();
-        return !children.is_empty() && children.into_iter().all(|n| is_phrasing_content(&n));
+        return children.into_iter().all(|n| is_phrasing_content(&n));
     }
     false
 }
 
 pub(crate) fn is_whitespace(node: &NodeRef) -> bool {
-    if node.is_text() && !node.is_nonempty_text() {
+    if node.is_text() && node.text().chars().all(js_whitespace) {
         return true;
     }
     // only an element node has a node_name
@@ -78,15 +90,12 @@ pub(crate) fn text_density(node: &NodeRef, selector: &str, char_count: Option<us
     let sel = Selection::from(*node).select(selector);
     let sel_nodes = sel.nodes();
 
-    let children_length: f32 = sel_nodes
-        .iter()
-        .map(|n| n.normalized_char_count())
-        .sum::<usize>() as f32;
+    let children_length: f32 = sel_nodes.iter().map(inner_text_length).sum::<usize>() as f32;
 
     if children_length == 0.0 {
         return 0.0;
     }
-    let text_length = char_count.unwrap_or_else(|| node.normalized_char_count()) as f32;
+    let text_length = char_count.unwrap_or_else(|| inner_text_length(node)) as f32;
 
     if text_length == 0.0 {
         return 0.0;
@@ -137,7 +146,7 @@ where
 }
 
 pub(crate) fn link_density(node: &NodeRef, char_count: Option<usize>) -> f32 {
-    link_density_fn(node, char_count, |n| n.normalized_char_count())
+    link_density_fn(node, char_count, inner_text_length)
 }
 
 /// Returns the child element if the node contains exactly one element child with the given tag
@@ -291,7 +300,7 @@ impl CharCounterCache {
         *self
             .inner
             .entry(node.id)
-            .or_insert_with(|| node.normalized_char_count())
+            .or_insert_with(|| inner_text_length(node))
     }
 }
 
@@ -301,6 +310,21 @@ mod tests {
     use super::*;
 
     const FLOAT_TOLERANCE: f64 = 0.00001;
+
+    #[test]
+    fn inner_text_length_uses_js_whitespace_and_utf16() {
+        let doc = dom_query::Document::from("<p>\u{feff}  😀\t\nword \u{0085} </p>");
+        let sel = doc.select_single("p");
+        // BOM is trim whitespace; NEL is an ordinary character in JavaScript.
+        assert_eq!(inner_text_length(sel.nodes().first().unwrap()), 9);
+    }
+
+    #[test]
+    fn text_similarity_uses_ascii_tokens_and_joined_spaces() {
+        assert_eq!(text_similarity("你好", "你好"), 0.0);
+        assert_eq!(text_similarity("alpha", "alpha beta"), 0.6);
+        assert_eq!(text_similarity("alphabet", "alpha"), 0.0);
+    }
 
     #[test]
     fn test_text_similarity() {

@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-10-27T04:52:22.334Z",
+  "provenance": {
+    "summaryPath": "/Users/soulteary/Lab/github/readability-kit/performance-reports/2026-10-27/summary.json",
+    "summarySha256": "5e60be3a7ffca0edb89945cde7d5edce78df18d2ae9a7cf9a6ad76ac66c55b1c",
+    "strictReportPath": "/Users/soulteary/Lab/github/readability-kit/performance-reports/2026-10-27/rust-compatibility.json",
+    "strictReportSha256": "ae0155c6ecef8853e71408a474f164b3dbed1cb7b730f5c4a555910d94468c63",
+    "strictCompared": 604,
+    "strictDifferingCases": 420,
+    "strictCandidate": {
+      "command": "./target/release/readability-kit-compat",
+      "args": [],
+      "executableSha256": "aa1f4ad56516eacedbe0971d367820bc124fc818b0692ce70b11d4c601f79816"
+    },
+    "corpusSha256": "3760ac5b1441ac97dd6ebd1d6fef22628c4d27d388658f7050939573aef7d522"
+  },
+  "method": "Postselected exact-output upstream public API subset: remove every engine/api case with any strict field, status, error or transport difference; sum existing nine-sample per-page median timings. No new measurements. This biased subset is not representative of the full corpus. RSS cannot be subsetted from shared worker high-water marks.",
+  "fullCorpus": {
+    "pages": 130,
+    "totalBytes": 25719900,
+    "minBytes": 195,
+    "medianBytes": 107092,
+    "maxBytes": 1630750
+  },
+  "engines": {
+    "chromium": {
+      "pages": 27,
+      "totalBytes": 327882,
+      "minBytes": 195,
+      "medianBytes": 1725,
+      "maxBytes": 142850,
+      "ids": [
+        "ol",
+        "js-link-replacement",
+        "005-unescape-html-entities",
+        "normalize-spaces",
+        "title-en-dash",
+        "replace-brs",
+        "rtl-1",
+        "rtl-3",
+        "rtl-4",
+        "rtl-2",
+        "title-and-h1-discrepancy",
+        "style-tags-removal",
+        "metadata-content-missing",
+        "004-metadata-space-separated-properties",
+        "parsely-metadata",
+        "base-url",
+        "base-url-base-element",
+        "base-url-base-element-relative",
+        "embedded-videos",
+        "reordering-paragraphs",
+        "003-metadata-preferred",
+        "social-buttons",
+        "hidden-nodes",
+        "missing-paragraphs",
+        "dev418",
+        "002",
+        "yahoo-4"
+      ],
+      "textFingerprintsMatch": true,
+      "samplesPerPage": 9,
+      "sumPageMediansMs": {
+        "javascript": 439.133838,
+        "go": 18.949211,
+        "rust": 12.397915
+      },
+      "javascriptOverGo": 23.174254484790954,
+      "javascriptOverRust": 35.41997489093933,
+      "subsetSharePages": 0.2076923076923077,
+      "subsetShareBytes": 0.012748183313309928
+    },
+    "mozilla": {
+      "pages": 27,
+      "totalBytes": 327882,
+      "minBytes": 195,
+      "medianBytes": 1725,
+      "maxBytes": 142850,
+      "ids": [
+        "ol",
+        "js-link-replacement",
+        "005-unescape-html-entities",
+        "normalize-spaces",
+        "title-en-dash",
+        "replace-brs",
+        "rtl-1",
+        "rtl-3",
+        "rtl-4",
+        "rtl-2",
+        "title-and-h1-discrepancy",
+        "style-tags-removal",
+        "metadata-content-missing",
+        "004-metadata-space-separated-properties",
+        "parsely-metadata",
+        "base-url",
+        "base-url-base-element",
+        "base-url-base-element-relative",
+        "embedded-videos",
+        "reordering-paragraphs",
+        "003-metadata-preferred",
+        "social-buttons",
+        "hidden-nodes",
+        "missing-paragraphs",
+        "dev418",
+        "002",
+        "yahoo-4"
+      ],
+      "textFingerprintsMatch": true,
+      "samplesPerPage": 9,
+      "sumPageMediansMs": {
+        "javascript": 526.094127,
+        "go": 15.990878000000002,
+        "rust": 10.948541
+      },
+      "javascriptOverGo": 32.89963984466643,
+      "javascriptOverRust": 48.05152823558864,
+      "subsetSharePages": 0.2076923076923077,
+      "subsetShareBytes": 0.012748183313309928
+    }
+  }
+}

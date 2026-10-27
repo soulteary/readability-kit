@@ -129,7 +129,7 @@ fn should_clean_conditionally(node: &NodeRef, flags: &FlagSet<GrabFlags>, cfg: &
             return true;
         }
 
-        let char_count = node.normalized_char_count();
+        let char_count = inner_text_length(node);
         let Some(qual_name) = node.qual_name_ref() else {
             return false;
         };
@@ -409,7 +409,9 @@ pub(crate) fn prep_article(article_node: &NodeRef, flags: &FlagSet<GrabFlags>, c
 
     fix_lazy_images(&article_sel);
 
-    clean_conditionally(&article_sel, "form,fieldset", flags, cfg);
+    for tag in ["form", "fieldset"] {
+        clean_conditionally(&article_sel, tag, flags, cfg);
+    }
 
     // Clean out junk from the article content
     clean(&article_sel);
@@ -423,7 +425,9 @@ pub(crate) fn prep_article(article_node: &NodeRef, flags: &FlagSet<GrabFlags>, c
             clean_conditionally(&article_sel, tag, flags, cfg);
         }
     } else {
-        clean_conditionally(&article_sel, "table,ul,div", flags, cfg);
+        for tag in ["table", "ul", "div"] {
+            clean_conditionally(&article_sel, tag, flags, cfg);
+        }
     }
 
     // replace H1 with H2 as H1 should be only title that is displayed separately
@@ -438,7 +442,7 @@ pub(crate) fn prep_article(article_node: &NodeRef, flags: &FlagSet<GrabFlags>, c
     for p_node in article_sel.select("p").nodes() {
         let p_sel = Selection::from(*p_node);
         let content_el_count = p_sel.select("img,object,embed,iframe").length();
-        if content_el_count == 0 && p_node.normalized_char_count() == 0 {
+        if content_el_count == 0 && inner_text_length(p_node) == 0 {
             p_sel.remove();
         }
     }
@@ -493,7 +497,7 @@ fn remove_share_elements(root_sel: &Selection, share_element_threshold: usize) {
             }
         }
 
-        if has_share_sign && child.normalized_char_count() < share_element_threshold {
+        if has_share_sign && inner_text_length(child) < share_element_threshold {
             child.remove_from_parent();
         }
     }

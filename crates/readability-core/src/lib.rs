@@ -1,6 +1,9 @@
-//! Experimental native extraction. Uses a patched dom_smoothie backend; neither
-//! engine mode claims byte-for-byte compatibility with the pinned JS snapshots.
-use dom_query::{Document, Selection};
+//! Native article extraction with locked-corpus parity against the pinned JS
+//! engines. Uses the patched dom_smoothie algorithm and native output policy.
+use dom_query::Document;
+#[cfg(test)]
+use dom_query::Selection;
+mod content;
 use dom_smoothie::{Config, Readability, ReadabilityError};
 use serde::{Deserialize, Serialize};
 use url::Url;
@@ -70,6 +73,8 @@ pub enum Error {
     InvalidOptions,
     #[error("charThreshold must be a finite integer greater than or equal to 1.")]
     InvalidThreshold,
+    #[error("content processing: {0}")]
+    Content(String),
     #[error("minScore must be a finite number greater than or equal to 0.")]
     InvalidReaderableMinScore,
     #[error(transparent)]
@@ -99,7 +104,7 @@ fn prepare(html: &str, options: &ExtractOptions, public: bool) -> Result<(Docume
         .url
         .as_ref()
         .and_then(|s| Url::parse(s).ok())
-        .filter(|u| matches!(u.scheme(), "http" | "https") && u.host_str().is_some())
+        .filter(|u| !public || (matches!(u.scheme(), "http" | "https") && u.host_str().is_some()))
         .ok_or(Error::InvalidUrl)?;
     let doc = Document::from(html);
     let count = doc.select("*").nodes().len();
@@ -115,12 +120,6 @@ fn prepare(html: &str, options: &ExtractOptions, public: bool) -> Result<(Docume
         .and_then(|s| source.join(&s).ok())
         .filter(|u| matches!(u.scheme(), "http" | "https"))
         .unwrap_or_else(|| source.clone());
-    // Make the resolved base explicit for the backend; invalid schemes are ignored.
-    doc.select("base").remove();
-    doc.select("head").append_html(format!(
-        "<base href=\"{}\">",
-        base.as_str().replace('&', "&amp;").replace('"', "&quot;")
-    ));
     for node in doc.select("img[src]").nodes() {
         if let Some(src) = node.attr("src") {
             // Blank placeholders must remain blank until lazy-image recovery
@@ -146,10 +145,17 @@ fn extract_impl(
 ) -> Result<Option<Article>, Error> {
     let (doc, source) = prepare(html, options, public)?;
     let mut cfg = config(options);
-    // prepare checks the original input before adding our synthetic base node.
-    // Do not count that implementation detail against the caller's limit.
+    // Count the original input once; the base URI is metadata, not a DOM node.
     if public {
         cfg.max_elements_to_parse = 0;
+        cfg.base_url = Some(
+            doc.select("base[href]")
+                .attr("href")
+                .and_then(|s| source.join(&s).ok())
+                .filter(|u| matches!(u.scheme(), "http" | "https"))
+                .unwrap_or_else(|| source.clone())
+                .to_string(),
+        );
     }
     if !public {
         if cfg.char_threshold == 0 {
@@ -166,17 +172,37 @@ fn extract_impl(
         Err(e) => return Err(e.into()),
     };
     let text_content = raw.text_content.to_string();
+    let root = reader
+        .article_root()
+        .ok_or_else(|| Error::Content("article root missing".into()))?;
+    let serialized = content::exact_outer(root);
     Ok(Some(Article {
         title: raw.title,
-        byline: nullable(raw.byline),
-        dir: nullable(raw.dir),
-        lang: nullable(raw.lang),
-        content: raw.content.to_string(),
+        byline: if public {
+            nullable(raw.byline)
+        } else {
+            raw.byline
+        },
+        dir: if public { nullable(raw.dir) } else { raw.dir },
+        lang: if public { nullable(raw.lang) } else { raw.lang },
+        content: serialized,
         length: text_content.encode_utf16().count(),
         text_content,
-        excerpt: nullable(raw.excerpt),
-        site_name: nullable(raw.site_name),
-        published_time: nullable(raw.published_time),
+        excerpt: if public {
+            nullable(raw.excerpt)
+        } else {
+            raw.excerpt
+        },
+        site_name: if public {
+            nullable(raw.site_name)
+        } else {
+            raw.site_name
+        },
+        published_time: if public {
+            nullable(raw.published_time)
+        } else {
+            raw.published_time
+        },
         url: source.to_string(),
         engine: options.engine,
     }))
@@ -185,75 +211,17 @@ pub fn extract_html(html: &str, options: &ExtractOptions) -> Result<Option<Artic
     let Some(mut article) = extract_impl(html, options, true)? else {
         return Ok(None);
     };
-    let content = if options.sanitize {
-        ammonia::Builder::default()
-            .add_tags(&[
-                "math",
-                "mrow",
-                "mi",
-                "mn",
-                "mo",
-                "mtext",
-                "ms",
-                "mspace",
-                "msup",
-                "msub",
-                "msubsup",
-                "mfrac",
-                "msqrt",
-                "mroot",
-                "mtable",
-                "mtr",
-                "mtd",
-                "mover",
-                "munder",
-                "munderover",
-                "semantics",
-                "annotation",
-                "picture",
-                "source",
-                "video",
-                "audio",
-                "track",
-            ])
-            .add_tag_attributes("math", &["display"])
-            .add_tag_attributes("source", &["src", "srcset", "sizes", "type", "media"])
-            .add_tag_attributes("video", &["src", "poster", "controls", "width", "height"])
-            .add_tag_attributes("audio", &["src", "controls"])
-            .add_tag_attributes("img", &["srcset", "sizes", "loading"])
-            .rm_tags(&["form", "input", "button", "textarea", "select", "option"])
-            .add_generic_attributes(&["class", "id", "dir", "lang", "aria-live", "role"])
-            .link_rel(None)
-            .attribute_filter(|_, attribute, value| {
-                if attribute == "srcset"
-                    && !value.split(',').all(|candidate| {
-                        candidate
-                            .split_whitespace()
-                            .next()
-                            .and_then(|v| Url::parse(v).ok())
-                            .is_some_and(|url| matches!(url.scheme(), "http" | "https"))
-                    })
-                {
-                    None
-                } else {
-                    Some(value.into())
-                }
-            })
-            .clean(&article.content)
-            .to_string()
-    } else {
-        article.content.clone()
-    };
-    let doc = Document::from(format!("<body>{content}</body>"));
-    clean_content(&doc);
-    article.content = doc.select("body").inner_html().to_string();
-    article.text_content = doc.select("body").text().to_string();
+    let (content, text) =
+        content::process_content(&article.content, options.sanitize).map_err(Error::Content)?;
+    article.content = content;
+    article.text_content = text;
     article.length = article.text_content.encode_utf16().count();
     Ok(Some(article))
 }
 fn nullable(value: Option<String>) -> Option<String> {
     value.filter(|s| !s.is_empty())
 }
+#[cfg(test)]
 fn clean_content(doc: &Document) {
     for node in doc.select("body *").nodes() {
         if !node

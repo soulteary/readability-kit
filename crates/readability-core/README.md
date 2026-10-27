@@ -1,4 +1,4 @@
-# Native extraction core (experimental)
+# Native extraction core
 
 This crate contains a native Rust implementation, with no JavaScript subprocess
 or network fetching during extraction. The mutable HTML DOM and extraction
@@ -23,16 +23,19 @@ semantic cleanup, and calculates final text length in UTF-16 code units.
 for differential testing. It is not safe HTML output for direct rendering.
 
 `Engine::Mozilla` uses the Mozilla-derived backend behavior;
-`Engine::Chromium` enables local Chromium adaptations. Neither mode promises
-parity with the repository's pinned JavaScript engine. See the repository
-compatibility report and vendored provenance for exact changes and known gaps.
+`Engine::Chromium` enables local Chromium adaptations. Both modes pass the
+repository's locked JavaScript comparison corpus: 604/604 extraction cases and
+282/282 readerability cases, with zero strict differences. See
+[Rust parity acceptance](../../docs/RUST_PARITY.md) for scope and reproduction;
+this corpus does not establish equivalence for every possible HTML input.
 
-The sanitizer uses ammonia with a conservative article tag allowlist, including
-basic MathML, picture, audio and video. Interactive controls and styling are
-removed. SVG and unsupported MathML remain outside this initial allowlist.
-Unlike DOMPurify, `srcset` permits only absolute HTTP(S) candidates. This avoids
-passing unchecked URL lists through ammonia's generic attribute handling.
-Sanitizer differences are expected and require explicit review before adoption.
+The sanitizer implements the reference DOMPurify policy natively over an inert
+DOM, including supported SVG and MathML namespaces, URL handling, attribute
+filtering and browser-compatible serialization. Event handlers, styling and
+interactive form controls are removed according to that policy. Its output
+passes 20 independent browser oracle cases and the two native browser tests.
+These checks complement the strict corpus comparison and do not establish
+complete sanitizer correctness.
 
 The string API cannot observe browser Shadow DOM. `flattenShadowRoots` is
 accepted to match the options shape; callers needing that behavior must flatten

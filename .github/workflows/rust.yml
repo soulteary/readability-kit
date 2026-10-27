@@ -68,9 +68,12 @@ jobs:
       - run: bun run test:browser
         env:
           READABILITY_RUST_BIN: ${{ github.workspace }}/target/release/readability-kit
+      - run: node scripts/check-rust-sanitizer.mjs
+        env:
+          READABILITY_RUST_COMPAT_BIN: ${{ github.workspace }}/target/release/readability-kit-compat
 
-  # PRs expose the known compatibility gaps as reports. Manual release-gate
-  # runs fail on every difference; no report changes the npm backend.
+  # Every run blocks on strict extraction and readerability differences.
+  # This does not change the npm backend.
   compatibility:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -89,14 +92,14 @@ jobs:
       - run: mkdir -p rust-reports
       - run: node scripts/rust-compatibility.mjs capture --output rust-reports/javascript.json
       - run: node scripts/rust-compatibility.mjs capture-readerable --output rust-reports/readerable-javascript.json
-      - name: Collect strict differences (known gaps remain visible)
+      - name: Collect strict extraction and readerability differences
         shell: bash
         run: |
           node scripts/rust-compatibility.mjs run --baseline rust-reports/javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/native.json --output rust-reports/differences.json || test "$?" -eq 1
           node scripts/rust-compatibility.mjs run --baseline rust-reports/readerable-javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/readerable-native.json --output rust-reports/readerable-differences.json || test "$?" -eq 1
-      - name: Publish compatibility status and enforce manual release gate
+      - name: Publish compatibility status and enforce strict gate
         env:
-          STRICT_RELEASE_GATE: ${{ github.event_name == 'workflow_dispatch' }}
+          STRICT_RELEASE_GATE: 'true'
         run: node scripts/report-rust-gate.mjs rust-reports/differences.json rust-reports/readerable-differences.json
       - uses: actions/upload-artifact@v4
         if: always()

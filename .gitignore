@@ -11,3 +11,7 @@
 /fuzz/artifacts/
 /fuzz/corpus/
 /fuzz/coverage/
+/go-reports/
+/go-dist/
+/performance-reports/
+/scripts/__pycache__/
