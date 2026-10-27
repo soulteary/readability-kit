@@ -1,5 +1,11 @@
 # Go、Rust 与 JavaScript 性能对比
 
+最新的审查修复后四语言复测见 [PYTHON_REVIEW_PERFORMANCE.md](PYTHON_REVIEW_PERFORMANCE.md)，包含同轮三版本、CLI 和内存回退检查。
+
+Python 优化后的四语言与前后对照见 [PYTHON_OPTIMIZATION.md](PYTHON_OPTIMIZATION.md)。
+
+新增的四语言实测见 [Python 性能与绑定开销](PYTHON_PERFORMANCE.md)。该报告重新采样 JavaScript、Go、Rust、Python，不与本页历史数字混用。
+
 > 测量版本：本页最终轮源代码对应 [d820cac](https://github.com/soulteary/readability-kit/commit/d820cacd19c98a1eeb570952909f4c153c719ccf)，可按归档 manifest 核对源码哈希。创建 PR 时随后整合 main 的 Rust 根节点身份、空白图片来源和列数溢出修复；原始采样继续保留为该测量版本的历史结果，PR 整合版本单独复核严格差分，不将旧数据表述为整合后的重新计时。Go 与 JavaScript 运行时代码未随整合改变。
 
 2026-10-27 完成第二轮 Go 优化。与上一轮相同的 130 篇原始 HTML（25,719,900 字节）、URL、随机种子、预热、重复次数和执行顺序规则；JavaScript、Rust、严格比较器、正式驱动及 worker 代码未改。原有 GC/线程配置保留，没有筛选相同输出子集或剔除离群值。

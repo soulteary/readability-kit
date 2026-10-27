@@ -1,0 +1,1021 @@
+{
+  "schema": 1,
+  "generatedAt": "2026-10-27T09:58:20.375Z",
+  "config": {
+    "output": "performance-reports/2026-10-27-python-reviewed",
+    "seed": 20261027,
+    "replicates": 4,
+    "fullIterations": 3,
+    "detailIterations": 10,
+    "warmup": 2,
+    "coldIterations": 12,
+    "engines": [
+      "chromium",
+      "mozilla"
+    ],
+    "includePython": true,
+    "implementations": [
+      "javascript",
+      "go",
+      "rust",
+      "python"
+    ]
+  },
+  "environment": {
+    "node": "v26.11.1",
+    "nodeExecutable": "/opt/homebrew/Cellar/node/26.11.1/bin/node",
+    "go": "go version go1.27.1 darwin/arm64",
+    "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "cargo": "cargo 1.99.1 (5f94df478 2026-08-27)",
+    "python": "Python 3.13.13",
+    "os": "darwin",
+    "release": "25.5.0",
+    "arch": "arm64",
+    "cpu": "Apple M5",
+    "logicalCPUs": 10,
+    "totalMemoryBytes": 34359738368,
+    "runtimeOverrides": {
+      "GOGC": null,
+      "GOMEMLIMIT": null,
+      "GOMAXPROCS": null,
+      "NODE_OPTIONS": null,
+      "MALLOC_CONF": null,
+      "RUSTFLAGS": null,
+      "PYTHONMALLOC": null,
+      "PYTHONHASHSEED": null,
+      "PYTHONOPTIMIZE": null,
+      "PYTHONPATH": null
+    }
+  },
+  "git": {
+    "head": "4cef7e32b2648d6a7363e8d860faf2db65518916",
+    "status": "M .gitignore\n M ARCHITECTURE.md\n M Cargo.lock\n M Cargo.toml\n M README.md\n M crates/readability-core/vendor/dom_smoothie/Cargo.toml\n M crates/readability-core/vendor/dom_smoothie/READABILITY_KIT_PATCHES.md\n M docs/PERFORMANCE.md\n M docs/WORKSPACE.md\n M tools/README.md\n M tools/benchmark-all.mjs\n M tools/package-rust.py\n M tools/summarize-benchmark.mjs\n?? .github/workflows/python.yml\n?? crates/readability-python/\n?? docs/PYTHON_OPTIMIZATION.md\n?? docs/PYTHON_PERFORMANCE.md\n?? docs/PYTHON_REVIEW.md\n?? docs/performance/2026-10-27-python-optimized/\n?? docs/performance/2026-10-27-python/\n?? python/\n?? tools/benchmark-python-loader.py\n?? tools/benchmark-python-paired.py\n?? tools/benchmark-python-worker.py\n?? tools/build-python-package.py\n?? tools/check-python-benchmark.mjs\n?? tools/check-python-package.py\n?? tools/package-python-benchmark.py\n?? tools/package-python-optimization.py\n?? tools/prepare-python-package.py\n?? tools/profile-python-memory.py\n?? tools/profile-python.py\n?? tools/python-compatibility.py\n?? tools/python_benchmark_input.py\n?? tools/python_package_utils.py\n?? tools/render-python-benchmark.mjs\n?? tools/render-python-optimization.mjs\n?? tools/render-python-reviewed.mjs\n?? tools/summarize-python-profile.py\n?? tools/summarize-python-regression.py"
+  },
+  "artifacts": {
+    "Cargo.lock": "b5e3057390bde3973a3592f62b816097217a83fdd122c61241012e64ca77b181",
+    "Cargo.toml": "0c1530f7161a734146d83ff1a104c050cb1534b7eafbdb9f910219cd0ecb20b8",
+    "bun.lock": "3ec95100a868f39cc18568fae4ceb2054e39dd87e8d15cb2de617c85738ec85f",
+    "crates/readability-cli/Cargo.toml": "2ec8ab836995101a540a1f80ea4da81bfac6d2414cc3353a0e78e3e17796f083",
+    "crates/readability-cli/src/bench.rs": "5b45ce523ce29491a66bf958e5df610d8c35cd17db941d38c3b5a676e5c6d591",
+    "crates/readability-cli/src/compat.rs": "27a725f4d791ab933fd0e6aa7460e09eaaa252e78a62e9a0dd7d2064098bc46f",
+    "crates/readability-cli/src/main.rs": "ac98f27eff9944d18021f0f84485a9c7e6fb5aa3069256b7f87b16219aeb1986",
+    "crates/readability-cli/tests/cli.rs": "ed07b0b362cce02a57d7bf0d77d4b49eb06bd643eea72b30643548e8072d1324",
+    "crates/readability-cli/tests/protocol.rs": "ac26eb3d8ec10332cb8a5ca3c4f7b3bf4319b294099afd2447c0140afe445f2c",
+    "crates/readability-core/Cargo.toml": "2445939d95641ff283dbd730bd0e4786c58404213383239a27a3b519103629fd",
+    "crates/readability-core/src/boundary.rs": "edebd4205a6f9b04b523865745350201cacbce58d6d8c929f48a655b89c3ea70",
+    "crates/readability-core/src/boundary_extract_options.rs": "c7e528cec781e9ca2553d6e16ff2570f8e55f58977f2e6cbdbdb6cf4c3e5012e",
+    "crates/readability-core/src/content.rs": "8eab262647c84e0a16ddf3b1ec79889be530b865b3a89fccd573d7dfb07b02c6",
+    "crates/readability-core/src/content_tests.rs": "f85942fcb7a682748f463c45910d60a4d099287656e84e1da8d84f4e8d538c7e",
+    "crates/readability-core/src/lib.rs": "134f3266f06082f49dc484503c9b82020d4a0c0b261fdcdb19965b2af191bc1d",
+    "crates/readability-core/tests/native_contract.rs": "5a34ede90393e0662c8ee74b88bbf2d322e3e6a761b15f35a643b52648877652",
+    "crates/readability-core/vendor/dom_smoothie/Cargo.lock": "fb333792fbeeb60a3f4c33eed9e026012c14837ca15f79b15dc2ff5e52ac0d91",
+    "crates/readability-core/vendor/dom_smoothie/Cargo.toml": "4cc6539dc28b90a30047768cdc98e04f68f4024e40e1b5ec57c05ad7d507c735",
+    "crates/readability-core/vendor/dom_smoothie/src/ac_automat.rs": "251f2888d368b438d8ceabaf2611728b40495c364d3a142179bcfb152aba52ab",
+    "crates/readability-core/vendor/dom_smoothie/src/chromium.rs": "1f28043ddd6764fbb4a244a44e0c04479c054a289ef730dfa078d984ea0da19c",
+    "crates/readability-core/vendor/dom_smoothie/src/config.rs": "95bc80cf02d67769b04856ae8813d968bc682926d0f6123660443a79d24a2b55",
+    "crates/readability-core/vendor/dom_smoothie/src/glob.rs": "8555c81c5aaacace84b98a0cd6b5e948763485cd2f924d98098bd01618f86af0",
+    "crates/readability-core/vendor/dom_smoothie/src/grab.rs": "85268857189c188899afdff3a855c15960184eac7a3b5568474bcd43fd7cf963",
+    "crates/readability-core/vendor/dom_smoothie/src/grab_flags.rs": "23a76ea4f8aec4e1e7e3e6b1ba1c87034d1b1d1ebda38156e9fb7f46b0cf320d",
+    "crates/readability-core/vendor/dom_smoothie/src/helpers.rs": "1797e15265073ab170bf387926a784f8fc713da70ba416a091a3550e6f981dd4",
+    "crates/readability-core/vendor/dom_smoothie/src/lib.rs": "e851476d5f4b70e0692c8b1b0a3123c439123c5b2c6dba06aea4d666951aa0a0",
+    "crates/readability-core/vendor/dom_smoothie/src/matching.rs": "40a83822aab9b4bcb0f0bc460862daad82d55122e409939b43745ec0d2c6d198",
+    "crates/readability-core/vendor/dom_smoothie/src/prep_article.rs": "4fdf3f542f4e564bca177a6c04a84ab8b45ca3c2f35fcc064dce0661a707f587",
+    "crates/readability-core/vendor/dom_smoothie/src/readability.rs": "b05a3af875f0b8f9791c690e0fedb012008e6158ff1707933e8d2652a5023baa",
+    "crates/readability-core/vendor/dom_smoothie/src/readable.rs": "15e2d02601db7125fc20ee092d1c49c044a0ed3bcdaf43da2166c3b9777656c8",
+    "crates/readability-core/vendor/dom_smoothie/src/score.rs": "60304277c9ae3d5c64f5ff7dddce69e5595c7c2f8f90a43ddfd7eaa098eb1614",
+    "crates/readability-core/vendor/dom_smoothie/src/serde_helpers.rs": "2960f3cf29546816f681c2dbb48a698458fa5f6162cea4ffc0d533fc74200334",
+    "crates/readability-core/vendor/dom_smoothie/src/url_helpers.rs": "9a7f6b983f8a1c35ff200e86c1fadcfcda82b416434c3be51395ddb66f639067",
+    "crates/readability-core/vendor/dom_smoothie/tests/alt.rs": "d2095b34242abb4d80659118bc75d75d582919c3bfd66c0ae0003134ab5e29ac",
+    "crates/readability-core/vendor/dom_smoothie/tests/bad.rs": "7d7ba1e2ad746a05f89d31a4c961a325a625f51e1b8eb1076dfad838aa2b3c71",
+    "crates/readability-core/vendor/dom_smoothie/tests/candidate_modes.rs": "950fe1813d2372cdba06cb0c475eb2000cc28254d74bb31e845ad5698858d4c8",
+    "crates/readability-core/vendor/dom_smoothie/tests/common.rs": "a0963e5d127450c4a25e157f79daae9042a0806944ffdc5bf3970fe19c1f9414",
+    "crates/readability-core/vendor/dom_smoothie/tests/favicon.rs": "9fd89af96c43e719b4ab6c0fdc60b8665d6a94a67c26a3d16d222a382ff3a728",
+    "crates/readability-core/vendor/dom_smoothie/tests/metadata.rs": "ddd9dd50177c29d09058ae6d62b5f13afe3cc8857d935b2332d6dd8244e848a4",
+    "crates/readability-core/vendor/dom_smoothie/tests/parse_policy.rs": "f175aa406722e075486f019759986431ea3e234676e5dae49dc8ca431411a49f",
+    "crates/readability-core/vendor/dom_smoothie/tests/readability.rs": "1318b195299b3e526e705b0afd30d3528f6aa7a428597d3f11b80f9564a41757",
+    "crates/readability-core/vendor/dom_smoothie/tests/readability_ok.rs": "1ec63630d21d89f58c3411f882a21bc277bb153a60dfec788f75f190249e5ada",
+    "crates/readability-core/vendor/dom_smoothie/tests/wasm.rs": "a7e3a98ed84e0be2ce4879cfaf1479c0f54f4a9c19a076e2e96d797d738d5d6c",
+    "crates/readability-python/Cargo.toml": "1ca56fbc7aeec834aa9fb2e9e286c31b2b82fb7019cd87523750e11d374d382c",
+    "crates/readability-python/build.rs": "dc2ff6af5b6ed7ef5ed285b460aa046762d47e0bbd4a7d031763ab6644a164ab",
+    "crates/readability-python/src/lib.rs": "35d4dc3f1bf51e1cf61d64106fbf7f320d411427cbe8a819b2bbeeeca15dad07",
+    "crates/readability-python/tests/build_metadata.rs": "4485860be9848544685dc3ea003b408f34778f1541176975497b7d91d9677236",
+    "crates/readability-wasm/Cargo.toml": "85e1a1d543dfc0aab0dc2502c9dabcba7bbd2e1e73273055d93f41e592157878",
+    "crates/readability-wasm/src/lib.rs": "fd8e0a693c25fb97462ec64806fa1c66098ff160a6461725703e0adc15e9b3ca",
+    "go-dist/readability-kit": "6b991a0257d9a8b8ad0c90bfbc11659ce793846019ad1d47c376614a22d2efa2",
+    "go-dist/readability-kit-bench": "8443db308f30c3c25e9ba4972d0a94255f7024896f8dade96321a29a9891c024",
+    "go/article.go": "5d7bd3ad90c71482acda6b3c00164add2e028cc83f80e38a8c96ddc5428c287e",
+    "go/bench_test.go": "0ee96ee4cec93345bcc5b8503356b0684b7b11451f448ba043dc10a6184532c6",
+    "go/cmd/readability-kit-bench/main.go": "923800ab11f416ac6e161747e61c0aafe545270d93232ee64a93e8510657f5e6",
+    "go/cmd/readability-kit-bench/main_test.go": "69d57884a74e11000777983f09cb27d59d8bf0cc19e2b5994b1a6a0f2d8e1608",
+    "go/cmd/readability-kit-compat/main.go": "24c2166391e0e6006e3817e4b5bf2bc8dc38baa6fc69c53032ebf3edd6d21988",
+    "go/cmd/readability-kit/main.go": "d68e7bb78e8ab7b1d419e5ddf07c32a6b48b1728637cb715bad1719ddf947971",
+    "go/content.go": "5634a5bcc22626ad052b63d50e7330bb568ecd216add2a291f80aafb6eef57ff",
+    "go/content_test.go": "5c59afd02e0864e0240ead38ba721966eac2285cacfbd73899a644e42b7631db",
+    "go/errors.go": "46529965cea46407421b21de6e9345588218a323b197110d94ea542d3fd05b16",
+    "go/extraction.go": "b0c3ac21bfb3dd6d3ba5307f9ef28405ba7f939e05e3ae138e06c80e472834ec",
+    "go/extraction_test.go": "272b632407dd7d01d1433a577ad1ef63bd61165f1da4b9ead10a3009045944c2",
+    "go/go.mod": "6f07b500ed23cfb25a3fc87ef79dc596b3499acace216dc8e0e67ff7c03e190d",
+    "go/go.sum": "a17c49999317533d5d0e67df115cfb8b503c33002c06ff0126507712b9b0706a",
+    "go/internal/cli/cli.go": "35d558251d300fa3a0c5d8661c4727af5af159cb7edd601fbde0a58746449ea6",
+    "go/internal/cli/cli_test.go": "9fd09d9a4041970cea016a2a31b71825cb83d16d4d4114ba52013a377973332b",
+    "go/internal/compat/compat.go": "61a0a3c614ef93497e2eee730402816127dbf3a598f64c9558ed0d12d3ad13bd",
+    "go/internal/compat/compat_test.go": "a344d2c99667222aabb70af53b6cc2d4fe068d62d156cdd7300f6345c3505218",
+    "go/internal/dom/dom.go": "d23dfc5eca9bde1b95cb097dac7ee5bb9d8a9fe2c5064b29e930fd809ccd4bdd",
+    "go/internal/dom/memory_test.go": "68b0922005ec3e61a52518b644c6dcb4f593c014106d6d03a29ed0fe01f64eba",
+    "go/internal/dom/parse_test.go": "8291732dce2c072e2d32b8d88ce22564bea27b4a796218a2a7b044cee0ecbfc3",
+    "go/internal/dom/performance_test.go": "ce57589191fa02829ab9b04a579b969f26dd42d8ddc3ec09de4bf360bbfd4789",
+    "go/internal/dom/serialize.go": "563a7cd92a773e5a4a4b99b857e3664db44e814aed3bc083ebe0dda89a12d15f",
+    "go/internal/dom/serialize_test.go": "7f55c1e4d70b6165e59dec7d46cf0c52c77eb21424874ec7a1a33c96a01bca73",
+    "go/internal/dom/style.go": "c65976dccbbabf61a93dc0f0ae6274de8d909cffac1fededfb58e3e314de60ed",
+    "go/internal/dom/style_test.go": "8465c0711f4f2ec13fdcdc6049c23170729d26e6b09ef7777ec4ee6c2642d252",
+    "go/internal/engine/benchmark_test.go": "e2bd5ad3ecfad2fbdde0a957bf2cb520ff2fbf97dd3a361d89979a072151dde8",
+    "go/internal/engine/clean.go": "a1999c3aae4615550829c60e548f20d1b37bed6b28397e3c7287c340c8f254d0",
+    "go/internal/engine/engine.go": "7184b86fb1e7e6189be6f260999994a1ebd2a0d01cee83a49cfaa199613264ab",
+    "go/internal/engine/engine_test.go": "e93db2085286033487ca0cce217c4807715b37406ec4fa69d43a976c1a4df15e",
+    "go/internal/engine/lead.go": "4d371208b221c2d4bc640ac45f7b4afcf8df2ea6d13327d0463da8a589b57bd2",
+    "go/internal/engine/literal_match.go": "8e19d72fcabd22b2cd62b6ccf17e2c1622c25a02e722886d2c8201c4f40f094a",
+    "go/internal/engine/literal_match_test.go": "420d3ebfb551f3bf3d8831027412de260a156adeefcbed79e8894e83b252b66a",
+    "go/internal/engine/prep.go": "100d64103a894aaed8b429e70192c04bdb39f551a0f5f3dab8b2c51f8013f68a",
+    "go/internal/html/const.go": "44c814afac4b0206a4f2af92607f93a72b93919ec2c3884d372edcdc24507584",
+    "go/internal/html/doc.go": "e5d486a3b703d17efdf30cc9b3af6649b262c89e74cd4de285e0f079797b3c6f",
+    "go/internal/html/doctype.go": "b629b17ed04bcab8d832d8caaee00f458c180fd31b6838e318a439a4bf87fffe",
+    "go/internal/html/entity.go": "eca9e6cac4ddb939ddce98f64e9c2f16031accaead07f1bbce2f37991cd618bd",
+    "go/internal/html/escape.go": "2a16f2a9c639c44721cedfc634081f5835ddca15a07e52ca404973607d08cbde",
+    "go/internal/html/foreign.go": "555e32d7c9e8a625923ea453527c76fe66a6a22423d52fb0de58becaf051b4f3",
+    "go/internal/html/iter.go": "54299c163639df83f3dd22ff31643b6b6cedbedb0c388b1f53020146a10d7504",
+    "go/internal/html/node.go": "3acf739c450f61abd0fc45ccb19e4ddde2982b798791037a6a03c78603b6176f",
+    "go/internal/html/nodetype_string.go": "747f99ad7577bc2e790097bf591b7e66c1856a496a5a2e515a40324659e0266c",
+    "go/internal/html/parse.go": "c4f23d9cd7bebead274ee4af71df11744e798e1c41b80a1f466cd7614b685048",
+    "go/internal/html/render.go": "c53cd811db01490a88a3932ad97e0d0622fa87a8533662fb9810bc06814c4af8",
+    "go/internal/html/token.go": "131ad416b51734f553e3f3d5fc683a3731fec1681ed2a5471a8aac2b9b415e54",
+    "go/internal/metadata/metadata.go": "b90f23020a4d1c3b940d7ed305c6c5391d3e6f8401c76371e8ec83b3f8a7e8b7",
+    "go/internal/metadata/metadata_test.go": "d8f5618f412fff28a6dc5e7b984b5eb933be5a13adb162d2296a4e07fca05473",
+    "go/internal/urlutil/url.go": "fd0d53c53832c915e624a7b3be1864c07c6b029c24edd32f7a1ace51d8243648",
+    "go/internal/urlutil/url_test.go": "3320151bb6a003386aad4a52b7ec9065185217f16cf663cc3b64506aee18a480",
+    "go/json_options.go": "094c16571b3b8e43024634e2904c1a535fd252b6ba0458dafed99f4171fd34f5",
+    "go/options.go": "58c3ba1dd541fc9f95c00daac007a65a69b8abd5a0ca835c074e162ce742a2d5",
+    "go/options_test.go": "1dd7366f049fc374650b5ca5d6396b00f3fc1b9bc0b4c79d904efb58cc164224",
+    "go/readerable.go": "8aa57e50b5affcd6d81f443c4a56ca673c4dfe19aaa1e929c267fa9285b88208",
+    "package.json": "548275d8c28e364f06c9da706904de1936ff06b801059bd8d687e48695bdf6c7",
+    "packages/javascript/dist/cli.js": "572a71dbfd367bef8c3aa0d76969f88c9f1112422e5a36b2b4d5fc77c28cc225",
+    "packages/javascript/dist/node.js": "1a9a80c3e8a801af7479d1e1a25f9c67dafdc151797f3730d78eaaa25dfa3f09",
+    "packages/javascript/package.json": "76e77aa6ab8fffa725a3c19f5c5c1d6ab83fcea204c0bcf525d0ff4a6d4b5f80",
+    "packages/javascript/src/cleanup.ts": "726c80fe635eaeaf69f352d3b1cfa89d440847309a84144d529c58e8ba05c0b2",
+    "packages/javascript/src/cli.ts": "01873425e4fe466d808442c7ceae33eacd6023bcc88df2f7e77227e7aa94961f",
+    "packages/javascript/src/clone.ts": "fbfcfb911f5795aa1f4285c4b33f580a53b87a091e33927a3ca3492d99efb616",
+    "packages/javascript/src/index.ts": "d9178dbae4906acb47eff47ad38c87edbab3d24b1ccb56ba4b447fd9a1c7c759",
+    "packages/javascript/src/node.ts": "6e94dcda3c6a3b6d33a801ed4a17515e32e9665308078ffd69554d94f5b38cf6",
+    "packages/javascript/src/vendor.d.ts": "4df1c421ced09693f27b739d0c0b861a129321cbd481dcbc2a828610bc842879",
+    "packages/javascript/tsconfig.json": "e6f2054522551e8bd6e6dfdad951b25db3ac5126e00f406e0daca98ee99aa1a9",
+    "packages/shared/package.json": "4d9807f3ec8f3cf7da7ea1f05bbba4a503b18296bd0ed11ef287f1c12ea4992b",
+    "packages/shared/src/types.ts": "16809d00cf2a405823c95852d566d1983f32338884738add4bf31b4b088a324c",
+    "packages/shared/src/validation.ts": "65cad0b1c7368e654ed568e463c7207be664f23c446d446df62907aa7b75b35d",
+    "python/.venv/lib/python3.13/site-packages/readability_kit/__init__.py": "1619259784b246fc60e3eea014edac650980e592b7f76105ffbb5caf53d84e62",
+    "python/.venv/lib/python3.13/site-packages/readability_kit/_native.abi3.so": "0b9d58f46adfc2830b689b3da75868502ec7b81218f5a955f88fa1211428ca1f",
+    "python/.venv/lib/python3.13/site-packages/readability_kit/cli.py": "bc02057d377717a88faef3c3a3b878ae851ef77bade6b0caa257650e110e32d7",
+    "python/.venv/lib/python3.13/site-packages/readability_kit/models.py": "f2a8f6003143ee4acdb758aa3623d52f9221a5632da5dd4e042e58a0d3263ed5",
+    "python/pyproject.toml": "c7c443f6f120237d10f80ad42a58584020f7a29762b200b2539a226c86b54b41",
+    "python/src/readability_kit/__init__.py": "1619259784b246fc60e3eea014edac650980e592b7f76105ffbb5caf53d84e62",
+    "python/src/readability_kit/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "python/src/readability_kit/cli.py": "bc02057d377717a88faef3c3a3b878ae851ef77bade6b0caa257650e110e32d7",
+    "python/src/readability_kit/models.py": "f2a8f6003143ee4acdb758aa3623d52f9221a5632da5dd4e042e58a0d3263ed5",
+    "target/release/readability-kit": "7f3095ce99565153c4431e7a2a56c7c947ba776d42befbb6065fc13f2f979dc3",
+    "target/release/readability-kit-bench": "8186325721cd2b83256e10d7868b49c447f68c2df92a995047bbe35477e943bc",
+    "tools/benchmark-all.mjs": "541e104b351c90204c182bbe90cacddfa8a9b136e2afabb52cff8f63aca0f6b9",
+    "tools/benchmark-javascript-worker.mjs": "82ad7684d6896fbbfe0a935e7a2d0fdd17fa01ee3986743f0eed149be148d6ae",
+    "tools/benchmark-matched-subset.mjs": "e62bda446e99aac46c6dd8f7b36ac817ba5d0a666dd337f1fe736521e84d5d66",
+    "tools/benchmark-process.py": "c42c64f17a1b9f9258ae86cd6eee0a19c6c71f11608094a9868ae60b0d72146b",
+    "tools/benchmark-python-loader.py": "606808cc0230adba0ac12706e833376f32a0daafb1cd8a228eafe337563cf2ba",
+    "tools/benchmark-python-paired.py": "ae37d31805b07836487547e6ffd14bf9ac18efd16a509be91bfdf3d5c95ea03a",
+    "tools/benchmark-python-worker.py": "2733d8b288abdd072476540d242160949a28553aec72c0d6af695127d2255c90",
+    "tools/benchmark-rust.mjs": "71262e792f5c76a3297a9c95e066f142bdae9dee72666e5146401103c6d3a1b6",
+    "tools/benchmark-wasm-compare.mjs": "79870a0b30e4d1fd576fc153ad26f451f6b32dbac6e0178239d273409951cd05",
+    "tools/build-python-package.py": "5f1730f5296e82c4129cfaeb5c3bfe8f2ff8f75ce3211af9650b7fb663a75294",
+    "tools/build-wasm.mjs": "55f94a31b2ef69b95e72112392079e8cd744c54f6655e71d62a34d79f8a072a1",
+    "tools/build.mjs": "8cd06d3cc48fa706fc45d6af06f3ba20ebe20670ec155653c318ac19c46bae8c",
+    "tools/check-benchmark-report.mjs": "c3a4e47bf253b48a502180831b94b756e890f8f79ab245354286a2ed7cfaabfa",
+    "tools/check-go-module.mjs": "7329acab1ebe0551c87a52b416694e79e6d0459788e2a29694681325f91c474b",
+    "tools/check-go-sanitizer.mjs": "9c882a1d0e652aad424f6934c1a9ea68ec18292db441c328d8248af7f69deb3a",
+    "tools/check-package.mjs": "2be99b37f0b33f57f4fe5815a975aa9b1646b84e1d76bb99eb29d06afb10b18b",
+    "tools/check-python-benchmark.mjs": "f04adddc0c6a3508c6b7df3ff101dba8364cd749a726243af68223c2285e4d52",
+    "tools/check-python-package.py": "0a917ca424a2f2122c3fae72aa990f326fc1ce6245bfbe426ec56a43836a80f7",
+    "tools/check-rust-sanitizer.mjs": "b4290b5718503c940e2feac59591a33b475b0b29d7b65279a1489c9d01d93fbe",
+    "tools/check-wasm-package.mjs": "b209cd720d55928746e0c0755f6eba349ecea105a844e89f9179d6451bc8d4f9",
+    "tools/compare-upstream.mjs": "4ced9e7762837b0f749ac7c73f99c066d5c9862e4720472d7cd1cf131080c03d",
+    "tools/compatibility.mjs": "e48c46a2cbb0a863bb8c7f8bd7f2c06414bc5a3d14a8c350489465e0ced4fb85",
+    "tools/go-compatibility.mjs": "223972d8e2bedc8b9d2a7b5e21a4ce8718035d48d5717627911a39cd17bf662d",
+    "tools/npm-command.mjs": "ef9bc91014499ad9c67a5c78c2e246c133521c47356fdb86a765b6ac8bb8a2ae",
+    "tools/package-benchmark.py": "7b25aff9f1d8d6348b9c70df5c1e0320d39cb04585f6e40d72055d4f153f0f5b",
+    "tools/package-python-benchmark.py": "9cdc22056dbf1f316c6243ec7a47e149c89dc5f44637dfe432306da3f3d93db3",
+    "tools/package-python-optimization.py": "6d84adfe962fd9b6c65734b0c818af4f4385f1bd2ad37d9d6cd86d9ebc4df033",
+    "tools/package-rust.py": "1801eb4a56d3ea16e8a93f119ef97495edb378130b7c41af1c94571a91e9f464",
+    "tools/package-wasm.py": "28acf5861a3ed09da569c83ab9f233221b714ba9ffab919bc2b46cd592e064ca",
+    "tools/prepare-python-package.py": "10af759d4f3d54db6ce09bb484e790bafa5d6e20ee25cb947880e4dcd8f25f48",
+    "tools/profile-python-memory.py": "458bd7b5421fa77101f49fc7a7e6d7a816e888bce2d5f283c5aad394a2c73a56",
+    "tools/profile-python.py": "ee0318c5c7096c246bc6c5f3a774b9a53a06df31dff6d7381f036824d84328ec",
+    "tools/python-compatibility.py": "bfdd938b5d731285ee8f5d213d410f82bbfd2f8bc2b79e5ebe5e1e5b3b03e267",
+    "tools/python_benchmark_input.py": "d08ead6f76798e9079bb41526bbad459418a9c0a9543cdf972427d5de3de7180",
+    "tools/python_package_utils.py": "047a6fd84075b915b578fdb6cca08013d7d6a31f70de85940d5c736e63e7bd85",
+    "tools/render-benchmark.mjs": "b0543db360c803fa08145b6f7b86c67a003eebb255ae37eec1d1653cb1e9ada8",
+    "tools/render-python-benchmark.mjs": "3ab960e9b787a195c1b1295c910f028d49b4fa7e635dd55e9567f91c2033f1e7",
+    "tools/render-python-optimization.mjs": "1a918395d423f3924dabb7dfa2de88c7b498895618fa430fffad1cec90f2a276",
+    "tools/render-python-reviewed.mjs": "ce266fdc64ff049b28f50e6778326a7e0615ddcccbde7dc1a41d481ebcdb6793",
+    "tools/report-rust-gate.mjs": "213fa3735d6972fb0824afb9b5675082975ec0859e250bdea7fd6cb121243120",
+    "tools/seed-rust-fuzz.mjs": "19450250382ccf9cbd587ed6eb0b91fb0500296d0f12a36b93f3da23f7f688df",
+    "tools/serve-example.mjs": "02ecda3285adea87aa42df634742fc04ddc4c96bffce06235192b0baf13d2b2b",
+    "tools/summarize-benchmark.mjs": "52af65664db8b175d3b8f5150dec3a52d75b602cfb869d76356d6a1f1ac1009b",
+    "tools/summarize-python-profile.py": "d24d8fa015feb589cd569ae26635aa005812b89609a9aaaaacb34f250c8ef5e3",
+    "tools/summarize-python-regression.py": "2351dc6e8fd84890120e6978142e764a37bc1f16c8e925442528361e1a6ecd4d",
+    "tools/test-wasm.mjs": "7c6c234bb6d9959806a23d7e7c9a64beb30dbf7d603b60e8d1cab618bb0db9df",
+    "tools/verify-upstream.mjs": "03a6113d5e7ba1cd9b23917ceca034d0c9fac91380586d4b69939d595459987d",
+    "upstream.json": "2b3944a8a606d09e534fc221493e13515813e72a1abe2dc78d4c7587e5416083"
+  },
+  "corpus": [
+    {
+      "id": "ol",
+      "path": "vendor/mozilla/test/test-pages/ol/source.html",
+      "bytes": 195,
+      "sha256": "ac694e06b19eb99036ab3a5367819af3b34f098f1a6f54f5d22abe0a8a4940aa"
+    },
+    {
+      "id": "js-link-replacement",
+      "path": "vendor/mozilla/test/test-pages/js-link-replacement/source.html",
+      "bytes": 209,
+      "sha256": "e6f0b278fe00f54a98f42e5bbd2e659c6dd79dbd61649ad05f8069256d40de35"
+    },
+    {
+      "id": "005-unescape-html-entities",
+      "path": "vendor/mozilla/test/test-pages/005-unescape-html-entities/source.html",
+      "bytes": 221,
+      "sha256": "9f7844f28df16128ac734a31ce2c141955e23d79c137097916850fe833a60be2"
+    },
+    {
+      "id": "invalid-attributes",
+      "path": "vendor/mozilla/test/test-pages/invalid-attributes/source.html",
+      "bytes": 437,
+      "sha256": "296d2f45877ae1275770b33dc63b38f924e111b32d17bffe82179fad4a14ee33"
+    },
+    {
+      "id": "remove-aria-hidden",
+      "path": "vendor/mozilla/test/test-pages/remove-aria-hidden/source.html",
+      "bytes": 543,
+      "sha256": "ef58db26ad89de57ef1dea7b81f22e20e4a8859128897c93ada64eb35407eedc"
+    },
+    {
+      "id": "lazy-image-3",
+      "path": "vendor/mozilla/test/test-pages/lazy-image-3/source.html",
+      "bytes": 664,
+      "sha256": "e2816ce1a5cc505cdc0b702b0113283e5d528584d91c006f4eb84c55d5f9fd31"
+    },
+    {
+      "id": "normalize-spaces",
+      "path": "vendor/mozilla/test/test-pages/normalize-spaces/source.html",
+      "bytes": 1134,
+      "sha256": "640299a69c583104ef3d37c44493f895398b09d28c48ff487061fa01017bfc8a"
+    },
+    {
+      "id": "title-en-dash",
+      "path": "vendor/mozilla/test/test-pages/title-en-dash/source.html",
+      "bytes": 1189,
+      "sha256": "99cf60410a74f8cdc1cb3288640514a8dbab37532c3e253c18a6b9f95cbfccfe"
+    },
+    {
+      "id": "replace-brs",
+      "path": "vendor/mozilla/test/test-pages/replace-brs/source.html",
+      "bytes": 1195,
+      "sha256": "c1aa787ae2d9db358ab1925dedf53c72479841a82113058f6ed09470d702a62b"
+    },
+    {
+      "id": "remove-extra-brs",
+      "path": "vendor/mozilla/test/test-pages/remove-extra-brs/source.html",
+      "bytes": 1201,
+      "sha256": "4010fa7c63d397625f6a4b32c8565f43a4837e75c0e854afd32951d4a7e71d7e"
+    },
+    {
+      "id": "rtl-1",
+      "path": "vendor/mozilla/test/test-pages/rtl-1/source.html",
+      "bytes": 1214,
+      "sha256": "a919900db0ed468fabf5de717c959921c785fb8ac34a62178f65b17e72c6a78b"
+    },
+    {
+      "id": "rtl-3",
+      "path": "vendor/mozilla/test/test-pages/rtl-3/source.html",
+      "bytes": 1214,
+      "sha256": "992cdae86c7c356f72038eb28db7f6264de2c66c8faeba4fb701a052e4ea7116"
+    },
+    {
+      "id": "rtl-4",
+      "path": "vendor/mozilla/test/test-pages/rtl-4/source.html",
+      "bytes": 1214,
+      "sha256": "77e98fa63405c76ea2f7c44c21b6c9b23e1cf41960432696f863688b0a123160"
+    },
+    {
+      "id": "comment-inside-script-parsing",
+      "path": "vendor/mozilla/test/test-pages/comment-inside-script-parsing/source.html",
+      "bytes": 1221,
+      "sha256": "a3e09b3955e6a33580408041f6c96f26beb9ca85fcbd527daa83e8191dfe7175"
+    },
+    {
+      "id": "rtl-2",
+      "path": "vendor/mozilla/test/test-pages/rtl-2/source.html",
+      "bytes": 1224,
+      "sha256": "19fe8ac0691b94fe99fb2421221b051faf3f026cc4d1cf91c278ae1318988c80"
+    },
+    {
+      "id": "remove-extra-paragraphs",
+      "path": "vendor/mozilla/test/test-pages/remove-extra-paragraphs/source.html",
+      "bytes": 1272,
+      "sha256": "a468f05e42b5e51a5658ea7ce142bc8123334d4cf5c0b78b0b00093ec0509a77"
+    },
+    {
+      "id": "replace-font-tags",
+      "path": "vendor/mozilla/test/test-pages/replace-font-tags/source.html",
+      "bytes": 1293,
+      "sha256": "89934d9db31957994dd8e48369ce628309b46cf6c640727098a4a7a8d400947b"
+    },
+    {
+      "id": "title-and-h1-discrepancy",
+      "path": "vendor/mozilla/test/test-pages/title-and-h1-discrepancy/source.html",
+      "bytes": 1295,
+      "sha256": "1296c8c088b1e0a95809a78c831947484426629446a35f9de1bd5c221aeb31f1"
+    },
+    {
+      "id": "style-tags-removal",
+      "path": "vendor/mozilla/test/test-pages/style-tags-removal/source.html",
+      "bytes": 1326,
+      "sha256": "80ef5d20f8c9e2bf71562eb1b61ddcd27895869dceca7d4d73202b8f0058a5fb"
+    },
+    {
+      "id": "basic-tags-cleaning",
+      "path": "vendor/mozilla/test/test-pages/basic-tags-cleaning/source.html",
+      "bytes": 1404,
+      "sha256": "427e98f1484606415c2f694c5038f0ad5695b875f4f5b261ce5bc9ce945f2790"
+    },
+    {
+      "id": "visibility-hidden",
+      "path": "vendor/mozilla/test/test-pages/visibility-hidden/source.html",
+      "bytes": 1431,
+      "sha256": "c033dcb5b1d27bf2a8e918f03db913ad2f08d6246614d451ce749d30bc64bfc3"
+    },
+    {
+      "id": "remove-script-tags",
+      "path": "vendor/mozilla/test/test-pages/remove-script-tags/source.html",
+      "bytes": 1539,
+      "sha256": "18c4148f2a0c426b0446aff1c2538d41abd6a2ac16ed5ff727ced06d4a940d2c"
+    },
+    {
+      "id": "metadata-content-missing",
+      "path": "vendor/mozilla/test/test-pages/metadata-content-missing/source.html",
+      "bytes": 1571,
+      "sha256": "89145e633d26f762350ee0b786207452c70b81f7d3d7b3ae24ef912901d3c2c7"
+    },
+    {
+      "id": "004-metadata-space-separated-properties",
+      "path": "vendor/mozilla/test/test-pages/004-metadata-space-separated-properties/source.html",
+      "bytes": 1725,
+      "sha256": "57d00e87a1f1b4f35c8353a0f9a198dce792ae38bc467ac90bf22f748b38dd0d"
+    },
+    {
+      "id": "parsely-metadata",
+      "path": "vendor/mozilla/test/test-pages/parsely-metadata/source.html",
+      "bytes": 1739,
+      "sha256": "8cac6f2497288c0eadcffe5812aa5d1535d48eb82b81fee96e2f7fb5b056d92b"
+    },
+    {
+      "id": "base-url",
+      "path": "vendor/mozilla/test/test-pages/base-url/source.html",
+      "bytes": 1764,
+      "sha256": "416400698aecc72f236d178d51138693391bd86a10ff63f75fb185c6b020dcbb"
+    },
+    {
+      "id": "base-url-base-element",
+      "path": "vendor/mozilla/test/test-pages/base-url-base-element/source.html",
+      "bytes": 1793,
+      "sha256": "5124554add820e3e0ebc316f5cf6e63b1f359bb6eddd66bcbfeed50ffa04cfa6"
+    },
+    {
+      "id": "base-url-base-element-relative",
+      "path": "vendor/mozilla/test/test-pages/base-url-base-element-relative/source.html",
+      "bytes": 1806,
+      "sha256": "4d906b3cd74a20fc8cf44767fb060ffe44f3570f7f0376408270d998715c5467"
+    },
+    {
+      "id": "embedded-videos",
+      "path": "vendor/mozilla/test/test-pages/embedded-videos/source.html",
+      "bytes": 2059,
+      "sha256": "ade9a0e2e36cec13994090308afde5d7b34479bf0d37e47eb29ace2af4fb6cf4"
+    },
+    {
+      "id": "reordering-paragraphs",
+      "path": "vendor/mozilla/test/test-pages/reordering-paragraphs/source.html",
+      "bytes": 2108,
+      "sha256": "b20d3f15a30c981efe336bf931ef4c58327188d544bf98bca6104edbc7f8de88"
+    },
+    {
+      "id": "003-metadata-preferred",
+      "path": "vendor/mozilla/test/test-pages/003-metadata-preferred/source.html",
+      "bytes": 2408,
+      "sha256": "81e8b8ff46de540626bd23ce9395241764aaf2118d31fc47fa43826579812ce4"
+    },
+    {
+      "id": "svg-parsing",
+      "path": "vendor/mozilla/test/test-pages/svg-parsing/source.html",
+      "bytes": 2761,
+      "sha256": "c90ec5542ef16081aee47f487883765b03c57ed0d072471d74c003992663e07c"
+    },
+    {
+      "id": "social-buttons",
+      "path": "vendor/mozilla/test/test-pages/social-buttons/source.html",
+      "bytes": 3308,
+      "sha256": "7fa8b3f17a32bba1ab3703b5d6cc06ad04d664d25e2a9ad964b90ab4d0474036"
+    },
+    {
+      "id": "hidden-nodes",
+      "path": "vendor/mozilla/test/test-pages/hidden-nodes/source.html",
+      "bytes": 3369,
+      "sha256": "12ba1e78b315acd726cb7b1aceb4c32aa2aba9ba133e824275147a9fe63ff67a"
+    },
+    {
+      "id": "missing-paragraphs",
+      "path": "vendor/mozilla/test/test-pages/missing-paragraphs/source.html",
+      "bytes": 3729,
+      "sha256": "41140e70d0ec95d1657a9a61b421e97625699ac3ab4f949206a663dacc511b68"
+    },
+    {
+      "id": "dev418",
+      "path": "vendor/mozilla/test/test-pages/dev418/source.html",
+      "bytes": 3815,
+      "sha256": "3887aefffeb2bd4a64e852fe00f3e216e1ce39abc56de8995e5d1e96b794e26e"
+    },
+    {
+      "id": "daringfireball-1",
+      "path": "vendor/mozilla/test/test-pages/daringfireball-1/source.html",
+      "bytes": 10116,
+      "sha256": "c21b617e6a320580ea71b47bb7751e3cd6e8985c7d21f91cfb9662ca31aa7d21"
+    },
+    {
+      "id": "001",
+      "path": "vendor/mozilla/test/test-pages/001/source.html",
+      "bytes": 12533,
+      "sha256": "f6a1c98f318c67d423676a8cb0895c78198cf56f9c493e25beaf6f413f598799"
+    },
+    {
+      "id": "table-style-attributes",
+      "path": "vendor/mozilla/test/test-pages/table-style-attributes/source.html",
+      "bytes": 14417,
+      "sha256": "0472ea79f6e35549f1e51dce5996a1dba3abedc0196ae562c952cd9c373da9cf"
+    },
+    {
+      "id": "hukumusume",
+      "path": "vendor/mozilla/test/test-pages/hukumusume/source.html",
+      "bytes": 24662,
+      "sha256": "9f317b5f9f9a2fa1ee53b34e170c239f532a0fcd3af945eb401c1b3308bce896"
+    },
+    {
+      "id": "mozilla-2",
+      "path": "vendor/mozilla/test/test-pages/mozilla-2/source.html",
+      "bytes": 25490,
+      "sha256": "39059455717bccde554b8b22244a8cef6a8531d65ee89612776b5174d694fdf8"
+    },
+    {
+      "id": "tumblr",
+      "path": "vendor/mozilla/test/test-pages/tumblr/source.html",
+      "bytes": 31244,
+      "sha256": "30d6f8f0dda314a158edb8e47316bb503c3a9ca5da378596a6d3736603dd9887"
+    },
+    {
+      "id": "v8-blog",
+      "path": "vendor/mozilla/test/test-pages/v8-blog/source.html",
+      "bytes": 33095,
+      "sha256": "b630ea40054bb7263831e96be18e193d7054d7943ce522750115199940ab87d4"
+    },
+    {
+      "id": "simplyfound-1",
+      "path": "vendor/mozilla/test/test-pages/simplyfound-1/source.html",
+      "bytes": 33152,
+      "sha256": "123bdcc0fa4d5581a5d8249f2c63b8c2918f436dd6515556adcbf6b13fc6b860"
+    },
+    {
+      "id": "ebb-org",
+      "path": "vendor/mozilla/test/test-pages/ebb-org/source.html",
+      "bytes": 39614,
+      "sha256": "84663f525d24addb33baf085736ead5b598c20e5f840d4e0afaadb2306bbb34b"
+    },
+    {
+      "id": "medium-2",
+      "path": "vendor/mozilla/test/test-pages/medium-2/source.html",
+      "bytes": 48123,
+      "sha256": "52a381d960bf5a50949c18cfacec65ba0259d64d3dd1c28367824aca9893be96"
+    },
+    {
+      "id": "ars-1",
+      "path": "vendor/mozilla/test/test-pages/ars-1/source.html",
+      "bytes": 55990,
+      "sha256": "69fe78634727dafa313f490fade17aa229bb2c9df34d3df7b60da22189216f13"
+    },
+    {
+      "id": "herald-sun-1",
+      "path": "vendor/mozilla/test/test-pages/herald-sun-1/source.html",
+      "bytes": 62123,
+      "sha256": "5d6a12bce90c32af0c3a4160c64df34cd01087e150ab9796f42efbb714dfd650"
+    },
+    {
+      "id": "heise",
+      "path": "vendor/mozilla/test/test-pages/heise/source.html",
+      "bytes": 62142,
+      "sha256": "766652616a159e463936564c262546b243ad761dae221bc39a3b9b610e2952e6"
+    },
+    {
+      "id": "la-nacion",
+      "path": "vendor/mozilla/test/test-pages/la-nacion/source.html",
+      "bytes": 63471,
+      "sha256": "255abd8003ac9f70e7de7a26a9d75d7f58f82d2a3c4a2d3169e9c6bfe3868bb3"
+    },
+    {
+      "id": "keep-tabular-data",
+      "path": "vendor/mozilla/test/test-pages/keep-tabular-data/source.html",
+      "bytes": 64206,
+      "sha256": "2a63f726ecc7c5f60314f0e3e8dff4a281fb2c93a8b611875701077ce1c6c794"
+    },
+    {
+      "id": "mercurial",
+      "path": "vendor/mozilla/test/test-pages/mercurial/source.html",
+      "bytes": 64599,
+      "sha256": "1a2238115e4af262f4aaa43fc5e49504c290a8b4ef2a776b6d7a8014b4082fb7"
+    },
+    {
+      "id": "ietf-1",
+      "path": "vendor/mozilla/test/test-pages/ietf-1/source.html",
+      "bytes": 64711,
+      "sha256": "8276ffcf6165ef788d89a5c0b2c6eb777c581b7f608e31a633989ed41e83dad0"
+    },
+    {
+      "id": "data-url-image",
+      "path": "vendor/mozilla/test/test-pages/data-url-image/source.html",
+      "bytes": 65841,
+      "sha256": "5f2f5d51e020c3a6dfc5158342143b9fa0c0d035476bb9db28a61db61e7634b6"
+    },
+    {
+      "id": "ehow-1",
+      "path": "vendor/mozilla/test/test-pages/ehow-1/source.html",
+      "bytes": 67383,
+      "sha256": "8fde9b2cb6fa34601518425d1ab67fb8ab5a53513cd75067fd44a3ab1153aa87"
+    },
+    {
+      "id": "google-sre-book-1",
+      "path": "vendor/mozilla/test/test-pages/google-sre-book-1/source.html",
+      "bytes": 70029,
+      "sha256": "8e265718877a06f32d1524b4d1118fb16bbb8bc549cf830f04d44294de7c3e65"
+    },
+    {
+      "id": "gitlab-blog",
+      "path": "vendor/mozilla/test/test-pages/gitlab-blog/source.html",
+      "bytes": 71975,
+      "sha256": "46a9b823bf11a9e61d39d814d15affb44147f60198acef6d9df159006889eb94"
+    },
+    {
+      "id": "dropbox-blog",
+      "path": "vendor/mozilla/test/test-pages/dropbox-blog/source.html",
+      "bytes": 80114,
+      "sha256": "64012a265b3e1e6722be2bf0d39dca554f5b3d8c9fe811f7be004e25124e5ea6"
+    },
+    {
+      "id": "firefox-nightly-blog",
+      "path": "vendor/mozilla/test/test-pages/firefox-nightly-blog/source.html",
+      "bytes": 82821,
+      "sha256": "40511e22125f8a58247cfd8824fcbb2d8ee380ab4604c9639697a30377ba48cf"
+    },
+    {
+      "id": "lwn-1",
+      "path": "vendor/mozilla/test/test-pages/lwn-1/source.html",
+      "bytes": 87143,
+      "sha256": "d1c03893435a55e130dd0689282a178dbb166feabd99894435580f3a3ddd7197"
+    },
+    {
+      "id": "lemonde-1",
+      "path": "vendor/mozilla/test/test-pages/lemonde-1/source.html",
+      "bytes": 87454,
+      "sha256": "9d0cc46bc4f24f0645d993cbb29014615cc3d60aafd2f5ecd2220a9383e8f993"
+    },
+    {
+      "id": "tmz-1",
+      "path": "vendor/mozilla/test/test-pages/tmz-1/source.html",
+      "bytes": 92266,
+      "sha256": "26e953a225a4bf99b1c8cdc5ea26f3cb9bfef7016cab68982e6d88db0f64565f"
+    },
+    {
+      "id": "mozilla-1",
+      "path": "vendor/mozilla/test/test-pages/mozilla-1/source.html",
+      "bytes": 95492,
+      "sha256": "49171015a6f3313e006ff59ebc60971abe57bd6babc5b2ea1a5364f8abe0dbec"
+    },
+    {
+      "id": "iab-1",
+      "path": "vendor/mozilla/test/test-pages/iab-1/source.html",
+      "bytes": 102377,
+      "sha256": "d79314e49d5261881a5a40974bdbda8b4423f89378087d899346e616af97fd22"
+    },
+    {
+      "id": "ehow-2",
+      "path": "vendor/mozilla/test/test-pages/ehow-2/source.html",
+      "bytes": 107092,
+      "sha256": "b0096a4a9a6ce9b71beaa235ac1a889ec7d9850ac8d9c9c1a69c2f838cf96287"
+    },
+    {
+      "id": "topicseed-1",
+      "path": "vendor/mozilla/test/test-pages/topicseed-1/source.html",
+      "bytes": 112812,
+      "sha256": "b52e60a429a187f4c3e6f20f3dbac8a0ff73f17a810f29b66b7596ecc8c49189"
+    },
+    {
+      "id": "medium-1",
+      "path": "vendor/mozilla/test/test-pages/medium-1/source.html",
+      "bytes": 119561,
+      "sha256": "1195a8b06bc4a126c8b7b6843144b68053f6a717b5938d9e88b2f375810c21ed"
+    },
+    {
+      "id": "wapo-2",
+      "path": "vendor/mozilla/test/test-pages/wapo-2/source.html",
+      "bytes": 125800,
+      "sha256": "e209e747222b004227f33ba4f6706299476adcd61576f07e0df32e7df1f1a8b9"
+    },
+    {
+      "id": "lifehacker-working",
+      "path": "vendor/mozilla/test/test-pages/lifehacker-working/source.html",
+      "bytes": 128053,
+      "sha256": "abdebf5c6222a012a46ceca056dc9c97c1acde01ca6de8c29ca25f534674f38a"
+    },
+    {
+      "id": "toc-missing",
+      "path": "vendor/mozilla/test/test-pages/toc-missing/source.html",
+      "bytes": 128400,
+      "sha256": "3e9f0ad0939f8062d680f6f0d2467bb8e71f1b25edd856965acd8a7e9c7a7608"
+    },
+    {
+      "id": "links-in-tables",
+      "path": "vendor/mozilla/test/test-pages/links-in-tables/source.html",
+      "bytes": 131911,
+      "sha256": "e694812c99eb935b1bc2114669544aec9a261818fa22b65b46a46f2c806ffeab"
+    },
+    {
+      "id": "webmd-2",
+      "path": "vendor/mozilla/test/test-pages/webmd-2/source.html",
+      "bytes": 136836,
+      "sha256": "15843cafbea4e3e83353319b8ceb89fff971ef66a1255af62d49b4cd523f96d4"
+    },
+    {
+      "id": "cnet-svg-classes",
+      "path": "vendor/mozilla/test/test-pages/cnet-svg-classes/source.html",
+      "bytes": 136890,
+      "sha256": "38e782a40f881f94b49e467f2cbf445ad2d13cbbf5069e8bbd3004dc6183e7fb"
+    },
+    {
+      "id": "liberation-1",
+      "path": "vendor/mozilla/test/test-pages/liberation-1/source.html",
+      "bytes": 140861,
+      "sha256": "40927617d059a5f9a79364bbfc0d2e815a0986191404a05a16a7af7e428c2731"
+    },
+    {
+      "id": "keep-images",
+      "path": "vendor/mozilla/test/test-pages/keep-images/source.html",
+      "bytes": 141158,
+      "sha256": "9c1c4d477033633c9f766c50558f2d1578b1a8c00f5cb1824e43b1123012bd9c"
+    },
+    {
+      "id": "002",
+      "path": "vendor/mozilla/test/test-pages/002/source.html",
+      "bytes": 142208,
+      "sha256": "5593c6b7ec396fbb0b5053b29e6f1dab850dc62e007250cd0f1dac4b8bee5d21"
+    },
+    {
+      "id": "yahoo-4",
+      "path": "vendor/mozilla/test/test-pages/yahoo-4/source.html",
+      "bytes": 142850,
+      "sha256": "e2a752c73e992430270b52a4298ddec16294889eae4c90f2ec90dee7af5dccc4"
+    },
+    {
+      "id": "gmw",
+      "path": "vendor/mozilla/test/test-pages/gmw/source.html",
+      "bytes": 143533,
+      "sha256": "9dae2c47570271a0a532ccc4880b10b5ec837b67239a287455a6b9e19e00b3b7"
+    },
+    {
+      "id": "medicalnewstoday",
+      "path": "vendor/mozilla/test/test-pages/medicalnewstoday/source.html",
+      "bytes": 150967,
+      "sha256": "6d2da8dabacaab99f5b5bbdf3721197d2d40bf606879db6156cd06f88e8ba928"
+    },
+    {
+      "id": "blogger",
+      "path": "vendor/mozilla/test/test-pages/blogger/source.html",
+      "bytes": 154796,
+      "sha256": "76e6c64721d583c082bfb306e65d723770e58b4cb82b66c7c83f5e16eceb97cc"
+    },
+    {
+      "id": "citylab-1",
+      "path": "vendor/mozilla/test/test-pages/citylab-1/source.html",
+      "bytes": 173900,
+      "sha256": "6309e28399299fb30f90acc00bedd91bcc3f22cfea918a49310241b312edb406"
+    },
+    {
+      "id": "videos-2",
+      "path": "vendor/mozilla/test/test-pages/videos-2/source.html",
+      "bytes": 179950,
+      "sha256": "7dd3a8e220aa3dfadb7cc479c5852acd2f1f44a8aac28141c500f609a151d07b"
+    },
+    {
+      "id": "wapo-1",
+      "path": "vendor/mozilla/test/test-pages/wapo-1/source.html",
+      "bytes": 180153,
+      "sha256": "24b0b8bc2e30aef2888ecc20d54e68867b2e18fb0deb8918340b028673524b31"
+    },
+    {
+      "id": "wordpress",
+      "path": "vendor/mozilla/test/test-pages/wordpress/source.html",
+      "bytes": 181493,
+      "sha256": "157d8ec67187d55d7b975d1edfbed4eaf4fcc7d1b8c15d7ef6e20287caaea69d"
+    },
+    {
+      "id": "clean-links",
+      "path": "vendor/mozilla/test/test-pages/clean-links/source.html",
+      "bytes": 182350,
+      "sha256": "966bbb3c27df91695f54a8078104080f355173f4464e084c59f667049300e828"
+    },
+    {
+      "id": "webmd-1",
+      "path": "vendor/mozilla/test/test-pages/webmd-1/source.html",
+      "bytes": 182401,
+      "sha256": "974507e889655d5d5b2368671b413cd2dd5f46bc2efeb4b77deb74988bc8ff46"
+    },
+    {
+      "id": "spiceworks",
+      "path": "vendor/mozilla/test/test-pages/spiceworks/source.html",
+      "bytes": 186175,
+      "sha256": "9a66a6ef0fb50ab37cef39930ab2eb5629e153d1b4edc20eb4a0f0c349d6f61b"
+    },
+    {
+      "id": "mathjax",
+      "path": "vendor/mozilla/test/test-pages/mathjax/source.html",
+      "bytes": 201904,
+      "sha256": "574ca7f68b94cfa1ef3f8ee68ff3d7309e4d88a2eb58bc8718cc2533319c43d4"
+    },
+    {
+      "id": "aclu",
+      "path": "vendor/mozilla/test/test-pages/aclu/source.html",
+      "bytes": 205242,
+      "sha256": "c0158d5f30deb75da3ebb6f8ed45948b967575b9e85fe87da64e0a047d851aa2"
+    },
+    {
+      "id": "royal-road",
+      "path": "vendor/mozilla/test/test-pages/royal-road/source.html",
+      "bytes": 205247,
+      "sha256": "c092f697746b5b5b1ca9e8b5390e551ae7ee379c0622e0a5be799c5c6715460a"
+    },
+    {
+      "id": "videos-1",
+      "path": "vendor/mozilla/test/test-pages/videos-1/source.html",
+      "bytes": 210111,
+      "sha256": "70a9c18dd3017c10d63eaaad47eed317cea619864ad24b3fad91509caca6391d"
+    },
+    {
+      "id": "telegraph",
+      "path": "vendor/mozilla/test/test-pages/telegraph/source.html",
+      "bytes": 211946,
+      "sha256": "faced9efec016c59231823a0784a52768a253b3efc100d58a6117825b05646ed"
+    },
+    {
+      "id": "theverge",
+      "path": "vendor/mozilla/test/test-pages/theverge/source.html",
+      "bytes": 212764,
+      "sha256": "4269408b9a692e15cb34269301056ee73ea01238fab223c72b61ed85cd813906"
+    },
+    {
+      "id": "salon-1",
+      "path": "vendor/mozilla/test/test-pages/salon-1/source.html",
+      "bytes": 223176,
+      "sha256": "20817a930d0c796992162057a6dd488e8a94180fed74d38559c52213fd0445de"
+    },
+    {
+      "id": "wikipedia",
+      "path": "vendor/mozilla/test/test-pages/wikipedia/source.html",
+      "bytes": 244186,
+      "sha256": "7104f5945907560ed185063f6e469b1150b462eceb14be092b84f8b11368cf8c"
+    },
+    {
+      "id": "lifehacker-post-comment-load",
+      "path": "vendor/mozilla/test/test-pages/lifehacker-post-comment-load/source.html",
+      "bytes": 248330,
+      "sha256": "66fa931d408b553f235022046e25371cd85f1bec0421a27e521275f996308d54"
+    },
+    {
+      "id": "seattletimes-1",
+      "path": "vendor/mozilla/test/test-pages/seattletimes-1/source.html",
+      "bytes": 253039,
+      "sha256": "d854adc85f6fc66c70817ad33c4c71c63c5c992b1a384256f8d7ab44bbc08938"
+    },
+    {
+      "id": "cnn",
+      "path": "vendor/mozilla/test/test-pages/cnn/source.html",
+      "bytes": 258657,
+      "sha256": "8c7640176eb567232d2b7f5ba9f7b3b76b46a61d2ee48338ca64680bdff1f983"
+    },
+    {
+      "id": "bbc-1",
+      "path": "vendor/mozilla/test/test-pages/bbc-1/source.html",
+      "bytes": 264054,
+      "sha256": "b5ca9d50b6ede3fc7e95c988475fc4dbc693331ce4b4faca5b8a2696f13a7917"
+    },
+    {
+      "id": "archive-of-our-own",
+      "path": "vendor/mozilla/test/test-pages/archive-of-our-own/source.html",
+      "bytes": 266014,
+      "sha256": "478d0a664b304b972960f9cd56cc2405e0be077143dee9475e235800aa79ab68"
+    },
+    {
+      "id": "lazy-image-1",
+      "path": "vendor/mozilla/test/test-pages/lazy-image-1/source.html",
+      "bytes": 267116,
+      "sha256": "f4abb5497d4703fc43a44cf9b838a7dcf0e546fbcb3ef13a1aadcbb415d4c979"
+    },
+    {
+      "id": "cnet",
+      "path": "vendor/mozilla/test/test-pages/cnet/source.html",
+      "bytes": 267211,
+      "sha256": "3b0318a4bbd3327834e75dd3844a84778290a9129d96c1670bfd765a42e0be66"
+    },
+    {
+      "id": "wikipedia-3",
+      "path": "vendor/mozilla/test/test-pages/wikipedia-3/source.html",
+      "bytes": 289542,
+      "sha256": "86e539a9e71edd2eedfdc8724d804f76e4a321dc85924943258fdae27ccd3b77"
+    },
+    {
+      "id": "article-author-tag",
+      "path": "vendor/mozilla/test/test-pages/article-author-tag/source.html",
+      "bytes": 290924,
+      "sha256": "f42c4e80c930451ce78b127dae3107475b3f52a3ba352e4c6630c5c9d570a93c"
+    },
+    {
+      "id": "wikipedia-4",
+      "path": "vendor/mozilla/test/test-pages/wikipedia-4/source.html",
+      "bytes": 293519,
+      "sha256": "925eb59966aa8b996f93df303b73f88eb65f0e224728a1b1f2e164af7b5d0056"
+    },
+    {
+      "id": "nytimes-2",
+      "path": "vendor/mozilla/test/test-pages/nytimes-2/source.html",
+      "bytes": 299537,
+      "sha256": "c366d50c892fdf2f186650e7df41396b0f8f0dd0e91092101f68cf854e51b4df"
+    },
+    {
+      "id": "aktualne",
+      "path": "vendor/mozilla/test/test-pages/aktualne/source.html",
+      "bytes": 300962,
+      "sha256": "889c9049f08aa28538716bb342e9298c0d81bb783894433bc04d2960d012655d"
+    },
+    {
+      "id": "quanta-1",
+      "path": "vendor/mozilla/test/test-pages/quanta-1/source.html",
+      "bytes": 303824,
+      "sha256": "b62f8673090e005392bd1888c57ba4f26de04ad8e155d5878c948e5acf8e15a8"
+    },
+    {
+      "id": "nytimes-1",
+      "path": "vendor/mozilla/test/test-pages/nytimes-1/source.html",
+      "bytes": 309181,
+      "sha256": "fbcc8e24179ea73a8c3768ea51396f60b38c883601391734ec85c38d58554825"
+    },
+    {
+      "id": "qq",
+      "path": "vendor/mozilla/test/test-pages/qq/source.html",
+      "bytes": 320389,
+      "sha256": "9b58c32629b910507d16dafe0cb7c81d06337aede2da1b07d3b0aec756f392a6"
+    },
+    {
+      "id": "bug-1255978",
+      "path": "vendor/mozilla/test/test-pages/bug-1255978/source.html",
+      "bytes": 336289,
+      "sha256": "4b25eebd270e2c181a9aa482dae0fb82f46f9adbdcdb3e02906bc43a3b39b068"
+    },
+    {
+      "id": "engadget",
+      "path": "vendor/mozilla/test/test-pages/engadget/source.html",
+      "bytes": 350132,
+      "sha256": "5055dc4ea7a7d8ca80c4946e5448900e93c08cba5708f35991b67667ce1f47d6"
+    },
+    {
+      "id": "folha",
+      "path": "vendor/mozilla/test/test-pages/folha/source.html",
+      "bytes": 368410,
+      "sha256": "bb68dad644252e6574626f95c05ed89f51222c1f3f1839ed098f0542cc476154"
+    },
+    {
+      "id": "buzzfeed-1",
+      "path": "vendor/mozilla/test/test-pages/buzzfeed-1/source.html",
+      "bytes": 378311,
+      "sha256": "1983b5b9c2ad462c3541e91742156ca2ff4e65f3b2f8e354bcdcf65191160544"
+    },
+    {
+      "id": "medium-3",
+      "path": "vendor/mozilla/test/test-pages/medium-3/source.html",
+      "bytes": 383851,
+      "sha256": "f4726d93435e42c8f76d37351fe6489862300aedcaa2c571fed1831ebd5cfe19"
+    },
+    {
+      "id": "pixnet",
+      "path": "vendor/mozilla/test/test-pages/pixnet/source.html",
+      "bytes": 411495,
+      "sha256": "cbd38d76508cb428f294ce5389b5dd687e24899535ea84a4155b504e84e20c47"
+    },
+    {
+      "id": "schema-org-context-object",
+      "path": "vendor/mozilla/test/test-pages/schema-org-context-object/source.html",
+      "bytes": 459526,
+      "sha256": "b470ad3d4170fe5e9bd6d07163e3bfeaff65f22d6d03f9520f7401de532c4cac"
+    },
+    {
+      "id": "youth",
+      "path": "vendor/mozilla/test/test-pages/youth/source.html",
+      "bytes": 470269,
+      "sha256": "899e43896a02cea7e55dcc4e6109eba63ac0c965eabeeb6936ed02aeb3fde295"
+    },
+    {
+      "id": "nytimes-3",
+      "path": "vendor/mozilla/test/test-pages/nytimes-3/source.html",
+      "bytes": 489336,
+      "sha256": "139132ee488886b14fb8d85044947768727929e990054c9be8c688b0f6c4bebf"
+    },
+    {
+      "id": "msn",
+      "path": "vendor/mozilla/test/test-pages/msn/source.html",
+      "bytes": 564271,
+      "sha256": "2018a42861987072b91fdabd8778d2c5367b72b1e1889792fe5dc2db950d21ef"
+    },
+    {
+      "id": "lazy-image-2",
+      "path": "vendor/mozilla/test/test-pages/lazy-image-2/source.html",
+      "bytes": 730216,
+      "sha256": "1818fb18849ed6d2255224006ba33e0352c8caf7cba4e08ca791b614e2f47047"
+    },
+    {
+      "id": "nytimes-4",
+      "path": "vendor/mozilla/test/test-pages/nytimes-4/source.html",
+      "bytes": 772075,
+      "sha256": "a14721bdc64eb917b4099d666a0ea6b8b218997cac06cbf008b3df25f2ffeb4e"
+    },
+    {
+      "id": "wikia",
+      "path": "vendor/mozilla/test/test-pages/wikia/source.html",
+      "bytes": 854712,
+      "sha256": "b0e52788b4b181162474dccfe7f27a50bb140670c59b0c818bf88956e34fec05"
+    },
+    {
+      "id": "breitbart",
+      "path": "vendor/mozilla/test/test-pages/breitbart/source.html",
+      "bytes": 854888,
+      "sha256": "0a16112680d06aaf8a617fd7faf69ff909b7c6a519a065bb3dcd4743102baffd"
+    },
+    {
+      "id": "nytimes-5",
+      "path": "vendor/mozilla/test/test-pages/nytimes-5/source.html",
+      "bytes": 944746,
+      "sha256": "027edb25cd35ce46f0ce8c11fdf645d1843054f89bd59fc5d228cacb14a788f6"
+    },
+    {
+      "id": "wikipedia-2",
+      "path": "vendor/mozilla/test/test-pages/wikipedia-2/source.html",
+      "bytes": 1040479,
+      "sha256": "2d49814707297841baa04e1332e19a9dc2aeb7a622c6f078960f27c37ed81f66"
+    },
+    {
+      "id": "guardian-1",
+      "path": "vendor/mozilla/test/test-pages/guardian-1/source.html",
+      "bytes": 1160848,
+      "sha256": "48dd41ccd7f07c550b884e7e40213da141952f450ccb8d8ffe01250b75cf889d"
+    },
+    {
+      "id": "yahoo-1",
+      "path": "vendor/mozilla/test/test-pages/yahoo-1/source.html",
+      "bytes": 1207121,
+      "sha256": "233a5f1985522dd33595b2bdc824a34a668738581cd04f3a63deecbb5bea0684"
+    },
+    {
+      "id": "yahoo-3",
+      "path": "vendor/mozilla/test/test-pages/yahoo-3/source.html",
+      "bytes": 1285977,
+      "sha256": "615fce58d486ee7ed6f218acfe106a2c994dded82cbc5eaf8f16d96215c800db"
+    },
+    {
+      "id": "yahoo-2",
+      "path": "vendor/mozilla/test/test-pages/yahoo-2/source.html",
+      "bytes": 1630750,
+      "sha256": "be191e298103589b56ea0def65dc87f003d31ac109ec57c232ca050d0e442a40"
+    }
+  ],
+  "corpusSha256": "3760ac5b1441ac97dd6ebd1d6fef22628c4d27d388658f7050939573aef7d522",
+  "detailedCaseIds": [
+    "rtl-4",
+    "ehow-2",
+    "schema-org-context-object"
+  ]
+}

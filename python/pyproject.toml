@@ -1,0 +1,32 @@
+[build-system]
+requires = ["maturin==1.15.0"]
+build-backend = "maturin"
+
+[project]
+name = "readability-kit"
+dynamic = ["version"]
+description = "Native article extraction with Chromium and Mozilla Readability modes"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{name = "soulteary"}]
+keywords = ["readability", "html", "article", "extraction"]
+classifiers = ["Programming Language :: Python :: 3", "Programming Language :: Rust"]
+
+[project.urls]
+Repository = "https://github.com/soulteary/readability-kit"
+
+[project.scripts]
+readability-kit = "readability_kit.cli:main"
+
+[tool.maturin]
+manifest-path = "../crates/readability-python/Cargo.toml"
+python-source = "src"
+module-name = "readability_kit._native"
+features = ["extension-module"]
+locked = true
+exclude = ["**/__pycache__/**", "**/*.pyc"]
+include = [
+  {path = "src/readability_kit/_licenses/**/*", format = ["sdist", "wheel"]},
+  {path = "tests/**/*", format = "sdist"},
+]

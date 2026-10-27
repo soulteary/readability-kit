@@ -42,3 +42,13 @@
 /packages/javascript/PATCHES.md
 /packages/javascript/upstream.json
 /reports/
+
+# Python bindings
+/python/.venv/
+/python/dist/
+/python/src/readability_kit/_licenses/
+/python/src/readability_kit/*.so
+/python/src/readability_kit/*.pyd
+/python-reports/
+__pycache__/
+*.egg-info/

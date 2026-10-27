@@ -168,6 +168,13 @@ go build -o ../go-dist/readability-kit ./cmd/readability-kit
 ../go-dist/readability-kit article.html --url https://example.com/story
 ```
 
+### Python bindings
+
+The independent [`python/`](python/README.md) package exposes the Rust core through
+PyO3, with a typed Python API and offline CLI. It requires CPython 3.10+, includes
+local wheel/sdist builds and compatibility checks, and has not been published to
+PyPI. See the package README for local installation and validation.
+
 ### Rust implementation
 
 A native Rust library and CLI are available:
@@ -191,6 +198,10 @@ same 130-page corpus, extraction/serialization timing, peak RSS, fresh CLI
 processes, raw evidence and reproduction commands. Go and Rust both pass the
 strict corpus; the report preserves earlier Rust measurements for comparison.
 
+The latest [post-review Python comparison](docs/PYTHON_REVIEW_PERFORMANCE.md)
+reruns all four languages and compares three Python versions in one experiment,
+including CLI startup, binding costs and paired memory regression checks.
+
 ### Workspace layout and independent packages
 
 The repository root is a private Bun workspace; it is not an npm release unit.
@@ -198,6 +209,7 @@ The repository root is a private Bun workspace; it is not an npm release unit.
 - `packages/javascript/`: `@soulteary/readability-kit`, with browser, Node.js and CLI entries.
 - `packages/wasm/`: `@soulteary/readability-kit-wasm`, with browser and Worker entries.
 - `packages/shared/`: private TypeScript types and option validation, bundled into both packages.
+- `python/`: independent Python distribution, backed by `crates/readability-python`.
 - `go/`, `crates/`, `vendor/`: retain their existing module, workspace and upstream locations.
 - `tests/`: shared compatibility fixtures, tooling tests and browser integration.
 - `tools/`: builds, package checks, cross-language comparison and benchmarks.

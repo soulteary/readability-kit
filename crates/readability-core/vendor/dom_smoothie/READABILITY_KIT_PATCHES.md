@@ -104,3 +104,10 @@ The public core wrapper supplies native DOMPurify policy, browser-style attribut
 serialization and JSON raw/public option boundaries. The underlying vendor's
 HTML helper serialization is not separately advertised as the public contract.
 Tests still do not substitute for the missing upstream dom_smoothie fixture corpus.
+
+## Python source-distribution packaging
+
+Exclude the preserved upstream `Cargo.toml.orig` from Cargo package file lists.
+Current Cargo reserves this filename when generating package metadata; excluding
+it allows maturin to include the patched crate in a self-contained Python sdist.
+The original file remains versioned in this repository.

@@ -100,3 +100,17 @@ The engine baseline and the standalone wrapper answer different questions:
 - Inspect the built package entries and included notices before distribution.
 
 Comparisons should examine retained text, article structure, and metadata. Wrapper output is intentionally not a byte-for-byte promise of either raw upstream engine or Chrome's complete Reading Mode UI.
+
+## Python bindings
+
+`crates/readability-python` binds the native Rust core with PyO3.
+`python/src/readability_kit` owns the typed snake_case API, immutable Article,
+strict Python argument validation and offline CLI. Native extraction retains
+immutable Python-backed HTML while releasing the GIL; the owner is dropped after
+reattachment. Options and result fields cross directly without a JSON round trip.
+The private compatibility adapter preserves the existing raw/JS
+boundary while success cases exercise the Python facade. Packaging uses maturin
+and includes local Rust dependencies plus dependency notices and MPL sources.
+The Cargo version is authoritative. Portable sdists bundle the all-target
+dependency closure; extension builds reject stale lock snapshots or mismatched
+target-specific notices. See [Python package](python/README.md) for build and acceptance commands.

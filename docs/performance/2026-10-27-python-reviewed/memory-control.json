@@ -1,0 +1,667 @@
+{
+  "schema": 1,
+  "seedStart": 20261033,
+  "replicates": 12,
+  "jobs": [
+    {
+      "replicate": 0,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2234323375,
+        "maxRSSBytes": 160202752,
+        "userSeconds": 2.14462,
+        "systemSeconds": 0.068599,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 0,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2209688083,
+        "maxRSSBytes": 151879680,
+        "userSeconds": 2.134046,
+        "systemSeconds": 0.052417,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 0,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2123971000,
+        "maxRSSBytes": 151928832,
+        "userSeconds": 2.058101,
+        "systemSeconds": 0.060883,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 0,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2132374625,
+        "maxRSSBytes": 148275200,
+        "userSeconds": 2.071781,
+        "systemSeconds": 0.053901,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 1,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2188124875,
+        "maxRSSBytes": 176816128,
+        "userSeconds": 2.120868,
+        "systemSeconds": 0.057338999999999994,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 1,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2196838750,
+        "maxRSSBytes": 166608896,
+        "userSeconds": 2.137412,
+        "systemSeconds": 0.053245,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 1,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2104686458,
+        "maxRSSBytes": 157614080,
+        "userSeconds": 2.049699,
+        "systemSeconds": 0.049106,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 1,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2128339459,
+        "maxRSSBytes": 167772160,
+        "userSeconds": 2.071112,
+        "systemSeconds": 0.051112,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 2,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2206338667,
+        "maxRSSBytes": 168460288,
+        "userSeconds": 2.13227,
+        "systemSeconds": 0.059420999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 2,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2274708625,
+        "maxRSSBytes": 180797440,
+        "userSeconds": 2.160238,
+        "systemSeconds": 0.054175999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 2,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2134192792,
+        "maxRSSBytes": 165560320,
+        "userSeconds": 2.072865,
+        "systemSeconds": 0.054777,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 2,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2118288084,
+        "maxRSSBytes": 165199872,
+        "userSeconds": 2.059595,
+        "systemSeconds": 0.050054999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 3,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2188201333,
+        "maxRSSBytes": 155287552,
+        "userSeconds": 2.125937,
+        "systemSeconds": 0.055041,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 3,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2209876667,
+        "maxRSSBytes": 158023680,
+        "userSeconds": 2.147639,
+        "systemSeconds": 0.055584999999999996,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 3,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2145914917,
+        "maxRSSBytes": 161054720,
+        "userSeconds": 2.072666,
+        "systemSeconds": 0.062555,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 3,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2124272791,
+        "maxRSSBytes": 155811840,
+        "userSeconds": 2.059851,
+        "systemSeconds": 0.05787,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 4,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2187559500,
+        "maxRSSBytes": 163266560,
+        "userSeconds": 2.117836,
+        "systemSeconds": 0.058762999999999996,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 4,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2203265792,
+        "maxRSSBytes": 154386432,
+        "userSeconds": 2.138214,
+        "systemSeconds": 0.054918999999999996,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 4,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2132155458,
+        "maxRSSBytes": 156876800,
+        "userSeconds": 2.065614,
+        "systemSeconds": 0.059497999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 4,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2146551125,
+        "maxRSSBytes": 158498816,
+        "userSeconds": 2.076296,
+        "systemSeconds": 0.061446999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 5,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2202612084,
+        "maxRSSBytes": 155484160,
+        "userSeconds": 2.129586,
+        "systemSeconds": 0.056048999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 5,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2184087792,
+        "maxRSSBytes": 155926528,
+        "userSeconds": 2.12213,
+        "systemSeconds": 0.055743999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 5,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2115690292,
+        "maxRSSBytes": 149585920,
+        "userSeconds": 2.058329,
+        "systemSeconds": 0.049158999999999994,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 5,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2121401625,
+        "maxRSSBytes": 151748608,
+        "userSeconds": 2.06102,
+        "systemSeconds": 0.053841,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 6,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2198104459,
+        "maxRSSBytes": 166100992,
+        "userSeconds": 2.136875,
+        "systemSeconds": 0.050955999999999994,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 6,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2196105083,
+        "maxRSSBytes": 167182336,
+        "userSeconds": 2.136052,
+        "systemSeconds": 0.049849,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 6,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2117877083,
+        "maxRSSBytes": 160808960,
+        "userSeconds": 2.061851,
+        "systemSeconds": 0.047851,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 6,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2121295875,
+        "maxRSSBytes": 167854080,
+        "userSeconds": 2.058118,
+        "systemSeconds": 0.054978,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 7,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2203770125,
+        "maxRSSBytes": 160890880,
+        "userSeconds": 2.134087,
+        "systemSeconds": 0.060603,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 7,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2204426083,
+        "maxRSSBytes": 156123136,
+        "userSeconds": 2.138367,
+        "systemSeconds": 0.056687999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 7,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2126680792,
+        "maxRSSBytes": 153731072,
+        "userSeconds": 2.064538,
+        "systemSeconds": 0.054506,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 7,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2123621417,
+        "maxRSSBytes": 141443072,
+        "userSeconds": 2.062739,
+        "systemSeconds": 0.053057,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 8,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2194647959,
+        "maxRSSBytes": 149372928,
+        "userSeconds": 2.135008,
+        "systemSeconds": 0.052492,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 8,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2225926625,
+        "maxRSSBytes": 155222016,
+        "userSeconds": 2.137587,
+        "systemSeconds": 0.058038,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 8,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2152160625,
+        "maxRSSBytes": 156876800,
+        "userSeconds": 2.082952,
+        "systemSeconds": 0.055909999999999994,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 8,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2138742708,
+        "maxRSSBytes": 157597696,
+        "userSeconds": 2.07309,
+        "systemSeconds": 0.05937,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 9,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2322385917,
+        "maxRSSBytes": 159203328,
+        "userSeconds": 2.180547,
+        "systemSeconds": 0.078299,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 9,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2301457125,
+        "maxRSSBytes": 161759232,
+        "userSeconds": 2.178707,
+        "systemSeconds": 0.075528,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 9,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2142495958,
+        "maxRSSBytes": 152469504,
+        "userSeconds": 2.076919,
+        "systemSeconds": 0.057053,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 9,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2142165375,
+        "maxRSSBytes": 150683648,
+        "userSeconds": 2.068667,
+        "systemSeconds": 0.059968999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 10,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2275465000,
+        "maxRSSBytes": 169869312,
+        "userSeconds": 2.173405,
+        "systemSeconds": 0.072725,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 10,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2195672250,
+        "maxRSSBytes": 165871616,
+        "userSeconds": 2.130276,
+        "systemSeconds": 0.050948999999999994,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 10,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2112252625,
+        "maxRSSBytes": 164347904,
+        "userSeconds": 2.055993,
+        "systemSeconds": 0.050241999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 10,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2164202000,
+        "maxRSSBytes": 169377792,
+        "userSeconds": 2.086302,
+        "systemSeconds": 0.060676999999999995,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 11,
+      "engine": "chromium",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2229818416,
+        "maxRSSBytes": 163250176,
+        "userSeconds": 2.144994,
+        "systemSeconds": 0.06319799999999999,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 11,
+      "engine": "chromium",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2259685625,
+        "maxRSSBytes": 169017344,
+        "userSeconds": 2.168999,
+        "systemSeconds": 0.060236,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 11,
+      "engine": "mozilla",
+      "mode": "after",
+      "stats": {
+        "wallNs": 2379260542,
+        "maxRSSBytes": 170524672,
+        "userSeconds": 2.207615,
+        "systemSeconds": 0.082618,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    },
+    {
+      "replicate": 11,
+      "engine": "mozilla",
+      "mode": "optimized",
+      "stats": {
+        "wallNs": 2362479708,
+        "maxRSSBytes": 168706048,
+        "userSeconds": 2.12461,
+        "systemSeconds": 0.072341,
+        "exitCode": 0,
+        "timedOut": false
+      }
+    }
+  ],
+  "summary": {
+    "chromium": {
+      "optimized": {
+        "p50MiB": 154.984375,
+        "minMiB": 142.453125,
+        "maxMiB": 162.0
+      },
+      "after": {
+        "p50MiB": 152.6328125,
+        "minMiB": 144.84375,
+        "maxMiB": 172.421875
+      },
+      "ratio": 0.9848270995059986,
+      "ratio95Interval": [
+        0.9553382397419095,
+        1.0128045619491965
+      ]
+    },
+    "mozilla": {
+      "optimized": {
+        "p50MiB": 149.609375,
+        "minMiB": 134.890625,
+        "maxMiB": 160.890625
+      },
+      "after": {
+        "p50MiB": 150.734375,
+        "minMiB": 141.40625,
+        "maxMiB": 162.625
+      },
+      "ratio": 1.0075195822454308,
+      "ratio95Interval": [
+        0.9694648795727099,
+        1.0336487907465826
+      ]
+    }
+  }
+}

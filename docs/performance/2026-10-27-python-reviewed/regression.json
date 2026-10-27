@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "replicates": 6,
+  "bootstrapSamples": 2000,
+  "method": "Resample whole paired replicates with replacement; sum page nearest-rank medians.",
+  "residentMaterialRegressionRatio": 1.05,
+  "engines": {
+    "chromium": {
+      "before": {
+        "residentRatio": 0.9745601099521529,
+        "residentRatio95Interval": [
+          0.9721945087581455,
+          0.9769722818024567
+        ],
+        "residentUpperBelow105": true,
+        "rssRatio": 0.5081832387531869,
+        "rssRatio95Interval": [
+          0.4873914187944196,
+          0.5403721282357394
+        ]
+      },
+      "optimized": {
+        "residentRatio": 0.9856322484055623,
+        "residentRatio95Interval": [
+          0.9379416670796725,
+          1.0034625393042627
+        ],
+        "residentUpperBelow105": true,
+        "rssRatio": 0.9587276958882855,
+        "rssRatio95Interval": [
+          0.9314210685789314,
+          1.030463060759353
+        ]
+      }
+    },
+    "mozilla": {
+      "before": {
+        "residentRatio": 0.971646884693292,
+        "residentRatio95Interval": [
+          0.962513211671665,
+          0.99525661568384
+        ],
+        "residentUpperBelow105": true,
+        "rssRatio": 0.5246558538912361,
+        "rssRatio95Interval": [
+          0.5057860869104679,
+          0.564317015818726
+        ]
+      },
+      "optimized": {
+        "residentRatio": 1.0020062421573652,
+        "residentRatio95Interval": [
+          0.9935080581463942,
+          1.0237612939105714
+        ],
+        "residentUpperBelow105": true,
+        "rssRatio": 1.0131066428045057,
+        "rssRatio95Interval": [
+          0.9487892020643113,
+          1.104711760597432
+        ]
+      }
+    }
+  }
+}

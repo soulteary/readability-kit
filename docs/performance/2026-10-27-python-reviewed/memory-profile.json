@@ -1,0 +1,461 @@
+{
+  "schema": 1,
+  "jobs": [
+    {
+      "scope": "import-only",
+      "replicate": 0,
+      "stats": {
+        "wallNs": 23301625,
+        "maxRSSBytes": 14778368,
+        "userSeconds": 0.015123,
+        "systemSeconds": 0.004005,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 0,
+      "wirePythonStringBytes": 41,
+      "retained": {
+        "pages": 0,
+        "retainedHTMLStringBytes": 0,
+        "htmlUTF8Bytes": 0
+      }
+    },
+    {
+      "scope": "import-only",
+      "replicate": 1,
+      "stats": {
+        "wallNs": 21007167,
+        "maxRSSBytes": 14876672,
+        "userSeconds": 0.015099999999999999,
+        "systemSeconds": 0.004,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 0,
+      "wirePythonStringBytes": 41,
+      "retained": {
+        "pages": 0,
+        "retainedHTMLStringBytes": 0,
+        "htmlUTF8Bytes": 0
+      }
+    },
+    {
+      "scope": "import-only",
+      "replicate": 2,
+      "stats": {
+        "wallNs": 21429083,
+        "maxRSSBytes": 14778368,
+        "userSeconds": 0.015408,
+        "systemSeconds": 0.0042,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 0,
+      "wirePythonStringBytes": 41,
+      "retained": {
+        "pages": 0,
+        "retainedHTMLStringBytes": 0,
+        "htmlUTF8Bytes": 0
+      }
+    },
+    {
+      "scope": "import-only",
+      "replicate": 3,
+      "stats": {
+        "wallNs": 21706125,
+        "maxRSSBytes": 14811136,
+        "userSeconds": 0.015397,
+        "systemSeconds": 0.004141,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 0,
+      "wirePythonStringBytes": 41,
+      "retained": {
+        "pages": 0,
+        "retainedHTMLStringBytes": 0,
+        "htmlUTF8Bytes": 0
+      }
+    },
+    {
+      "scope": "full-input",
+      "replicate": 0,
+      "stats": {
+        "wallNs": 92031750,
+        "maxRSSBytes": 223395840,
+        "userSeconds": 0.061620999999999995,
+        "systemSeconds": 0.024520999999999998,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "full-input",
+      "replicate": 1,
+      "stats": {
+        "wallNs": 89959125,
+        "maxRSSBytes": 221839360,
+        "userSeconds": 0.062139999999999994,
+        "systemSeconds": 0.022973999999999998,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "full-input",
+      "replicate": 2,
+      "stats": {
+        "wallNs": 88650167,
+        "maxRSSBytes": 220610560,
+        "userSeconds": 0.061534,
+        "systemSeconds": 0.022552,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "full-input",
+      "replicate": 3,
+      "stats": {
+        "wallNs": 88858750,
+        "maxRSSBytes": 221020160,
+        "userSeconds": 0.061068,
+        "systemSeconds": 0.023722999999999998,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "full-input-streamed",
+      "replicate": 0,
+      "stats": {
+        "wallNs": 132673750,
+        "maxRSSBytes": 103350272,
+        "userSeconds": 0.108652,
+        "systemSeconds": 0.020028,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "full-input-streamed",
+      "replicate": 1,
+      "stats": {
+        "wallNs": 131440292,
+        "maxRSSBytes": 110264320,
+        "userSeconds": 0.10757699999999999,
+        "systemSeconds": 0.020076999999999998,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "full-input-streamed",
+      "replicate": 2,
+      "stats": {
+        "wallNs": 126716208,
+        "maxRSSBytes": 107839488,
+        "userSeconds": 0.103887,
+        "systemSeconds": 0.01965,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "full-input-streamed",
+      "replicate": 3,
+      "stats": {
+        "wallNs": 136134375,
+        "maxRSSBytes": 103923712,
+        "userSeconds": 0.103659,
+        "systemSeconds": 0.023195,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 26770489,
+      "wirePythonStringBytes": 106743764,
+      "retained": {
+        "pages": 130,
+        "retainedHTMLStringBytes": 55013690,
+        "htmlUTF8Bytes": 25719900
+      }
+    },
+    {
+      "scope": "rtl-4",
+      "replicate": 0,
+      "stats": {
+        "wallNs": 21658625,
+        "maxRSSBytes": 14794752,
+        "userSeconds": 0.015375999999999999,
+        "systemSeconds": 0.0039049999999999996,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 1433,
+      "wirePythonStringBytes": 1474,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 1255,
+        "htmlUTF8Bytes": 1214
+      }
+    },
+    {
+      "scope": "rtl-4",
+      "replicate": 1,
+      "stats": {
+        "wallNs": 20919125,
+        "maxRSSBytes": 14745600,
+        "userSeconds": 0.015179999999999999,
+        "systemSeconds": 0.003688,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 1433,
+      "wirePythonStringBytes": 1474,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 1255,
+        "htmlUTF8Bytes": 1214
+      }
+    },
+    {
+      "scope": "rtl-4",
+      "replicate": 2,
+      "stats": {
+        "wallNs": 20593291,
+        "maxRSSBytes": 14696448,
+        "userSeconds": 0.014865,
+        "systemSeconds": 0.0036379999999999997,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 1433,
+      "wirePythonStringBytes": 1474,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 1255,
+        "htmlUTF8Bytes": 1214
+      }
+    },
+    {
+      "scope": "rtl-4",
+      "replicate": 3,
+      "stats": {
+        "wallNs": 20813333,
+        "maxRSSBytes": 15024128,
+        "userSeconds": 0.01517,
+        "systemSeconds": 0.0036309999999999997,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 1433,
+      "wirePythonStringBytes": 1474,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 1255,
+        "htmlUTF8Bytes": 1214
+      }
+    },
+    {
+      "scope": "ehow-2",
+      "replicate": 0,
+      "stats": {
+        "wallNs": 21017333,
+        "maxRSSBytes": 15663104,
+        "userSeconds": 0.015259,
+        "systemSeconds": 0.003727,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 112190,
+      "wirePythonStringBytes": 224364,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 214168,
+        "htmlUTF8Bytes": 107092
+      }
+    },
+    {
+      "scope": "ehow-2",
+      "replicate": 1,
+      "stats": {
+        "wallNs": 21593500,
+        "maxRSSBytes": 15056896,
+        "userSeconds": 0.015649,
+        "systemSeconds": 0.003864,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 112190,
+      "wirePythonStringBytes": 224364,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 214168,
+        "htmlUTF8Bytes": 107092
+      }
+    },
+    {
+      "scope": "ehow-2",
+      "replicate": 2,
+      "stats": {
+        "wallNs": 21331916,
+        "maxRSSBytes": 15417344,
+        "userSeconds": 0.015356,
+        "systemSeconds": 0.0038109999999999997,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 112190,
+      "wirePythonStringBytes": 224364,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 214168,
+        "htmlUTF8Bytes": 107092
+      }
+    },
+    {
+      "scope": "ehow-2",
+      "replicate": 3,
+      "stats": {
+        "wallNs": 21030291,
+        "maxRSSBytes": 15663104,
+        "userSeconds": 0.015231999999999999,
+        "systemSeconds": 0.0036839999999999998,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 112190,
+      "wirePythonStringBytes": 224364,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 214168,
+        "htmlUTF8Bytes": 107092
+      }
+    },
+    {
+      "scope": "schema-org-context-object",
+      "replicate": 0,
+      "stats": {
+        "wallNs": 21840875,
+        "maxRSSBytes": 17924096,
+        "userSeconds": 0.015927,
+        "systemSeconds": 0.003823,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 488256,
+      "wirePythonStringBytes": 975440,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 917980,
+        "htmlUTF8Bytes": 459526
+      }
+    },
+    {
+      "scope": "schema-org-context-object",
+      "replicate": 1,
+      "stats": {
+        "wallNs": 22075541,
+        "maxRSSBytes": 18382848,
+        "userSeconds": 0.015976,
+        "systemSeconds": 0.0038989999999999997,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 488256,
+      "wirePythonStringBytes": 975440,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 917980,
+        "htmlUTF8Bytes": 459526
+      }
+    },
+    {
+      "scope": "schema-org-context-object",
+      "replicate": 2,
+      "stats": {
+        "wallNs": 21886000,
+        "maxRSSBytes": 18382848,
+        "userSeconds": 0.015946,
+        "systemSeconds": 0.0038399999999999997,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 488256,
+      "wirePythonStringBytes": 975440,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 917980,
+        "htmlUTF8Bytes": 459526
+      }
+    },
+    {
+      "scope": "schema-org-context-object",
+      "replicate": 3,
+      "stats": {
+        "wallNs": 22290709,
+        "maxRSSBytes": 18399232,
+        "userSeconds": 0.016066999999999998,
+        "systemSeconds": 0.003993,
+        "exitCode": 0,
+        "timedOut": false
+      },
+      "wireUTF8Bytes": 488256,
+      "wirePythonStringBytes": 975440,
+      "retained": {
+        "pages": 1,
+        "retainedHTMLStringBytes": 917980,
+        "htmlUTF8Bytes": 459526
+      }
+    }
+  ]
+}
