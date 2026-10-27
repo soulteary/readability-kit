@@ -11,6 +11,9 @@ const version = '0.2.117';
 if (execFileSync(cli, ['--version'], {encoding: 'utf8'}).trim() !== `wasm-bindgen ${version}`) {
   throw new Error(`Install wasm-bindgen-cli ${version} to match Cargo.lock.`);
 }
+// Offline metadata resolves the whole workspace, including dev and non-WASM
+// manifests. A single-crate/target build does not populate that complete cache.
+execFileSync('cargo', ['fetch', '--locked'], {stdio: 'inherit'});
 execFileSync('cargo', ['build', '-p', 'readability-wasm', '--target', 'wasm32-unknown-unknown', '--profile', 'wasm-release', '--locked'], {stdio: 'inherit'});
 await rm('wasm/pkg', {recursive: true, force: true});
 await mkdir('wasm/pkg', {recursive: true});

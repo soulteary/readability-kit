@@ -17,8 +17,10 @@ npm pack
 ```
 
 `WASM_BINDGEN` selects an alternate CLI executable; `PYTHON` selects Python.
-The build enforces the CLI version and Cargo.lock, generates JS and TypeScript
-bindings, and collects dependency notices and matching MPL source. Generated
+The build enforces the CLI version and Cargo.lock, prefetches the locked workspace
+dependencies (including development and other-target manifests needed by offline
+Cargo metadata), generates JS and TypeScript bindings, and collects dependency
+notices and matching MPL source. Generated
 files are ignored by git. `npm pack` runs the build; use `--ignore-scripts` only
 after a successful build. Building does not publish anything.
 
