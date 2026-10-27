@@ -15,20 +15,20 @@ def sha256(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def collect():
+def collect(*, binary_path=None, root_package="readability-cli", target=None):
     suffix = ".exe" if os.name == "nt" else ""
-    binary = ROOT / "target" / "release" / f"readability-kit{suffix}"
+    binary = binary_path or ROOT / "target" / "release" / f"readability-kit{suffix}"
     if not binary.is_file():
         raise RuntimeError("Build first: cargo build --release --workspace --locked")
     version = subprocess.check_output(["rustc", "-vV"], text=True)
-    host = next(line.removeprefix("host: ") for line in version.splitlines() if line.startswith("host: "))
+    host = target or next(line.removeprefix("host: ") for line in version.splitlines() if line.startswith("host: "))
     metadata = json.loads(subprocess.check_output(
         ["cargo", "metadata", "--locked", "--offline", "--filter-platform", host, "--format-version", "1"],
         cwd=ROOT, text=True,
     ))
     packages = {p["id"]: p for p in metadata["packages"]}
     nodes = {n["id"]: n for n in metadata["resolve"]["nodes"]}
-    pending = [p["id"] for p in packages.values() if p["name"] == "readability-cli"]
+    pending = [p["id"] for p in packages.values() if p["name"] == root_package]
     visited = set()
     while pending:
         current = pending.pop()
@@ -74,7 +74,7 @@ def collect():
         if package.get("license_file"):
             selected.add(directory / package["license_file"])
         # Workspace-owned source inherits the root project license and notice.
-        if package["name"] in {"readability-cli", "readability-core"}:
+        if package["name"] in {"readability-cli", "readability-core", "readability-wasm"}:
             selected.update([ROOT / "LICENSE", ROOT / "NOTICE"])
         license_origin = "package files"
         if not selected and package["license"] == "MPL-2.0":
@@ -112,7 +112,7 @@ def collect():
                         "notices": copied, "licenseTextOrigin": license_origin,
                         "bundledSource": source_prefix})
     files["DEPENDENCIES.json"] = (json.dumps({
-        "scope": "Normal/build dependency closure for the rustc host target; dev-only dependencies excluded.",
+        "scope": "Normal/build dependency closure for the recorded target; dev-only dependencies excluded.",
         "target": host,
         "packages": records,
     }, indent=2) + "\n").encode()

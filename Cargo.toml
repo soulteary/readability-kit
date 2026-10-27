@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/readability-core", "crates/readability-cli", "crates/readability-core/vendor/dom_smoothie"]
+members = ["crates/readability-core", "crates/readability-cli", "crates/readability-wasm", "crates/readability-core/vendor/dom_smoothie"]
 resolver = "2"
 
 [workspace.package]
@@ -9,3 +9,11 @@ license = "Apache-2.0"
 repository = "https://github.com/soulteary/readability-kit"
 keywords = ["readability", "article", "html"]
 categories = ["text-processing", "web-programming"]
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

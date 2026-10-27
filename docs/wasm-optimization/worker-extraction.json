@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "compared": 604,
+  "passed": true,
+  "summary": {
+    "differingCases": 0,
+    "byField": {},
+    "byGroup": {
+      "chromium/api": {
+        "cases": 151,
+        "differingCases": 0
+      },
+      "chromium/raw": {
+        "cases": 151,
+        "differingCases": 0
+      },
+      "mozilla/api": {
+        "cases": 151,
+        "differingCases": 0
+      },
+      "mozilla/raw": {
+        "cases": 151,
+        "differingCases": 0
+      }
+    }
+  },
+  "differences": []
+}

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //! The untyped JS boundary is separate from Rust's typed library API.
-use readability_core::{Engine, ExtractOptions};
+use crate::{Engine, ExtractOptions};
 use serde_json::{Map, Value};
 use url::Url;
 fn truthy(v: &Value) -> bool {

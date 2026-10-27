@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "compared": 282,
+  "passed": true,
+  "summary": {
+    "differingCases": 0,
+    "byField": {},
+    "byGroup": {
+      "chromium/readerable": {
+        "cases": 141,
+        "differingCases": 0
+      },
+      "mozilla/readerable": {
+        "cases": 141,
+        "differingCases": 0
+      }
+    }
+  },
+  "differences": []
+}

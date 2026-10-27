@@ -1,0 +1,3794 @@
+{
+  "schema": 1,
+  "measuredAt": "2026-10-27T07:33:00.113Z",
+  "environment": {
+    "node": "v22.16.0",
+    "browser": "156.0.8078.4",
+    "cpu": "Apple M5"
+  },
+  "protocol": {
+    "rounds": 1,
+    "iterations": 15,
+    "batch": 3,
+    "warmupsPerPage": 1,
+    "seed": 20261027,
+    "detailOnly": true,
+    "order": "seeded page shuffle; rotated method and startup order",
+    "metric": "sum of per-page medians; main includes UTF-8/JSON boundary, worker includes RPC",
+    "startup": "fresh realms in one browser process; no-store HTTP; compilation cache not cleared"
+  },
+  "reference": {
+    "file": "/Users/soulteary/Lab/github/readability-kit/wasm-reports/javascript.json",
+    "sha256": "d90adda6db4714e86fc4b19d6b9aef8b627502db162f8b7e29b22f536552b864",
+    "provenance": {
+      "runtime": {
+        "node": "v22.16.0",
+        "jsdom": "30.1.3"
+      },
+      "package": "0.1.0",
+      "upstream": {
+        "schemaVersion": 1,
+        "sources": {
+          "mozilla": {
+            "repository": "https://github.com/mozilla/readability",
+            "revision": "d7949dc47dd9ed9ee1d3b34ffdcf3bce28cde435",
+            "version": "0.6.0",
+            "tree": "7f36618f5faf1150e9fdd9c0022da902718744e8",
+            "prefix": "vendor/mozilla",
+            "originalCommitCount": 534,
+            "history": "Original commit graph retained as the second parent of the import merge."
+          },
+          "chromium": {
+            "repository": "https://chromium.googlesource.com/chromium/src",
+            "revision": "c63132a1048f364f67732370c6019ce92e8deb89",
+            "mozillaBaseline": "d7949dc47dd9ed9ee1d3b34ffdcf3bce28cde435",
+            "history": "Selected-file snapshots; Chromium commits are not replayed."
+          }
+        },
+        "files": [
+          {
+            "source": "chromium",
+            "upstreamPath": "third_party/readability/modded_src/Readability.js",
+            "path": "vendor/chromium/Readability.js",
+            "sha256": "fe8839ead0d470bd8b074b4bbbfd41f23a81f31adb2f948a8bf80ff3344cbc2a"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "third_party/readability/modded_src/Readability-readerable.js",
+            "path": "vendor/chromium/Readability-readerable.js",
+            "sha256": "cd7c773ed95f6d0e8459e9f20419cf60cd178c389b9e5b4e61768ca83aa422d9"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "third_party/readability/README.chromium",
+            "path": "vendor/chromium/README.chromium",
+            "sha256": "66618d9dae999a734b5e6a265d6f2d25a3c1bcd0ccfaaf842105519bd8c31525"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "third_party/readability/modded_src/README.md",
+            "path": "vendor/chromium/UPSTREAM-README.md",
+            "sha256": "09f762de9f5a3f2b8a3cc41fad056e25a8754c5f1b13060460de370cd6f41015"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "third_party/readability/LICENSE",
+            "path": "vendor/chromium/LICENSE",
+            "sha256": "a5b1e8181751ce05b85b7bfaa832b785e87086250a5148e679d17ca9bdcfa958"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "components/dom_distiller/core/javascript/readability_distiller.js",
+            "path": "vendor/chromium/reference/readability_distiller.js",
+            "sha256": "ab122ce6b8383ecbde07a039d7376965ad0fcd324877a368a96e52f9570a2456"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "components/dom_distiller/core/javascript/readability_triggering.js",
+            "path": "vendor/chromium/reference/readability_triggering.js",
+            "sha256": "6ab5310d945623b01210f98fd63f35a10e6301bc730fc3eaa87b57bcd8ee8f22"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "components/dom_distiller/core/javascript/content_processing.js",
+            "path": "vendor/chromium/reference/content_processing.js",
+            "sha256": "8f28aa7072c83b817821d9456ebbe52996c82f3f4f5da983334dcf315ec7f1ea"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "chrome/browser/resources/side_panel/read_anything/content/readability_content_processing.ts",
+            "path": "vendor/chromium/reference/readability_content_processing.ts",
+            "sha256": "d77da9d47af8374ebc2ee7a11b4c31d146976d12bc01111d2a1546fb77f71caa"
+          },
+          {
+            "source": "chromium",
+            "upstreamPath": "LICENSE",
+            "path": "LICENSES/BSD-3-Clause-Chromium.txt",
+            "sha256": "368cca1106be99d39ecd32a38d8305585d802a475effb66380b91ffc9bcf709b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": ".gitattributes",
+            "path": "vendor/mozilla/.gitattributes",
+            "sha256": "5909582c43cdeea90b8a11830106612b0a8e4aefc2b25b1f4490f3fb6557d087"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": ".gitignore",
+            "path": "vendor/mozilla/.gitignore",
+            "sha256": "ae7f083bf8c9bc52c9d36df5de62ee35802d2fc1797c85aa59df95d4f022e9f2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": ".npmignore",
+            "path": "vendor/mozilla/.npmignore",
+            "sha256": "80842ab1c775749540a2b621619f27e49a08cbce7203cbcdccaf95fabe536bc9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": ".prettierrc.js",
+            "path": "vendor/mozilla/.prettierrc.js",
+            "sha256": "e9f238735c8bbce66d69f5a7671559eea70cdb006b28420d124caa287d41bc16"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": ".release-it.json",
+            "path": "vendor/mozilla/.release-it.json",
+            "sha256": "2e209debbdb4676f0b112b02ed43be8dc76d51b25c5b9e9e942bba1c1bae245e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": ".taskcluster.yml",
+            "path": "vendor/mozilla/.taskcluster.yml",
+            "sha256": "0c3038d2952cc1128e4335730cad683757da55dc27916ce77418ef29e61cb61a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "CHANGELOG.md",
+            "path": "vendor/mozilla/CHANGELOG.md",
+            "sha256": "ce224a1cdb6ab025c44220beedb3c90db5bd422a765686d650bf8d0b63adb84f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "CODE_OF_CONDUCT.md",
+            "path": "vendor/mozilla/CODE_OF_CONDUCT.md",
+            "sha256": "902d5357af363426631d907e641e220b3ec89039164743f8442b3f120479b7cf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "CONTRIBUTING.md",
+            "path": "vendor/mozilla/CONTRIBUTING.md",
+            "sha256": "129d88399f6af81b50b9ad348b454b4b0144163177bb9284a0c85b2256ccff39"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "JSDOMParser.js",
+            "path": "vendor/mozilla/JSDOMParser.js",
+            "sha256": "c33bdfb5b3b27672ad8470199fb6852e8b5223eeb1342ae3a9ff393e5bf50a2d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "LICENSE.md",
+            "path": "vendor/mozilla/LICENSE.md",
+            "sha256": "a5b1e8181751ce05b85b7bfaa832b785e87086250a5148e679d17ca9bdcfa958"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "README.md",
+            "path": "vendor/mozilla/README.md",
+            "sha256": "0b9299bbc294dcabca728f5063bb8720f8dcc87b7a498f31b218d7bdafa3fc23"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "Readability-readerable.js",
+            "path": "vendor/mozilla/Readability-readerable.js",
+            "sha256": "e73600367067be2da322c0f26be9c4ec7759cd01b630dbb57278c326e5b5aba8"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "Readability.js",
+            "path": "vendor/mozilla/Readability.js",
+            "sha256": "e9330028c8a5a4aa7d75147be2605d520f7f213c7b28474947dc0e9c984e9bed"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "SECURITY.md",
+            "path": "vendor/mozilla/SECURITY.md",
+            "sha256": "396651239c8a8c101420e7c82478ec81d288cc75b5ecfcb41dcec41376919f60"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "eslint.config.mjs",
+            "path": "vendor/mozilla/eslint.config.mjs",
+            "sha256": "f564fc70590fd5a4ca2b6ccf3a1d52b81320fde7257fdc85d8c38baa6f400144"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "index.d.ts",
+            "path": "vendor/mozilla/index.d.ts",
+            "sha256": "6ddf249716e8a880d549049f24787ee76b10fa59496b07da2027bbb08119c568"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "index.js",
+            "path": "vendor/mozilla/index.js",
+            "sha256": "00c5999c65b775f6c3f88e66f6fcd7868a76f362e540567dabc90516d25b4885"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "package-lock.json",
+            "path": "vendor/mozilla/package-lock.json",
+            "sha256": "27c411b57e98f58ffa452c7e3b6c2f9c6ea8ebd54f46e3f02c2ae5bf6ba145a0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "package.json",
+            "path": "vendor/mozilla/package.json",
+            "sha256": "019486cb9b377c9d23509a2b1d1d959bb8759a166bb04e318d317a9d8b706878"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/debug-testcase.js",
+            "path": "vendor/mozilla/test/debug-testcase.js",
+            "sha256": "bd5aacf0d53c500404093e0665ccf5ab484a5a6c04d5f479ca3bb6efd1388023"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/generate-testcase.js",
+            "path": "vendor/mozilla/test/generate-testcase.js",
+            "sha256": "11eb77cd4b6be4f7ca1ee65509451f3d46e93c8447a2b0f8ab0d57dd406292ab"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-isProbablyReaderable.js",
+            "path": "vendor/mozilla/test/test-isProbablyReaderable.js",
+            "sha256": "07c0163101fe28ff7164518000c3d0513d2038b9ec447ce816299a8aeb9148ef"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-jsdomparser.js",
+            "path": "vendor/mozilla/test/test-jsdomparser.js",
+            "sha256": "e4c75dda71da19ce51a2ceee0eaf7f3a0557d4ac9f830b9b1981c437eae73e62"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/001/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/001/expected-metadata.json",
+            "sha256": "fff6e017e0e1e5e925d69a1eeda60af7448d9b2003e04940c32a86de7a3d09b9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/001/expected.html",
+            "path": "vendor/mozilla/test/test-pages/001/expected.html",
+            "sha256": "7ea4c83a747011176e559c1cf9fcfec9fcb9f3d2e8f4fe27d743e3740ed87698"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/001/source.html",
+            "path": "vendor/mozilla/test/test-pages/001/source.html",
+            "sha256": "f6a1c98f318c67d423676a8cb0895c78198cf56f9c493e25beaf6f413f598799"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/002/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/002/expected-metadata.json",
+            "sha256": "2f20f33bbe56c13fbdf0ed4fca1a5c964a532a1cdae1fb4ea680d1cec735f4a6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/002/expected.html",
+            "path": "vendor/mozilla/test/test-pages/002/expected.html",
+            "sha256": "bfa2a4acb83f91b4178aa5d924d6a8fb5ce7b087cc53f017006e903c6a1b5ea4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/002/source.html",
+            "path": "vendor/mozilla/test/test-pages/002/source.html",
+            "sha256": "5593c6b7ec396fbb0b5053b29e6f1dab850dc62e007250cd0f1dac4b8bee5d21"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/003-metadata-preferred/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/003-metadata-preferred/expected-metadata.json",
+            "sha256": "9be85460bf057323bbe4931b15fa1ee26b5d2d588e6e2883d262895b750ae38e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/003-metadata-preferred/expected.html",
+            "path": "vendor/mozilla/test/test-pages/003-metadata-preferred/expected.html",
+            "sha256": "b01cf0cf47d34fbcb1a14b599826a37a92ee58513fbcb282246b99656f1c2ed9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/003-metadata-preferred/source.html",
+            "path": "vendor/mozilla/test/test-pages/003-metadata-preferred/source.html",
+            "sha256": "81e8b8ff46de540626bd23ce9395241764aaf2118d31fc47fa43826579812ce4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/004-metadata-space-separated-properties/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/004-metadata-space-separated-properties/expected-metadata.json",
+            "sha256": "dc1c80016e64bd73637f2b52fb679b3e2704cbe442792dec7006189f12b72740"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/004-metadata-space-separated-properties/expected.html",
+            "path": "vendor/mozilla/test/test-pages/004-metadata-space-separated-properties/expected.html",
+            "sha256": "b01cf0cf47d34fbcb1a14b599826a37a92ee58513fbcb282246b99656f1c2ed9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/004-metadata-space-separated-properties/source.html",
+            "path": "vendor/mozilla/test/test-pages/004-metadata-space-separated-properties/source.html",
+            "sha256": "57d00e87a1f1b4f35c8353a0f9a198dce792ae38bc467ac90bf22f748b38dd0d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/005-unescape-html-entities/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/005-unescape-html-entities/expected-metadata.json",
+            "sha256": "39bc8d0679f5c6139905e5c1a92722869dde8b68a0f615501351439e1846c51e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/005-unescape-html-entities/expected.html",
+            "path": "vendor/mozilla/test/test-pages/005-unescape-html-entities/expected.html",
+            "sha256": "0b6ce709e70ca16d207d58cff688362a13fa121112e4c82ac0b9c02913bdfe7a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/005-unescape-html-entities/source.html",
+            "path": "vendor/mozilla/test/test-pages/005-unescape-html-entities/source.html",
+            "sha256": "9f7844f28df16128ac734a31ce2c141955e23d79c137097916850fe833a60be2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/aclu/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/aclu/expected-metadata.json",
+            "sha256": "2450a95fd12b11fc5b700f85df5aeb0cec0f3e189ad7444aa7b71e5f18a4082e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/aclu/expected.html",
+            "path": "vendor/mozilla/test/test-pages/aclu/expected.html",
+            "sha256": "2256e2a00634af5dca3d4c3735bca8f611206dbdf9dfa01ac3300d4fa695da5e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/aclu/source.html",
+            "path": "vendor/mozilla/test/test-pages/aclu/source.html",
+            "sha256": "c0158d5f30deb75da3ebb6f8ed45948b967575b9e85fe87da64e0a047d851aa2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/aktualne/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/aktualne/expected-metadata.json",
+            "sha256": "e52e5518b310a733a7c62e2db3f3cbdf5c8aa0c3a7d8b645e7c5dcb0628f513a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/aktualne/expected.html",
+            "path": "vendor/mozilla/test/test-pages/aktualne/expected.html",
+            "sha256": "2d6e1d8ed0c5a661fd8b6b41f86b612ec70f5fce27d09fdf17495438b6ca045b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/aktualne/source.html",
+            "path": "vendor/mozilla/test/test-pages/aktualne/source.html",
+            "sha256": "889c9049f08aa28538716bb342e9298c0d81bb783894433bc04d2960d012655d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/archive-of-our-own/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/archive-of-our-own/expected-metadata.json",
+            "sha256": "a6f7dfa7a23829bb748c99c45d11212da0a0e57b11e43a2070a4750ccac26d7f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/archive-of-our-own/expected.html",
+            "path": "vendor/mozilla/test/test-pages/archive-of-our-own/expected.html",
+            "sha256": "dedbbebfc1b26c3767cf4fb897835300487d3e7c649b858cb20ac448c4467283"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/archive-of-our-own/source.html",
+            "path": "vendor/mozilla/test/test-pages/archive-of-our-own/source.html",
+            "sha256": "478d0a664b304b972960f9cd56cc2405e0be077143dee9475e235800aa79ab68"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ars-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/ars-1/expected-metadata.json",
+            "sha256": "6ad98acdb611f50e8a94cc3b200000142f151474f33bc68b549618eab31aafb5"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ars-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/ars-1/expected.html",
+            "sha256": "3ef06ac1cd2258431a8c2b4f0a769d5e28d243096e761643a224a560e678e170"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ars-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/ars-1/source.html",
+            "sha256": "69fe78634727dafa313f490fade17aa229bb2c9df34d3df7b60da22189216f13"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/article-author-tag/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/article-author-tag/expected-metadata.json",
+            "sha256": "885fb09aab396097cc2105d2171c6c0429689073ca197a46f2848f666b86c513"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/article-author-tag/expected.html",
+            "path": "vendor/mozilla/test/test-pages/article-author-tag/expected.html",
+            "sha256": "df9a54bbaabc438e5b9438ad513ebaf96998091268d131eea662eac6946c9113"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/article-author-tag/source.html",
+            "path": "vendor/mozilla/test/test-pages/article-author-tag/source.html",
+            "sha256": "f42c4e80c930451ce78b127dae3107475b3f52a3ba352e4c6630c5c9d570a93c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/base-url/expected-metadata.json",
+            "sha256": "c691708eba496937ec240876c12d9ed3cac014047d72ada3ab4573fceb395dfa"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url/expected.html",
+            "path": "vendor/mozilla/test/test-pages/base-url/expected.html",
+            "sha256": "86eb0d2ab9f73ea99195ab2ed29aab076976375b01faf9e8d614692fadabbb46"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url/source.html",
+            "path": "vendor/mozilla/test/test-pages/base-url/source.html",
+            "sha256": "416400698aecc72f236d178d51138693391bd86a10ff63f75fb185c6b020dcbb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url-base-element/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/base-url-base-element/expected-metadata.json",
+            "sha256": "ae4f2aa1bf83d5094d165dda8e8da348642fdcb986a4e5950eae2f24b559d7b1"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url-base-element/expected.html",
+            "path": "vendor/mozilla/test/test-pages/base-url-base-element/expected.html",
+            "sha256": "4f413f45731551e17fb21c4cf1b2f1283710f68d1d2e147fef7ac3ca2e8275e6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url-base-element/source.html",
+            "path": "vendor/mozilla/test/test-pages/base-url-base-element/source.html",
+            "sha256": "5124554add820e3e0ebc316f5cf6e63b1f359bb6eddd66bcbfeed50ffa04cfa6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url-base-element-relative/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/base-url-base-element-relative/expected-metadata.json",
+            "sha256": "90b99b37b582b94e20efdcb9160f4f438225679073258fa43f19cf5c79dd7067"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url-base-element-relative/expected.html",
+            "path": "vendor/mozilla/test/test-pages/base-url-base-element-relative/expected.html",
+            "sha256": "83452c36065f48326086fc2935d3ac48033fd24f1acda03a2701f25f23087ff5"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/base-url-base-element-relative/source.html",
+            "path": "vendor/mozilla/test/test-pages/base-url-base-element-relative/source.html",
+            "sha256": "4d906b3cd74a20fc8cf44767fb060ffe44f3570f7f0376408270d998715c5467"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/basic-tags-cleaning/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/basic-tags-cleaning/expected-metadata.json",
+            "sha256": "2aecc3b862c2ed985314847310447b2561c6b91facf4251ed2b3f9f6c603c652"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/basic-tags-cleaning/expected.html",
+            "path": "vendor/mozilla/test/test-pages/basic-tags-cleaning/expected.html",
+            "sha256": "ae92429809ad42b629586c53ec81cc23a319bb529a1c9f4125d8381f85f90c32"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/basic-tags-cleaning/source.html",
+            "path": "vendor/mozilla/test/test-pages/basic-tags-cleaning/source.html",
+            "sha256": "427e98f1484606415c2f694c5038f0ad5695b875f4f5b261ce5bc9ce945f2790"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/bbc-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/bbc-1/expected-metadata.json",
+            "sha256": "cdc90efa09a93b8115218edda88e70bedab86733ef52b4a2af251dc6796a2f55"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/bbc-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/bbc-1/expected.html",
+            "sha256": "bc8ba56d61a638563373076ef7cbce5dbe2bde92e9df93a0f6ba0d49306a01cb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/bbc-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/bbc-1/source.html",
+            "sha256": "b5ca9d50b6ede3fc7e95c988475fc4dbc693331ce4b4faca5b8a2696f13a7917"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/blogger/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/blogger/expected-metadata.json",
+            "sha256": "085c2400b3f99bb397478a7e1b368e40a9556ce51fc3575532d6ea5290b787e0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/blogger/expected.html",
+            "path": "vendor/mozilla/test/test-pages/blogger/expected.html",
+            "sha256": "f30db92ec122476003d42675f54afbd93b060b3aabeb13706779f0ed32d37dd0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/blogger/source.html",
+            "path": "vendor/mozilla/test/test-pages/blogger/source.html",
+            "sha256": "76e6c64721d583c082bfb306e65d723770e58b4cb82b66c7c83f5e16eceb97cc"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/breitbart/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/breitbart/expected-metadata.json",
+            "sha256": "2b4f8277a7edc58ab2afe7d917dc19b9087b8d33bb77a8f132f2f9e2d93cd742"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/breitbart/expected.html",
+            "path": "vendor/mozilla/test/test-pages/breitbart/expected.html",
+            "sha256": "09cf3e4563dda3d785cabe94d943f9b44e5dc47f3865f740b5e080f2bf88c347"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/breitbart/source.html",
+            "path": "vendor/mozilla/test/test-pages/breitbart/source.html",
+            "sha256": "0a16112680d06aaf8a617fd7faf69ff909b7c6a519a065bb3dcd4743102baffd"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/bug-1255978/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/bug-1255978/expected-metadata.json",
+            "sha256": "e24a994cf6bcdd3d07cceea2addf19af298c7954dcce6328b7ece71ea030f114"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/bug-1255978/expected.html",
+            "path": "vendor/mozilla/test/test-pages/bug-1255978/expected.html",
+            "sha256": "70b70ca184422f1d63ad03141d4e161f9d9be8fb80154b77f621b387105320cb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/bug-1255978/source.html",
+            "path": "vendor/mozilla/test/test-pages/bug-1255978/source.html",
+            "sha256": "4b25eebd270e2c181a9aa482dae0fb82f46f9adbdcdb3e02906bc43a3b39b068"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/buzzfeed-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/buzzfeed-1/expected-metadata.json",
+            "sha256": "3a4c8b8b56bd5d2fd4157061cf18c9b8607c445a2841c4533eb7a7498e17d071"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/buzzfeed-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/buzzfeed-1/expected.html",
+            "sha256": "a215e6905568613067dc2e09c6ba62abf86b0568fd68294e466753b89ba0e45f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/buzzfeed-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/buzzfeed-1/source.html",
+            "sha256": "1983b5b9c2ad462c3541e91742156ca2ff4e65f3b2f8e354bcdcf65191160544"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/citylab-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/citylab-1/expected-metadata.json",
+            "sha256": "213db975bcec561a69b0417777fc39afbbef0154292280b05d2772bcda9e669b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/citylab-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/citylab-1/expected.html",
+            "sha256": "28e61337cce7178d332fad1af5433ae5eeba132c23e41642d148dc672d5dd68c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/citylab-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/citylab-1/source.html",
+            "sha256": "6309e28399299fb30f90acc00bedd91bcc3f22cfea918a49310241b312edb406"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/clean-links/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/clean-links/expected-metadata.json",
+            "sha256": "a8b445243830496b8b1174ed90084442cf8f0425f38b5632cde8f2b7ae701da2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/clean-links/expected.html",
+            "path": "vendor/mozilla/test/test-pages/clean-links/expected.html",
+            "sha256": "a9717d99dc4fb7295e9bbcb9a42a84a4dca2a141ef0391d7f32235a76659576c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/clean-links/source.html",
+            "path": "vendor/mozilla/test/test-pages/clean-links/source.html",
+            "sha256": "966bbb3c27df91695f54a8078104080f355173f4464e084c59f667049300e828"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnet/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/cnet/expected-metadata.json",
+            "sha256": "4d0d7eadf3b54f7b89899b4a5233858d6edcbfe728b174cc5e3254e90d7b1bde"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnet/expected.html",
+            "path": "vendor/mozilla/test/test-pages/cnet/expected.html",
+            "sha256": "3058001acc0bf6dc62da50b20b357e012a55283e756556faa6e88b4259998b29"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnet/source.html",
+            "path": "vendor/mozilla/test/test-pages/cnet/source.html",
+            "sha256": "3b0318a4bbd3327834e75dd3844a84778290a9129d96c1670bfd765a42e0be66"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnet-svg-classes/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/cnet-svg-classes/expected-metadata.json",
+            "sha256": "5de7d1ce6097761296a520b82fff115ba9aa0c6ad0addfa0cd761c5fc9f7e271"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnet-svg-classes/expected.html",
+            "path": "vendor/mozilla/test/test-pages/cnet-svg-classes/expected.html",
+            "sha256": "dffaa0ba7826aa7940a32741e0d13bc370ebc05ced0133b5710594079cf4cf84"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnet-svg-classes/source.html",
+            "path": "vendor/mozilla/test/test-pages/cnet-svg-classes/source.html",
+            "sha256": "38e782a40f881f94b49e467f2cbf445ad2d13cbbf5069e8bbd3004dc6183e7fb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnn/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/cnn/expected-metadata.json",
+            "sha256": "5d15ca391ecaa75051b3541cffd6a12ae5d87a002ac3f8a95037a9d7b19e0e3b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnn/expected.html",
+            "path": "vendor/mozilla/test/test-pages/cnn/expected.html",
+            "sha256": "0a918e0b33441e6533bb180222127a3d36ae9e0e1f556a902698857c1b72ccdc"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/cnn/source.html",
+            "path": "vendor/mozilla/test/test-pages/cnn/source.html",
+            "sha256": "8c7640176eb567232d2b7f5ba9f7b3b76b46a61d2ee48338ca64680bdff1f983"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/comment-inside-script-parsing/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/comment-inside-script-parsing/expected-metadata.json",
+            "sha256": "b05214460eacef7467bff367fa9a9513934a4e2ab237ee4b93e172ef7a153896"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/comment-inside-script-parsing/expected.html",
+            "path": "vendor/mozilla/test/test-pages/comment-inside-script-parsing/expected.html",
+            "sha256": "ae92429809ad42b629586c53ec81cc23a319bb529a1c9f4125d8381f85f90c32"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/comment-inside-script-parsing/source.html",
+            "path": "vendor/mozilla/test/test-pages/comment-inside-script-parsing/source.html",
+            "sha256": "a3e09b3955e6a33580408041f6c96f26beb9ca85fcbd527daa83e8191dfe7175"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/daringfireball-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/daringfireball-1/expected-metadata.json",
+            "sha256": "eb8b9923b2705a89579f1e7e60ebc9086ad7bd4cccdb111a3ff8859cd849f812"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/daringfireball-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/daringfireball-1/expected.html",
+            "sha256": "a963b13a07890499f8c1011a83157ac85691e5e7a5dbaf682b2512544744a9bc"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/daringfireball-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/daringfireball-1/source.html",
+            "sha256": "c21b617e6a320580ea71b47bb7751e3cd6e8985c7d21f91cfb9662ca31aa7d21"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/data-url-image/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/data-url-image/expected-metadata.json",
+            "sha256": "20ea325ca73fbbf2e2f2e65fbbc2d88dbeebd136b681d95c6d1d9e7477c8f3a4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/data-url-image/expected.html",
+            "path": "vendor/mozilla/test/test-pages/data-url-image/expected.html",
+            "sha256": "6da1a9b082b257609ea6699f352c49dc3a8c5432a5e927ad78fe177e15e98dcf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/data-url-image/source.html",
+            "path": "vendor/mozilla/test/test-pages/data-url-image/source.html",
+            "sha256": "5f2f5d51e020c3a6dfc5158342143b9fa0c0d035476bb9db28a61db61e7634b6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/dev418/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/dev418/expected-metadata.json",
+            "sha256": "b5545246aeae477a678dc87ab8c17d56713a60adf8086bd45a364fa6ce0f8063"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/dev418/expected.html",
+            "path": "vendor/mozilla/test/test-pages/dev418/expected.html",
+            "sha256": "71a8c7f98b258a1fbcd90d4df280c39fdce85313feb780b666a540777ed61dfa"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/dev418/source.html",
+            "path": "vendor/mozilla/test/test-pages/dev418/source.html",
+            "sha256": "3887aefffeb2bd4a64e852fe00f3e216e1ce39abc56de8995e5d1e96b794e26e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/dropbox-blog/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/dropbox-blog/expected-metadata.json",
+            "sha256": "a1d7cf0514ec6da3763a1b93b59d01147373154f7e1e8fffffda4dbc73e12bdf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/dropbox-blog/expected.html",
+            "path": "vendor/mozilla/test/test-pages/dropbox-blog/expected.html",
+            "sha256": "8e1ef74b00459bd681dc1f8e44a00b842331559687b13ec9a14be9babcc8855c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/dropbox-blog/source.html",
+            "path": "vendor/mozilla/test/test-pages/dropbox-blog/source.html",
+            "sha256": "64012a265b3e1e6722be2bf0d39dca554f5b3d8c9fe811f7be004e25124e5ea6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ebb-org/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/ebb-org/expected-metadata.json",
+            "sha256": "08ff1e0b2f8765b12769c9b0e810107c1b8cd7eda0be41f71cc9017903986850"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ebb-org/expected.html",
+            "path": "vendor/mozilla/test/test-pages/ebb-org/expected.html",
+            "sha256": "1197f3da71d86783dd6a064a10bcc188f7ddce83b7f18c0811941e79556f0a94"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ebb-org/source.html",
+            "path": "vendor/mozilla/test/test-pages/ebb-org/source.html",
+            "sha256": "84663f525d24addb33baf085736ead5b598c20e5f840d4e0afaadb2306bbb34b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ehow-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/ehow-1/expected-metadata.json",
+            "sha256": "175d2c8347bc4420c404ad20382acf302282273793349a3919e56bb6edb889c9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ehow-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/ehow-1/expected.html",
+            "sha256": "2014333ee5a8797adf097a963fe3c336b60feef564ff8ea1f59132335f0740ed"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ehow-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/ehow-1/source.html",
+            "sha256": "8fde9b2cb6fa34601518425d1ab67fb8ab5a53513cd75067fd44a3ab1153aa87"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ehow-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/ehow-2/expected-metadata.json",
+            "sha256": "09b99d4865192d048c8df10ab65947e4c7ee4614afe65ed2c1e6862cb6d066d3"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ehow-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/ehow-2/expected.html",
+            "sha256": "dc0be6ed4352ae4c6aac5ce4d3299e2f78bee77d57c7e71710227063f0591d36"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ehow-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/ehow-2/source.html",
+            "sha256": "b0096a4a9a6ce9b71beaa235ac1a889ec7d9850ac8d9c9c1a69c2f838cf96287"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/embedded-videos/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/embedded-videos/expected-metadata.json",
+            "sha256": "2c06520ea6ac573c270e16fa90f534975ba27169dee0327e91b7b25a4cfa1ea0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/embedded-videos/expected.html",
+            "path": "vendor/mozilla/test/test-pages/embedded-videos/expected.html",
+            "sha256": "61f3f55faf168008684722eec702277b20a414f36287b57a02328084772c5386"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/embedded-videos/source.html",
+            "path": "vendor/mozilla/test/test-pages/embedded-videos/source.html",
+            "sha256": "ade9a0e2e36cec13994090308afde5d7b34479bf0d37e47eb29ace2af4fb6cf4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/engadget/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/engadget/expected-metadata.json",
+            "sha256": "424d03ba97f78bff77bae60ecffc37ef0598079ec65c734806416f3945f35256"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/engadget/expected.html",
+            "path": "vendor/mozilla/test/test-pages/engadget/expected.html",
+            "sha256": "c74b6b41fca207e52621482c781fa12f0ceccd5ee4959ec9e8863e6434fd4976"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/engadget/source.html",
+            "path": "vendor/mozilla/test/test-pages/engadget/source.html",
+            "sha256": "5055dc4ea7a7d8ca80c4946e5448900e93c08cba5708f35991b67667ce1f47d6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/firefox-nightly-blog/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/firefox-nightly-blog/expected-metadata.json",
+            "sha256": "8d2efe88c5050d6872605a579e92bc78e3468b48ef8a0fa71c7f27a3e666b79c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/firefox-nightly-blog/expected.html",
+            "path": "vendor/mozilla/test/test-pages/firefox-nightly-blog/expected.html",
+            "sha256": "8a0e84e7fa6160b05a8bafb9cb8a13ccdddc7b8dc2770f37a5fc49844d0a2ca9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/firefox-nightly-blog/source.html",
+            "path": "vendor/mozilla/test/test-pages/firefox-nightly-blog/source.html",
+            "sha256": "40511e22125f8a58247cfd8824fcbb2d8ee380ab4604c9639697a30377ba48cf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/folha/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/folha/expected-metadata.json",
+            "sha256": "ee4ba0901c64ff32e73e1f069d64a7760f22e91ba6518b0601dc81a0d02e56c2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/folha/expected.html",
+            "path": "vendor/mozilla/test/test-pages/folha/expected.html",
+            "sha256": "3f04f9defe1ab7733913d459fae147af773791d8804eead8b4d84b1b8153312d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/folha/source.html",
+            "path": "vendor/mozilla/test/test-pages/folha/source.html",
+            "sha256": "bb68dad644252e6574626f95c05ed89f51222c1f3f1839ed098f0542cc476154"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/gitlab-blog/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/gitlab-blog/expected-metadata.json",
+            "sha256": "caa3ff226cb601b4832a33474921988e6e9adea97653e9483259890732fd5dff"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/gitlab-blog/expected.html",
+            "path": "vendor/mozilla/test/test-pages/gitlab-blog/expected.html",
+            "sha256": "50dff3344d01dcaac9caa84f7fa20298261df09ea5da012c6655ae5422446612"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/gitlab-blog/source.html",
+            "path": "vendor/mozilla/test/test-pages/gitlab-blog/source.html",
+            "sha256": "46a9b823bf11a9e61d39d814d15affb44147f60198acef6d9df159006889eb94"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/gmw/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/gmw/expected-metadata.json",
+            "sha256": "6c7f800959092be1d68ea58f49df96d8c3e2bcfc9f0934bb01563d7f53dd5ca2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/gmw/expected.html",
+            "path": "vendor/mozilla/test/test-pages/gmw/expected.html",
+            "sha256": "4ef2513e91045ef722ed235187df340cb2e5477ab99ff8dfd7d3a8d825ecaa8d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/gmw/source.html",
+            "path": "vendor/mozilla/test/test-pages/gmw/source.html",
+            "sha256": "9dae2c47570271a0a532ccc4880b10b5ec837b67239a287455a6b9e19e00b3b7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/google-sre-book-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/google-sre-book-1/expected-metadata.json",
+            "sha256": "c569451a76dd94fdef9906306b7555616ac769acaad2532f4a375047f540b4cf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/google-sre-book-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/google-sre-book-1/expected.html",
+            "sha256": "a346e0ff3141388093291eb59b243c8cdccf742ea531945f94611d4fc089523e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/google-sre-book-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/google-sre-book-1/source.html",
+            "sha256": "8e265718877a06f32d1524b4d1118fb16bbb8bc549cf830f04d44294de7c3e65"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/guardian-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/guardian-1/expected-metadata.json",
+            "sha256": "ef364b8926f2fda37e6457f3d07f876dfd0e730725cad7b767ddccd84d6710cd"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/guardian-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/guardian-1/expected.html",
+            "sha256": "6627b796fc76c78a3a96f1f08f6bf26f787942a3f0b409c829fa61f2f6b7cc57"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/guardian-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/guardian-1/source.html",
+            "sha256": "48dd41ccd7f07c550b884e7e40213da141952f450ccb8d8ffe01250b75cf889d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/heise/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/heise/expected-metadata.json",
+            "sha256": "1aebbbcbb848a7dc7746641776c670a663eed3e8b99211c1e55fd2f000cf137c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/heise/expected.html",
+            "path": "vendor/mozilla/test/test-pages/heise/expected.html",
+            "sha256": "ea477bef2f61e095dac0bc486bb4e2995d6f20c9243a98461bde96456db2c859"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/heise/source.html",
+            "path": "vendor/mozilla/test/test-pages/heise/source.html",
+            "sha256": "766652616a159e463936564c262546b243ad761dae221bc39a3b9b610e2952e6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/herald-sun-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/herald-sun-1/expected-metadata.json",
+            "sha256": "44f5ac16c997653264c4cc33cdc5f29cc0e21df89aa184634e3e9ccbece5d09e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/herald-sun-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/herald-sun-1/expected.html",
+            "sha256": "c1a5c8a9eca014924cba02941e47890d4922cc8f3f564c7a470544c241e77a70"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/herald-sun-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/herald-sun-1/source.html",
+            "sha256": "5d6a12bce90c32af0c3a4160c64df34cd01087e150ab9796f42efbb714dfd650"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/hidden-nodes/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/hidden-nodes/expected-metadata.json",
+            "sha256": "a76cc911ab9e028746eaf04fb9bf96a8542ee890f03e38cc12713d4029d660cd"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/hidden-nodes/expected.html",
+            "path": "vendor/mozilla/test/test-pages/hidden-nodes/expected.html",
+            "sha256": "73c07e4ea656625077347a1fc063337fd5552c7ec2058d3c5019b07d7c301f68"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/hidden-nodes/source.html",
+            "path": "vendor/mozilla/test/test-pages/hidden-nodes/source.html",
+            "sha256": "12ba1e78b315acd726cb7b1aceb4c32aa2aba9ba133e824275147a9fe63ff67a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/hukumusume/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/hukumusume/expected-metadata.json",
+            "sha256": "a05dd05daab6192301c910de97268dcf41bff938aa13fa0bf70fc0d63a55b8a1"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/hukumusume/expected.html",
+            "path": "vendor/mozilla/test/test-pages/hukumusume/expected.html",
+            "sha256": "1412100dbd80cdc19aead697c330655913a9b6358109b5e4ef2aa1e9c4bb25f5"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/hukumusume/source.html",
+            "path": "vendor/mozilla/test/test-pages/hukumusume/source.html",
+            "sha256": "9f317b5f9f9a2fa1ee53b34e170c239f532a0fcd3af945eb401c1b3308bce896"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/iab-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/iab-1/expected-metadata.json",
+            "sha256": "6168c3a48d50596eb474afe19da8727f47b8605de46872d45eeff1d4af87ad3f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/iab-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/iab-1/expected.html",
+            "sha256": "92dd55c6b9bf76d64cd573215312c8ccbc5f8aca66edce40982be345abd2a156"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/iab-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/iab-1/source.html",
+            "sha256": "d79314e49d5261881a5a40974bdbda8b4423f89378087d899346e616af97fd22"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ietf-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/ietf-1/expected-metadata.json",
+            "sha256": "4caf6a35292a496967d50d201778805a89b7616b64817c01dae9fb15c5aa1fcd"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ietf-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/ietf-1/expected.html",
+            "sha256": "67c4f4972510c35ff15761b962f6c3cd15a16b032e3705271001e6a7d1f4e962"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ietf-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/ietf-1/source.html",
+            "sha256": "8276ffcf6165ef788d89a5c0b2c6eb777c581b7f608e31a633989ed41e83dad0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/invalid-attributes/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/invalid-attributes/expected-metadata.json",
+            "sha256": "dc624fb54ed04482138382e2c259ccf249127bd12408ead301791d5b6895e7d1"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/invalid-attributes/expected.html",
+            "path": "vendor/mozilla/test/test-pages/invalid-attributes/expected.html",
+            "sha256": "3f726457d736b94e0c6b07384a31a485f4985e1e1d31f0092a6cc58b42540209"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/invalid-attributes/source.html",
+            "path": "vendor/mozilla/test/test-pages/invalid-attributes/source.html",
+            "sha256": "296d2f45877ae1275770b33dc63b38f924e111b32d17bffe82179fad4a14ee33"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/js-link-replacement/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/js-link-replacement/expected-metadata.json",
+            "sha256": "60825794b5d897e1e6038e3793a7a489d0df8ecf4d15c19849b37428b22ca95b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/js-link-replacement/expected.html",
+            "path": "vendor/mozilla/test/test-pages/js-link-replacement/expected.html",
+            "sha256": "45147232cae605085481f555c52d11af182bac2f006d9323460a49a900abfe65"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/js-link-replacement/source.html",
+            "path": "vendor/mozilla/test/test-pages/js-link-replacement/source.html",
+            "sha256": "e6f0b278fe00f54a98f42e5bbd2e659c6dd79dbd61649ad05f8069256d40de35"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/keep-images/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/keep-images/expected-metadata.json",
+            "sha256": "60788f25e9f5fa4dfc41ba3893459a1e03a8378948ebb0c1430c8d5e8ffbf18d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/keep-images/expected.html",
+            "path": "vendor/mozilla/test/test-pages/keep-images/expected.html",
+            "sha256": "a7dbd2271cdb9cb9e84832b74149622b06fccfa38ef22e3dc40a02727431a300"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/keep-images/source.html",
+            "path": "vendor/mozilla/test/test-pages/keep-images/source.html",
+            "sha256": "9c1c4d477033633c9f766c50558f2d1578b1a8c00f5cb1824e43b1123012bd9c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/keep-tabular-data/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/keep-tabular-data/expected-metadata.json",
+            "sha256": "6e6551897210b1efc32b430e1965c9f29dd892248af819f53466a1228d1dcb32"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/keep-tabular-data/expected.html",
+            "path": "vendor/mozilla/test/test-pages/keep-tabular-data/expected.html",
+            "sha256": "dbf22df2c3675a1f2ac35d06fa4e2251c44132a4f51331ffb95f6f0a952d2a35"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/keep-tabular-data/source.html",
+            "path": "vendor/mozilla/test/test-pages/keep-tabular-data/source.html",
+            "sha256": "2a63f726ecc7c5f60314f0e3e8dff4a281fb2c93a8b611875701077ce1c6c794"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/la-nacion/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/la-nacion/expected-metadata.json",
+            "sha256": "96b0a72fdd7b525ee75e21c04b92745eb15bcdc2a8be3724c137451914e76b81"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/la-nacion/expected.html",
+            "path": "vendor/mozilla/test/test-pages/la-nacion/expected.html",
+            "sha256": "08e8b96aa359e022f8a0f0028d8b56acfe83d9a3cad162e6bccebdcf2b96ee1f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/la-nacion/source.html",
+            "path": "vendor/mozilla/test/test-pages/la-nacion/source.html",
+            "sha256": "255abd8003ac9f70e7de7a26a9d75d7f58f82d2a3c4a2d3169e9c6bfe3868bb3"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-1/expected-metadata.json",
+            "sha256": "27c78b9b2fc4cca31aa2dba89a5bd244f0912c95ea2cb18fcb3cb68988a9c4b7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-1/expected.html",
+            "sha256": "0ed4e610d9bf5782b9577bc7c3aaa938b18e9394e078d97faf39b77f29698b51"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-1/source.html",
+            "sha256": "f4abb5497d4703fc43a44cf9b838a7dcf0e546fbcb3ef13a1aadcbb415d4c979"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-2/expected-metadata.json",
+            "sha256": "2bc31680acb4fc73b9ae932cb9027b1c5997a092c6514b63fef0f6fa7143ad9a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-2/expected.html",
+            "sha256": "101c905fd5854e6df6966a12f650cf8766b157bbd7345809c1e70fb81dcf78e9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-2/source.html",
+            "sha256": "1818fb18849ed6d2255224006ba33e0352c8caf7cba4e08ca791b614e2f47047"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-3/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-3/expected-metadata.json",
+            "sha256": "829361cd94335609da4a2e83e79cc7e5a145a73f17a61ce44dc4c8eeea94da45"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-3/expected.html",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-3/expected.html",
+            "sha256": "69ae8165f5cbeef18b33d84978e98d4eee7053a331d70c14cdf1ce7ab77a963a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lazy-image-3/source.html",
+            "path": "vendor/mozilla/test/test-pages/lazy-image-3/source.html",
+            "sha256": "e2816ce1a5cc505cdc0b702b0113283e5d528584d91c006f4eb84c55d5f9fd31"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lemonde-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/lemonde-1/expected-metadata.json",
+            "sha256": "5e0f2561f497b625ff4ceb878db18bd75f9501e3df4f89211b7903f26974844f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lemonde-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/lemonde-1/expected.html",
+            "sha256": "c92253ccdb4bf3007fd829a6ac889332ce4261816c75a63e660c0b0cdae285b3"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lemonde-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/lemonde-1/source.html",
+            "sha256": "9d0cc46bc4f24f0645d993cbb29014615cc3d60aafd2f5ecd2220a9383e8f993"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/liberation-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/liberation-1/expected-metadata.json",
+            "sha256": "7cf1c71e786b975b6f70f8fc3e108760934e7bf6b7b6c9ba437e0a25016b7174"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/liberation-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/liberation-1/expected.html",
+            "sha256": "ae3e858b2d83d4af52d95a95568623655e17cd36f30d4f51a6786208e183ec03"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/liberation-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/liberation-1/source.html",
+            "sha256": "40927617d059a5f9a79364bbfc0d2e815a0986191404a05a16a7af7e428c2731"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lifehacker-post-comment-load/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/lifehacker-post-comment-load/expected-metadata.json",
+            "sha256": "750b74ab0648c7e86d8d05b23abaa59fd16df5782cbf316507240b903ec5348e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lifehacker-post-comment-load/expected.html",
+            "path": "vendor/mozilla/test/test-pages/lifehacker-post-comment-load/expected.html",
+            "sha256": "6d4333da6f5840a5b26fc046872623fac306b957940fe31b5bd1c278c2a80842"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lifehacker-post-comment-load/source.html",
+            "path": "vendor/mozilla/test/test-pages/lifehacker-post-comment-load/source.html",
+            "sha256": "66fa931d408b553f235022046e25371cd85f1bec0421a27e521275f996308d54"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lifehacker-working/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/lifehacker-working/expected-metadata.json",
+            "sha256": "750b74ab0648c7e86d8d05b23abaa59fd16df5782cbf316507240b903ec5348e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lifehacker-working/expected.html",
+            "path": "vendor/mozilla/test/test-pages/lifehacker-working/expected.html",
+            "sha256": "6d4333da6f5840a5b26fc046872623fac306b957940fe31b5bd1c278c2a80842"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lifehacker-working/source.html",
+            "path": "vendor/mozilla/test/test-pages/lifehacker-working/source.html",
+            "sha256": "abdebf5c6222a012a46ceca056dc9c97c1acde01ca6de8c29ca25f534674f38a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/links-in-tables/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/links-in-tables/expected-metadata.json",
+            "sha256": "d5b83efd9e718c3209bfd59f9b725b25c3d26b57af9d50517ce5ed7dfc357f5e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/links-in-tables/expected.html",
+            "path": "vendor/mozilla/test/test-pages/links-in-tables/expected.html",
+            "sha256": "876b3e9ef09ad9c9b8fa51833cf126ef882821240878bedab9b517aee136bb11"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/links-in-tables/source.html",
+            "path": "vendor/mozilla/test/test-pages/links-in-tables/source.html",
+            "sha256": "e694812c99eb935b1bc2114669544aec9a261818fa22b65b46a46f2c806ffeab"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lwn-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/lwn-1/expected-metadata.json",
+            "sha256": "58af189ba3878c8b1396db5f15ce6a68cb382e0128ce20a686a3af61a7cc595b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lwn-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/lwn-1/expected.html",
+            "sha256": "84c39843c589311e93ac75f8ecb1f7e36dfacc314ea85a517608cc71a2f17324"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/lwn-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/lwn-1/source.html",
+            "sha256": "d1c03893435a55e130dd0689282a178dbb166feabd99894435580f3a3ddd7197"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mathjax/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/mathjax/expected-metadata.json",
+            "sha256": "cbd378718810d9924b9a78d34e0c5203fe3a9f71f21189a2079f8c06d197b114"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mathjax/expected.html",
+            "path": "vendor/mozilla/test/test-pages/mathjax/expected.html",
+            "sha256": "f2f480a2966f84933ca8cc9494406765cdbe942218b2ca8aa4bd5d1ce7304f38"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mathjax/source.html",
+            "path": "vendor/mozilla/test/test-pages/mathjax/source.html",
+            "sha256": "574ca7f68b94cfa1ef3f8ee68ff3d7309e4d88a2eb58bc8718cc2533319c43d4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medicalnewstoday/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/medicalnewstoday/expected-metadata.json",
+            "sha256": "e5cde1cd3e7320ecaef9e168eed6baa2b47e559cd66ed3f7e60f78128802b9d8"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medicalnewstoday/expected.html",
+            "path": "vendor/mozilla/test/test-pages/medicalnewstoday/expected.html",
+            "sha256": "c29869b4022832072ebcb3c679e9fd12b16fb2e47dc1318c14acdd6804c0f1eb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medicalnewstoday/source.html",
+            "path": "vendor/mozilla/test/test-pages/medicalnewstoday/source.html",
+            "sha256": "6d2da8dabacaab99f5b5bbdf3721197d2d40bf606879db6156cd06f88e8ba928"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/medium-1/expected-metadata.json",
+            "sha256": "1c110cf384c02f0955db56fbe9486291b16de472a3180c3f166445130c07f824"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/medium-1/expected.html",
+            "sha256": "7f24a147d4a80100871581a0401d2357aa42f4ec9fb2ea4fbaa0b40af6e49d0e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/medium-1/source.html",
+            "sha256": "1195a8b06bc4a126c8b7b6843144b68053f6a717b5938d9e88b2f375810c21ed"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/medium-2/expected-metadata.json",
+            "sha256": "785debc3d65420c561b86af8769041e7b1c962fab7e40a0562b6beb385fce20a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/medium-2/expected.html",
+            "sha256": "75597dab8318c39bf1c0280b5a69b5ea4e40430e3d089b708e8a617ada8fc6f6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/medium-2/source.html",
+            "sha256": "52a381d960bf5a50949c18cfacec65ba0259d64d3dd1c28367824aca9893be96"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-3/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/medium-3/expected-metadata.json",
+            "sha256": "e8299752c3d9576e2c2072e8c3d4dc5459b740f5dbd7608c83c78a59c5c32824"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-3/expected.html",
+            "path": "vendor/mozilla/test/test-pages/medium-3/expected.html",
+            "sha256": "a5090cb71136130ee271bfbb50e94503b7128ab7e2fb9c7070e274e08f84b57f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/medium-3/source.html",
+            "path": "vendor/mozilla/test/test-pages/medium-3/source.html",
+            "sha256": "f4726d93435e42c8f76d37351fe6489862300aedcaa2c571fed1831ebd5cfe19"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mercurial/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/mercurial/expected-metadata.json",
+            "sha256": "fb604ad5ce253f0dfc90a69259b5789fbf893500c3edbe55393ff6d3a9a4c058"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mercurial/expected.html",
+            "path": "vendor/mozilla/test/test-pages/mercurial/expected.html",
+            "sha256": "8aaae1cc64db878a68b2065fdc73069aeaebc2c967cc176387a869a10686c28f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mercurial/source.html",
+            "path": "vendor/mozilla/test/test-pages/mercurial/source.html",
+            "sha256": "1a2238115e4af262f4aaa43fc5e49504c290a8b4ef2a776b6d7a8014b4082fb7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/metadata-content-missing/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/metadata-content-missing/expected-metadata.json",
+            "sha256": "b4535b1884a77d10a9612109091516409a0e3ae96876bcec1732210e7e92a0f3"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/metadata-content-missing/expected.html",
+            "path": "vendor/mozilla/test/test-pages/metadata-content-missing/expected.html",
+            "sha256": "b01cf0cf47d34fbcb1a14b599826a37a92ee58513fbcb282246b99656f1c2ed9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/metadata-content-missing/source.html",
+            "path": "vendor/mozilla/test/test-pages/metadata-content-missing/source.html",
+            "sha256": "89145e633d26f762350ee0b786207452c70b81f7d3d7b3ae24ef912901d3c2c7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/missing-paragraphs/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/missing-paragraphs/expected-metadata.json",
+            "sha256": "c8af33dd4b9702378f13746892199b7a4999dd243e1b86f3e91fcb85fb88f748"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/missing-paragraphs/expected.html",
+            "path": "vendor/mozilla/test/test-pages/missing-paragraphs/expected.html",
+            "sha256": "8467a50920dca0d5536d23f839a45d443d775c6e8458b4bcf833737f04031740"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/missing-paragraphs/source.html",
+            "path": "vendor/mozilla/test/test-pages/missing-paragraphs/source.html",
+            "sha256": "41140e70d0ec95d1657a9a61b421e97625699ac3ab4f949206a663dacc511b68"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mozilla-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/mozilla-1/expected-metadata.json",
+            "sha256": "8ce789740c32db3ce27b51c7746febcedaea19be613e55b0aed69d21f8e287fe"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mozilla-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/mozilla-1/expected.html",
+            "sha256": "3d24747d8ed4b4c2baa9793e0c2b249048d7e9f1a375f98564944f5d09e1a1c7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mozilla-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/mozilla-1/source.html",
+            "sha256": "49171015a6f3313e006ff59ebc60971abe57bd6babc5b2ea1a5364f8abe0dbec"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mozilla-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/mozilla-2/expected-metadata.json",
+            "sha256": "89a3a366747e8307747d9d5fe640872b8fb5f63a928fa6c50c45f5c0054c91bc"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mozilla-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/mozilla-2/expected.html",
+            "sha256": "afbd5fdea06240a84fd8dcd00263a6568bcf606ccbe3bec04d572a25ceab0b48"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/mozilla-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/mozilla-2/source.html",
+            "sha256": "39059455717bccde554b8b22244a8cef6a8531d65ee89612776b5174d694fdf8"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/msn/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/msn/expected-metadata.json",
+            "sha256": "becfbd8d19625809a6521b279840930a6e34f640551e68edafb09df5ee0988b0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/msn/expected.html",
+            "path": "vendor/mozilla/test/test-pages/msn/expected.html",
+            "sha256": "63cb7e92ff589ccd5049f3bcee50f14349eb551ad3f5e3e2cfe0602079e52a5a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/msn/source.html",
+            "path": "vendor/mozilla/test/test-pages/msn/source.html",
+            "sha256": "2018a42861987072b91fdabd8778d2c5367b72b1e1889792fe5dc2db950d21ef"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/normalize-spaces/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/normalize-spaces/expected-metadata.json",
+            "sha256": "f453d218444d0582338d6930edffeb16fb6b8cce336d0b264f44d3acbd596aad"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/normalize-spaces/expected.html",
+            "path": "vendor/mozilla/test/test-pages/normalize-spaces/expected.html",
+            "sha256": "56a9cd44f714625bd7c839f234f6263e2f4d1723a46b16ca9454c1d12f5c60d5"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/normalize-spaces/source.html",
+            "path": "vendor/mozilla/test/test-pages/normalize-spaces/source.html",
+            "sha256": "640299a69c583104ef3d37c44493f895398b09d28c48ff487061fa01017bfc8a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/nytimes-1/expected-metadata.json",
+            "sha256": "be6b9e985093126830471ef16f5ca709d059e540dfb024eaf26dcfe30ce4ce3a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-1/expected.html",
+            "sha256": "5fe223cdc5b7c30898f0a1b6e1a29ef07c4b0b3f6cf9edee571baf60ffba8810"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-1/source.html",
+            "sha256": "fbcc8e24179ea73a8c3768ea51396f60b38c883601391734ec85c38d58554825"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/nytimes-2/expected-metadata.json",
+            "sha256": "c26d1dd987e4f21744eabd982f34f40b165c5f90720f570125311487a2b05463"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-2/expected.html",
+            "sha256": "7d1f344aeae58e5013d1e4577a202f09aafa92fcd54a1e54477177a09f557570"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-2/source.html",
+            "sha256": "c366d50c892fdf2f186650e7df41396b0f8f0dd0e91092101f68cf854e51b4df"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-3/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/nytimes-3/expected-metadata.json",
+            "sha256": "1645463f5f27050f402cee6060fde7870fc46c2f1ab1f03e52f137592131ae85"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-3/expected.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-3/expected.html",
+            "sha256": "3a443ce31776dd445c67ee8e50afb7edb8b6e61c3b9e3facec0661fd862a420a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-3/source.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-3/source.html",
+            "sha256": "139132ee488886b14fb8d85044947768727929e990054c9be8c688b0f6c4bebf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-4/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/nytimes-4/expected-metadata.json",
+            "sha256": "8583d3b101e6c8dc0db2acaa71924ec8ae9bb9a55d1d08bcdac6743699f74604"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-4/expected.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-4/expected.html",
+            "sha256": "d94802c57f2b6e6ee15bb70d4449ea74a9aca646800e81264c1d3fa47dcf470d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-4/source.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-4/source.html",
+            "sha256": "a14721bdc64eb917b4099d666a0ea6b8b218997cac06cbf008b3df25f2ffeb4e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-5/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/nytimes-5/expected-metadata.json",
+            "sha256": "6b0f0ae381dc1296689ef616de8222f259203e1d5975d4b7b1e5a884594c7c32"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-5/expected.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-5/expected.html",
+            "sha256": "7b28aa228829909517a381a20af082697b45c3ee50646e272a59ce01311ba29f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/nytimes-5/source.html",
+            "path": "vendor/mozilla/test/test-pages/nytimes-5/source.html",
+            "sha256": "027edb25cd35ce46f0ce8c11fdf645d1843054f89bd59fc5d228cacb14a788f6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ol/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/ol/expected-metadata.json",
+            "sha256": "dfe114619b7dc1bafbcc50ae3b65e98854d178b22ead86efd2910ce0691558cb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ol/expected.html",
+            "path": "vendor/mozilla/test/test-pages/ol/expected.html",
+            "sha256": "0b34feeffbaf8758e6c2c5051adc2f97c7bbfa243ef84b4cd97ef9f4d722c2d5"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/ol/source.html",
+            "path": "vendor/mozilla/test/test-pages/ol/source.html",
+            "sha256": "ac694e06b19eb99036ab3a5367819af3b34f098f1a6f54f5d22abe0a8a4940aa"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/parsely-metadata/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/parsely-metadata/expected-metadata.json",
+            "sha256": "c77f0af5d1a44ec30807ae55c9b3bef965b388a68aaac140ed36857e742fcaed"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/parsely-metadata/expected.html",
+            "path": "vendor/mozilla/test/test-pages/parsely-metadata/expected.html",
+            "sha256": "b01cf0cf47d34fbcb1a14b599826a37a92ee58513fbcb282246b99656f1c2ed9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/parsely-metadata/source.html",
+            "path": "vendor/mozilla/test/test-pages/parsely-metadata/source.html",
+            "sha256": "8cac6f2497288c0eadcffe5812aa5d1535d48eb82b81fee96e2f7fb5b056d92b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/pixnet/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/pixnet/expected-metadata.json",
+            "sha256": "a70316e047b177f562859dbb72b36f89f4caf1b52288f251fbb841a8b7c32cf5"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/pixnet/expected.html",
+            "path": "vendor/mozilla/test/test-pages/pixnet/expected.html",
+            "sha256": "15a32fd0a98671c4cfdd5cdc3fbbec1743f5344aed81e30b7f0955a6d1eb3e23"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/pixnet/source.html",
+            "path": "vendor/mozilla/test/test-pages/pixnet/source.html",
+            "sha256": "cbd38d76508cb428f294ce5389b5dd687e24899535ea84a4155b504e84e20c47"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/qq/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/qq/expected-metadata.json",
+            "sha256": "cedf59447b17d0b3816b627daf95c6ede0da9323134aef2260c86feb238cb8bb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/qq/expected.html",
+            "path": "vendor/mozilla/test/test-pages/qq/expected.html",
+            "sha256": "cd2c6d6e2f8c6c6d428b666183f769375a11ee8f809e15658f3c5ed04e3243c7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/qq/source.html",
+            "path": "vendor/mozilla/test/test-pages/qq/source.html",
+            "sha256": "9b58c32629b910507d16dafe0cb7c81d06337aede2da1b07d3b0aec756f392a6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/quanta-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/quanta-1/expected-metadata.json",
+            "sha256": "ef31fd7c462de8c4a767b6398f01f23b9dcc503c90667f46e0f6e62155427e77"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/quanta-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/quanta-1/expected.html",
+            "sha256": "919e3fe3c9fa49063d6d1f8dac36fa52f64d5b403a47767fc70b2f672a735a0a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/quanta-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/quanta-1/source.html",
+            "sha256": "b62f8673090e005392bd1888c57ba4f26de04ad8e155d5878c948e5acf8e15a8"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-aria-hidden/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/remove-aria-hidden/expected-metadata.json",
+            "sha256": "539d70d380a3cc2e611cbe5fd0f986b92eb2a7b3c6548a14424d32d54aa53f49"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-aria-hidden/expected.html",
+            "path": "vendor/mozilla/test/test-pages/remove-aria-hidden/expected.html",
+            "sha256": "a9a1b19d0965c873d2b9deea189a6e6e6431f0a7c3586081b0173cf9b6a37f40"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-aria-hidden/source.html",
+            "path": "vendor/mozilla/test/test-pages/remove-aria-hidden/source.html",
+            "sha256": "ef58db26ad89de57ef1dea7b81f22e20e4a8859128897c93ada64eb35407eedc"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-extra-brs/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/remove-extra-brs/expected-metadata.json",
+            "sha256": "65727a762bfe6c4ecc72084facc1ceef672d7edd82f273d732a40b5e9afad1d7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-extra-brs/expected.html",
+            "path": "vendor/mozilla/test/test-pages/remove-extra-brs/expected.html",
+            "sha256": "ae92429809ad42b629586c53ec81cc23a319bb529a1c9f4125d8381f85f90c32"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-extra-brs/source.html",
+            "path": "vendor/mozilla/test/test-pages/remove-extra-brs/source.html",
+            "sha256": "4010fa7c63d397625f6a4b32c8565f43a4837e75c0e854afd32951d4a7e71d7e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-extra-paragraphs/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/remove-extra-paragraphs/expected-metadata.json",
+            "sha256": "6bf2c28f9d9a3035e609e1a16a156c6505db8bf7648336e49708c1a5d9669715"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-extra-paragraphs/expected.html",
+            "path": "vendor/mozilla/test/test-pages/remove-extra-paragraphs/expected.html",
+            "sha256": "ae92429809ad42b629586c53ec81cc23a319bb529a1c9f4125d8381f85f90c32"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-extra-paragraphs/source.html",
+            "path": "vendor/mozilla/test/test-pages/remove-extra-paragraphs/source.html",
+            "sha256": "a468f05e42b5e51a5658ea7ce142bc8123334d4cf5c0b78b0b00093ec0509a77"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-script-tags/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/remove-script-tags/expected-metadata.json",
+            "sha256": "ed8ac86f4cda538586e8ec9dadbc7d71faad739b365bbc27ceb344f27d2afcc0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-script-tags/expected.html",
+            "path": "vendor/mozilla/test/test-pages/remove-script-tags/expected.html",
+            "sha256": "ae92429809ad42b629586c53ec81cc23a319bb529a1c9f4125d8381f85f90c32"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/remove-script-tags/source.html",
+            "path": "vendor/mozilla/test/test-pages/remove-script-tags/source.html",
+            "sha256": "18c4148f2a0c426b0446aff1c2538d41abd6a2ac16ed5ff727ced06d4a940d2c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/reordering-paragraphs/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/reordering-paragraphs/expected-metadata.json",
+            "sha256": "981ce5762d7e35e3199dc21848c1add6ceedc0c0bfb1ed35c14fe36151497aac"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/reordering-paragraphs/expected.html",
+            "path": "vendor/mozilla/test/test-pages/reordering-paragraphs/expected.html",
+            "sha256": "acf27cbf8c973d7d1c4a908f84fcb8f552529afd1c15d5e20624b1f3f05186f4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/reordering-paragraphs/source.html",
+            "path": "vendor/mozilla/test/test-pages/reordering-paragraphs/source.html",
+            "sha256": "b20d3f15a30c981efe336bf931ef4c58327188d544bf98bca6104edbc7f8de88"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/replace-brs/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/replace-brs/expected-metadata.json",
+            "sha256": "b0126d694d6c20396ee931c271434fba1497f58e685ff419760cd3e18949e886"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/replace-brs/expected.html",
+            "path": "vendor/mozilla/test/test-pages/replace-brs/expected.html",
+            "sha256": "03a0219ce68c2becf222df9e3b6d18abd03468475bc41e5a624ae7e5f66ba416"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/replace-brs/source.html",
+            "path": "vendor/mozilla/test/test-pages/replace-brs/source.html",
+            "sha256": "c1aa787ae2d9db358ab1925dedf53c72479841a82113058f6ed09470d702a62b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/replace-font-tags/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/replace-font-tags/expected-metadata.json",
+            "sha256": "3efaffb56623dfe68c20e3cf388d582a4e69b3ea47047ac0d62b59db3e09bb43"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/replace-font-tags/expected.html",
+            "path": "vendor/mozilla/test/test-pages/replace-font-tags/expected.html",
+            "sha256": "752e729595478988a148060e3ccdf8740c6936e9fbf6625776257e8f41697cbe"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/replace-font-tags/source.html",
+            "path": "vendor/mozilla/test/test-pages/replace-font-tags/source.html",
+            "sha256": "89934d9db31957994dd8e48369ce628309b46cf6c640727098a4a7a8d400947b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/royal-road/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/royal-road/expected-metadata.json",
+            "sha256": "2bcc2c9f4e6f0f6ec6753bef42bb1458a8767b2645db70baeb34b81320ffb0c9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/royal-road/expected.html",
+            "path": "vendor/mozilla/test/test-pages/royal-road/expected.html",
+            "sha256": "faec36cc65604d402061a49eb40a4cb0db1e1bc454fe0c815bde8cab453af939"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/royal-road/source.html",
+            "path": "vendor/mozilla/test/test-pages/royal-road/source.html",
+            "sha256": "c092f697746b5b5b1ca9e8b5390e551ae7ee379c0622e0a5be799c5c6715460a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/rtl-1/expected-metadata.json",
+            "sha256": "01b368c8c6e6d89103496b97ac0260ea10e8feaeccbbb1f4f174122e50c887d4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-1/expected.html",
+            "sha256": "cf7edb5cb72991f32241fce1fd2ea0affe4c3b77f4967297de8610a2e7b2ec25"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-1/source.html",
+            "sha256": "a919900db0ed468fabf5de717c959921c785fb8ac34a62178f65b17e72c6a78b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/rtl-2/expected-metadata.json",
+            "sha256": "01b368c8c6e6d89103496b97ac0260ea10e8feaeccbbb1f4f174122e50c887d4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-2/expected.html",
+            "sha256": "cf7edb5cb72991f32241fce1fd2ea0affe4c3b77f4967297de8610a2e7b2ec25"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-2/source.html",
+            "sha256": "19fe8ac0691b94fe99fb2421221b051faf3f026cc4d1cf91c278ae1318988c80"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-3/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/rtl-3/expected-metadata.json",
+            "sha256": "01b368c8c6e6d89103496b97ac0260ea10e8feaeccbbb1f4f174122e50c887d4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-3/expected.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-3/expected.html",
+            "sha256": "87149e255a340240ec52285f3bb0ac127ca60aab9c00fe31bb1697176a42fe18"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-3/source.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-3/source.html",
+            "sha256": "992cdae86c7c356f72038eb28db7f6264de2c66c8faeba4fb701a052e4ea7116"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-4/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/rtl-4/expected-metadata.json",
+            "sha256": "df6d5a3dbe595b4ff27820576caf9036e1e593a3de4e013cd12a2495ed0ef005"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-4/expected.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-4/expected.html",
+            "sha256": "a38aba8ec838f481b370653b757a95efe40b647ea22600861e7e20b3501bbd4d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/rtl-4/source.html",
+            "path": "vendor/mozilla/test/test-pages/rtl-4/source.html",
+            "sha256": "77e98fa63405c76ea2f7c44c21b6c9b23e1cf41960432696f863688b0a123160"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/salon-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/salon-1/expected-metadata.json",
+            "sha256": "20a893c0d67b32fb5697cc44a5f6bc70c2e51981127398a92768dd8bb7d541cd"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/salon-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/salon-1/expected.html",
+            "sha256": "6ab3cf5a82b0e276261f6e648aaa22f6e9833ec9a566a2c6ae3c45a58f65ee06"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/salon-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/salon-1/source.html",
+            "sha256": "20817a930d0c796992162057a6dd488e8a94180fed74d38559c52213fd0445de"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/schema-org-context-object/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/schema-org-context-object/expected-metadata.json",
+            "sha256": "d469551c4222b28fabcf2f9ed59400c261b75d2c35af721be2a0085aa60ae195"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/schema-org-context-object/expected.html",
+            "path": "vendor/mozilla/test/test-pages/schema-org-context-object/expected.html",
+            "sha256": "8342a4689597557057d107ea24863cf418cc4c9f17f170b60656fcf9a19c3a5c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/schema-org-context-object/source.html",
+            "path": "vendor/mozilla/test/test-pages/schema-org-context-object/source.html",
+            "sha256": "b470ad3d4170fe5e9bd6d07163e3bfeaff65f22d6d03f9520f7401de532c4cac"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/seattletimes-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/seattletimes-1/expected-metadata.json",
+            "sha256": "f603d8363eee6a80866be423da50452060bbf42a91af540899ef2eb444f9c461"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/seattletimes-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/seattletimes-1/expected.html",
+            "sha256": "a41a9fbe7839de76ddc276f6b22c3372ed01ab31400593b309814c078b6e0003"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/seattletimes-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/seattletimes-1/source.html",
+            "sha256": "d854adc85f6fc66c70817ad33c4c71c63c5c992b1a384256f8d7ab44bbc08938"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/simplyfound-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/simplyfound-1/expected-metadata.json",
+            "sha256": "27abd9a36f93cf155958794be79996cc7fc90018173d854929498e25f12ff5a6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/simplyfound-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/simplyfound-1/expected.html",
+            "sha256": "d56e6f239fd0a26a27a1c091a5a842a7770a14505e0696b5c667f3775fe7f617"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/simplyfound-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/simplyfound-1/source.html",
+            "sha256": "123bdcc0fa4d5581a5d8249f2c63b8c2918f436dd6515556adcbf6b13fc6b860"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/social-buttons/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/social-buttons/expected-metadata.json",
+            "sha256": "ef6de74129d1426cdc15a4a4997aae3198952f3df4e93e2623b30008a2e97dcf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/social-buttons/expected.html",
+            "path": "vendor/mozilla/test/test-pages/social-buttons/expected.html",
+            "sha256": "0973369906d73a4989f16aeed4f18fb56e530b46f78dae96835793bef11b5a26"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/social-buttons/source.html",
+            "path": "vendor/mozilla/test/test-pages/social-buttons/source.html",
+            "sha256": "7fa8b3f17a32bba1ab3703b5d6cc06ad04d664d25e2a9ad964b90ab4d0474036"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/spiceworks/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/spiceworks/expected-metadata.json",
+            "sha256": "53e5a58c89e75a14a6ebf11e1bea4cc698ace0d089abd6c2ad7e0bc0d5be4127"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/spiceworks/expected.html",
+            "path": "vendor/mozilla/test/test-pages/spiceworks/expected.html",
+            "sha256": "e5eb5f9a010786117122e5ee8cfe6125bf7ee11decc2659e5bd0355233e5302c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/spiceworks/source.html",
+            "path": "vendor/mozilla/test/test-pages/spiceworks/source.html",
+            "sha256": "9a66a6ef0fb50ab37cef39930ab2eb5629e153d1b4edc20eb4a0f0c349d6f61b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/style-tags-removal/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/style-tags-removal/expected-metadata.json",
+            "sha256": "f1e3aab8eb50c9208a52fa2564b68b916a50014dc870b785d1d111509efdd333"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/style-tags-removal/expected.html",
+            "path": "vendor/mozilla/test/test-pages/style-tags-removal/expected.html",
+            "sha256": "268ae7dd7c68d2f4243d0d4953b75c35a49e9bc7997eeae2b90bab0520936200"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/style-tags-removal/source.html",
+            "path": "vendor/mozilla/test/test-pages/style-tags-removal/source.html",
+            "sha256": "80ef5d20f8c9e2bf71562eb1b61ddcd27895869dceca7d4d73202b8f0058a5fb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/svg-parsing/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/svg-parsing/expected-metadata.json",
+            "sha256": "b80db1901c279f998fa08ec38835b6c3533b7c6409209d362e9d48c03d7e9051"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/svg-parsing/expected.html",
+            "path": "vendor/mozilla/test/test-pages/svg-parsing/expected.html",
+            "sha256": "efa30252354d6789d7284c2cb10e171ea0907cb2798047ada6d56dc17a7bc1e9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/svg-parsing/source.html",
+            "path": "vendor/mozilla/test/test-pages/svg-parsing/source.html",
+            "sha256": "c90ec5542ef16081aee47f487883765b03c57ed0d072471d74c003992663e07c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/table-style-attributes/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/table-style-attributes/expected-metadata.json",
+            "sha256": "e6380897ca9d5e2c99dd42f2e733cc62b418baba3ed89ab99213fbf43ddf3913"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/table-style-attributes/expected.html",
+            "path": "vendor/mozilla/test/test-pages/table-style-attributes/expected.html",
+            "sha256": "a80fd33e06d8f19aa343286c8d34c78ee88f09ab42133648968fdca1250583a5"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/table-style-attributes/source.html",
+            "path": "vendor/mozilla/test/test-pages/table-style-attributes/source.html",
+            "sha256": "0472ea79f6e35549f1e51dce5996a1dba3abedc0196ae562c952cd9c373da9cf"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/telegraph/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/telegraph/expected-metadata.json",
+            "sha256": "627a502bda0246088d61e6a5d5ab17f201c1277809ac3ee3c4001b1d69a576f0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/telegraph/expected.html",
+            "path": "vendor/mozilla/test/test-pages/telegraph/expected.html",
+            "sha256": "00d2ee9cf5038a49d54de3e27a750686d7235509b4e5900c3b258bb42d1d5566"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/telegraph/source.html",
+            "path": "vendor/mozilla/test/test-pages/telegraph/source.html",
+            "sha256": "faced9efec016c59231823a0784a52768a253b3efc100d58a6117825b05646ed"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/theverge/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/theverge/expected-metadata.json",
+            "sha256": "4898cdce75eb7840b71857068d51e10301490fb705d63c0fcbf066adc6881315"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/theverge/expected.html",
+            "path": "vendor/mozilla/test/test-pages/theverge/expected.html",
+            "sha256": "05093903c776c5a54c254f3357d74435708072f8f70bfee550e22c0f44db461c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/theverge/source.html",
+            "path": "vendor/mozilla/test/test-pages/theverge/source.html",
+            "sha256": "4269408b9a692e15cb34269301056ee73ea01238fab223c72b61ed85cd813906"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/title-and-h1-discrepancy/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/title-and-h1-discrepancy/expected-metadata.json",
+            "sha256": "1eafc71c5bbb2d6982773252797115b824787efde4de99b94997e643f7b20c0d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/title-and-h1-discrepancy/expected.html",
+            "path": "vendor/mozilla/test/test-pages/title-and-h1-discrepancy/expected.html",
+            "sha256": "c7ceb4f2a7c193dc06974c29d7fc355d39bf4b731a5458916f55674fc657582c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/title-and-h1-discrepancy/source.html",
+            "path": "vendor/mozilla/test/test-pages/title-and-h1-discrepancy/source.html",
+            "sha256": "1296c8c088b1e0a95809a78c831947484426629446a35f9de1bd5c221aeb31f1"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/title-en-dash/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/title-en-dash/expected-metadata.json",
+            "sha256": "ad9a90254fdc506202d411c16e1ef57c0e17eca7214113fbf20a51db1de08370"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/title-en-dash/expected.html",
+            "path": "vendor/mozilla/test/test-pages/title-en-dash/expected.html",
+            "sha256": "e5f66881d9c569ec8ae8760514a142a71f257d728541010fbc2257afed26f501"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/title-en-dash/source.html",
+            "path": "vendor/mozilla/test/test-pages/title-en-dash/source.html",
+            "sha256": "99cf60410a74f8cdc1cb3288640514a8dbab37532c3e253c18a6b9f95cbfccfe"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/tmz-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/tmz-1/expected-metadata.json",
+            "sha256": "55c1eee061468a50c601d5a578fe51d4944ec91fda62564b62f3283407e3a6eb"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/tmz-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/tmz-1/expected.html",
+            "sha256": "bf33df0d5a3a619d682a84dcccab0212a351af6e4c03f893b68c3ae94fabdb99"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/tmz-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/tmz-1/source.html",
+            "sha256": "26e953a225a4bf99b1c8cdc5ea26f3cb9bfef7016cab68982e6d88db0f64565f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/toc-missing/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/toc-missing/expected-metadata.json",
+            "sha256": "9e3d669b6fe6554ff0a1dc91b562dee3df1ba82a64011be924573072d10c3c69"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/toc-missing/expected.html",
+            "path": "vendor/mozilla/test/test-pages/toc-missing/expected.html",
+            "sha256": "bdea9997164a4cddd20a57c054bfc78c4d188c2375f912a31584e669537d57d3"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/toc-missing/source.html",
+            "path": "vendor/mozilla/test/test-pages/toc-missing/source.html",
+            "sha256": "3e9f0ad0939f8062d680f6f0d2467bb8e71f1b25edd856965acd8a7e9c7a7608"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/topicseed-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/topicseed-1/expected-metadata.json",
+            "sha256": "90e549f9226c35389479ddc5fe6e81abe3ccfb2b652721976264e88332772cc8"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/topicseed-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/topicseed-1/expected.html",
+            "sha256": "618c72c422021e8573f0bec6c467aa59eeb7d4a1155d39b18b8a767768207780"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/topicseed-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/topicseed-1/source.html",
+            "sha256": "b52e60a429a187f4c3e6f20f3dbac8a0ff73f17a810f29b66b7596ecc8c49189"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/tumblr/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/tumblr/expected-metadata.json",
+            "sha256": "09c90e81b0a515034a0b9368d6fd8e0b2a0c9cdf2d5c6bc786dc8e478a2aad8a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/tumblr/expected.html",
+            "path": "vendor/mozilla/test/test-pages/tumblr/expected.html",
+            "sha256": "72e1a8463368da012233d91f00aaa3eb5d33bacfb46ef9b233c0becf695e709e"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/tumblr/source.html",
+            "path": "vendor/mozilla/test/test-pages/tumblr/source.html",
+            "sha256": "30d6f8f0dda314a158edb8e47316bb503c3a9ca5da378596a6d3736603dd9887"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/v8-blog/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/v8-blog/expected-metadata.json",
+            "sha256": "1cc02cd8107fd3b25531b8ca67b85ba9b2141c385503a43a794b5a7f2ff24543"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/v8-blog/expected.html",
+            "path": "vendor/mozilla/test/test-pages/v8-blog/expected.html",
+            "sha256": "dbc387753373bbff8a8a754feb42bd1494099fb07204996d20de1badda9a2f30"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/v8-blog/source.html",
+            "path": "vendor/mozilla/test/test-pages/v8-blog/source.html",
+            "sha256": "b630ea40054bb7263831e96be18e193d7054d7943ce522750115199940ab87d4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/videos-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/videos-1/expected-metadata.json",
+            "sha256": "7211c02cd40f4ae9936f360f20ba67475c2a1e690f1bb229bc1ca7cce8d32342"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/videos-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/videos-1/expected.html",
+            "sha256": "bfdbaaeee0d9a7d31012536b8a42847983a0c87027a273b7df9db9b1c5133b3a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/videos-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/videos-1/source.html",
+            "sha256": "70a9c18dd3017c10d63eaaad47eed317cea619864ad24b3fad91509caca6391d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/videos-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/videos-2/expected-metadata.json",
+            "sha256": "a3e7ce6fd9496575cc88815945feaae89eaecbbd4d551e415af4cee846312ad2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/videos-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/videos-2/expected.html",
+            "sha256": "11100bb7a7ecfd8275fc99e4cef997c5bc6f30889ebe4f46bfb9fd7808969e00"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/videos-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/videos-2/source.html",
+            "sha256": "7dd3a8e220aa3dfadb7cc479c5852acd2f1f44a8aac28141c500f609a151d07b"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/visibility-hidden/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/visibility-hidden/expected-metadata.json",
+            "sha256": "fa073701e37fcabefc3512e26b2e761b77c00dfc3f74a390c94d8f8bb0961313"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/visibility-hidden/expected.html",
+            "path": "vendor/mozilla/test/test-pages/visibility-hidden/expected.html",
+            "sha256": "0d18eb47a0c1de94e25db09b7552392ffe37148dd4577a10fb736d8ca326f3d1"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/visibility-hidden/source.html",
+            "path": "vendor/mozilla/test/test-pages/visibility-hidden/source.html",
+            "sha256": "c033dcb5b1d27bf2a8e918f03db913ad2f08d6246614d451ce749d30bc64bfc3"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wapo-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wapo-1/expected-metadata.json",
+            "sha256": "64bb73b154970df8e73b909dffc40e4ed38e80bd6106b611ed3ee85ba69de6c8"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wapo-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wapo-1/expected.html",
+            "sha256": "470bd0056d680f99e5affbbaba382a5ecf6b09af7240882e17a83afa8e1bdc56"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wapo-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/wapo-1/source.html",
+            "sha256": "24b0b8bc2e30aef2888ecc20d54e68867b2e18fb0deb8918340b028673524b31"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wapo-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wapo-2/expected-metadata.json",
+            "sha256": "0f220cdc400d0ad9fef1ee4f2944eb41a6912864f6ef5ee32adc88f8be2fc7f6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wapo-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wapo-2/expected.html",
+            "sha256": "ef526c995ae8fb4e97a2305d997123effa605fe8dc34552a9762ff4007ec7e18"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wapo-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/wapo-2/source.html",
+            "sha256": "e209e747222b004227f33ba4f6706299476adcd61576f07e0df32e7df1f1a8b9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/webmd-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/webmd-1/expected-metadata.json",
+            "sha256": "8eabe204380600dd15ea3840432abe9bbb3a660f8d69d4a89cdc882322b5f5b7"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/webmd-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/webmd-1/expected.html",
+            "sha256": "b818871953337a4af71831858b7d32974ba1541d37a91845aa79c70d1c572859"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/webmd-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/webmd-1/source.html",
+            "sha256": "974507e889655d5d5b2368671b413cd2dd5f46bc2efeb4b77deb74988bc8ff46"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/webmd-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/webmd-2/expected-metadata.json",
+            "sha256": "7b8071604621b746de9b5186f9d38bc547d57b292a21d2468a8a7254b40b00d6"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/webmd-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/webmd-2/expected.html",
+            "sha256": "8000e023d475036fbe08f4130fbbac27c188223db63f74d1f7a65a4f5752c349"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/webmd-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/webmd-2/source.html",
+            "sha256": "15843cafbea4e3e83353319b8ceb89fff971ef66a1255af62d49b4cd523f96d4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikia/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wikia/expected-metadata.json",
+            "sha256": "d2b570fe23bec5f4299fd2fdc4725688f515ea0cdb45435a45cfbfb6b86c48a2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikia/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wikia/expected.html",
+            "sha256": "c6e6311079d0789961df74291e7a587d6e7e99c88dcd94e990b2d8a928954b15"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikia/source.html",
+            "path": "vendor/mozilla/test/test-pages/wikia/source.html",
+            "sha256": "b0e52788b4b181162474dccfe7f27a50bb140670c59b0c818bf88956e34fec05"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wikipedia/expected-metadata.json",
+            "sha256": "11f4323fb76d04f13297620c207de983ef3231ff77ecd87561c5a1922255f11f"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia/expected.html",
+            "sha256": "a717489600edc714bd2346f455e30746000b02212d4463ba55c8d03447de9ec9"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia/source.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia/source.html",
+            "sha256": "7104f5945907560ed185063f6e469b1150b462eceb14be092b84f8b11368cf8c"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-2/expected-metadata.json",
+            "sha256": "e76d7bfa36d20eab23826589023bbf88a19f08ba7c114edd9f30a836efa9d612"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-2/expected.html",
+            "sha256": "5bd08dcee566ef553fe13f24fd6b0006b51954a681a738c9c013f05cd265833a"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-2/source.html",
+            "sha256": "2d49814707297841baa04e1332e19a9dc2aeb7a622c6f078960f27c37ed81f66"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-3/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-3/expected-metadata.json",
+            "sha256": "9977bf874cbc310bd2f29e17ee48314cfd051eb98666c1303a698b8b06deb896"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-3/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-3/expected.html",
+            "sha256": "9a7c02a8eb478587fe5c4d660828abf363724646334ac4a8a0b5c4bf378c4b71"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-3/source.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-3/source.html",
+            "sha256": "86e539a9e71edd2eedfdc8724d804f76e4a321dc85924943258fdae27ccd3b77"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-4/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-4/expected-metadata.json",
+            "sha256": "e52a38076958ea0fa62ad341f6f3ea531e8e95eaada43efa1cabce91c7a2ba86"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-4/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-4/expected.html",
+            "sha256": "59b66f56ad8ec2a54c0a753ab59ea3b77f2ffc2996b42528e92a74796f5867a3"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wikipedia-4/source.html",
+            "path": "vendor/mozilla/test/test-pages/wikipedia-4/source.html",
+            "sha256": "925eb59966aa8b996f93df303b73f88eb65f0e224728a1b1f2e164af7b5d0056"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wordpress/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/wordpress/expected-metadata.json",
+            "sha256": "8d6bd3a708920832e67f30521a9250a752d55bf4abb2989e6417b23cacda5a48"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wordpress/expected.html",
+            "path": "vendor/mozilla/test/test-pages/wordpress/expected.html",
+            "sha256": "87b8eb8543f5261a0d260f17c2043e80ddb1c7936c1163319d0cdc0f25c84943"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/wordpress/source.html",
+            "path": "vendor/mozilla/test/test-pages/wordpress/source.html",
+            "sha256": "157d8ec67187d55d7b975d1edfbed4eaf4fcc7d1b8c15d7ef6e20287caaea69d"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-1/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/yahoo-1/expected-metadata.json",
+            "sha256": "424f26d2a8467510c8f2c02c23ab1e2071de08d5e4808f3e84597f6e921e7d91"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-1/expected.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-1/expected.html",
+            "sha256": "34cbd780b2715d40bf0d506b86e252c8ce07f8120008451db15f7a0eaa393ea1"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-1/source.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-1/source.html",
+            "sha256": "233a5f1985522dd33595b2bdc824a34a668738581cd04f3a63deecbb5bea0684"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-2/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/yahoo-2/expected-metadata.json",
+            "sha256": "0cb8b37f5f91cf7014f542acd2e431243ffd2a8189d7c31000278b99e503de76"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-2/expected.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-2/expected.html",
+            "sha256": "6395c675de60e90d49684cfd742351f2c0d210195941a3977a266ec62c3c63f2"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-2/source.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-2/source.html",
+            "sha256": "be191e298103589b56ea0def65dc87f003d31ac109ec57c232ca050d0e442a40"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-3/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/yahoo-3/expected-metadata.json",
+            "sha256": "d939ed1c798c847cd64913446baf5bbad9b0c51b6d01731ca70aebb30f535f54"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-3/expected.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-3/expected.html",
+            "sha256": "03553214f5751ab2bc7fbd83f8593bd2b00c09d4e0f717680a8b62d4cb4ef2d0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-3/source.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-3/source.html",
+            "sha256": "615fce58d486ee7ed6f218acfe106a2c994dded82cbc5eaf8f16d96215c800db"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-4/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/yahoo-4/expected-metadata.json",
+            "sha256": "3a375cb8d4978ed80294c2aa8ba7f8e8cce91440fcda5997b71f4b4d26896976"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-4/expected.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-4/expected.html",
+            "sha256": "7428813a16337129a85dc9d46fa361d78f0479add70af69e136d2fed2fc30683"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/yahoo-4/source.html",
+            "path": "vendor/mozilla/test/test-pages/yahoo-4/source.html",
+            "sha256": "e2a752c73e992430270b52a4298ddec16294889eae4c90f2ec90dee7af5dccc4"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/youth/expected-metadata.json",
+            "path": "vendor/mozilla/test/test-pages/youth/expected-metadata.json",
+            "sha256": "b99a983114f81c2a684f0a54a77f21bfa187de90d9ac25085c9a06b167af9add"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/youth/expected.html",
+            "path": "vendor/mozilla/test/test-pages/youth/expected.html",
+            "sha256": "83aa90bd17fbb3f39d2a73bcd737f33fe58c5aaa39805d0411cceaa4f6a3d7c0"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-pages/youth/source.html",
+            "path": "vendor/mozilla/test/test-pages/youth/source.html",
+            "sha256": "899e43896a02cea7e55dcc4e6109eba63ac0c965eabeeb6936ed02aeb3fde295"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/test-readability.js",
+            "path": "vendor/mozilla/test/test-readability.js",
+            "sha256": "997d0e031048819c9ff150f61474f9e02378f1cb2f414f5dc2efb1c7a95ca284"
+          },
+          {
+            "source": "mozilla",
+            "upstreamPath": "test/utils.js",
+            "path": "vendor/mozilla/test/utils.js",
+            "sha256": "3a962c2b02f3ff02a83ba3048144abe19337681c4046b99a442bcde8b59ce562"
+          }
+        ]
+      },
+      "sources": {
+        "dist/node.js": "8ab3936f571be9b5c3d1026424db70b71e751cf84e3e5a4f05c00d70c18fad73",
+        "src/clone.ts": "fbfcfb911f5795aa1f4285c4b33f580a53b87a091e33927a3ca3492d99efb616",
+        "src/index.ts": "05c828fbfc596690d690492b237951332d9eb5adb2eda2e36988b840731745a9",
+        "src/cleanup.ts": "726c80fe635eaeaf69f352d3b1cfa89d440847309a84144d529c58e8ba05c0b2",
+        "src/validation.ts": "65cad0b1c7368e654ed568e463c7207be664f23c446d446df62907aa7b75b35d",
+        "src/node.ts": "2e09bad87f40bf854ad659513548ce9b4d32f7fd40a6547a30ceb8d858670e73",
+        "bun.lock": "eb4fabade3f76ee1e0d067f531c3cdadf2fa7f256494c1dc3314b55c5bed2dec",
+        "vendor/chromium/Readability.js": "fe8839ead0d470bd8b074b4bbbfd41f23a81f31adb2f948a8bf80ff3344cbc2a",
+        "vendor/mozilla/Readability.js": "e9330028c8a5a4aa7d75147be2605d520f7f213c7b28474947dc0e9c984e9bed",
+        "vendor/chromium/Readability-readerable.js": "cd7c773ed95f6d0e8459e9f20419cf60cd178c389b9e5b4e61768ca83aa422d9",
+        "vendor/mozilla/Readability-readerable.js": "e73600367067be2da322c0f26be9c4ec7759cd01b630dbb57278c326e5b5aba8"
+      }
+    }
+  },
+  "assets": {
+    "before": [
+      {
+        "file": "index.js",
+        "bytes": 6715,
+        "gzipBytes": 2032,
+        "brotliBytes": 1773,
+        "sha256": "a7873a8a46f10b9724e31328370cee75ad652db1fb4bae3f511857a760202933"
+      },
+      {
+        "file": "worker.js",
+        "bytes": 701,
+        "gzipBytes": 420,
+        "brotliBytes": 357,
+        "sha256": "c036700644b8853272fc4621e2395c674b725367583392b2ef7a8cdfcf2cd33c"
+      },
+      {
+        "file": "readability_wasm.js",
+        "bytes": 6966,
+        "gzipBytes": 2051,
+        "brotliBytes": 1798,
+        "sha256": "cfadff28396c0e74448832080bfe6ab7ade0f65817a4a1bb3f77157a84171048"
+      },
+      {
+        "file": "readability_wasm_bg.wasm",
+        "bytes": 1244498,
+        "gzipBytes": 454542,
+        "brotliBytes": 359356,
+        "sha256": "4781041032e1e9c45c00c82b35acb7f7607790a669a8461d1b7227249dadee1f"
+      }
+    ],
+    "transport": [
+      {
+        "file": "index.js",
+        "bytes": 6804,
+        "gzipBytes": 2046,
+        "brotliBytes": 1791,
+        "sha256": "ca30467f23135eca7f53ce379f26bf38646c591f5f5eda5cd7e9298c1f8f1e07"
+      },
+      {
+        "file": "worker.js",
+        "bytes": 701,
+        "gzipBytes": 420,
+        "brotliBytes": 357,
+        "sha256": "c036700644b8853272fc4621e2395c674b725367583392b2ef7a8cdfcf2cd33c"
+      },
+      {
+        "file": "readability_wasm.js",
+        "bytes": 10041,
+        "gzipBytes": 2605,
+        "brotliBytes": 2282,
+        "sha256": "f21cb687234942395570edc789f6d5412f2f09e2f4a5e8eb0494c84ea66f7ae1"
+      },
+      {
+        "file": "readability_wasm_bg.wasm",
+        "bytes": 1249499,
+        "gzipBytes": 456516,
+        "brotliBytes": 361300,
+        "sha256": "f06a80e7e0a81e790c1ef69bec9e1a6ad4c16b3312cc9e22458590f9d05dcc9a"
+      }
+    ],
+    "oz": [
+      {
+        "file": "index.js",
+        "bytes": 6804,
+        "gzipBytes": 2046,
+        "brotliBytes": 1791,
+        "sha256": "ca30467f23135eca7f53ce379f26bf38646c591f5f5eda5cd7e9298c1f8f1e07"
+      },
+      {
+        "file": "worker.js",
+        "bytes": 701,
+        "gzipBytes": 420,
+        "brotliBytes": 357,
+        "sha256": "c036700644b8853272fc4621e2395c674b725367583392b2ef7a8cdfcf2cd33c"
+      },
+      {
+        "file": "readability_wasm.js",
+        "bytes": 10041,
+        "gzipBytes": 2605,
+        "brotliBytes": 2282,
+        "sha256": "f21cb687234942395570edc789f6d5412f2f09e2f4a5e8eb0494c84ea66f7ae1"
+      },
+      {
+        "file": "readability_wasm_bg.wasm",
+        "bytes": 1125046,
+        "gzipBytes": 477815,
+        "brotliBytes": 382104,
+        "sha256": "92a33975937abb539128043669df920470e3741303c5486ba411789cbfbcd1ed"
+      }
+    ],
+    "o3": [
+      {
+        "file": "index.js",
+        "bytes": 6804,
+        "gzipBytes": 2046,
+        "brotliBytes": 1791,
+        "sha256": "ca30467f23135eca7f53ce379f26bf38646c591f5f5eda5cd7e9298c1f8f1e07"
+      },
+      {
+        "file": "worker.js",
+        "bytes": 701,
+        "gzipBytes": 420,
+        "brotliBytes": 357,
+        "sha256": "c036700644b8853272fc4621e2395c674b725367583392b2ef7a8cdfcf2cd33c"
+      },
+      {
+        "file": "readability_wasm.js",
+        "bytes": 10041,
+        "gzipBytes": 2605,
+        "brotliBytes": 2282,
+        "sha256": "f21cb687234942395570edc789f6d5412f2f09e2f4a5e8eb0494c84ea66f7ae1"
+      },
+      {
+        "file": "readability_wasm_bg.wasm",
+        "bytes": 1136453,
+        "gzipBytes": 478294,
+        "brotliBytes": 382615,
+        "sha256": "390f25e7e2a085ce4b534547e242f32ff88146b77beb47b468c3d5a9548940d8"
+      }
+    ]
+  },
+  "summary": {
+    "chromium": {
+      "before/main": {
+        "pages": 3,
+        "sumPageMedianMs": 8.233333309491474
+      },
+      "before/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 8.400000015894571
+      },
+      "transport/main": {
+        "pages": 3,
+        "sumPageMedianMs": 6.933333317438762
+      },
+      "transport/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 7.133333365122477
+      },
+      "oz/main": {
+        "pages": 3,
+        "sumPageMedianMs": 6.400000015894572
+      },
+      "oz/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 6.666666666666666
+      },
+      "o3/main": {
+        "pages": 3,
+        "sumPageMedianMs": 6.433333317438762
+      },
+      "o3/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 6.566666642824809
+      }
+    },
+    "mozilla": {
+      "before/main": {
+        "pages": 3,
+        "sumPageMedianMs": 8.299999992052713
+      },
+      "before/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 8.56666664282481
+      },
+      "transport/main": {
+        "pages": 3,
+        "sumPageMedianMs": 6.966666658719381
+      },
+      "transport/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 7.200000047683716
+      },
+      "oz/main": {
+        "pages": 3,
+        "sumPageMedianMs": 6.46666661898295
+      },
+      "oz/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 6.700000007947286
+      },
+      "o3/main": {
+        "pages": 3,
+        "sumPageMedianMs": 6.400000015894571
+      },
+      "o3/worker": {
+        "pages": 3,
+        "sumPageMedianMs": 6.666666706403096
+      }
+    }
+  },
+  "details": [
+    {
+      "id": "upstream/ehow-2/chromium/api",
+      "inputBytes": 107092,
+      "p50Ms": {
+        "before/main": 3.1333333253860474,
+        "before/worker": 3.199999968210856,
+        "transport/main": 2.899999976158142,
+        "transport/worker": 2.9333333571751914,
+        "oz/main": 2.700000007947286,
+        "oz/worker": 2.799999992052714,
+        "o3/main": 2.700000007947286,
+        "o3/worker": 2.7333333492279053
+      }
+    },
+    {
+      "id": "upstream/ehow-2/mozilla/api",
+      "inputBytes": 107092,
+      "p50Ms": {
+        "before/main": 3,
+        "before/worker": 3.0666666825612388,
+        "transport/main": 2.7666666507720947,
+        "transport/worker": 2.800000031789144,
+        "oz/main": 2.5666666428248086,
+        "oz/worker": 2.6333333253860474,
+        "o3/main": 2.533333341280619,
+        "o3/worker": 2.600000023841858
+      }
+    },
+    {
+      "id": "upstream/rtl-4/chromium/api",
+      "inputBytes": 1214,
+      "p50Ms": {
+        "before/main": 0.2666666507720947,
+        "before/worker": 0.23333334922790527,
+        "transport/main": 0.23333330949147543,
+        "transport/worker": 0.2666666905085246,
+        "oz/main": 0.20000000794728598,
+        "oz/worker": 0.23333334922790527,
+        "o3/main": 0.20000000794728598,
+        "o3/worker": 0.23333330949147543
+      }
+    },
+    {
+      "id": "upstream/rtl-4/mozilla/api",
+      "inputBytes": 1214,
+      "p50Ms": {
+        "before/main": 0.16666666666666666,
+        "before/worker": 0.1999999682108561,
+        "transport/main": 0.16666666666666666,
+        "transport/worker": 0.20000000794728598,
+        "oz/main": 0.16666666666666666,
+        "oz/worker": 0.16666666666666666,
+        "o3/main": 0.16666666666666666,
+        "o3/worker": 0.16666666666666666
+      }
+    },
+    {
+      "id": "upstream/schema-org-context-object/chromium/api",
+      "inputBytes": 459526,
+      "p50Ms": {
+        "before/main": 4.833333333333333,
+        "before/worker": 4.9666666984558105,
+        "transport/main": 3.800000031789144,
+        "transport/worker": 3.9333333174387612,
+        "oz/main": 3.5,
+        "oz/worker": 3.6333333253860474,
+        "o3/main": 3.5333333015441895,
+        "o3/worker": 3.599999984105428
+      }
+    },
+    {
+      "id": "upstream/schema-org-context-object/mozilla/api",
+      "inputBytes": 459526,
+      "p50Ms": {
+        "before/main": 5.133333325386047,
+        "before/worker": 5.299999992052714,
+        "transport/main": 4.03333334128062,
+        "transport/worker": 4.200000007947286,
+        "oz/main": 3.7333333094914756,
+        "oz/worker": 3.900000015894572,
+        "o3/main": 3.700000007947286,
+        "o3/worker": 3.900000015894572
+      }
+    }
+  ],
+  "startups": [
+    [
+      {
+        "name": "before",
+        "importMs": 7.199999928474426,
+        "initMs": 5.5,
+        "workerCreateAndInitMs": 10.399999976158142
+      },
+      {
+        "name": "transport",
+        "importMs": 1.9000000953674316,
+        "initMs": 2.399999976158142,
+        "workerCreateAndInitMs": 5.299999952316284
+      },
+      {
+        "name": "oz",
+        "importMs": 1.2000000476837158,
+        "initMs": 2,
+        "workerCreateAndInitMs": 4.899999976158142
+      },
+      {
+        "name": "o3",
+        "importMs": 1.2999999523162842,
+        "initMs": 2.399999976158142,
+        "workerCreateAndInitMs": 5.5
+      }
+    ]
+  ],
+  "rows": [
+    {
+      "id": "upstream/rtl-4/chromium/api",
+      "engine": "chromium",
+      "round": 0,
+      "inputBytes": 1214,
+      "timings": {
+        "before/main": [
+          0.5666666825612386,
+          0.3333333333333333,
+          0.29999999205271405,
+          0.2666666905085246,
+          0.2666666905085246,
+          0.23333330949147543,
+          0.2666666507720947,
+          0.2666666507720947,
+          0.23333334922790527,
+          0.20000000794728598,
+          0.2666666905085246,
+          0.1999999682108561,
+          0.23333330949147543,
+          0.20000000794728598,
+          0.23333330949147543
+        ],
+        "before/worker": [
+          0.5,
+          0.5,
+          0.3333333333333333,
+          0.23333330949147543,
+          0.5,
+          0.2666666905085246,
+          0.23333334922790527,
+          0.36666667461395264,
+          0.2666666507720947,
+          0.23333334922790527,
+          0.1999999682108561,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.23333334922790527,
+          0.20000000794728598
+        ],
+        "transport/main": [
+          0.36666667461395264,
+          0.29999999205271405,
+          0.29999999205271405,
+          0.2666666905085246,
+          0.2666666507720947,
+          0.23333330949147543,
+          0.20000000794728598,
+          0.29999999205271405,
+          0.20000000794728598,
+          0.1999999682108561,
+          0.23333330949147543,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.20000000794728598
+        ],
+        "transport/worker": [
+          0.700000007947286,
+          0.4333333174387614,
+          0.5,
+          0.36666667461395264,
+          0.3333333333333333,
+          0.23333334922790527,
+          0.23333330949147543,
+          0.2666666905085246,
+          0.23333330949147543,
+          0.20000000794728598,
+          0.2666666905085246,
+          0.2666666905085246,
+          0.16666666666666666,
+          0.29999999205271405,
+          0.2666666507720947
+        ],
+        "oz/main": [
+          0.3999999761581421,
+          0.3333333333333333,
+          0.2666666905085246,
+          0.23333334922790527,
+          0.1999999682108561,
+          0.20000000794728598,
+          0.23333334922790527,
+          0.20000000794728598,
+          0.1333333651224772,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.16666666666666666
+        ],
+        "oz/worker": [
+          0.40000001589457196,
+          0.2666666905085246,
+          0.3333333333333333,
+          0.23333330949147543,
+          0.2666666905085246,
+          0.23333334922790527,
+          0.23333334922790527,
+          0.1999999682108561,
+          0.1999999682108561,
+          0.2666666507720947,
+          0.23333330949147543,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.23333334922790527,
+          0.20000000794728598
+        ],
+        "o3/main": [
+          0.36666667461395264,
+          0.3333333333333333,
+          0.2666666507720947,
+          0.23333334922790527,
+          0.20000000794728598,
+          0.23333330949147543,
+          0.1999999682108561,
+          0.23333334922790527,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.16666666666666666
+        ],
+        "o3/worker": [
+          0.5,
+          0.2666666507720947,
+          0.29999999205271405,
+          0.29999999205271405,
+          0.1999999682108561,
+          0.20000000794728598,
+          0.23333334922790527,
+          0.2666666507720947,
+          0.13333332538604736,
+          0.36666667461395264,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.23333330949147543,
+          0.16666666666666666
+        ]
+      }
+    },
+    {
+      "id": "upstream/rtl-4/mozilla/api",
+      "engine": "mozilla",
+      "round": 0,
+      "inputBytes": 1214,
+      "timings": {
+        "before/main": [
+          0.16666666666666666,
+          0.1999999682108561,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.1333333651224772,
+          0.20000000794728598,
+          0.1999999682108561
+        ],
+        "before/worker": [
+          0.23333330949147543,
+          0.23333334922790527,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.23333330949147543,
+          0.23333334922790527,
+          0.1999999682108561,
+          0.16666666666666666,
+          0.2666666507720947,
+          0.16666666666666666,
+          0.1999999682108561,
+          0.1999999682108561,
+          0.23333330949147543,
+          0.16666666666666666
+        ],
+        "transport/main": [
+          0.23333334922790527,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.13333332538604736,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.1333333651224772,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.1333333651224772,
+          0.16666666666666666,
+          0.1333333651224772,
+          0.16666666666666666
+        ],
+        "transport/worker": [
+          0.23333334922790527,
+          0.23333334922790527,
+          0.13333332538604736,
+          0.23333334922790527,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.13333332538604736,
+          0.23333334922790527,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.23333334922790527,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.20000000794728598
+        ],
+        "oz/main": [
+          0.16666666666666666,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.13333332538604736
+        ],
+        "oz/worker": [
+          0.23333330949147543,
+          0.13333332538604736,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.16666666666666666
+        ],
+        "o3/main": [
+          0.20000000794728598,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.13333332538604736,
+          0.20000000794728598,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666
+        ],
+        "o3/worker": [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.20000000794728598,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.20000000794728598,
+          0.13333332538604736,
+          0.13333332538604736,
+          0.16666666666666666,
+          0.1333333651224772,
+          0.16666666666666666,
+          0.1333333651224772
+        ]
+      }
+    },
+    {
+      "id": "upstream/schema-org-context-object/mozilla/api",
+      "engine": "mozilla",
+      "round": 0,
+      "inputBytes": 459526,
+      "timings": {
+        "before/main": [
+          6,
+          5.600000023841858,
+          5.53333334128062,
+          5.299999992052714,
+          5.133333325386047,
+          5.166666666666667,
+          5.166666666666667,
+          5,
+          4.96666665871938,
+          5.166666666666667,
+          4.96666665871938,
+          4.96666665871938,
+          4.933333357175191,
+          4.900000015894572,
+          4.933333317438762
+        ],
+        "before/worker": [
+          6.166666666666667,
+          6.200000007947286,
+          5.799999992052714,
+          5.566666642824809,
+          5.299999992052714,
+          5.299999992052714,
+          6.1333333651224775,
+          5.266666650772095,
+          5.133333325386047,
+          5.433333357175191,
+          5.233333309491475,
+          5.066666642824809,
+          6.800000031789144,
+          5,
+          4.933333317438762
+        ],
+        "transport/main": [
+          4.6333333651224775,
+          4.566666642824809,
+          4.46666665871938,
+          4.133333325386047,
+          4.200000007947286,
+          4.03333334128062,
+          4,
+          4.0333333015441895,
+          4,
+          4.066666642824809,
+          4.03333334128062,
+          3.8666666746139526,
+          4.03333334128062,
+          3.900000015894572,
+          3.8666666746139526
+        ],
+        "transport/worker": [
+          5.03333334128062,
+          4.899999976158142,
+          4.733333309491475,
+          4.733333349227905,
+          4.300000031789144,
+          4.333333333333333,
+          4.200000007947286,
+          4.200000007947286,
+          4.200000007947286,
+          3.966666658719381,
+          4.46666665871938,
+          4.166666666666667,
+          4.03333334128062,
+          4.03333334128062,
+          4
+        ],
+        "oz/main": [
+          4.366666674613953,
+          3.900000015894572,
+          3.966666658719381,
+          3.9333333571751914,
+          3.899999976158142,
+          3.7333333094914756,
+          3.799999992052714,
+          3.6666666666666665,
+          3.7333333492279053,
+          3.6333333253860474,
+          3.5666666825612388,
+          3.6333333253860474,
+          3.5666666825612388,
+          3.5666666428248086,
+          3.5666666428248086
+        ],
+        "oz/worker": [
+          4.633333325386047,
+          4.366666674613953,
+          4.199999968210856,
+          4.300000031789144,
+          4.133333325386047,
+          4,
+          3.900000015894572,
+          3.7333333492279053,
+          3.8333333333333335,
+          3.6666666666666665,
+          4.266666690508525,
+          3.866666634877523,
+          3.700000007947286,
+          3.633333365122477,
+          3.6666666666666665
+        ],
+        "o3/main": [
+          4.133333325386047,
+          3.966666658719381,
+          3.8333333333333335,
+          3.7333333492279053,
+          3.900000015894572,
+          3.6333333253860474,
+          3.700000007947286,
+          3.700000007947286,
+          3.700000007947286,
+          3.5,
+          3.533333341280619,
+          3.5666666825612388,
+          3.5,
+          3.6333333253860474,
+          3.533333341280619
+        ],
+        "o3/worker": [
+          4.299999992052714,
+          4.266666690508525,
+          4.199999968210856,
+          4.066666642824809,
+          3.966666658719381,
+          4.066666682561238,
+          3.8666666746139526,
+          3.900000015894572,
+          3.8333333333333335,
+          3.7666666905085244,
+          4.099999984105428,
+          3.6666666666666665,
+          3.700000007947286,
+          3.7333333492279053,
+          3.5
+        ]
+      }
+    },
+    {
+      "id": "upstream/ehow-2/chromium/api",
+      "engine": "chromium",
+      "round": 0,
+      "inputBytes": 107092,
+      "timings": {
+        "before/main": [
+          3.1666666666666665,
+          3.1333333253860474,
+          3.2666666507720947,
+          3.2333333492279053,
+          3.3666666746139526,
+          3.2666666507720947,
+          3.133333365122477,
+          3.099999984105428,
+          3.200000007947286,
+          3.100000023841858,
+          3.1333333253860474,
+          3.0666666825612388,
+          3.099999984105428,
+          3.099999984105428,
+          3.1333333253860474
+        ],
+        "before/worker": [
+          3.199999968210856,
+          3.200000007947286,
+          3.199999968210856,
+          3.299999992052714,
+          3.1333333253860474,
+          3.2333333492279053,
+          3.2666666507720947,
+          3.2333333094914756,
+          3.200000007947286,
+          3.1666666666666665,
+          3.1333333253860474,
+          3.1666666666666665,
+          3.099999984105428,
+          3.1666666666666665,
+          3.2666666905085244
+        ],
+        "transport/main": [
+          2.9333333571751914,
+          2.866666634877523,
+          3,
+          3.0666666825612388,
+          3,
+          3,
+          2.900000015894572,
+          2.8333333333333335,
+          2.899999976158142,
+          2.8666666746139526,
+          2.866666634877523,
+          2.8333333333333335,
+          2.8333333333333335,
+          2.8333333333333335,
+          2.9333333174387612
+        ],
+        "transport/worker": [
+          2.9333333174387612,
+          2.966666658719381,
+          2.966666658719381,
+          3.1333333253860474,
+          2.9333333571751914,
+          3.099999984105428,
+          3.133333365122477,
+          2.9333333174387612,
+          2.8666666746139526,
+          2.9333333174387612,
+          2.9333333571751914,
+          2.900000015894572,
+          2.966666658719381,
+          2.7333333492279053,
+          2.899999976158142
+        ],
+        "oz/main": [
+          2.6666666666666665,
+          2.7333333492279053,
+          2.700000007947286,
+          2.7333333492279053,
+          4.433333357175191,
+          2.799999992052714,
+          2.7333333094914756,
+          2.6666666666666665,
+          2.6666666666666665,
+          2.6666666666666665,
+          2.6333333253860474,
+          2.700000007947286,
+          2.6666666666666665,
+          2.6666666666666665,
+          2.7333333492279053
+        ],
+        "oz/worker": [
+          2.9333333571751914,
+          2.966666658719381,
+          2.8666666746139526,
+          2.799999992052714,
+          3.100000023841858,
+          2.899999976158142,
+          2.799999992052714,
+          3.1333333253860474,
+          2.7333333492279053,
+          2.799999992052714,
+          2.7333333094914756,
+          2.699999968210856,
+          2.700000007947286,
+          2.699999968210856,
+          2.800000031789144
+        ],
+        "o3/main": [
+          2.7333333094914756,
+          2.700000007947286,
+          2.7666666507720947,
+          2.7333333094914756,
+          2.7333333094914756,
+          2.7666666905085244,
+          2.699999968210856,
+          2.700000007947286,
+          2.6666666666666665,
+          2.700000007947286,
+          2.6666666666666665,
+          2.6666666666666665,
+          2.6333333253860474,
+          2.700000007947286,
+          2.700000007947286
+        ],
+        "o3/worker": [
+          2.799999992052714,
+          2.9333333571751914,
+          2.7666666905085244,
+          2.7666666905085244,
+          3,
+          2.7333333094914756,
+          2.9333333571751914,
+          2.700000007947286,
+          2.6666666666666665,
+          2.7333333094914756,
+          2.599999984105428,
+          2.7333333492279053,
+          2.7333333492279053,
+          2.700000007947286,
+          2.6666666666666665
+        ]
+      }
+    },
+    {
+      "id": "upstream/ehow-2/mozilla/api",
+      "engine": "mozilla",
+      "round": 0,
+      "inputBytes": 107092,
+      "timings": {
+        "before/main": [
+          3.0666666825612388,
+          3,
+          3.099999984105428,
+          2.966666658719381,
+          3.1333333253860474,
+          2.966666658719381,
+          3.033333341280619,
+          3,
+          2.9666666984558105,
+          2.966666658719381,
+          2.966666658719381,
+          2.9333333571751914,
+          3,
+          2.966666658719381,
+          3
+        ],
+        "before/worker": [
+          3.033333341280619,
+          3.0666666825612388,
+          3.099999984105428,
+          3.1666666666666665,
+          3.1333333253860474,
+          3.1666666666666665,
+          3,
+          3.0666666825612388,
+          2.9333333571751914,
+          3.133333365122477,
+          3,
+          3.100000023841858,
+          3.033333341280619,
+          3.0666666825612388,
+          3
+        ],
+        "transport/main": [
+          2.7666666905085244,
+          2.7333333094914756,
+          2.799999992052714,
+          2.7333333094914756,
+          2.866666634877523,
+          2.799999992052714,
+          2.7333333492279053,
+          2.700000007947286,
+          2.7333333094914756,
+          2.7666666507720947,
+          2.7666666507720947,
+          2.7666666507720947,
+          2.7666666507720947,
+          2.7333333094914756,
+          2.7666666905085244
+        ],
+        "transport/worker": [
+          2.7666666905085244,
+          2.799999992052714,
+          2.799999992052714,
+          2.966666658719381,
+          2.799999992052714,
+          2.866666634877523,
+          2.8666666746139526,
+          2.800000031789144,
+          2.6666666666666665,
+          2.9333333174387612,
+          2.7666666507720947,
+          2.899999976158142,
+          2.700000007947286,
+          2.8333333333333335,
+          2.8666666746139526
+        ],
+        "oz/main": [
+          2.5666666428248086,
+          2.533333341280619,
+          2.599999984105428,
+          2.5666666825612388,
+          2.6333333253860474,
+          2.533333341280619,
+          2.5666666428248086,
+          2.5,
+          2.5,
+          2.466666658719381,
+          2.600000023841858,
+          2.5666666428248086,
+          2.6333333253860474,
+          2.533333341280619,
+          2.5666666428248086
+        ],
+        "oz/worker": [
+          2.5666666825612388,
+          2.6333333253860474,
+          2.700000007947286,
+          2.7333333094914756,
+          2.600000023841858,
+          2.7666666905085244,
+          2.5666666825612388,
+          2.5666666825612388,
+          2.5666666428248086,
+          2.7333333492279053,
+          2.633333365122477,
+          2.6666666666666665,
+          2.6333333253860474,
+          2.700000007947286,
+          2.599999984105428
+        ],
+        "o3/main": [
+          2.533333341280619,
+          2.5,
+          2.599999984105428,
+          2.533333341280619,
+          2.700000007947286,
+          2.5666666428248086,
+          2.6333333253860474,
+          2.5,
+          2.533333341280619,
+          2.5666666825612388,
+          2.5666666428248086,
+          2.533333341280619,
+          2.533333341280619,
+          2.5,
+          2.599999984105428
+        ],
+        "o3/worker": [
+          2.466666658719381,
+          2.600000023841858,
+          2.5666666825612388,
+          2.599999984105428,
+          2.600000023841858,
+          2.700000007947286,
+          2.6333333253860474,
+          2.6666666666666665,
+          2.699999968210856,
+          2.6666666666666665,
+          2.599999984105428,
+          2.700000007947286,
+          2.6333333253860474,
+          2.599999984105428,
+          2.4333333174387612
+        ]
+      }
+    },
+    {
+      "id": "upstream/schema-org-context-object/chromium/api",
+      "engine": "chromium",
+      "round": 0,
+      "inputBytes": 459526,
+      "timings": {
+        "before/main": [
+          4.933333357175191,
+          4.866666674613953,
+          4.833333333333333,
+          4.800000031789144,
+          4.766666690508525,
+          4.799999992052714,
+          5,
+          4.833333333333333,
+          4.766666650772095,
+          4.833333333333333,
+          4.766666690508525,
+          4.766666650772095,
+          4.866666674613953,
+          4.933333317438762,
+          5
+        ],
+        "before/worker": [
+          4.9666666984558105,
+          5.03333334128062,
+          5.233333349227905,
+          4.800000031789144,
+          4.833333333333333,
+          4.96666665871938,
+          5.03333334128062,
+          4.899999976158142,
+          5.03333334128062,
+          4.899999976158142,
+          4.766666690508525,
+          4.8666666348775225,
+          5.03333334128062,
+          5.099999984105428,
+          5.066666642824809
+        ],
+        "transport/main": [
+          3.799999992052714,
+          3.800000031789144,
+          3.899999976158142,
+          3.7666666905085244,
+          3.7666666507720947,
+          3.9666666984558105,
+          3.799999992052714,
+          3.7666666507720947,
+          3.8666666746139526,
+          3.7666666905085244,
+          3.799999992052714,
+          3.900000015894572,
+          3.800000031789144,
+          3.9333333174387612,
+          4.03333334128062
+        ],
+        "transport/worker": [
+          4.03333334128062,
+          3.9333333571751914,
+          4.066666682561238,
+          3.9333333174387612,
+          3.8333333333333335,
+          4.1333333651224775,
+          3.866666634877523,
+          3.8333333333333335,
+          3.8333333333333335,
+          3.7333333492279053,
+          3.8333333333333335,
+          4.03333334128062,
+          3.966666658719381,
+          4.066666642824809,
+          3.9333333174387612
+        ],
+        "oz/main": [
+          3.466666658719381,
+          3.400000015894572,
+          3.533333341280619,
+          3.5,
+          3.5,
+          3.600000023841858,
+          3.5,
+          3.466666658719381,
+          3.5666666428248086,
+          3.466666658719381,
+          3.4333333571751914,
+          3.533333341280619,
+          3.600000023841858,
+          3.5,
+          3.5
+        ],
+        "oz/worker": [
+          3.799999992052714,
+          3.700000007947286,
+          3.4333333174387612,
+          3.633333365122477,
+          3.5666666825612388,
+          3.600000023841858,
+          3.6333333253860474,
+          3.6333333253860474,
+          3.599999984105428,
+          3.600000023841858,
+          3.600000023841858,
+          3.6333333253860474,
+          3.7333333492279053,
+          3.7666666507720947,
+          3.6666666666666665
+        ],
+        "o3/main": [
+          3.5333333015441895,
+          3.533333341280619,
+          3.533333341280619,
+          3.600000023841858,
+          3.400000015894572,
+          3.4333333174387612,
+          3.5666666825612388,
+          3.400000015894572,
+          3.400000015894572,
+          3.466666658719381,
+          3.4333333571751914,
+          3.533333341280619,
+          3.533333341280619,
+          3.400000015894572,
+          3.5666666428248086
+        ],
+        "o3/worker": [
+          3.6666666666666665,
+          3.5666666825612388,
+          3.466666658719381,
+          3.5666666825612388,
+          3.5,
+          3.5,
+          4.3666666348775225,
+          3.700000007947286,
+          3.5,
+          3.599999984105428,
+          3.5,
+          3.599999984105428,
+          3.7666666905085244,
+          3.7333333492279053,
+          4
+        ]
+      }
+    }
+  ]
+}

@@ -74,7 +74,10 @@
     "check": "bun run typecheck && bun run test && bun run test:upstream && bun run compare --check && bun run test:package",
     "test:package": "node scripts/check-package.mjs",
     "demo": "node scripts/serve-example.mjs",
-    "prepack": "bun run build"
+    "prepack": "bun run build",
+    "build:wasm": "node scripts/build-wasm.mjs",
+    "test:wasm": "node scripts/test-wasm.mjs",
+    "benchmark:wasm": "node scripts/benchmark-wasm-compare.mjs"
   },
   "dependencies": {
     "dompurify": "3.4.17",

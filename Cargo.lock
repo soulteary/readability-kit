@@ -669,6 +669,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "readability-wasm"
+version = "0.1.0"
+dependencies = [
+ "readability-core",
+ "serde_json",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "redox_syscall"
 version = "0.5.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"

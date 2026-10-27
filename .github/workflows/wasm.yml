@@ -1,0 +1,39 @@
+name: Rust WASM
+on:
+  push:
+    paths: ['crates/**', 'Cargo.*', 'wasm/**', 'scripts/*wasm*', 'scripts/*rust*', 'scripts/npm-command.mjs', 'src/**', 'vendor/**', 'test/compatibility*', 'package.json', 'bun.lock', '.github/workflows/wasm.yml']
+  pull_request:
+    paths: ['crates/**', 'Cargo.*', 'wasm/**', 'scripts/*wasm*', 'scripts/*rust*', 'scripts/npm-command.mjs', 'src/**', 'vendor/**', 'test/compatibility*', 'package.json', 'bun.lock', '.github/workflows/wasm.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-worker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - run: bun install --frozen-lockfile
+      - run: cargo install wasm-bindgen-cli --version 0.2.117 --locked
+      - run: bunx playwright install --with-deps chromium firefox webkit
+      - run: bun run build
+      - run: bun run build:wasm
+      - run: WASM_EXTRA_BROWSERS=1 bun run test:wasm
+      - run: READABILITY_WASM=1 node scripts/check-rust-sanitizer.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: wasm-verification
+          path: wasm-reports/
