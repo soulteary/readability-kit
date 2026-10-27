@@ -1,7 +1,8 @@
 # Workspace layout and package releases
 
 The repository root is private. Public npm names, versions, entry points and
-runtime behavior are unchanged; no Python package is introduced.
+runtime behavior are unchanged. The separate `python/` package now binds the
+existing Rust core; it is not part of the Bun workspace.
 
 ## Moved paths
 
@@ -79,3 +80,12 @@ example's files because those tests serve and exercise the example.
 Benchmark and WASM provenance include the relocated package manifests and
 TypeScript configuration. Historical report data and upstream-relative paths
 remain unchanged.
+
+## Python release unit
+
+`python/pyproject.toml` defines the independent Python distribution and
+`crates/readability-python` provides its native extension. Generated wheels and
+sdists live in `python/dist/`; staged notices and corresponding MPL sources live
+in `python/src/readability_kit/_licenses/`. Both are ignored. Build and validate
+with `tools/build-python-package.py` and `tools/check-python-package.py` using a
+Python environment with the pinned maturin version. See [Python](../python/README.md).
