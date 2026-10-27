@@ -15,17 +15,17 @@ def sha256(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def collect(*, binary_path=None, root_package="readability-cli", target=None):
+def collect(*, binary_path=None, root_package="readability-cli", target=None, include_binary=True, all_targets=False):
     suffix = ".exe" if os.name == "nt" else ""
     binary = binary_path or ROOT / "target" / "release" / f"readability-kit{suffix}"
-    if not binary.is_file():
+    if include_binary and not binary.is_file():
         raise RuntimeError("Build first: cargo build --release --workspace --locked")
     version = subprocess.check_output(["rustc", "-vV"], text=True)
     host = target or next(line.removeprefix("host: ") for line in version.splitlines() if line.startswith("host: "))
-    metadata = json.loads(subprocess.check_output(
-        ["cargo", "metadata", "--locked", "--offline", "--filter-platform", host, "--format-version", "1"],
-        cwd=ROOT, text=True,
-    ))
+    metadata_command = ["cargo", "metadata", "--locked", "--offline", "--format-version", "1"]
+    if not all_targets:
+        metadata_command.extend(["--filter-platform", host])
+    metadata = json.loads(subprocess.check_output(metadata_command, cwd=ROOT, text=True))
     packages = {p["id"]: p for p in metadata["packages"]}
     nodes = {n["id"]: n for n in metadata["resolve"]["nodes"]}
     pending = [p["id"] for p in packages.values() if p["name"] == root_package]
@@ -40,12 +40,13 @@ def collect(*, binary_path=None, root_package="readability-cli", target=None):
             if any(kind["kind"] != "dev" for kind in dep["dep_kinds"]):
                 pending.append(dep["pkg"])
     files = {
-        binary.name: binary.read_bytes(),
         "LICENSE": (ROOT / "LICENSE").read_bytes(),
         "NOTICE": (ROOT / "NOTICE").read_bytes(),
         "Cargo.lock": (ROOT / "Cargo.lock").read_bytes(),
         "RUST_MIGRATION.md": (ROOT / "docs/RUST_MIGRATION.md").read_bytes(),
     }
+    if include_binary:
+        files[binary.name] = binary.read_bytes()
     for path in sorted((ROOT / "LICENSES").rglob("*")):
         if path.is_file():
             files[f"LICENSES/{path.relative_to(ROOT / 'LICENSES').as_posix()}"] = path.read_bytes()
@@ -74,7 +75,7 @@ def collect(*, binary_path=None, root_package="readability-cli", target=None):
         if package.get("license_file"):
             selected.add(directory / package["license_file"])
         # Workspace-owned source inherits the root project license and notice.
-        if package["name"] in {"readability-cli", "readability-core", "readability-wasm"}:
+        if package["name"] in {"readability-cli", "readability-core", "readability-wasm", "readability-python"}:
             selected.update([ROOT / "LICENSE", ROOT / "NOTICE"])
         license_origin = "package files"
         if not selected and package["license"] == "MPL-2.0":
@@ -112,8 +113,9 @@ def collect(*, binary_path=None, root_package="readability-cli", target=None):
                         "notices": copied, "licenseTextOrigin": license_origin,
                         "bundledSource": source_prefix})
     files["DEPENDENCIES.json"] = (json.dumps({
-        "scope": "Normal/build dependency closure for the recorded target; dev-only dependencies excluded.",
-        "target": host,
+        "scope": ("Normal/build dependency closure for all targets; dev-only dependencies excluded."
+                  if all_targets else "Normal/build dependency closure for the recorded target; dev-only dependencies excluded."),
+        "target": "all" if all_targets else host,
         "packages": records,
     }, indent=2) + "\n").encode()
     files["licenses/dom_smoothie-0.18.2/READABILITY_KIT_PATCHES.md"] = (

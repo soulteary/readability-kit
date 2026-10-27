@@ -9,7 +9,7 @@ const [input,output]=process.argv.slice(2);
 if(!input||!output)throw new Error('Usage: node tools/summarize-benchmark.mjs raw.json summary.json');
 const rawPath=resolve(input),raw=JSON.parse(readFileSync(rawPath,'utf8')),base=dirname(rawPath);
 const {manifest,jobs}=raw,{config,corpus,detailedCaseIds}=manifest;
-const impls=['javascript','go','rust'];
+const impls=config.implementations??['javascript','go','rust'];
 const assert=(x,message)=>{if(!x)throw new Error(message)};
 assert(raw.schema===1&&Array.isArray(jobs),'Unsupported raw report');
 const nearest=(values,q)=>{assert(values.length>0,'Empty statistic');const sorted=[...values].sort((a,b)=>a-b);return sorted[Math.max(0,Math.ceil(q*sorted.length)-1)];};
@@ -58,7 +58,7 @@ for(const engine of config.engines){
   full[impl]={samplesPerPage:config.replicates*config.fullIterations,corpusSumPageMediansMs:medians.reduce((a,b)=>a+b,0),pageMedianDistributionMs:stats(medians),workerPeakRSSMiB:rss(g),perPage};
  }
  const correctness={};
- for(const impl of ['go','rust']){
+ for(const impl of impls.filter(k=>k!=='javascript')){
   const differingIds=corpus.map(x=>x.id).filter(id=>fullData[impl].signatures.get(id)!==fullData.javascript.signatures.get(id));
   correctness[impl]={comparedPages:corpus.length,matchingPages:corpus.length-differingIds.length,differingIds};
  }
@@ -77,7 +77,7 @@ for(const engine of config.engines){
    assert(articles[impl].every(a=>isDeepStrictEqual(a,articles[impl][0])),`Unstable cold Article ${engine}/${impl}/${id}`);
    row.implementations[impl]={residentMs:stats(data.samples.get(id)),workerPeakRSSMiB:rss(g),coldWallMs:stats(cold.map(j=>j.stats.wallNs/1e6)),coldPeakRSSMiB:rss(cold)};
   }
-  for(const impl of ['go','rust']){
+  for(const impl of impls.filter(k=>k!=='javascript')){
    const fields=[...new Set([...Object.keys(articles.javascript[0]),...Object.keys(articles[impl][0])])].filter(k=>!Object.hasOwn(articles.javascript[0],k)||!Object.hasOwn(articles[impl][0],k)||!isDeepStrictEqual(articles.javascript[0][k],articles[impl][0][k]));
    row.coldArticleComparison[impl]={comparedOutputs:articles[impl].length,mismatchingOutputs:fields.length?articles[impl].length:0,differingFields:fields};
   }
@@ -89,11 +89,11 @@ for(const engine of config.engines){
  }
  summary.engines[engine]={full,fullTextCorrectness:correctness,fullCorpusTimeRatios:ratios(full,x=>x.corpusSumPageMediansMs),fullPeakRSSRatios:ratios(full,x=>x.workerPeakRSSMiB.p50),detail};
 }
-function ratios(data,get){return {javascriptOverGo:get(data.javascript)/get(data.go),javascriptOverRust:get(data.javascript)/get(data.rust)};}
+function ratios(data,get){return {javascriptOverGo:get(data.javascript)/get(data.go),javascriptOverRust:get(data.javascript)/get(data.rust),...(data.python?{javascriptOverPython:get(data.javascript)/get(data.python),pythonOverRust:get(data.python)/get(data.rust),pythonOverGo:get(data.python)/get(data.go)}:{})};}
 for(const impl of impls){const g=group('startup',impl);summary.startup[impl]={wallMs:stats(g.map(j=>j.stats.wallNs/1e6)),peakRSSMiB:rss(g)};}
 summary.startupRatios=ratios(summary.startup,x=>x.wallMs.p50);
 summary.startupPeakRSSRatios=ratios(summary.startup,x=>x.peakRSSMiB.p50);
-const expected=config.engines.length*3*(config.replicates*(1+detailedCaseIds.length)+config.coldIterations*detailedCaseIds.length)+3*config.coldIterations;
+const expected=config.engines.length*impls.length*(config.replicates*(1+detailedCaseIds.length)+config.coldIterations*detailedCaseIds.length)+impls.length*config.coldIterations;
 assert(jobs.length===expected,`Unexpected total jobs ${jobs.length}, expected ${expected}`);
 writeFileSync(resolve(output),JSON.stringify(summary,null,2)+'\n');
 console.log(`Summarized ${jobs.length} validated jobs, ${corpus.length} pages into ${resolve(output)}`);

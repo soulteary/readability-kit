@@ -1,0 +1,92 @@
+name: Python
+
+on:
+  push:
+    branches: [main, migrate/reading-core]
+    paths: ['python/**', 'crates/**', 'Cargo.*', 'tools/**', 'tests/**', 'packages/**', 'vendor/**', 'package.json', 'bun.lock', 'LICENSE*', 'LICENSES/**', 'NOTICE', '.github/workflows/python.yml']
+  pull_request:
+    paths: ['python/**', 'crates/**', 'Cargo.*', 'tools/**', 'tests/**', 'packages/**', 'vendor/**', 'package.json', 'bun.lock', 'LICENSE*', 'LICENSES/**', 'NOTICE', '.github/workflows/python.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: dtolnay/rust-toolchain@stable
+      - run: python -m pip install maturin==1.15.0
+      - run: cargo fetch --locked
+      - run: python tools/build-python-package.py
+      - run: python tools/check-python-package.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-${{ matrix.os }}
+          path: python/dist/*
+
+  compatibility:
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - run: python -m pip install maturin==1.15.0
+      - run: cargo fetch --locked
+      - run: python tools/prepare-python-package.py
+      - working-directory: python
+        run: python -m maturin build --release --out dist
+      - run: python -m pip install --no-deps python/dist/*.whl
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      - run: mkdir -p python-reports
+      - run: node tools/compatibility.mjs capture --output python-reports/javascript.json
+      - run: node tools/compatibility.mjs capture-readerable --output python-reports/readerable.json
+      - run: python tools/python-compatibility.py --baseline python-reports/javascript.json --output python-reports/python.json
+      - run: node tools/compatibility.mjs compare --baseline python-reports/javascript.json --candidate python-reports/python.json --output python-reports/extraction-diff.json
+      - run: python tools/python-compatibility.py --baseline python-reports/readerable.json --output python-reports/python-readerable.json
+      - run: node tools/compatibility.mjs compare --baseline python-reports/readerable.json --candidate python-reports/python-readerable.json --output python-reports/readerable-diff.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: python-compatibility
+          path: python-reports/
+
+  supported-python:
+    timeout-minutes: 10
+    needs: package
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.10', '3.12', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-${{ matrix.os }}
+          path: wheelhouse
+      - run: python -m pip install --no-index --find-links wheelhouse readability-kit
+      - run: python -m unittest discover -s python/tests -v
