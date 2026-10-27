@@ -11,6 +11,7 @@ import sys
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 import warnings
 import zipfile
 
@@ -30,6 +31,34 @@ class PackagingTests(unittest.TestCase):
             cls.utils = python_package_utils
         finally:
             sys.path.pop(0)
+
+    def test_rust_metadata_uses_utf8_on_non_utf8_hosts(self):
+        spec = importlib.util.spec_from_file_location('package_rust', TOOLS / 'package-rust.py')
+        packager = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(packager)
+        with tempfile.TemporaryDirectory() as directory:
+            sysroot = Path(directory) / '依赖'
+            notices = sysroot / 'share/doc/rust'
+            notices.mkdir(parents=True)
+            (notices / 'COPYRIGHT-library.html').write_bytes(b'notice')
+            metadata = json.dumps({'description': '依赖', 'packages': [], 'resolve': {'nodes': []}},
+                                  ensure_ascii=False).encode('utf-8')
+
+            def output(command, **kwargs):
+                if command[0] == 'cargo':
+                    raw = metadata
+                elif '--print' in command:
+                    raw = str(sysroot).encode('utf-8')
+                else:
+                    raw = b'host: test-target\n'
+                # Simulate the Windows default that failed in CI. Both Cargo
+                # metadata and rustc paths must explicitly opt into UTF-8.
+                return raw.decode(kwargs.get('encoding', 'cp1252'))
+
+            with patch.object(packager.subprocess, 'check_output', side_effect=output):
+                files, count = packager.collect(include_binary=False, all_targets=True)
+            self.assertEqual(count, 0)
+            self.assertEqual(files['licenses/rust-stdlib/COPYRIGHT-library.html'], b'notice')
 
     @unittest.skipUnless(shutil.which('rustc'), 'Rust compiler required for build-script regression')
     def test_build_rejects_stale_lock_and_wrong_target_notices(self):

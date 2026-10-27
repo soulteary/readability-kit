@@ -20,12 +20,12 @@ def collect(*, binary_path=None, root_package="readability-cli", target=None, in
     binary = binary_path or ROOT / "target" / "release" / f"readability-kit{suffix}"
     if include_binary and not binary.is_file():
         raise RuntimeError("Build first: cargo build --release --workspace --locked")
-    version = subprocess.check_output(["rustc", "-vV"], text=True)
+    version = subprocess.check_output(["rustc", "-vV"], text=True, encoding="utf-8")
     host = target or next(line.removeprefix("host: ") for line in version.splitlines() if line.startswith("host: "))
     metadata_command = ["cargo", "metadata", "--locked", "--offline", "--format-version", "1"]
     if not all_targets:
         metadata_command.extend(["--filter-platform", host])
-    metadata = json.loads(subprocess.check_output(metadata_command, cwd=ROOT, text=True))
+    metadata = json.loads(subprocess.check_output(metadata_command, cwd=ROOT, text=True, encoding="utf-8"))
     packages = {p["id"]: p for p in metadata["packages"]}
     nodes = {n["id"]: n for n in metadata["resolve"]["nodes"]}
     pending = [p["id"] for p in packages.values() if p["name"] == root_package]
@@ -50,7 +50,7 @@ def collect(*, binary_path=None, root_package="readability-cli", target=None, in
     for path in sorted((ROOT / "LICENSES").rglob("*")):
         if path.is_file():
             files[f"LICENSES/{path.relative_to(ROOT / 'LICENSES').as_posix()}"] = path.read_bytes()
-    sysroot = Path(subprocess.check_output(["rustc", "--print", "sysroot"], text=True).strip())
+    sysroot = Path(subprocess.check_output(["rustc", "--print", "sysroot"], text=True, encoding="utf-8").strip())
     rust_notices = sysroot / "share/doc/rust"
     library_notice = rust_notices / "COPYRIGHT-library.html"
     if not library_notice.is_file():

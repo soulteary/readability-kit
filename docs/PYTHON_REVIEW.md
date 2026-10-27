@@ -96,3 +96,14 @@ Clippy、wheel 独立安装、sdist 脱离仓库重建再测试通过。完整�
 源码/打包路径和版本测试补进现有 CI。其他操作系统与 Python 版本的 CI 已配置，
 本次未声称本机运行过所有矩阵组合。历史性能报告只作为优化前后的既有证据，
 审查修复后的新测速与内存复核单独记录在上述复测报告中。
+
+## PR #7 的跨平台 CI 修复
+
+Windows 打包首次运行暴露出 Cargo 元数据按系统默认 CP1252 解码的问题：依赖
+描述含 UTF-8 字符时，`subprocess.check_output(text=True)` 抛出
+`UnicodeDecodeError`，阻止生成 wheel。现已为 Cargo 元数据以及 rustc 版本、
+sysroot 路径输出显式指定 UTF-8，避免依赖 Windows 系统代码页。
+
+新增回归测试模拟 CP1252 默认编码，同时传入中文元数据和中文 sysroot 路径，
+覆盖元数据解析与标准库许可证读取。修改只涉及打包工具；公开 API、Rust 提取
+实现和历史性能样本不变。
