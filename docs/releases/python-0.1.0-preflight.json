@@ -1,0 +1,104 @@
+{
+  "baseCommit": "d5649833b57bc67720490d4355767e3d20485c75",
+  "ciRun": 40491356849,
+  "artifacts": [
+    {
+      "platform": "linux",
+      "wheel": "readability_kit-0.1.0-cp310-abi3-manylinux_2_34_x86_64.whl",
+      "wheelSHA256": "1259f50730558540c95481611a56441f472dd2b3b42d6c54041afd7e332807a5",
+      "sdist": "readability_kit-0.1.0.tar.gz",
+      "sdistSHA256": "c63b0e55652d52b290738f46bc91dead838726efbb037a8c2ed083df6e9089c1",
+      "version": "0.1.0",
+      "requiresPython": ">=3.10",
+      "licenseExpression": "Apache-2.0",
+      "dependencyNotices": 99,
+      "licenseManifestVerified": true,
+      "readmeMatchesBaseCommit": true
+    },
+    {
+      "platform": "macos",
+      "wheel": "readability_kit-0.1.0-cp310-abi3-macosx_11_0_arm64.whl",
+      "wheelSHA256": "3aa624efccc407b5dc93daa62a3731e81ee7d6eb75b9e2da85fef4d78ab9b0de",
+      "sdist": "readability_kit-0.1.0.tar.gz",
+      "sdistSHA256": "6f2aa052b8f7d6bd69670666a4e2ba08673b0ca98901f1d78c6dd566d08cb9ac",
+      "version": "0.1.0",
+      "requiresPython": ">=3.10",
+      "licenseExpression": "Apache-2.0",
+      "dependencyNotices": 99,
+      "licenseManifestVerified": true,
+      "readmeMatchesBaseCommit": true
+    },
+    {
+      "platform": "windows",
+      "wheel": "readability_kit-0.1.0-cp310-abi3-win_amd64.whl",
+      "wheelSHA256": "40bdd1a6b8cba353210cc619dd3d8b58fc878ade43b1825c3c69ca7c1da2a257",
+      "sdist": "readability_kit-0.1.0.tar.gz",
+      "sdistSHA256": "f897c349e967424dca7d5e755b3251ad2e0fb00c0ee4cb309de6ca53d39682ea",
+      "version": "0.1.0",
+      "requiresPython": ">=3.10",
+      "licenseExpression": "Apache-2.0",
+      "dependencyNotices": 99,
+      "licenseManifestVerified": true,
+      "readmeMatchesBaseCommit": true
+    }
+  ],
+  "schema": 1,
+  "checkedDate": "2026-10-27",
+  "ciURL": "https://github.com/soulteary/readability-kit/actions/runs/40491356849",
+  "ciValidation": {
+    "packagePlatforms": [
+      "ubuntu-latest",
+      "macos-latest",
+      "windows-latest"
+    ],
+    "matrixPython": [
+      "3.10",
+      "3.12",
+      "3.14"
+    ],
+    "buildPython": "3.13",
+    "allMainWorkflowsPassed": true,
+    "passedJobs": 28,
+    "optInSkippedJobs": 2
+  },
+  "project": {
+    "name": "readability-kit",
+    "importName": "readability_kit",
+    "version": "0.1.0",
+    "versionSource": "Cargo.toml workspace.package.version",
+    "requiresPython": ">=3.10",
+    "licenseExpression": "Apache-2.0",
+    "pythonRuntimeDependencies": []
+  },
+  "localDocumentationCandidate": {
+    "baseCommit": "d5649833b57bc67720490d4355767e3d20485c75",
+    "readmeSHA256": "1fbe7382ea15e348d83466433140661376786a39b6c3a74566683fdca05ec1fd",
+    "wheel": "readability_kit-0.1.0-cp310-abi3-macosx_11_0_arm64.whl",
+    "wheelSHA256": "9155a9b59d65f4942124684ac9b481e315a2df0325fad55373addc2b43d53583",
+    "sdist": "readability_kit-0.1.0.tar.gz",
+    "sdistSHA256": "313abb775e48ebce595a9924e89300d53c7035e6151e94109f58224cb8493e22",
+    "embeddedReadmeMatchesWorkingTree": true,
+    "licenseManifestVerified": true,
+    "wheelAndSdistLicenseBytesMatch": true,
+    "isolatedInstallAndSdistRebuildPassed": true,
+    "pythonTests": 29,
+    "artifactDirectory": "python-reports/release-preflight-main/candidate",
+    "documentationUncommittedAtBuild": true
+  },
+  "releasePending": [
+    "freeze documentation in a reviewed release commit",
+    "rebuild all platform artifacts from that commit",
+    "choose exactly one canonical sdist",
+    "verify PyPI namespace ownership and publishing authorization",
+    "final artifact checks and explicit release approval"
+  ],
+  "uploadsPerformed": false,
+  "strictMetadataCheck": {
+    "tool": "twine",
+    "version": "6.2.0",
+    "strict": true,
+    "artifactsChecked": 8,
+    "passed": true,
+    "uploadsPerformed": false
+  }
+}

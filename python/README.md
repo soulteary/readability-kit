@@ -2,7 +2,35 @@
 
 Native article extraction using the existing Rust core, with Chromium and Mozilla
 modes. No Node.js, subprocess, HTML script execution, or resource fetching is used
-at runtime. This package has not been published to PyPI.
+at runtime. The current version is **0.1.0**. This package has not been published
+to PyPI; the commands below install local artifacts, not a public release.
+
+## Install a prebuilt wheel
+
+Use a wheel built for your operating system and architecture:
+
+```sh
+python -m pip install --no-index --no-deps /path/to/readability_kit-0.1.0-cp310-abi3-PLATFORM.whl
+python -m readability_kit --version
+```
+
+Replace `PLATFORM` with the actual wheel tag; it is not a literal filename.
+For Windows PowerShell, pass the downloaded wheel's full path (for example
+`C:\Downloads\readability_kit-0.1.0-cp310-abi3-win_amd64.whl`). Installing a matching
+wheel does not require Rust, maturin, Node.js, or third-party Python packages.
+
+The main-branch CI artifacts currently cover these tags:
+
+- `manylinux_2_34_x86_64`: Linux x86_64 with glibc 2.34 or later.
+- `macosx_11_0_arm64`: Apple Silicon, macOS 11 or later.
+- `win_amd64`: Windows x64.
+
+The `cp310-abi3` tag uses CPython's stable ABI starting at 3.10. CI installs the
+same OS wheel on CPython 3.10, 3.12 and 3.14, and builds/checks it on 3.13.
+Python 3.11 is covered by the ABI target but is not a separate CI matrix entry.
+The minimum OS/libc versions are wheel tags, not claims that CI ran on each
+minimum-version system. These files do not cover Intel macOS, Linux ARM64,
+musl/Alpine, Windows ARM64, PyPy, or free-threaded CPython.
 
 ## Build and install locally
 
@@ -16,7 +44,6 @@ From the repository root:
 
 ```sh
 python3 -m venv python/.venv
-# Windows: use python/.venv/Scripts/python.exe and maturin.exe below.
 python/.venv/bin/python -m pip install maturin==1.15.0
 cargo fetch --locked
 python/.venv/bin/python tools/build-python-package.py
@@ -24,6 +51,24 @@ python/.venv/bin/python -m pip install --no-deps python/dist/*.whl
 python/.venv/bin/python -m unittest discover -s python/tests -v
 python/.venv/bin/python tools/check-python-package.py
 ```
+
+Windows PowerShell, from the repository root:
+
+```powershell
+py -3.13 -m venv python/.venv
+& python/.venv/Scripts/python.exe -m pip install maturin==1.15.0
+cargo fetch --locked
+& python/.venv/Scripts/python.exe tools/build-python-package.py
+$wheel = @(Get-ChildItem python/dist/*.whl)
+if ($wheel.Count -ne 1) { throw 'Expected exactly one wheel in python/dist' }
+& python/.venv/Scripts/python.exe -m pip install --no-deps ($wheel[0].FullName)
+& python/.venv/Scripts/python.exe -m unittest discover -s python/tests -v
+& python/.venv/Scripts/python.exe tools/check-python-package.py
+```
+
+Start with a fresh output directory for each build. The build and package-check
+helpers expect one version's wheel and sdist; do not mix old artifacts or the
+three CI sdists, which share a filename but can have different hashes.
 
 The build helper runs preparation, creates the sdist, prunes unrelated workspace
 packages from its lockfile offline (without changing retained versions), and builds
@@ -37,6 +82,18 @@ wheel into a new virtual environment, runs API/CLI tests, extracts the sdist,
 rebuilds it outside this repository, and tests the rebuilt wheel. A cold build
 needs network access for Cargo and Python build dependencies. None of these
 commands publish or upload a package.
+
+To install a downloaded sdist, use its local path:
+
+```sh
+python -m pip install /path/to/readability_kit-0.1.0.tar.gz
+```
+
+This compiles the extension and therefore requires Rust/Cargo, the platform's
+native linker/toolchain, and access to the pinned Python build dependency and
+Cargo dependencies. Bundled notices and MPL sources do not make it a fully
+vendored, offline Cargo build. The sdist does not require a separate repository
+checkout; its isolated rebuild is part of the package check.
 
 For editable development, prepare notices first and run `maturin develop` from
 `python/` with the virtual environment activated. Release artifacts must be built
@@ -139,20 +196,29 @@ remain part of the existing Rust workflow.
 ## Distribution
 
 CI builds and checks local artifacts on Linux, macOS, and Windows without a
-publish job. Wheels target the runner OS and architecture. Portable manylinux
-baselines, additional architectures and musllinux are not currently claimed. The sdist includes the local Rust core and patched dom_smoothie sources.
+publish job. The current wheel tags and validation scope are listed above;
+older manylinux baselines, additional architectures and musllinux are not
+currently claimed. The sdist includes the local Rust core and patched dom_smoothie sources.
 The package contains Apache/BSD/MIT/MPL and other dependency notices under
 `readability_kit/_licenses`; review them when redistributing. Runtime Python has
 no third-party Python dependencies.
 
+Project code uses Apache-2.0. Third-party components retain their own licenses;
+the wheel's `License-Expression: Apache-2.0` describes the project, not a
+relicensing of the bundled dependencies. Preserve the `_licenses` directory,
+including `DEPENDENCIES.json`, `SHA256SUMS`, notices and corresponding MPL sources
+when redistributing. Release preparation is documented in the
+[release notes](https://github.com/soulteary/readability-kit/blob/main/docs/releases/PYTHON_0.1.0.md)
+and [pre-release checklist](https://github.com/soulteary/readability-kit/blob/main/docs/PYTHON_RELEASE_CHECKLIST.md).
+
 ## Performance
 
-See [Python performance and binding overhead](../docs/PYTHON_PERFORMANCE.md) for
+See [Python performance and binding overhead](https://github.com/soulteary/readability-kit/blob/main/docs/PYTHON_PERFORMANCE.md) for
 the same-corpus JavaScript/Go/Rust/Python comparison, CLI/RSS measurements,
 independent boundary/conversion diagnostics, limitations and reproduction.
 
 The optimized implementation and paired before/after measurements are documented
-in [Python optimization](../docs/PYTHON_OPTIMIZATION.md). The benchmark input
+in [Python optimization](https://github.com/soulteary/readability-kit/blob/main/docs/PYTHON_OPTIMIZATION.md). The benchmark input
 loader decodes batches incrementally; the public API still accepts one HTML
 string per call. Batch-worker RSS improvements do not imply that every library
 caller reduces its per-article memory by the same percentage.
@@ -169,9 +235,9 @@ The repository-only incremental benchmark loader now limits an incomplete JSON
 value to 32 Mi characters by default (`max_value_chars`), in addition to its
 256 KiB read chunks. This is a parsing-window guard, not a whole-process RSS
 limit or a limit on the public single-HTML extraction API. Legal trailing JSON
-whitespace is discarded incrementally. See [the Python review](../docs/PYTHON_REVIEW.md)
+whitespace is discarded incrementally. See [the Python review](https://github.com/soulteary/readability-kit/blob/main/docs/PYTHON_REVIEW.md)
 for findings and regression coverage.
 
 Post-review four-language measurements, paired comparisons against both earlier
 Python versions, CLI timings and memory regression checks are documented in
-[Python post-review performance](../docs/PYTHON_REVIEW_PERFORMANCE.md).
+[Python post-review performance](https://github.com/soulteary/readability-kit/blob/main/docs/PYTHON_REVIEW_PERFORMANCE.md).
