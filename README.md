@@ -173,7 +173,9 @@ go build -o ../go-dist/readability-kit ./cmd/readability-kit
 The independent [`python/`](python/README.md) package exposes the Rust core through
 PyO3, with a typed Python API and offline CLI. It requires CPython 3.10+, includes
 local wheel/sdist builds and compatibility checks, and has not been published to
-PyPI. See the package README for local installation and validation.
+PyPI. See the package README for local installation and validation, the
+[Python 0.1.0 release notes](docs/releases/PYTHON_0.1.0.md), and the
+[pre-release checklist](docs/PYTHON_RELEASE_CHECKLIST.md).
 
 ### Rust implementation
 
