@@ -19,7 +19,7 @@ Comparison remains exact: content HTML, text, UTF-16 length, all metadata,
 missing-vs-null properties, error text, empty/error/ok state and input provenance.
 No output normalization, allowed-difference list, expected-result lookup or
 JavaScript reference replacement is used. The existing shared strict comparator
-`scripts/rust-compatibility.mjs` is unchanged.
+`tools/compatibility.mjs` is unchanged.
 
 The first preview differed in 590 extraction cases. Fixes were made in the native
 implementation, and successive full comparisons reduced differences to 294,
@@ -75,9 +75,9 @@ From the repository root, with supported Node and locked JS dependencies:
 ```sh
 bun install --frozen-lockfile
 bun run build
-node scripts/check-go-module.mjs
-node scripts/go-compatibility.mjs
-READABILITY_GO_COMPAT_BIN="$PWD/go-reports/readability-kit-compat" node scripts/check-go-sanitizer.mjs
+node tools/check-go-module.mjs
+node tools/go-compatibility.mjs
+READABILITY_GO_COMPAT_BIN="$PWD/go-reports/readability-kit-compat" node tools/check-go-sanitizer.mjs
 ```
 
 `GO_BINARY` may select the Go toolchain. The comparison runner builds the native

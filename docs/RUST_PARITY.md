@@ -75,11 +75,11 @@ bun install --frozen-lockfile
 bun run build
 cargo build --release --workspace --locked
 mkdir -p rust-reports
-node scripts/rust-compatibility.mjs capture --output rust-reports/javascript.json
-node scripts/rust-compatibility.mjs run --baseline rust-reports/javascript.json --command ./target/release/readability-kit-compat --output rust-reports/differences.json
-node scripts/rust-compatibility.mjs capture-readerable --output rust-reports/readerable-javascript.json
-node scripts/rust-compatibility.mjs run --baseline rust-reports/readerable-javascript.json --command ./target/release/readability-kit-compat --output rust-reports/readerable-differences.json
-READABILITY_RUST_COMPAT_BIN="$PWD/target/release/readability-kit-compat" node scripts/check-rust-sanitizer.mjs
+node tools/compatibility.mjs capture --output rust-reports/javascript.json
+node tools/compatibility.mjs run --baseline rust-reports/javascript.json --command ./target/release/readability-kit-compat --output rust-reports/differences.json
+node tools/compatibility.mjs capture-readerable --output rust-reports/readerable-javascript.json
+node tools/compatibility.mjs run --baseline rust-reports/readerable-javascript.json --command ./target/release/readability-kit-compat --output rust-reports/readerable-differences.json
+READABILITY_RUST_COMPAT_BIN="$PWD/target/release/readability-kit-compat" node tools/check-rust-sanitizer.mjs
 cargo test --workspace --locked
 cargo fmt --all --check
 cargo clippy --workspace --all-targets --locked -- -D warnings

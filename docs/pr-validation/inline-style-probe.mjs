@@ -2,7 +2,7 @@
 // These are API-level observations against the pinned JavaScript implementation.
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
-import {extractHTML, isProbablyReaderable} from '../../dist/node.js';
+import {extractHTML, isProbablyReaderable} from '../../packages/javascript/dist/node.js';
 const cases = [
   ['display:none;display:block', true, true],
   ['display:none;display:invalid', false, false],

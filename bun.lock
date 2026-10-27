@@ -3,22 +3,45 @@
   "configVersion": 0,
   "workspaces": {
     "": {
+      "name": "readability-kit-workspace",
+      "devDependencies": {
+        "@playwright/test": "^1.64.1",
+        "@soulteary/readability-kit": "workspace:*",
+        "@types/jsdom": "^30.0.0",
+        "@types/node": "^26.6.5",
+        "chai": "^4.5.0",
+        "dompurify": "3.4.17",
+        "esbuild": "^0.28.2",
+        "js-beautify": "^2.0.3",
+        "jsdom": "30.1.3",
+        "mocha": "^12.0.3",
+        "sinon": "^14.0.2",
+        "typescript": "^7.0.2",
+        "xml-name-validator": "^5.0.0",
+      },
+    },
+    "packages/javascript": {
       "name": "@soulteary/readability-kit",
+      "version": "0.1.0",
+      "bin": {
+        "readability-kit": "./dist/cli.js",
+      },
       "dependencies": {
         "dompurify": "3.4.17",
         "jsdom": "30.1.3",
       },
       "devDependencies": {
-        "@playwright/test": "^1.64.1",
-        "@types/jsdom": "^30.0.0",
-        "@types/node": "^26.6.5",
-        "chai": "^4.5.0",
-        "esbuild": "^0.28.2",
-        "js-beautify": "^2.0.3",
-        "mocha": "^12.0.3",
-        "sinon": "^14.0.2",
-        "typescript": "^7.0.2",
-        "xml-name-validator": "^5.0.0",
+        "@readability-kit/shared": "workspace:*",
+      },
+    },
+    "packages/shared": {
+      "name": "@readability-kit/shared",
+    },
+    "packages/wasm": {
+      "name": "@soulteary/readability-kit-wasm",
+      "version": "0.1.0",
+      "devDependencies": {
+        "@readability-kit/shared": "workspace:*",
       },
     },
   },
@@ -99,6 +122,8 @@
 
     "@playwright/test": ["@playwright/test@1.64.1", "", { "dependencies": { "playwright": "1.64.1" }, "bin": { "playwright": "cli.js" } }, "sha512-IaYGml/nSOiZWROfPtuIL7neuu9qDOZ3TNvNljUIrhDMxiGTgPjzj/g9p9RxpS2tSepPDRY+UwAaEeiKtUvIAg=="],
 
+    "@readability-kit/shared": ["@readability-kit/shared@workspace:packages/shared"],
+
     "@sinonjs/commons": ["@sinonjs/commons@2.0.0", "", { "dependencies": { "type-detect": "4.0.8" } }, "sha512-uLa0j859mMrg2slwQYdO/AkrOfmH+X6LTVmNTS9CqexuE2IvVORIkSpJLqePAbEnKJ77aMmCwr1NUZ57120Xcg=="],
 
     "@sinonjs/fake-timers": ["@sinonjs/fake-timers@9.1.2", "", { "dependencies": { "@sinonjs/commons": "^1.7.0" } }, "sha512-BPS4ynJW/o92PUR4wgriz2Ud5gpST5vz6GQfMixEDK0Z8ZCUv2M7SkBLykH56T++Xs+8ln9zTGbOvNGIe02/jw=="],
@@ -106,6 +131,10 @@
     "@sinonjs/samsam": ["@sinonjs/samsam@7.0.1", "", { "dependencies": { "@sinonjs/commons": "^2.0.0", "lodash.get": "^4.4.2", "type-detect": "^4.0.8" } }, "sha512-zsAk2Jkiq89mhZovB2LLOdTCxJF4hqqTToGP0ASWlhp4I1hqOjcfmZGafXntCN7MDC6yySH0mFHrYtHceOeLmw=="],
 
     "@sinonjs/text-encoding": ["@sinonjs/text-encoding@0.7.3", "", {}, "sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA=="],
+
+    "@soulteary/readability-kit": ["@soulteary/readability-kit@workspace:packages/javascript"],
+
+    "@soulteary/readability-kit-wasm": ["@soulteary/readability-kit-wasm@workspace:packages/wasm"],
 
     "@types/jsdom": ["@types/jsdom@30.0.0", "", { "dependencies": { "@types/node": "*", "@types/tough-cookie": "*", "parse5": "^8.0.0", "undici-types": "^8.9.0" } }, "sha512-uAHGxujGE0cDaKGdK28zgDotFtNA7MKq5DXl8LrfdxdCI8VHcg15oJz+amHTChPNI5JpgEPQWc2xFdrw3em/nQ=="],
 

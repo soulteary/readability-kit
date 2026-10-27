@@ -9,7 +9,7 @@ cargo test -p readability-core --test native_contract --offline
 The separate workspace here is optional and requires `cargo-fuzz` plus a nightly Rust toolchain. It is not included in normal workspace builds. Run from the repository root:
 
 ```sh
-node scripts/seed-rust-fuzz.mjs
+node tools/seed-rust-fuzz.mjs
 cargo +nightly fuzz run extract_html --fuzz-dir fuzz -- -max_total_time=60 -timeout=5 -max_len=262144
 ```
 

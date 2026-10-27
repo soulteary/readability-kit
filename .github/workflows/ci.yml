@@ -45,8 +45,8 @@ jobs:
         with:
           bun-version: 1.4.2
       - run: bun install --frozen-lockfile
-      - run: node --test test/npm-command.test.mjs
-      - run: bun run build
+      - run: node --test tests/npm-command.test.mjs
+      - run: npm --prefix packages/javascript run build
       - run: bun run test:package
 
   browser:

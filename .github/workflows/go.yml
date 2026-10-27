@@ -3,6 +3,8 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
   native:
     strategy:
@@ -39,10 +41,10 @@ jobs:
           bun-version: 1.4.2
       - run: bun install --frozen-lockfile
       - run: bun run build
-      - run: node scripts/check-go-module.mjs
+      - run: node tools/check-go-module.mjs
       - id: compare
         continue-on-error: true
-        run: node scripts/go-compatibility.mjs
+        run: node tools/go-compatibility.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -50,7 +52,7 @@ jobs:
           path: go-reports/*.json
       - run: npx playwright install --with-deps chromium
       - name: Browser sanitizer reparse checks
-        run: READABILITY_GO_COMPAT_BIN="$PWD/go-reports/readability-kit-compat" node scripts/check-go-sanitizer.mjs
+        run: READABILITY_GO_COMPAT_BIN="$PWD/go-reports/readability-kit-compat" node tools/check-go-sanitizer.mjs
       - name: Strict release gate
         if: steps.compare.outcome != 'success'
         run: exit 1

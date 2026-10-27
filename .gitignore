@@ -14,21 +14,31 @@
 /go-reports/
 /go-dist/
 /performance-reports/
-/scripts/__pycache__/
+/tools/__pycache__/
 
-/wasm/pkg/
-/wasm/licenses/
-/wasm/source/
-/wasm/LICENSE
-/wasm/NOTICE
-/wasm/Cargo.lock
-/wasm/dependencies.json
-/wasm/*.tgz
+/packages/wasm/pkg/
+/packages/wasm/licenses/
+/packages/wasm/source/
+/packages/wasm/LICENSE
+/packages/wasm/NOTICE
+/packages/wasm/Cargo.lock
+/packages/wasm/dependencies.json
+/packages/wasm/*.tgz
 /wasm-reports/
 
-/wasm/LICENSES/
-/wasm/UPSTREAM.md
-/wasm/PATCHES.md
-/wasm/upstream.json
+/packages/wasm/LICENSES/
+/packages/wasm/UPSTREAM.md
+/packages/wasm/PATCHES.md
+/packages/wasm/upstream.json
 
-/wasm/dependency-licenses/
+/packages/wasm/dependency-licenses/
+
+/packages/javascript/dist/
+/packages/javascript/*.tgz
+/packages/javascript/LICENSE
+/packages/javascript/LICENSES/
+/packages/javascript/NOTICE
+/packages/javascript/UPSTREAM.md
+/packages/javascript/PATCHES.md
+/packages/javascript/upstream.json
+/reports/

@@ -7,7 +7,7 @@ repository.workspace = true
 keywords.workspace = true
 categories.workspace = true
 description = "Article extraction bindings for browsers and Web Workers"
-readme = "../../wasm/README.md"
+readme = "../../packages/wasm/README.md"
 
 [lib]
 crate-type = ["cdylib", "rlib"]

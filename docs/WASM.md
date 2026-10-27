@@ -4,7 +4,7 @@
 
 WASM 使用现有 `readability-core`，提供独立 ESM 包
 `@soulteary/readability-kit-wasm`。源码和构建流程已加入仓库，本次未发布到 npm。
-使用说明见 [wasm/README.md](../wasm/README.md)。
+使用说明见 [packages/wasm/README.md](../packages/wasm/README.md)。
 
 ## 接口和实现
 
@@ -14,7 +14,7 @@ WASM 使用现有 `readability-core`，提供独立 ESM 包
 - `await createWorkerReader(options?)`：创建并初始化专属 module Worker，返回上述操作的异步版本以及 `terminate()`。
 
 Rust CLI 和 WASM 共用 `readability-core::boundary` 的 JSON 解码、校验及错误信息。
-JS facade 复用原有 `src/validation.ts` 和公开类型，在 JSON/structured clone 前校验
+JS facade 复用原有 `packages/shared/src/validation.ts` 和公开类型，在 JSON/structured clone 前校验
 JavaScript 特有的 NaN、Infinity 等值，并排除未知选项，避免循环引用等未知字段影响调用。
 WASM 与 JS 之间通过 UTF-8 字符串和 JSON 传输；性能数字包含这些转换成本。
 
@@ -29,7 +29,7 @@ UTF-8 边界会将 JS 孤立 UTF-16 代理项替换为 replacement character，�
 ## 验证范围
 
 完整测试从真实 `npm pack` 归档解包并通过 HTTP 加载，不直接使用工作区 JS 入口。
-JavaScript 参考结果由现有 `scripts/rust-compatibility.mjs` 和原有语料生成，严格比较结果状态、
+JavaScript 参考结果由现有 `tools/compatibility.mjs` 和原有语料生成，严格比较结果状态、
 完整 Article 字段、HTML、空白、缺失字段、null 和错误消息，不进行宽松归一化。
 
 每个环境的 604 个提取用例包含 302 个公开 API 用例和 302 个原始引擎用例。
@@ -38,7 +38,7 @@ JS facade 和 Worker client。原始未清洗接口不属于应用层公开 API�
 
 JS 边界测试覆盖非字符串输入、NaN/Infinity、未知循环引用及 BigInt 字段、初始化失败重试、
 初始化前调用、Worker 模块初始化失败、超时、并发响应匹配、终止时待处理请求以及终止后调用。
-清洗检查复用 `scripts/check-rust-sanitizer.mjs`：WASM 产生输出，在真实 Chromium 中重解析和
+清洗检查复用 `tools/check-rust-sanitizer.mjs`：WASM 产生输出，在真实 Chromium 中重解析和
 检查执行行为，并与现有 DOMPurify 策略 oracle 对照，包含负对照。
 
 语料通过不等于任意 HTML 的形式化等价，也不证明清洗器在所有输入下都正确。
@@ -53,7 +53,7 @@ bun run build
 bun run build:wasm
 bunx playwright install chromium firefox webkit
 WASM_EXTRA_BROWSERS=1 bun run test:wasm
-READABILITY_WASM=1 node scripts/check-rust-sanitizer.mjs
+READABILITY_WASM=1 node tools/check-rust-sanitizer.mjs
 ```
 
 `WASM_BINDGEN` 可指定绑定生成器路径，`PYTHON` 可指定 Python 3。

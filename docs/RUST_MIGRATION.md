@@ -227,16 +227,16 @@ cargo fmt --all --check
 cargo clippy --workspace --all-targets --locked -- -D warnings
 cargo test --workspace --locked
 mkdir -p rust-reports
-node scripts/rust-compatibility.mjs capture --output rust-reports/javascript.json
-node scripts/rust-compatibility.mjs run --baseline rust-reports/javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/native.json --output rust-reports/differences.json
+node tools/compatibility.mjs capture --output rust-reports/javascript.json
+node tools/compatibility.mjs run --baseline rust-reports/javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/native.json --output rust-reports/differences.json
 # The preceding command currently exits 1. Run benchmarks separately.
-node scripts/rust-compatibility.mjs capture-readerable --output rust-reports/readerable-javascript.json
-node scripts/rust-compatibility.mjs run --baseline rust-reports/readerable-javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/readerable-native.json --output rust-reports/readerable-differences.json
-node scripts/benchmark-rust.mjs --iterations 20 --output rust-reports/benchmark.json
-python3 scripts/package-rust.py --output rust-reports/native.zip
+node tools/compatibility.mjs capture-readerable --output rust-reports/readerable-javascript.json
+node tools/compatibility.mjs run --baseline rust-reports/readerable-javascript.json --command ./target/release/readability-kit-compat --candidate-output rust-reports/readerable-native.json --output rust-reports/readerable-differences.json
+node tools/benchmark-rust.mjs --iterations 20 --output rust-reports/benchmark.json
+python3 tools/package-rust.py --output rust-reports/native.zip
 bunx playwright install chromium
 READABILITY_RUST_BIN="$PWD/target/release/readability-kit" bun run test:browser
-node scripts/seed-rust-fuzz.mjs
+node tools/seed-rust-fuzz.mjs
 cargo +nightly fuzz run extract_html --fuzz-dir fuzz -- -max_total_time=60 -timeout=5 -max_len=262144
 ```
 

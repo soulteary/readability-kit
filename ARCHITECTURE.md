@@ -2,6 +2,28 @@
 
 readability-kit turns supplied HTML or a DOM document into a normalized article result. Its runtime is organized around an extraction engine and a small set of environment adapters.
 
+## Workspace and release boundaries
+
+The root is a private orchestration workspace. `packages/javascript/` and
+`packages/wasm/` are separate npm release units, each owning its manifest,
+source and build output. `packages/shared/src/` contains private types and option
+validation; build tools bundle that code and flatten public declarations so
+published artifacts have no imports into the repository or private workspace.
+
+`go/` remains an independent Go module. `crates/` remains the Rust workspace:
+`readability-core` implements native extraction, `readability-cli` supplies native
+commands, and `readability-wasm` binds the core for `packages/wasm/`. The original
+`vendor/` layout and hash-verified upstream corpus are unchanged.
+
+Package-specific JavaScript tests live in `packages/javascript/test/`. Shared
+contract fixtures and real-browser integration live in `tests/`. `tools/compatibility.mjs`
+captures the JavaScript oracle and compares Go, Rust and WASM implementations;
+its contract is independent of the candidate language. Each package is tested
+from a packed artifact installed outside the workspace.
+
+See [WORKSPACE.md](docs/WORKSPACE.md) for build and packaging commands. Python is
+not part of this migration.
+
 ## Public entries
 
 | Entry | Environment | Responsibilities |

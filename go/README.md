@@ -53,7 +53,7 @@ Run strict comparisons from the repository root after installing JS dependencies
 and building dist:
 
 ```sh
-node scripts/go-compatibility.mjs
+node tools/go-compatibility.mjs
 ```
 
 It generates ignored go-reports/ snapshots and exits nonzero for any difference.

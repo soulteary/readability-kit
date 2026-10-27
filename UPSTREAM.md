@@ -15,7 +15,7 @@ Chromium's [Readability metadata at the pinned revision](https://chromium.google
 
 Mozilla's repository is imported with its original commit graph connected to this repository. The pinned baseline and its ancestry contain **534 upstream commits**. Their original commit IDs, authors, dates, and messages remain available in Git history, while the source and regression fixtures are retained under `vendor/mozilla/`.
 
-The import uses a native Git merge with the upstream baseline as its second parent and places the upstream tree under the vendor prefix. The reproducible procedure is in [scripts/import-mozilla-history.sh](scripts/import-mozilla-history.sh); it does not require a locally installed `git subtree` command.
+The import uses a native Git merge with the upstream baseline as its second parent and places the upstream tree under the vendor prefix. The reproducible procedure is in [tools/import-mozilla-history.sh](tools/import-mozilla-history.sh); it does not require a locally installed `git subtree` command.
 
 For example, the baseline file can be inspected by its original object ID:
 
