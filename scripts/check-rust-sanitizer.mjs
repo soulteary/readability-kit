@@ -12,7 +12,13 @@ const cleanupModule = transformSync(readFileSync(new URL('../src/cleanup.ts', im
 const {cleanContent} = await import(`data:text/javascript;base64,${Buffer.from(cleanupModule).toString('base64')}`);
 
 const binary = process.env.READABILITY_RUST_COMPAT_BIN;
-assert.ok(binary, 'Set READABILITY_RUST_COMPAT_BIN to the built Rust compatibility command.');
+let wasmRequest;
+if (process.env.READABILITY_WASM === '1') {
+  const module = await import('../wasm/pkg/readability_wasm.js');
+  await module.default({module_or_path: readFileSync(new URL('../wasm/pkg/readability_wasm_bg.wasm', import.meta.url))});
+  wasmRequest = module.request_json;
+}
+assert.ok(binary || wasmRequest, 'Set READABILITY_RUST_COMPAT_BIN or READABILITY_WASM=1.');
 const prose = 'This investigation describes a useful observation, explains the measurements and provides substantial evidence for readers to assess the conclusion. '.repeat(15);
 const payloads = [
   ['events and schemes', '<p><img src="https://example.invalid/broken" onerror="top.__rustProbe++"><a href="jav&#97;script:top.__rustProbe++">link</a><a href="java&#10;script:top.__rustProbe++">encoded</a></p>'],
@@ -29,7 +35,7 @@ const payloads = [
 
 function extract(engine, payload, sanitize = true, layer = 'api') {
   const html = `<html><head><title>Rust sanitizer browser gate</title></head><body><article><p>${prose}</p>${payload}<p>${prose}</p></article></body></html>`;
-  const result = spawnSync(binary, [], {
+  const result = wasmRequest ? {status: 0, stdout: wasmRequest(JSON.stringify({html, options: {url: 'https://example.test/story', engine, sanitize}, layer}))} : spawnSync(binary, [], {
     input: JSON.stringify({html, options: {url: 'https://example.test/story', engine, sanitize}, layer}),
     encoding: 'utf8', timeout: 30_000,
   });

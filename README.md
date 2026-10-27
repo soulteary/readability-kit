@@ -221,3 +221,22 @@ The package check uses `npm pack` and installs the tarball in an isolated npm co
 - [Migration guide](docs/MIGRATION.md): adopting the package from Mozilla or Chromium code.
 
 The project uses the Apache License 2.0 in [LICENSE](LICENSE). Mozilla's original [LICENSE.md](vendor/mozilla/LICENSE.md) is preserved. Chromium-derived code retains the notices covered by [BSD-3-Clause-Chromium.txt](LICENSES/BSD-3-Clause-Chromium.txt); the [root NOTICE](NOTICE) consolidates project attributions. Consult those notices and the notices shipped with dependencies when redistributing the package. This is an independent project and is not an official Chrome, Chromium, or Mozilla release.
+
+## Rust WASM：浏览器与 Web Worker
+
+新增独立 ESM 包 `@soulteary/readability-kit-wasm`，复用 Rust 核心的 Chromium / Mozilla
+提取和默认清洗。初始化后可同步调用 `extractHTML`、字符串版 `isProbablyReaderable`；
+`createWorkerReader` 提供相同操作的异步 Worker 接口。现有 JavaScript 包入口保持原样。
+
+```js
+import {createWorkerReader} from '@soulteary/readability-kit-wasm';
+const reader = await createWorkerReader();
+try {
+  const article = await reader.extractHTML(html, {url: 'https://example.com/story'});
+} finally {
+  reader.terminate();
+}
+```
+
+构建和资源部署见 [WASM 包说明](wasm/README.md)，兼容性、体积及性能实测见
+[WASM 验证报告](docs/WASM.md)。包源码已加入仓库，本次未发布到 npm。

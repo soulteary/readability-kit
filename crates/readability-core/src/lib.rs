@@ -1,5 +1,8 @@
 //! Native article extraction with locked-corpus parity against the pinned JS
 //! engines. Uses the patched dom_smoothie algorithm and native output policy.
+/// Untyped JSON adapter shared by compatibility tools and WASM bindings.
+#[doc(hidden)]
+pub mod boundary;
 use dom_query::Document;
 #[cfg(test)]
 use dom_query::Selection;
