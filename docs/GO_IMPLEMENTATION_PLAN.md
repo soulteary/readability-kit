@@ -16,12 +16,12 @@
 
 必须以以下源文件为依据，而不是根据 README 推测实现：
 
-- `src/index.ts`：准备来源 URL → 引擎 → 可选 DOMPurify → 以 div 为上下文解析片段 → 语义清理 → 归一化。
-- `src/node.ts`：必填 HTTP(S) URL、惰性静态解析、禁止脚本与资源加载。
-- `src/types.ts`、`src/validation.ts`：字段、默认值、类型和校验顺序。
-- `src/cleanup.ts`：广告标签、无障碍播报、空容器与内联空白规则。
+- `packages/javascript/src/index.ts`：准备来源 URL → 引擎 → 可选 DOMPurify → 以 div 为上下文解析片段 → 语义清理 → 归一化。
+- `packages/javascript/src/node.ts`：必填 HTTP(S) URL、惰性静态解析、禁止脚本与资源加载。
+- `packages/shared/src/types.ts`、`packages/shared/src/validation.ts`：字段、默认值、类型和校验顺序。
+- `packages/javascript/src/cleanup.ts`：广告标签、无障碍播报、空容器与内联空白规则。
 - `vendor/{mozilla,chromium}`、`upstream.json`、`PATCHES.md`：独立引擎快照、上游追溯及 Chromium 差异。
-- `scripts/rust-compatibility.mjs`、`test/compatibility-fixtures.json`：通用的快照与候选执行协议。
+- `tools/compatibility.mjs`、`tests/compatibility-fixtures.json`：通用的快照与候选执行协议。
 - `docs/RUST_COMPATIBILITY.md`、`docs/RUST_MIGRATION.md`：已发现的移植边界及验收经验。
 
 现有 Rust 文档记录 604 个提取用例有 420 个不同，readerability 的 282 个用例全部匹配。这是已有记录，并非本方案重新运行的测量。它说明应先处理 DOM、空白和序列化语义，再判断算法是否一致。用例总数以后由实际捕获动态产生，不能硬编码为验收条件。
@@ -50,7 +50,7 @@ go/
   cmd/readability-kit-compat/main.go
   testdata/                   # Go 专项回归，避免复制上游语料
   README.md / NOTICE / UPSTREAM.md
-scripts/
+tools/
   go-compatibility.mjs        # 候选构建与运行入口
   benchmark-go.mjs
   package-go.*
@@ -121,7 +121,7 @@ JS 输入可以包含孤立代理项，而 Go string 通常表示 UTF-8。P0 为
 
 单独保存 canonicalSourceURL 和 effectiveBaseURL，不向 DOM 注入额外 base 节点。先取第一个 base[href] 并相对 source 解析；无效或非 HTTP(S) 时回退 source，不继续选择后面的 base。元素限制对准备后的原输入 DOM 计数，不能计入实现引入的节点。
 
-镜像 src/index.ts：img[src] 在 Chromium 首图提取前解析，其余链接、懒加载属性、媒体和 srcset 按引擎对应阶段处理。url 输出来源地址，而非 base。锚点、协议相对 URL、查询串、空值、默认端口、IDNA、反斜杠、百分号编码及以 http 开头的相对文件名单测。
+镜像 packages/javascript/src/index.ts：img[src] 在 Chromium 首图提取前解析，其余链接、懒加载属性、媒体和 srcset 按引擎对应阶段处理。url 输出来源地址，而非 base。锚点、协议相对 URL、查询串、空值、默认端口、IDNA、反斜杠、百分号编码及以 http 开头的相对文件名单测。
 
 net/url 与 WHATWG URL 不完全相同。P0 先建立两者差分，必要时评估 WHATWG 实现或受控适配；仅通过 HTTP(S) scheme 和 host 校验不足以证明对齐。srcset 用词法扫描器解析 URL 与描述符，覆盖无空格逗号、URL 内逗号、data URL 和非法描述符，禁止简单 strings.Split(',')。
 
@@ -149,13 +149,13 @@ net/url 与 WHATWG URL 不完全相同。P0 先建立两者差分，必要时评
 
 不默认添加 rel 或重排 class 来改变兼容输出。保留相对链接与片段的具体规则服从参考；禁用清洗不意味着执行脚本，原生提取过程始终无页面执行能力。
 
-cleanContent 按 src/cleanup.ts 移植：无媒体时删除 UTF-16 长度小于 200 的活动播报；广告仅匹配 trim 后的小写完整标签；媒体和数学容器保留；空 inline 若隔开两侧文字则替换单个空格。避免删除段落中讨论 sponsored research 的正常内容。
+cleanContent 按 packages/javascript/src/cleanup.ts 移植：无媒体时删除 UTF-16 长度小于 200 的活动播报；广告仅匹配 trim 后的小写完整标签；媒体和数学容器保留；空 inline 若隔开两侧文字则替换单个空格。避免删除段落中讨论 sponsored research 的正常内容。
 
 独立验证清洗后 HTML 在 Chromium 重新解析时的安全性，包括 namespace 混淆、mXSS、畸形表格、SVG/MathML、属性编码和 srcset。测试页阻断真实外网请求，记录脚本执行、事件、导航及 DOM 变化；资源阻断不能被当作清洗成功。严格兼容与安全验证是两个门禁，任何一个通过均不能替代另一个。
 
 ## 9. 兼容协议与差分验收
 
-复用现有 schema=1 快照；通过配置候选命令运行 Go，而不是复制一套会分叉的比较器。前期保留 rust-compatibility.mjs 文件名也可复用其 run 功能，后续如抽取通用模块，必须让 Rust/Go 共用并保持既有 harness 测试。
+复用现有 schema=1 快照；通过配置候选命令运行 Go，而不是复制一套会分叉的比较器。前期保留 compatibility.mjs 文件名也可复用其 run 功能，后续如抽取通用模块，必须让 Rust/Go 共用并保持既有 harness 测试。
 
 候选命令每次从 stdin 读取一个 JSON 请求 `{html, options, layer}`，输出一个 envelope 后退出：
 
@@ -222,10 +222,10 @@ go vet ./...
 go build -trimpath -o ../go-dist/readability-kit ./cmd/readability-kit
 go build -trimpath -o ../go-dist/readability-kit-compat ./cmd/readability-kit-compat
 cd ..
-node scripts/rust-compatibility.mjs capture --output /tmp/readability-js.json
-node scripts/rust-compatibility.mjs run --baseline /tmp/readability-js.json --command ./go-dist/readability-kit-compat --output /tmp/readability-go-diff.json
-node scripts/rust-compatibility.mjs capture-readerable --output /tmp/readability-readerable-js.json
-node scripts/rust-compatibility.mjs run --baseline /tmp/readability-readerable-js.json --command ./go-dist/readability-kit-compat --output /tmp/readability-go-readerable-diff.json
+node tools/compatibility.mjs capture --output /tmp/readability-js.json
+node tools/compatibility.mjs run --baseline /tmp/readability-js.json --command ./go-dist/readability-kit-compat --output /tmp/readability-go-diff.json
+node tools/compatibility.mjs capture-readerable --output /tmp/readability-readerable-js.json
+node tools/compatibility.mjs run --baseline /tmp/readability-readerable-js.json --command ./go-dist/readability-kit-compat --output /tmp/readability-go-readerable-diff.json
 ```
 
 发布包包括二进制、LICENSE/NOTICE、依赖许可、对应源码修订、策略版本、构建信息、逐文件 SHA-256 和压缩包 checksum；已移植的 Mozilla/Chromium 版权和修改记录保持追溯。根 NOTICE 在实际引入代码后更新，设计阶段不声称已引入依赖或移植实现。

@@ -42,7 +42,7 @@ fn assert_inert(content: &str) {
         }
         // DOMPurify preserves a srcset value when its first URL is allowed.
         // Chromium execution checks cover every resulting image sink in
-        // scripts/check-rust-sanitizer.mjs, including later scheme candidates.
+        // tools/check-rust-sanitizer.mjs, including later scheme candidates.
         for attr in node.attrs() {
             assert!(
                 !attr

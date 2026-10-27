@@ -1,9 +1,9 @@
 name: Rust WASM
 on:
   push:
-    paths: ['crates/**', 'Cargo.*', 'wasm/**', 'scripts/*wasm*', 'scripts/*rust*', 'scripts/npm-command.mjs', 'src/**', 'vendor/**', 'test/compatibility*', 'package.json', 'bun.lock', '.github/workflows/wasm.yml']
+    paths: ['crates/**', 'Cargo.*', 'fuzz/**', 'packages/**', 'tools/**', 'tests/**', 'vendor/**', 'package.json', 'bun.lock', 'playwright.config.mjs', 'NOTICE', 'LICENSE*', 'LICENSES/**', 'UPSTREAM.md', 'PATCHES.md', 'upstream.json', 'docs/**', '.github/workflows/wasm.yml']
   pull_request:
-    paths: ['crates/**', 'Cargo.*', 'wasm/**', 'scripts/*wasm*', 'scripts/*rust*', 'scripts/npm-command.mjs', 'src/**', 'vendor/**', 'test/compatibility*', 'package.json', 'bun.lock', '.github/workflows/wasm.yml']
+    paths: ['crates/**', 'Cargo.*', 'fuzz/**', 'packages/**', 'tools/**', 'tests/**', 'vendor/**', 'package.json', 'bun.lock', 'playwright.config.mjs', 'NOTICE', 'LICENSE*', 'LICENSES/**', 'UPSTREAM.md', 'PATCHES.md', 'upstream.json', 'docs/**', '.github/workflows/wasm.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -29,9 +29,10 @@ jobs:
       - run: cargo install wasm-bindgen-cli --version 0.2.117 --locked
       - run: bunx playwright install --with-deps chromium firefox webkit
       - run: bun run build
-      - run: bun run build:wasm
+      - run: npm --prefix packages/wasm run build
+      - run: bun run test:package:wasm
       - run: WASM_EXTRA_BROWSERS=1 bun run test:wasm
-      - run: READABILITY_WASM=1 node scripts/check-rust-sanitizer.mjs
+      - run: READABILITY_WASM=1 node tools/check-rust-sanitizer.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -85,15 +85,15 @@ CGO_ENABLED=0 go build -trimpath -o ../go-dist/readability-kit-bench ./cmd/reada
 CGO_ENABLED=0 go build -trimpath -o ../go-dist/readability-kit-compat ./cmd/readability-kit-compat
 cd ..
 mkdir -p performance-reports/reproduce
-node scripts/rust-compatibility.mjs capture --output performance-reports/reproduce/javascript.json
-node scripts/rust-compatibility.mjs capture-readerable --output performance-reports/reproduce/readerable-javascript.json
-node scripts/rust-compatibility.mjs run --baseline performance-reports/reproduce/javascript.json --command ./target/release/readability-kit-compat --output performance-reports/reproduce/rust-extraction.json
-node scripts/rust-compatibility.mjs run --baseline performance-reports/reproduce/javascript.json --command ./go-dist/readability-kit-compat --output performance-reports/reproduce/go-extraction.json
-node scripts/rust-compatibility.mjs run --baseline performance-reports/reproduce/readerable-javascript.json --command ./target/release/readability-kit-compat --output performance-reports/reproduce/rust-readerability.json
-node scripts/rust-compatibility.mjs run --baseline performance-reports/reproduce/readerable-javascript.json --command ./go-dist/readability-kit-compat --output performance-reports/reproduce/go-readerability.json
+node tools/compatibility.mjs capture --output performance-reports/reproduce/javascript.json
+node tools/compatibility.mjs capture-readerable --output performance-reports/reproduce/readerable-javascript.json
+node tools/compatibility.mjs run --baseline performance-reports/reproduce/javascript.json --command ./target/release/readability-kit-compat --output performance-reports/reproduce/rust-extraction.json
+node tools/compatibility.mjs run --baseline performance-reports/reproduce/javascript.json --command ./go-dist/readability-kit-compat --output performance-reports/reproduce/go-extraction.json
+node tools/compatibility.mjs run --baseline performance-reports/reproduce/readerable-javascript.json --command ./target/release/readability-kit-compat --output performance-reports/reproduce/rust-readerability.json
+node tools/compatibility.mjs run --baseline performance-reports/reproduce/readerable-javascript.json --command ./go-dist/readability-kit-compat --output performance-reports/reproduce/go-readerability.json
 # Continue only after every gate passes; keep extraction and builds serial.
-node scripts/benchmark-all.mjs --output performance-reports/reproduce --seed 20261027 --replicates 3 --full-iterations 3 --detail-iterations 10 --warmup 2 --cold-iterations 9
-node scripts/summarize-benchmark.mjs performance-reports/reproduce/raw.json performance-reports/reproduce/summary.json
+node tools/benchmark-all.mjs --output performance-reports/reproduce --seed 20261027 --replicates 3 --full-iterations 3 --detail-iterations 10 --warmup 2 --cold-iterations 9
+node tools/summarize-benchmark.mjs performance-reports/reproduce/raw.json performance-reports/reproduce/summary.json
 ```
 
 用差分结果生成报告所需的兼容性文件（不能直接把手写通过标记当成差分证据）：
@@ -112,8 +112,8 @@ for (const k of names) {
 }
 writeFileSync(p+'rust-compatibility.json',JSON.stringify(result,null,2)+'\n');
 JS
-node scripts/render-benchmark.mjs performance-reports/reproduce/summary.json performance-reports/reproduce/report.html - performance-reports/reproduce/rust-compatibility.json
-python3 scripts/package-benchmark.py performance-reports/reproduce performance-reports/reproduce/evidence.zip
+node tools/render-benchmark.mjs performance-reports/reproduce/summary.json performance-reports/reproduce/report.html - performance-reports/reproduce/rust-compatibility.json
+python3 tools/package-benchmark.py performance-reports/reproduce performance-reports/reproduce/evidence.zip
 ```
 
 首次 Cargo 构建需缓存锁定依赖；已有缓存时可加 `--offline`。本机显式设置与 Go 二进制一致的 `GOROOT`，并用 `GO_BINARY=/opt/homebrew/opt/go/libexec/bin/go` 指定 runner 的 Go；Node 实际为 `/opt/homebrew/Cellar/node/26.11.1/bin/node`。RSS runner 支持 macOS/Linux，本次仅实测 macOS。

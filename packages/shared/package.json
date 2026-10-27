@@ -1,0 +1,5 @@
+{
+  "name": "@readability-kit/shared",
+  "private": true,
+  "type": "module"
+}

@@ -20,7 +20,7 @@ To choose another port:
 bun run demo --port 4174
 ```
 
-The server binds to `127.0.0.1` and serves only `examples/reader/` and `dist/`. It rejects private dotfiles and paths outside those directories, including symlink targets. Stop it with Ctrl+C.
+The server binds to `127.0.0.1` and serves only `examples/reader/` and `packages/javascript/dist/`. It rejects private dotfiles and paths outside those directories, including symlink targets. Stop it with Ctrl+C.
 
 ## What the example does
 
@@ -35,4 +35,4 @@ Pasted HTML cannot recreate a live page's script-generated content or runtime-cr
 - `index.html`: input form, accessible result tabs, and preview container.
 - `app.js`: synthetic sample, extraction calls, and result display.
 - `styles.css`: responsive layout and typography.
-- `../../scripts/serve-example.mjs`: the development server.
+- `../../tools/serve-example.mjs`: the development server.

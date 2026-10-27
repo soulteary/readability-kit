@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-// Semantic cleanup adapted from src/cleanup.ts, including Chromium-derived
+// Semantic cleanup adapted from packages/javascript/src/cleanup.ts, including Chromium-derived
 // behavior. See LICENSES/BSD-3-Clause-Chromium.txt for upstream attribution.
 package readability
 

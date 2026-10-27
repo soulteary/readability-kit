@@ -21,7 +21,7 @@ Copyright 2015, 2025, 2026 The Chromium Authors
 
 Chromium-authored integration code is licensed under BSD-3-Clause. Preserve
 LICENSES/BSD-3-Clause-Chromium.txt when redistributing the source or bundles.
-The standalone adaptations in src/clone.ts and src/cleanup.ts identify the
+The standalone adaptations in packages/javascript/src/clone.ts and packages/javascript/src/cleanup.ts identify the
 original source files and retain their attribution. Chromium reference files
 are not executed as injected browser scripts by this project.
 

@@ -17,14 +17,14 @@ Use a supported Node version from package.json and install locked dependencies.
 ```sh
 bun install --frozen-lockfile
 bun run build
-node scripts/rust-compatibility.mjs capture --output /tmp/readability-js.json
-node scripts/rust-compatibility.mjs compare --baseline /tmp/readability-js.json --candidate /tmp/readability-js.json
-node --test test/compatibility.test.mjs
+node tools/compatibility.mjs capture --output /tmp/readability-js.json
+node tools/compatibility.mjs compare --baseline /tmp/readability-js.json --candidate /tmp/readability-js.json
+node --test tests/compatibility.test.mjs
 cargo build --release --workspace
-node scripts/rust-compatibility.mjs run --baseline /tmp/readability-js.json --command ./target/release/readability-kit-compat --output /tmp/readability-rust-diff.json
-node scripts/benchmark-rust.mjs --output /tmp/readability-benchmark.json
-node scripts/rust-compatibility.mjs capture-readerable --output /tmp/readability-readerable-js.json
-node scripts/rust-compatibility.mjs run --baseline /tmp/readability-readerable-js.json --command ./target/release/readability-kit-compat --output /tmp/readability-readerable-diff.json
+node tools/compatibility.mjs run --baseline /tmp/readability-js.json --command ./target/release/readability-kit-compat --output /tmp/readability-rust-diff.json
+node tools/benchmark-rust.mjs --output /tmp/readability-benchmark.json
+node tools/compatibility.mjs capture-readerable --output /tmp/readability-readerable-js.json
+node tools/compatibility.mjs run --baseline /tmp/readability-readerable-js.json --command ./target/release/readability-kit-compat --output /tmp/readability-readerable-diff.json
 ```
 
 Capture contains both engine modes and both raw-engine and complete public API
@@ -48,7 +48,7 @@ does not change the 604 extraction cases.
 Case, envelope and Article structures are validated before comparison. HTML
 hashes are recomputed; malformed snapshots cannot pass by comparing to themselves.
 Transport failures are marked separately and always fail. Provenance records the
-actual dist/node.js bundle in addition to source and dependency hashes.
+actual packages/javascript/dist/node.js bundle in addition to source and dependency hashes.
 
 Comparison is deliberately strict: all field, option, layer, input hash, missing
 case, extra case, status and error differences fail. Whitespace normalization

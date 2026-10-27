@@ -191,6 +191,36 @@ same 130-page corpus, extraction/serialization timing, peak RSS, fresh CLI
 processes, raw evidence and reproduction commands. Go and Rust both pass the
 strict corpus; the report preserves earlier Rust measurements for comparison.
 
+### Workspace layout and independent packages
+
+The repository root is a private Bun workspace; it is not an npm release unit.
+
+- `packages/javascript/`: `@soulteary/readability-kit`, with browser, Node.js and CLI entries.
+- `packages/wasm/`: `@soulteary/readability-kit-wasm`, with browser and Worker entries.
+- `packages/shared/`: private TypeScript types and option validation, bundled into both packages.
+- `go/`, `crates/`, `vendor/`: retain their existing module, workspace and upstream locations.
+- `tests/`: shared compatibility fixtures, tooling tests and browser integration.
+- `tools/`: builds, package checks, cross-language comparison and benchmarks.
+
+Install dependencies at the root with `bun install --frozen-lockfile`. Build and pack
+only the desired release unit:
+
+```bash
+bun run build
+bun run pack:javascript
+
+# Requires the Rust WASM target and matching wasm-bindgen CLI.
+bun run build:wasm
+bun run pack:wasm
+```
+
+Both pack commands execute the package's prepack build. They create independent
+npm tarballs in the repository root; neither tarball depends on workspace paths
+or the private shared package. From a package directory, `npm run build` and
+`npm pack` are also supported after installing workspace dependencies at the root.
+
+See [the directory migration guide](docs/WORKSPACE.md) for paths and validation.
+
 ### Validation
 
 ```bash
@@ -238,5 +268,5 @@ try {
 }
 ```
 
-构建和资源部署见 [WASM 包说明](wasm/README.md)，兼容性、体积及性能实测见
+构建和资源部署见 [WASM 包说明](packages/wasm/README.md)，兼容性、体积及性能实测见
 [WASM 验证报告](docs/WASM.md)。包源码已加入仓库，本次未发布到 npm。

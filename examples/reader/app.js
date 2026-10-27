@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
-import { extractDocument } from '../../dist/index.js';
+import { extractDocument } from '../../packages/javascript/dist/index.js';
 
 const sampleURL = 'https://example.com/stories/quiet-reading';
 const sampleHTML = `<!doctype html>

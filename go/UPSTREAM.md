@@ -8,8 +8,8 @@ The authoritative source revisions and hashes are recorded in
 - vendor/{mozilla,chromium}/Readability-readerable.js: paragraph scoring.
 - vendor/chromium/Readability.js and PATCHES.md: Chromium unlikely patterns,
   lead-image/caption discovery, recipe promotion, labels, shopping and ad-break rules.
-- src/cleanup.ts: semantic labels, announcement and empty-container handling.
-- src/validation.ts and src/types.ts: the public option/result contract.
+- packages/javascript/src/cleanup.ts: semantic labels, announcement and empty-container handling.
+- packages/shared/src/validation.ts and packages/shared/src/types.ts: the public option/result contract.
 
 The native engine directly ports the locked extraction pipeline. Metadata, URL,
 DOM serialization and sanitizer are native adapters. The strict repository

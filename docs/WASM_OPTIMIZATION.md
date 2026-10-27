@@ -56,20 +56,20 @@ Binaryen 仅作本次实验工具，不是最终构建依赖；它的优化/收�
 
 ## 复现
 
-先按 [包说明](../wasm/README.md)构建并验证当前版本：
+先按 [包说明](../packages/wasm/README.md)构建并验证当前版本：
 
 ```sh
 bun run build
 bun run build:wasm
 WASM_REPORT_DIR=wasm-reports/optimization/after WASM_EXTRA_BROWSERS=1 bun run test:wasm
-READABILITY_WASM=1 node scripts/check-rust-sanitizer.mjs
+READABILITY_WASM=1 node tools/check-rust-sanitizer.mjs
 ```
 
 前后产物归档提供已经验证的原版和本轮 npm 压缩包，包含许可证与对应 MPL 源码。解压原版到
 `wasm-reports/optimization/before` 后，其 `package/pkg` 可直接作为比较对象：
 
 ```sh
-WASM_COMPARE_VARIANTS='{"before":"wasm-reports/optimization/before/package/pkg","after":"wasm/pkg"}' \
+WASM_COMPARE_VARIANTS='{"before":"wasm-reports/optimization/before/package/pkg","after":"packages/wasm/pkg"}' \
 WASM_COMPARE_REFERENCE=wasm-reports/optimization/after/javascript.json \
 bun run benchmark:wasm
 ```

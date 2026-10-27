@@ -1,0 +1,40 @@
+{
+  "name": "@soulteary/readability-kit-wasm",
+  "version": "0.1.0",
+  "description": "Rust article extraction for browsers and Web Workers",
+  "type": "module",
+  "license": "Apache-2.0 AND MIT AND BSD-3-Clause AND MPL-2.0",
+  "exports": {
+    ".": {
+      "types": "./pkg/index.d.ts",
+      "default": "./pkg/index.js"
+    },
+    "./worker": "./pkg/worker.js"
+  },
+  "files": [
+    "pkg",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "dependency-licenses",
+    "source",
+    "Cargo.lock",
+    "dependencies.json",
+    "LICENSES",
+    "UPSTREAM.md",
+    "PATCHES.md",
+    "upstream.json"
+  ],
+  "scripts": {
+    "build": "node ../../tools/build-wasm.mjs",
+    "prepack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soulteary/readability-kit.git",
+    "directory": "packages/wasm"
+  },
+  "devDependencies": {
+    "@readability-kit/shared": "workspace:*"
+  }
+}
