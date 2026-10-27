@@ -1,4 +1,8 @@
-# Rust migration: implementation and acceptance status
+# Rust migration: historical implementation and acceptance status
+
+Current status (2026-10-27): extraction 604/604 and readerability 282/282 now pass
+with zero strict differences. See [Rust parity acceptance](RUST_PARITY.md). The
+following records the earlier experimental evaluation and is preserved as history.
 
 Evaluated on 2026-10-26. The Rust library and CLI work without Node or a
 JavaScript subprocess. They remain **experimental**: the strict compatibility

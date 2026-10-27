@@ -1,0 +1,56 @@
+name: Go native compatibility
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  native:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: go
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+          cache-dependency-path: go/go.sum
+      - run: go mod download
+      - run: go vet ./...
+      - run: go test -race ./...
+      - run: go build ./cmd/readability-kit
+      - run: go build ./cmd/readability-kit-compat
+  compatibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+          cache-dependency-path: go/go.sum
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+      - run: node scripts/check-go-module.mjs
+      - id: compare
+        continue-on-error: true
+        run: node scripts/go-compatibility.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: go-compatibility
+          path: go-reports/*.json
+      - run: npx playwright install --with-deps chromium
+      - name: Browser sanitizer reparse checks
+        run: READABILITY_GO_COMPAT_BIN="$PWD/go-reports/readability-kit-compat" node scripts/check-go-sanitizer.mjs
+      - name: Strict release gate
+        if: steps.compare.outcome != 'success'
+        run: exit 1

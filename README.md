@@ -153,22 +153,43 @@ Open [the local reader example](http://127.0.0.1:4173/examples/reader/). It acce
 
 ## Upstream and maintenance
 
-### Experimental Rust implementation
+### Go implementation
 
-A native Rust library and CLI are available for compatibility evaluation:
+A pure Go library and CLI are available in [`go/`](go/README.md). They process
+supplied static HTML without Node, CGO, script execution, or resource fetching.
+The native Chromium/Mozilla modes pass the locked extraction and readerability
+corpus. See the measured [Go compatibility status](docs/GO_COMPATIBILITY.md)
+and [implementation plan](docs/GO_IMPLEMENTATION_PLAN.md).
+
+```bash
+cd go
+go test ./...
+go build -o ../go-dist/readability-kit ./cmd/readability-kit
+../go-dist/readability-kit article.html --url https://example.com/story
+```
+
+### Rust implementation
+
+A native Rust library and CLI are available:
 
 ```bash
 cargo build --release --workspace --locked
 ./target/release/readability-kit article.html --url https://example.com/story
 ```
 
-The native engine modes are not yet equivalent to the pinned JavaScript
-engines. The npm package continues to use the JavaScript implementation.
-See the [migration status](docs/RUST_MIGRATION.md) and
-[compatibility contract](docs/RUST_COMPATIBILITY.md) for measured differences,
-verification commands, and adoption gates.
+The native modes pass the locked extraction and readerability corpus. The npm
+package continues to use JavaScript. See the [Rust parity acceptance](docs/RUST_PARITY.md),
+[historical migration status](docs/RUST_MIGRATION.md) and
+[compatibility contract](docs/RUST_COMPATIBILITY.md) for verification and scope.
 
 The Chromium snapshot contains improvements for lead images and captions, JSON-LD title selection, recipe content, form-label cleanup, and unwanted shopping containers. The matching Mozilla engine is retained to make changes easier to compare.
+
+### Cross-language performance
+
+The [measured Go/Rust/JavaScript comparison](docs/PERFORMANCE.md) includes the
+same 130-page corpus, extraction/serialization timing, peak RSS, fresh CLI
+processes, raw evidence and reproduction commands. Go and Rust both pass the
+strict corpus; the report preserves earlier Rust measurements for comparison.
 
 ### Validation
 

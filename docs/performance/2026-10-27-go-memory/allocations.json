@@ -1,0 +1,245 @@
+{
+  "scope": "Go public extraction plus native JSON serialization; 30 measured calls after 2 warmups; 3 testing.B reports per case. B/op counts allocation traffic, not peak RSS. Timing is diagnostic only.",
+  "samples": {
+    "before": {
+      "rtl-4/chromium": [
+        {
+          "ns": 79885.0,
+          "bytes": 94024,
+          "allocs": 567
+        },
+        {
+          "ns": 63551.0,
+          "bytes": 94024,
+          "allocs": 567
+        },
+        {
+          "ns": 63896.0,
+          "bytes": 94024,
+          "allocs": 567
+        }
+      ],
+      "rtl-4/mozilla": [
+        {
+          "ns": 63199.0,
+          "bytes": 93576,
+          "allocs": 557
+        },
+        {
+          "ns": 66789.0,
+          "bytes": 93576,
+          "allocs": 557
+        },
+        {
+          "ns": 81564.0,
+          "bytes": 93576,
+          "allocs": 557
+        }
+      ],
+      "ehow-2/chromium": [
+        {
+          "ns": 5055186.0,
+          "bytes": 2127015,
+          "allocs": 14205
+        },
+        {
+          "ns": 3443344.0,
+          "bytes": 2112427,
+          "allocs": 14203
+        },
+        {
+          "ns": 3188054.0,
+          "bytes": 2116278,
+          "allocs": 14203
+        }
+      ],
+      "ehow-2/mozilla": [
+        {
+          "ns": 2630186.0,
+          "bytes": 2119090,
+          "allocs": 14205
+        },
+        {
+          "ns": 2518875.0,
+          "bytes": 2111474,
+          "allocs": 14204
+        },
+        {
+          "ns": 2485156.0,
+          "bytes": 2106003,
+          "allocs": 14203
+        }
+      ],
+      "schema-org-context-object/chromium": [
+        {
+          "ns": 4590165.0,
+          "bytes": 5709913,
+          "allocs": 17612
+        },
+        {
+          "ns": 4664354.0,
+          "bytes": 5710325,
+          "allocs": 17612
+        },
+        {
+          "ns": 4755058.0,
+          "bytes": 5718583,
+          "allocs": 17614
+        }
+      ],
+      "schema-org-context-object/mozilla": [
+        {
+          "ns": 4417211.0,
+          "bytes": 5708036,
+          "allocs": 17592
+        },
+        {
+          "ns": 4429393.0,
+          "bytes": 5703404,
+          "allocs": 17594
+        },
+        {
+          "ns": 4826810.0,
+          "bytes": 5726245,
+          "allocs": 17598
+        }
+      ]
+    },
+    "after": {
+      "rtl-4/chromium": [
+        {
+          "ns": 206090.0,
+          "bytes": 58585,
+          "allocs": 374
+        },
+        {
+          "ns": 120311.0,
+          "bytes": 58584,
+          "allocs": 374
+        },
+        {
+          "ns": 108933.0,
+          "bytes": 58584,
+          "allocs": 374
+        }
+      ],
+      "rtl-4/mozilla": [
+        {
+          "ns": 109857.0,
+          "bytes": 58192,
+          "allocs": 364
+        },
+        {
+          "ns": 91049.0,
+          "bytes": 58192,
+          "allocs": 364
+        },
+        {
+          "ns": 89633.0,
+          "bytes": 58192,
+          "allocs": 364
+        }
+      ],
+      "ehow-2/chromium": [
+        {
+          "ns": 2589714.0,
+          "bytes": 1311475,
+          "allocs": 11267
+        },
+        {
+          "ns": 2499090.0,
+          "bytes": 1314109,
+          "allocs": 11267
+        },
+        {
+          "ns": 2700085.0,
+          "bytes": 1326017,
+          "allocs": 11269
+        }
+      ],
+      "ehow-2/mozilla": [
+        {
+          "ns": 2241033.0,
+          "bytes": 1311318,
+          "allocs": 11274
+        },
+        {
+          "ns": 2239589.0,
+          "bytes": 1317955,
+          "allocs": 11276
+        },
+        {
+          "ns": 2194240.0,
+          "bytes": 1309552,
+          "allocs": 11274
+        }
+      ],
+      "schema-org-context-object/chromium": [
+        {
+          "ns": 4035653.0,
+          "bytes": 3625584,
+          "allocs": 15046
+        },
+        {
+          "ns": 4043394.0,
+          "bytes": 3625643,
+          "allocs": 15046
+        },
+        {
+          "ns": 4023992.0,
+          "bytes": 3621920,
+          "allocs": 15046
+        }
+      ],
+      "schema-org-context-object/mozilla": [
+        {
+          "ns": 4021997.0,
+          "bytes": 3610141,
+          "allocs": 15029
+        },
+        {
+          "ns": 3838800.0,
+          "bytes": 3615096,
+          "allocs": 15030
+        },
+        {
+          "ns": 3859632.0,
+          "bytes": 3608917,
+          "allocs": 15029
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "rtl-4/chromium": {
+      "beforeBytesPerOp": 94024,
+      "afterBytesPerOp": 58584,
+      "reductionPercent": 37.69250404152131
+    },
+    "rtl-4/mozilla": {
+      "beforeBytesPerOp": 93576,
+      "afterBytesPerOp": 58192,
+      "reductionPercent": 37.8131144737967
+    },
+    "ehow-2/chromium": {
+      "beforeBytesPerOp": 2116278,
+      "afterBytesPerOp": 1314109,
+      "reductionPercent": 37.90470817161072
+    },
+    "ehow-2/mozilla": {
+      "beforeBytesPerOp": 2111474,
+      "afterBytesPerOp": 1311318,
+      "reductionPercent": 37.89561225949266
+    },
+    "schema-org-context-object/chromium": {
+      "beforeBytesPerOp": 5710325,
+      "afterBytesPerOp": 3625584,
+      "reductionPercent": 36.50827229623533
+    },
+    "schema-org-context-object/mozilla": {
+      "beforeBytesPerOp": 5708036,
+      "afterBytesPerOp": 3610141,
+      "reductionPercent": 36.753359649448605
+    }
+  }
+}

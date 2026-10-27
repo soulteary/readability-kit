@@ -84,7 +84,7 @@ async function main() {
   if (!sources.length) throw new Error('No benchmark fixtures.');
   const chosen = [...new Set([0.1, 0.5, 0.9].map(p => Math.floor((sources.length - 1) * p)))].map(i => sources[i]);
   const payload = JSON.stringify({
-    warmup: options.warmup, iterations: options.iterations,
+    warmup: options.warmup, iterations: options.iterations, serialize: false,
     cases: chosen.map(({id, html}) => ({id, html, options: {url: 'https://example.com/test/page.html', engine: options.engine}})),
   });
   const warmJS = JSON.parse(run(process.execPath, [fileURLToPath(import.meta.url), '--worker'], payload).stdout);

@@ -4,6 +4,12 @@ The JavaScript implementation remains the reference. A Rust build or a successfu
 extraction is not evidence of parity. Do not change the default npm backend until
 compatibility and end-to-end performance have been measured.
 
+Current locked-corpus acceptance is 604/604 extraction cases and 282/282
+readerability cases, with zero strict differences. The native sanitizer also
+passes 20 browser oracle cases and the two native browser tests. See
+[Rust parity acceptance](RUST_PARITY.md) for fixes, validation and scope. These
+results establish compatibility for the recorded corpus, not all possible HTML.
+
 ## Reproducible checks
 
 Use a supported Node version from package.json and install locked dependencies.
@@ -58,9 +64,10 @@ do not overwrite the JavaScript reference with the Rust output.
   excerpt, siteName, publishedTime, url, engine. Nullable metadata uses null;
   title always uses a string. Absent and empty values are distinct in the diff.
 - length is UTF-16 code units of final textContent, not bytes or Unicode scalar
-  values. Engine scoring length semantics also require examination.
+  values. Engine scoring follows the reference UTF-16 and whitespace semantics.
 - Default engine is chromium. Mozilla and Chromium each compare against their
-  own reference. Unsupported engine/options must fail explicitly.
+  own reference. Invalid supported option values must fail explicitly; unknown
+  public option keys are ignored as in JavaScript.
 - HTTP(S) URL validation and canonicalization precede extraction. Source base
   resolution and relative links/media must match. No network resource loading.
 - Public API order is clone/source preparation, engine, optional sanitizer,
@@ -72,22 +79,25 @@ do not overwrite the JavaScript reference with the Rust output.
   integers. linkDensityModifier is finite. Boolean and string-array options
   require their declared types. Null numeric/boolean values are invalid;
   `engine: null` follows JavaScript's nullish Chromium default. Preserve exact
-  validation error messages where feasible. The extraction JSON adapter still
-  has stricter enum/unknown-field deserialization than JS; it remains part of
-  the unresolved compatibility audit rather than a promise of full parity.
+  validation order and error messages. The JSON compatibility adapter ignores
+  unknown keys and preserves the raw engine's coercion rules. The typed Rust
+  options API remains a separate interface.
 - CLI behavior is a separate contract: stdin/file input, arguments, output
   modes, stdout/stderr, and exit codes 0/1/2. An extraction/write failure must
   preserve an existing output file.
 - Browser Shadow DOM/slot flattening remains JavaScript until a browser adapter
   has passed the existing browser tests. HTML strings cannot encode live slots.
 
-## Test limits and remaining acceptance work
+## Test scope and remaining acceptance work
 
 The 21 versioned project fixtures cover Chinese/emoji/combining characters,
 relative base/media, unsafe content, JSON-LD, no article, invalid threshold,
 element count limits, Chromium hero/cite, recipe, shopping, ad-break, class
 retention, sanitizer opt-out, candidate count, density modifier and malformed
 namespaces. With 130 upstream sources, capture currently produces 604 cases.
+The 604 extraction and 282 readerability cases pass strictly. The workspace
+test suite passes 114 tests with one optional corpus audit ignored by default;
+that audit separately passes all 290 raw/API content cases.
 Raw-layer invalid-option behavior is intentionally upstream behavior; only the
 public layer validates wrapper options. Existing core/CLI/browser tests remain
 required. The native contract tests, seeded fuzz target and opt-in Chromium

@@ -40,17 +40,19 @@ fn assert_inert(content: &str) {
                 "active attribute {name} retained: {content}"
             );
         }
-        if let Some(value) = node.attr("srcset") {
-            for candidate in value.split(',') {
-                let address = candidate.split_whitespace().next().unwrap_or("");
-                let address = address.to_ascii_lowercase();
-                assert!(
-                    !address.starts_with("javascript:")
-                        && !address.starts_with("vbscript:")
-                        && !address.starts_with("data:"),
-                    "unsafe srcset {value}"
-                );
-            }
+        // DOMPurify preserves a srcset value when its first URL is allowed.
+        // Chromium execution checks cover every resulting image sink in
+        // scripts/check-rust-sanitizer.mjs, including later scheme candidates.
+        for attr in node.attrs() {
+            assert!(
+                !attr
+                    .name
+                    .local
+                    .as_ref()
+                    .to_ascii_lowercase()
+                    .starts_with("on"),
+                "event handler retained: {content}"
+            );
         }
         for name in ["href", "src", "xlink:href", "action", "formaction"] {
             if let Some(value) = node.attr(name) {
@@ -277,5 +279,30 @@ fn deterministic_malformed_smoke_corpus_never_panics() {
                 assert_inert(&article.content);
             }
         }
+    }
+}
+
+#[test]
+fn dompurify_policy_keeps_safe_foreign_media_and_mixed_image_candidates() {
+    for engine in [Engine::Chromium, Engine::Mozilla] {
+        let article = extract_html(
+            &page("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><text>Diagram</text><path d='M0 0L10 10'></path></svg><math xmlns='http://www.w3.org/1998/Math/MathML'><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math><picture><source srcset='/safe.jpg 1x,javascript:alert(1) 2x'><img src='/safe.jpg' srcset='/safe.jpg 1x,javascript:alert(1) 2x' onerror='alert(1)' alt='Figure'></picture>"),
+            &options(engine),
+        ).unwrap().unwrap();
+        assert_inert(&article.content);
+        let doc = Document::from(article.content.as_str());
+        assert_eq!(
+            doc.select("svg").attr("viewBox").as_deref(),
+            Some("0 0 10 10")
+        );
+        assert_eq!(doc.select("svg text").text().as_ref(), "Diagram");
+        assert_eq!(doc.select("math mi").text().as_ref(), "x");
+        assert_eq!(doc.select("img").attr("alt").as_deref(), Some("Figure"));
+        let expected = "https://news.example/safe.jpg 1x,javascript:alert(1) 2x";
+        assert_eq!(doc.select("img").attr("srcset").as_deref(), Some(expected));
+        assert_eq!(
+            doc.select("source").attr("srcset").as_deref(),
+            Some(expected)
+        );
     }
 }

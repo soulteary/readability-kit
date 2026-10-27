@@ -1,0 +1,14 @@
+readability-kit Go native implementation
+Copyright 2026 readability-kit contributors
+Standalone Go code is distributed under Apache-2.0; see LICENSE.
+
+Extraction scoring, readerability, patterns and cleanup are adapted from the
+Mozilla and Chromium Readability snapshots pinned in ../upstream.json.
+Mozilla Readability: Copyright Mozilla Foundation and contributors, Apache-2.0;
+see LICENSES/Apache-2.0-Mozilla.txt and the original source headers.
+Chromium modifications: Copyright The Chromium Authors, BSD-3-Clause;
+see LICENSES/BSD-3-Clause-Chromium.txt.
+
+Dependency: golang.org/x/net/html, Copyright The Go Authors, BSD-3-Clause.
+See LICENSES/BSD-3-Clause-Go.txt and LICENSES/PATENTS-Go.txt.
+This file is an attribution inventory, not a bundled binary release manifest.

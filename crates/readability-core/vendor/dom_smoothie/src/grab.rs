@@ -21,7 +21,7 @@ use crate::Metadata;
 use crate::Readability;
 
 impl Readability {
-    pub(crate) fn grab_article(&self, metadata: &Metadata) -> Option<Document> {
+    pub(crate) fn grab_article(&self, metadata: &mut Metadata) -> Option<Document> {
         let mut flags: FlagSet<GrabFlags> = FlagSet::full();
         let mut best_attempt: Option<(Document, usize)> = None;
         loop {
@@ -34,7 +34,7 @@ impl Readability {
             // finding the -right- content.
 
             if let Some(ref article_node) = article_node {
-                let text_length = article_node.normalized_char_count();
+                let text_length = inner_text_length(article_node);
                 if text_length >= self.config.char_threshold {
                     return Some(doc);
                 }
@@ -66,7 +66,7 @@ impl Readability {
         &self,
         doc: &'a Document,
         flags: &FlagSet<GrabFlags>,
-        metadata: &Metadata,
+        metadata: &mut Metadata,
     ) -> Option<NodeRef<'a>> {
         let selection = doc.select_single("body");
         let body_node = selection.nodes().first()?;
@@ -212,35 +212,34 @@ fn div_into_p(node: &NodeRef) {
 }
 
 fn wrap_phrasing_content<'a>(node: &NodeRef<'a>) -> Option<NodeRef<'a>> {
-    if is_phrasing_content(node) && !is_whitespace(node) {
-        let mut next_sibling = node.next_sibling();
-        let p = node.tree.new_element("p");
-        node.insert_before(&p);
-        p.append_child(node);
-
-        while let Some(child) = next_sibling {
-            next_sibling = child.next_sibling();
-            if is_phrasing_content(&child) {
-                p.append_child(&child);
-            } else {
-                break;
-            }
-        }
-        // Because `p` starts with phrasing content that is not whitespace,
-        // we can skip checking the first child for whitespace.
-
-        while let Some(p_last_child) = p.last_child() {
-            if is_whitespace(&p_last_child) {
-                p_last_child.remove_from_parent();
-            } else {
-                break;
-            }
-        }
-
-        return next_sibling;
+    if !is_phrasing_content(node) {
+        return node.next_sibling();
     }
-
-    node.next_sibling()
+    // Match Readability's fragment: trim both ends of each consecutive run,
+    // including runs consisting entirely of whitespace between block nodes.
+    let mut run = Vec::new();
+    let mut current = Some(*node);
+    while let Some(child) = current {
+        if !is_phrasing_content(&child) {
+            break;
+        }
+        run.push(child);
+        current = child.next_sibling();
+    }
+    while run.first().is_some_and(is_whitespace) {
+        run.remove(0).remove_from_parent();
+    }
+    while run.last().is_some_and(is_whitespace) {
+        run.pop().unwrap().remove_from_parent();
+    }
+    if let Some(first) = run.first() {
+        let p = node.tree.new_element("p");
+        first.insert_before(&p);
+        for child in run {
+            p.append_child(&child);
+        }
+    }
+    current
 }
 
 fn has_child_block_element(node: &NodeRef) -> bool {
@@ -365,7 +364,7 @@ fn assign_article_node(tc: &NodeRef, article_content: &NodeRef) {
             } else if sibling.has_name("p") {
                 let sibling_text = sibling.text();
                 let node_content = normalize_spaces(&sibling_text);
-                let node_length = node_content.chars().count();
+                let node_length = node_content.encode_utf16().count();
                 let link_density = link_density(sibling, Some(node_length));
 
                 if (node_length > 80 && link_density < 0.25)
@@ -420,7 +419,7 @@ fn find_common_candidate<'a>(
     // we would need at least three other candidates.
     // Currently, I consider this approach to be flawed...
 
-    if alternative_candidate_ancestors.len() > MIN_COMMON_ANCESTORS {
+    if alternative_candidate_ancestors.len() >= MIN_COMMON_ANCESTORS {
         let mut parent_of_top_candidate = tc.parent();
         while let Some(ref tc_parent) = parent_of_top_candidate {
             if tc_parent.has_name("body") {
@@ -560,7 +559,7 @@ fn adjust_top_candidate_by_parent(
 fn collect_elements_to_score<'a>(
     root_node: &'a NodeRef,
     strip_unlikely: bool,
-    metadata: &Metadata,
+    metadata: &mut Metadata,
     chromium_mode: bool,
 ) -> Vec<NodeRef<'a>> {
     let tree = &root_node.tree;
@@ -580,6 +579,13 @@ fn collect_elements_to_score<'a>(
         }
 
         if MATCHER_DIALOGS.match_element(&node) {
+            next_node = next_child_or_sibling(&node, true);
+            node.remove_from_parent();
+            continue;
+        }
+
+        if metadata.byline.is_none() && crate::readability::is_valid_byline(&node) {
+            metadata.byline = Some(crate::readability::byline_text(&node));
             next_node = next_child_or_sibling(&node, true);
             node.remove_from_parent();
             continue;
@@ -677,6 +683,40 @@ mod tests {
     use super::*;
     use crate::readability::Readability;
 
+    #[test]
+    fn byline_removal_occurs_after_parent_phrasing_wrapping() {
+        let doc = Document::from(
+            "<div><ol class='byline'><li>Author</li></ol><span><time>1 PM</time></span></div>",
+        );
+        let body = doc.body().unwrap();
+        let mut metadata = Metadata::default();
+        collect_elements_to_score(&body, true, &mut metadata, false);
+        assert_eq!(metadata.byline.as_deref(), Some("Author"));
+        assert!(doc.select("div > p > span > time").exists());
+    }
+
+    #[test]
+    fn phrasing_runs_trim_boundary_whitespace_and_visit_every_block() {
+        let doc = Document::from(
+            "<div id='test'> \n <p>first</p> \t <span>inline</span> \n <p>last</p> \n </div>",
+        );
+        let sel = doc.select_single("#test");
+        let node = sel.nodes().first().unwrap();
+        div_into_p(node);
+        assert_eq!(
+            node.inner_html().as_ref(),
+            "<p>first</p><p><span>inline</span></p><p>last</p>"
+        );
+    }
+
+    #[test]
+    fn empty_transparent_elements_are_phrasing() {
+        let doc = Document::from("<div><a></a><del></del><ins></ins></div>");
+        for node in doc.select("a,del,ins").nodes() {
+            assert!(is_phrasing_content(node));
+        }
+    }
+
     /// Ensures candidates with equal scores preserve their order to keep ranking deterministic.
     #[test]
     fn test_equal_score_candidates_keep_their_first_scored_order() {
@@ -692,7 +732,7 @@ mod tests {
         );
         let doc = Document::from(contents.as_str());
         let body = doc.body().unwrap();
-        let elements = collect_elements_to_score(&body, true, &Metadata::default(), false);
+        let elements = collect_elements_to_score(&body, true, &mut Metadata::default(), false);
         let cfg = Config::default();
         let flags: FlagSet<GrabFlags> = FlagSet::full();
         let top = score_elements(&elements, body.tree, &cfg, &flags);
@@ -729,7 +769,7 @@ mod tests {
 
         let doc = Document::from(contents);
         let body = doc.body().unwrap();
-        collect_elements_to_score(&body, true, &Metadata::default(), false);
+        collect_elements_to_score(&body, true, &mut Metadata::default(), false);
         assert_eq!(6, doc.select("p").length());
     }
 
@@ -749,7 +789,7 @@ mod tests {
         let doc = Document::from(contents);
         assert!(doc.select("#dialog1").exists());
         let body = doc.body().unwrap();
-        collect_elements_to_score(&body, true, &Metadata::default(), false);
+        collect_elements_to_score(&body, true, &mut Metadata::default(), false);
 
         assert!(!doc.select("#dialog1").exists());
         assert!(!doc.select("#close1").exists());
@@ -773,7 +813,7 @@ mod tests {
         assert!(doc.select("*[role]").exists());
         let body = doc.body().unwrap();
 
-        collect_elements_to_score(&body, true, &Metadata::default(), false);
+        collect_elements_to_score(&body, true, &mut Metadata::default(), false);
         assert!(!doc.select("*[role]").exists());
     }
 
@@ -802,7 +842,7 @@ mod tests {
 
         assert_eq!(count_before, 10);
 
-        let clean_doc = ra.grab_article(&Metadata::default()).unwrap();
+        let clean_doc = ra.grab_article(&mut Metadata::default()).unwrap();
         let sel = clean_doc.select("body > *");
         let count_after = sel.nodes().iter().filter(|n| n.is_element()).count();
         assert_eq!(count_after, 1);
@@ -819,11 +859,11 @@ mod tests {
         </html>";
 
         let readability = Readability::from(contents);
-        let metadata = readability.get_article_metadata(None);
+        let mut metadata = readability.get_article_metadata(None);
         let body = readability.doc.body().unwrap();
 
         assert!(readability.doc.select("h1").exists());
-        collect_elements_to_score(&body, true, &metadata, false);
+        collect_elements_to_score(&body, true, &mut metadata, false);
         assert!(!readability.doc.select("h1").exists());
     }
 
@@ -841,7 +881,7 @@ mod tests {
         let doc = Document::from(contents);
         assert!(doc.select("div.banner").exists());
         let body = doc.body().unwrap();
-        collect_elements_to_score(&body, true, &Metadata::default(), false);
+        collect_elements_to_score(&body, true, &mut Metadata::default(), false);
         assert!(!doc.select("div.banner").exists());
     }
     #[test]
@@ -858,7 +898,7 @@ mod tests {
         let doc = Document::from(contents);
         assert!(doc.select("a.banner").exists());
         let body = doc.body().unwrap();
-        collect_elements_to_score(&body, true, &Metadata::default(), false);
+        collect_elements_to_score(&body, true, &mut Metadata::default(), false);
         assert!(doc.select("a.banner").exists());
     }
 }

@@ -1,0 +1,6518 @@
+{
+  "schema": 1,
+  "source": "/Users/soulteary/Lab/github/readability-kit/performance-reports/2026-10-27-go-memory-final/raw.json",
+  "sourceSha256": "3beaf4987a0f14a51c73bc2ce73f29945eade2a41ff4e7018a5060b8bd200410",
+  "generatedAt": "2026-10-27T06:19:31.026Z",
+  "method": {
+    "quantile": "nearest rank: sorted[ceil(q*n)-1]",
+    "timingUnit": "ms",
+    "memoryUnit": "MiB",
+    "residentTiming": "HTML extraction and Article JSON serialization; checksum outside timer",
+    "residentRSS": "OS process high-water RSS, includes runtime, loaded input, warmup and measured iterations",
+    "coldTiming": "OS process creation through exit; warmed filesystem cache; includes HTML file read and JSON stdout",
+    "fullCorrectness": "Status + UTF-16 text length + FNV-1a UTF-8 text checksum only; does not establish full Article parity"
+  },
+  "config": {
+    "output": "performance-reports/2026-10-27-go-memory-final",
+    "seed": 20261027,
+    "replicates": 3,
+    "fullIterations": 3,
+    "detailIterations": 10,
+    "warmup": 2,
+    "coldIterations": 9,
+    "engines": [
+      "chromium",
+      "mozilla"
+    ]
+  },
+  "environment": {
+    "node": "v26.11.1",
+    "nodeExecutable": "/opt/homebrew/Cellar/node/26.11.1/bin/node",
+    "go": "go version go1.27.1 darwin/arm64",
+    "rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+    "cargo": "cargo 1.99.1 (5f94df478 2026-08-27)",
+    "python": "Python 3.13.13",
+    "os": "darwin",
+    "release": "25.5.0",
+    "arch": "arm64",
+    "cpu": "Apple M5",
+    "logicalCPUs": 10,
+    "totalMemoryBytes": 34359738368,
+    "runtimeOverrides": {
+      "GOGC": null,
+      "GOMEMLIMIT": null,
+      "GOMAXPROCS": null,
+      "NODE_OPTIONS": null,
+      "MALLOC_CONF": null,
+      "RUSTFLAGS": null
+    }
+  },
+  "corpusSha256": "3760ac5b1441ac97dd6ebd1d6fef22628c4d27d388658f7050939573aef7d522",
+  "corpusPages": 130,
+  "validation": {
+    "jobs": 261,
+    "stableResidentOutputs": true,
+    "stableColdOutputs": true,
+    "missingJobs": 0
+  },
+  "engines": {
+    "chromium": {
+      "full": {
+        "javascript": {
+          "samplesPerPage": 9,
+          "corpusSumPageMediansMs": 11695.695585000001,
+          "pageMedianDistributionMs": {
+            "n": 130,
+            "p50": 56.589541,
+            "p95": 311.748167,
+            "min": 4.843166,
+            "max": 1101.776833
+          },
+          "workerPeakRSSMiB": {
+            "n": 3,
+            "p50": 1412.1875,
+            "p95": null,
+            "min": 1075.90625,
+            "max": 1855.515625
+          },
+          "perPage": {
+            "ol": {
+              "n": 9,
+              "p50": 5.720875,
+              "p95": null,
+              "min": 4.044917,
+              "max": 8.870875
+            },
+            "js-link-replacement": {
+              "n": 9,
+              "p50": 7.032167,
+              "p95": null,
+              "min": 4.036791,
+              "max": 26.148292
+            },
+            "005-unescape-html-entities": {
+              "n": 9,
+              "p50": 6.399041,
+              "p95": null,
+              "min": 3.232958,
+              "max": 19.339667
+            },
+            "invalid-attributes": {
+              "n": 9,
+              "p50": 7.449167,
+              "p95": null,
+              "min": 4.4735,
+              "max": 9.160583
+            },
+            "remove-aria-hidden": {
+              "n": 9,
+              "p50": 6.107834,
+              "p95": null,
+              "min": 4.488167,
+              "max": 8.052
+            },
+            "lazy-image-3": {
+              "n": 9,
+              "p50": 4.843166,
+              "p95": null,
+              "min": 4.425416,
+              "max": 8.712375
+            },
+            "normalize-spaces": {
+              "n": 9,
+              "p50": 5.477542,
+              "p95": null,
+              "min": 3.885292,
+              "max": 6.438584
+            },
+            "title-en-dash": {
+              "n": 9,
+              "p50": 6.06725,
+              "p95": null,
+              "min": 3.592667,
+              "max": 8.237625
+            },
+            "replace-brs": {
+              "n": 9,
+              "p50": 6.732,
+              "p95": null,
+              "min": 4.421875,
+              "max": 11.665958
+            },
+            "remove-extra-brs": {
+              "n": 9,
+              "p50": 5.779917,
+              "p95": null,
+              "min": 3.944208,
+              "max": 14.14375
+            },
+            "rtl-1": {
+              "n": 9,
+              "p50": 5.169833,
+              "p95": null,
+              "min": 3.516583,
+              "max": 18.921541
+            },
+            "rtl-3": {
+              "n": 9,
+              "p50": 4.96525,
+              "p95": null,
+              "min": 3.6315,
+              "max": 10.839667
+            },
+            "rtl-4": {
+              "n": 9,
+              "p50": 6.57425,
+              "p95": null,
+              "min": 3.546375,
+              "max": 7.426375
+            },
+            "comment-inside-script-parsing": {
+              "n": 9,
+              "p50": 11.808209,
+              "p95": null,
+              "min": 3.833666,
+              "max": 15.599917
+            },
+            "rtl-2": {
+              "n": 9,
+              "p50": 6.39325,
+              "p95": null,
+              "min": 5.575334,
+              "max": 8.005042
+            },
+            "remove-extra-paragraphs": {
+              "n": 9,
+              "p50": 6.857875,
+              "p95": null,
+              "min": 5.281666,
+              "max": 10.132
+            },
+            "replace-font-tags": {
+              "n": 9,
+              "p50": 5.230042,
+              "p95": null,
+              "min": 3.897667,
+              "max": 14.227291
+            },
+            "title-and-h1-discrepancy": {
+              "n": 9,
+              "p50": 5.91275,
+              "p95": null,
+              "min": 3.475125,
+              "max": 6.933458
+            },
+            "style-tags-removal": {
+              "n": 9,
+              "p50": 8.360834,
+              "p95": null,
+              "min": 4.520208,
+              "max": 9.306958
+            },
+            "basic-tags-cleaning": {
+              "n": 9,
+              "p50": 10.993625,
+              "p95": null,
+              "min": 6.33475,
+              "max": 12.136458
+            },
+            "visibility-hidden": {
+              "n": 9,
+              "p50": 13.839542,
+              "p95": null,
+              "min": 7.631334,
+              "max": 24.3815
+            },
+            "remove-script-tags": {
+              "n": 9,
+              "p50": 6.311375,
+              "p95": null,
+              "min": 4.471083,
+              "max": 9.462542
+            },
+            "metadata-content-missing": {
+              "n": 9,
+              "p50": 6.871,
+              "p95": null,
+              "min": 4.235583,
+              "max": 10.293833
+            },
+            "004-metadata-space-separated-properties": {
+              "n": 9,
+              "p50": 5.647834,
+              "p95": null,
+              "min": 3.456292,
+              "max": 12.571667
+            },
+            "parsely-metadata": {
+              "n": 9,
+              "p50": 7.800708,
+              "p95": null,
+              "min": 3.341667,
+              "max": 20.003459
+            },
+            "base-url": {
+              "n": 9,
+              "p50": 8.011291,
+              "p95": null,
+              "min": 5.449083,
+              "max": 9.288875
+            },
+            "base-url-base-element": {
+              "n": 9,
+              "p50": 8.062042,
+              "p95": null,
+              "min": 5.006834,
+              "max": 22.154333
+            },
+            "base-url-base-element-relative": {
+              "n": 9,
+              "p50": 10.176583,
+              "p95": null,
+              "min": 5.542458,
+              "max": 17.294084
+            },
+            "embedded-videos": {
+              "n": 9,
+              "p50": 20.93725,
+              "p95": null,
+              "min": 12.719416,
+              "max": 47.667292
+            },
+            "reordering-paragraphs": {
+              "n": 9,
+              "p50": 7.967959,
+              "p95": null,
+              "min": 3.498042,
+              "max": 8.989625
+            },
+            "003-metadata-preferred": {
+              "n": 9,
+              "p50": 6.78075,
+              "p95": null,
+              "min": 3.716417,
+              "max": 10.413916
+            },
+            "svg-parsing": {
+              "n": 9,
+              "p50": 6.197791,
+              "p95": null,
+              "min": 4.138292,
+              "max": 8.22075
+            },
+            "social-buttons": {
+              "n": 9,
+              "p50": 6.301,
+              "p95": null,
+              "min": 5.060125,
+              "max": 8.807166
+            },
+            "hidden-nodes": {
+              "n": 9,
+              "p50": 8.663875,
+              "p95": null,
+              "min": 4.487709,
+              "max": 11.159625
+            },
+            "missing-paragraphs": {
+              "n": 9,
+              "p50": 6.767917,
+              "p95": null,
+              "min": 3.765292,
+              "max": 9.144875
+            },
+            "dev418": {
+              "n": 9,
+              "p50": 11.934125,
+              "p95": null,
+              "min": 6.97975,
+              "max": 13.718083
+            },
+            "daringfireball-1": {
+              "n": 9,
+              "p50": 14.595833,
+              "p95": null,
+              "min": 10.0055,
+              "max": 21.861084
+            },
+            "001": {
+              "n": 9,
+              "p50": 15.5145,
+              "p95": null,
+              "min": 10.383667,
+              "max": 22.371
+            },
+            "table-style-attributes": {
+              "n": 9,
+              "p50": 31.790792,
+              "p95": null,
+              "min": 18.583375,
+              "max": 69.461167
+            },
+            "hukumusume": {
+              "n": 9,
+              "p50": 74.436334,
+              "p95": null,
+              "min": 43.98475,
+              "max": 162.136
+            },
+            "mozilla-2": {
+              "n": 9,
+              "p50": 28.258792,
+              "p95": null,
+              "min": 16.760458,
+              "max": 59.528708
+            },
+            "tumblr": {
+              "n": 9,
+              "p50": 19.512417,
+              "p95": null,
+              "min": 13.956917,
+              "max": 37.557333
+            },
+            "v8-blog": {
+              "n": 9,
+              "p50": 54.1685,
+              "p95": null,
+              "min": 34.504166,
+              "max": 55.573375
+            },
+            "simplyfound-1": {
+              "n": 9,
+              "p50": 25.681333,
+              "p95": null,
+              "min": 14.264416,
+              "max": 27.735916
+            },
+            "ebb-org": {
+              "n": 9,
+              "p50": 30.486834,
+              "p95": null,
+              "min": 19.257542,
+              "max": 33.86925
+            },
+            "medium-2": {
+              "n": 9,
+              "p50": 25.148584,
+              "p95": null,
+              "min": 12.497875,
+              "max": 142.033167
+            },
+            "ars-1": {
+              "n": 9,
+              "p50": 36.566792,
+              "p95": null,
+              "min": 21.835792,
+              "max": 77.029125
+            },
+            "herald-sun-1": {
+              "n": 9,
+              "p50": 37.644,
+              "p95": null,
+              "min": 20.936125,
+              "max": 60.142
+            },
+            "heise": {
+              "n": 9,
+              "p50": 30.119625,
+              "p95": null,
+              "min": 18.620334,
+              "max": 47.540875
+            },
+            "la-nacion": {
+              "n": 9,
+              "p50": 30.040292,
+              "p95": null,
+              "min": 16.458042,
+              "max": 90.173917
+            },
+            "keep-tabular-data": {
+              "n": 9,
+              "p50": 73.221417,
+              "p95": null,
+              "min": 57.226291,
+              "max": 82.848959
+            },
+            "mercurial": {
+              "n": 9,
+              "p50": 151.283583,
+              "p95": null,
+              "min": 54.009375,
+              "max": 497.289708
+            },
+            "ietf-1": {
+              "n": 9,
+              "p50": 74.636333,
+              "p95": null,
+              "min": 50.681292,
+              "max": 130.670666
+            },
+            "data-url-image": {
+              "n": 9,
+              "p50": 28.719,
+              "p95": null,
+              "min": 19.973791,
+              "max": 31.440166
+            },
+            "ehow-1": {
+              "n": 9,
+              "p50": 36.829333,
+              "p95": null,
+              "min": 26.611292,
+              "max": 53.565708
+            },
+            "google-sre-book-1": {
+              "n": 9,
+              "p50": 57.226459,
+              "p95": null,
+              "min": 41.9255,
+              "max": 60.122333
+            },
+            "gitlab-blog": {
+              "n": 9,
+              "p50": 32.966458,
+              "p95": null,
+              "min": 19.168458,
+              "max": 37.682875
+            },
+            "dropbox-blog": {
+              "n": 9,
+              "p50": 83.224209,
+              "p95": null,
+              "min": 46.528291,
+              "max": 135.096375
+            },
+            "firefox-nightly-blog": {
+              "n": 9,
+              "p50": 101.711291,
+              "p95": null,
+              "min": 70.801584,
+              "max": 108.9795
+            },
+            "lwn-1": {
+              "n": 9,
+              "p50": 111.037666,
+              "p95": null,
+              "min": 72.380667,
+              "max": 136.057167
+            },
+            "lemonde-1": {
+              "n": 9,
+              "p50": 34.901334,
+              "p95": null,
+              "min": 25.024875,
+              "max": 44.834584
+            },
+            "tmz-1": {
+              "n": 9,
+              "p50": 67.802375,
+              "p95": null,
+              "min": 25.606083,
+              "max": 105.442791
+            },
+            "mozilla-1": {
+              "n": 9,
+              "p50": 53.111125,
+              "p95": null,
+              "min": 32.0845,
+              "max": 122.205167
+            },
+            "iab-1": {
+              "n": 9,
+              "p50": 59.447042,
+              "p95": null,
+              "min": 40.315292,
+              "max": 65.177875
+            },
+            "ehow-2": {
+              "n": 9,
+              "p50": 52.137917,
+              "p95": null,
+              "min": 30.716584,
+              "max": 56.961375
+            },
+            "topicseed-1": {
+              "n": 9,
+              "p50": 37.698375,
+              "p95": null,
+              "min": 22.2385,
+              "max": 59.899917
+            },
+            "medium-1": {
+              "n": 9,
+              "p50": 48.097,
+              "p95": null,
+              "min": 31.932666,
+              "max": 91.412916
+            },
+            "wapo-2": {
+              "n": 9,
+              "p50": 44.627333,
+              "p95": null,
+              "min": 29.3385,
+              "max": 59.739792
+            },
+            "lifehacker-working": {
+              "n": 9,
+              "p50": 76.875,
+              "p95": null,
+              "min": 53.67525,
+              "max": 161.468166
+            },
+            "toc-missing": {
+              "n": 9,
+              "p50": 283.865292,
+              "p95": null,
+              "min": 129.484208,
+              "max": 351.519459
+            },
+            "links-in-tables": {
+              "n": 9,
+              "p50": 125.171083,
+              "p95": null,
+              "min": 71.956042,
+              "max": 226.779417
+            },
+            "webmd-2": {
+              "n": 9,
+              "p50": 49.808084,
+              "p95": null,
+              "min": 32.355083,
+              "max": 67.885167
+            },
+            "cnet-svg-classes": {
+              "n": 9,
+              "p50": 43.273417,
+              "p95": null,
+              "min": 24.895083,
+              "max": 52.575125
+            },
+            "liberation-1": {
+              "n": 9,
+              "p50": 106.727125,
+              "p95": null,
+              "min": 43.367542,
+              "max": 161.765292
+            },
+            "keep-images": {
+              "n": 9,
+              "p50": 82.131208,
+              "p95": null,
+              "min": 38.567,
+              "max": 177.309625
+            },
+            "002": {
+              "n": 9,
+              "p50": 210.015166,
+              "p95": null,
+              "min": 121.479292,
+              "max": 335.831458
+            },
+            "yahoo-4": {
+              "n": 9,
+              "p50": 62.735417,
+              "p95": null,
+              "min": 50.59175,
+              "max": 80.790833
+            },
+            "gmw": {
+              "n": 9,
+              "p50": 159.327041,
+              "p95": null,
+              "min": 90.322291,
+              "max": 197.174917
+            },
+            "medicalnewstoday": {
+              "n": 9,
+              "p50": 56.738792,
+              "p95": null,
+              "min": 46.869208,
+              "max": 125.888042
+            },
+            "blogger": {
+              "n": 9,
+              "p50": 90.89575,
+              "p95": null,
+              "min": 42.187541,
+              "max": 107.680583
+            },
+            "citylab-1": {
+              "n": 9,
+              "p50": 57.067167,
+              "p95": null,
+              "min": 32.146375,
+              "max": 102.2675
+            },
+            "videos-2": {
+              "n": 9,
+              "p50": 79.1065,
+              "p95": null,
+              "min": 51.109334,
+              "max": 109.201916
+            },
+            "wapo-1": {
+              "n": 9,
+              "p50": 53.032375,
+              "p95": null,
+              "min": 42.984792,
+              "max": 84.482833
+            },
+            "wordpress": {
+              "n": 9,
+              "p50": 92.368708,
+              "p95": null,
+              "min": 53.463709,
+              "max": 148.663208
+            },
+            "clean-links": {
+              "n": 9,
+              "p50": 91.98975,
+              "p95": null,
+              "min": 72.734291,
+              "max": 122.166459
+            },
+            "webmd-1": {
+              "n": 9,
+              "p50": 52.22125,
+              "p95": null,
+              "min": 34.374208,
+              "max": 166.857292
+            },
+            "spiceworks": {
+              "n": 9,
+              "p50": 53.291833,
+              "p95": null,
+              "min": 32.080583,
+              "max": 56.958542
+            },
+            "mathjax": {
+              "n": 9,
+              "p50": 81.782084,
+              "p95": null,
+              "min": 65.401458,
+              "max": 167.919209
+            },
+            "aclu": {
+              "n": 9,
+              "p50": 99.010541,
+              "p95": null,
+              "min": 69.215,
+              "max": 179.476958
+            },
+            "royal-road": {
+              "n": 9,
+              "p50": 172.567833,
+              "p95": null,
+              "min": 137.044667,
+              "max": 189.893625
+            },
+            "videos-1": {
+              "n": 9,
+              "p50": 170.596708,
+              "p95": null,
+              "min": 116.512791,
+              "max": 253.514375
+            },
+            "telegraph": {
+              "n": 9,
+              "p50": 77.461125,
+              "p95": null,
+              "min": 42.291833,
+              "max": 137.336208
+            },
+            "theverge": {
+              "n": 9,
+              "p50": 45.748791,
+              "p95": null,
+              "min": 33.978375,
+              "max": 68.337208
+            },
+            "salon-1": {
+              "n": 9,
+              "p50": 132.70975,
+              "p95": null,
+              "min": 47.954542,
+              "max": 161.823417
+            },
+            "wikipedia": {
+              "n": 9,
+              "p50": 313.960375,
+              "p95": null,
+              "min": 170.375417,
+              "max": 437.108416
+            },
+            "lifehacker-post-comment-load": {
+              "n": 9,
+              "p50": 271.62275,
+              "p95": null,
+              "min": 113.909333,
+              "max": 455.241
+            },
+            "seattletimes-1": {
+              "n": 9,
+              "p50": 56.589541,
+              "p95": null,
+              "min": 39.541791,
+              "max": 137.1365
+            },
+            "cnn": {
+              "n": 9,
+              "p50": 406.193625,
+              "p95": null,
+              "min": 117.722375,
+              "max": 518.664167
+            },
+            "bbc-1": {
+              "n": 9,
+              "p50": 113.488167,
+              "p95": null,
+              "min": 69.383209,
+              "max": 129.264
+            },
+            "archive-of-our-own": {
+              "n": 9,
+              "p50": 138.250708,
+              "p95": null,
+              "min": 88.039833,
+              "max": 186.269959
+            },
+            "lazy-image-1": {
+              "n": 9,
+              "p50": 81.743708,
+              "p95": null,
+              "min": 59.126709,
+              "max": 184.753292
+            },
+            "cnet": {
+              "n": 9,
+              "p50": 129.527208,
+              "p95": null,
+              "min": 94.16025,
+              "max": 208.862542
+            },
+            "wikipedia-3": {
+              "n": 9,
+              "p50": 181.8025,
+              "p95": null,
+              "min": 96.469375,
+              "max": 318.413333
+            },
+            "article-author-tag": {
+              "n": 9,
+              "p50": 72.251541,
+              "p95": null,
+              "min": 48.074167,
+              "max": 150.680917
+            },
+            "wikipedia-4": {
+              "n": 9,
+              "p50": 260.966708,
+              "p95": null,
+              "min": 179.209666,
+              "max": 838.538667
+            },
+            "nytimes-2": {
+              "n": 9,
+              "p50": 161.250792,
+              "p95": null,
+              "min": 94.87625,
+              "max": 276.141458
+            },
+            "aktualne": {
+              "n": 9,
+              "p50": 65.916667,
+              "p95": null,
+              "min": 39.383,
+              "max": 148.819166
+            },
+            "quanta-1": {
+              "n": 9,
+              "p50": 61.248958,
+              "p95": null,
+              "min": 42.246667,
+              "max": 118.476834
+            },
+            "nytimes-1": {
+              "n": 9,
+              "p50": 117.697958,
+              "p95": null,
+              "min": 98.02425,
+              "max": 359.330875
+            },
+            "qq": {
+              "n": 9,
+              "p50": 97.719791,
+              "p95": null,
+              "min": 56.705334,
+              "max": 271.386583
+            },
+            "bug-1255978": {
+              "n": 9,
+              "p50": 173.925125,
+              "p95": null,
+              "min": 134.175084,
+              "max": 227.845875
+            },
+            "engadget": {
+              "n": 9,
+              "p50": 94.02475,
+              "p95": null,
+              "min": 76.196042,
+              "max": 128.261542
+            },
+            "folha": {
+              "n": 9,
+              "p50": 67.548125,
+              "p95": null,
+              "min": 54.605542,
+              "max": 86.480792
+            },
+            "buzzfeed-1": {
+              "n": 9,
+              "p50": 110.240458,
+              "p95": null,
+              "min": 74.438708,
+              "max": 235.483125
+            },
+            "medium-3": {
+              "n": 9,
+              "p50": 104.644541,
+              "p95": null,
+              "min": 71.858583,
+              "max": 148.280416
+            },
+            "pixnet": {
+              "n": 9,
+              "p50": 255.266917,
+              "p95": null,
+              "min": 141.022209,
+              "max": 1942.660292
+            },
+            "schema-org-context-object": {
+              "n": 9,
+              "p50": 82.968375,
+              "p95": null,
+              "min": 55.464916,
+              "max": 91.6015
+            },
+            "youth": {
+              "n": 9,
+              "p50": 365.224875,
+              "p95": null,
+              "min": 162.66,
+              "max": 1640.712
+            },
+            "nytimes-3": {
+              "n": 9,
+              "p50": 126.200542,
+              "p95": null,
+              "min": 66.208958,
+              "max": 151.329459
+            },
+            "msn": {
+              "n": 9,
+              "p50": 147.295209,
+              "p95": null,
+              "min": 96.95475,
+              "max": 175.867459
+            },
+            "lazy-image-2": {
+              "n": 9,
+              "p50": 302.414,
+              "p95": null,
+              "min": 158.759375,
+              "max": 370.698666
+            },
+            "nytimes-4": {
+              "n": 9,
+              "p50": 95.368958,
+              "p95": null,
+              "min": 80.566,
+              "max": 112.300917
+            },
+            "wikia": {
+              "n": 9,
+              "p50": 219.88275,
+              "p95": null,
+              "min": 134.212708,
+              "max": 310.654292
+            },
+            "breitbart": {
+              "n": 9,
+              "p50": 325.273875,
+              "p95": null,
+              "min": 185.450459,
+              "max": 749.425583
+            },
+            "nytimes-5": {
+              "n": 9,
+              "p50": 167.462667,
+              "p95": null,
+              "min": 93.636667,
+              "max": 219.4475
+            },
+            "wikipedia-2": {
+              "n": 9,
+              "p50": 1101.776833,
+              "p95": null,
+              "min": 759.28925,
+              "max": 2093.562958
+            },
+            "guardian-1": {
+              "n": 9,
+              "p50": 151.524917,
+              "p95": null,
+              "min": 83.711709,
+              "max": 378.818791
+            },
+            "yahoo-1": {
+              "n": 9,
+              "p50": 133.57,
+              "p95": null,
+              "min": 103.202042,
+              "max": 193.578375
+            },
+            "yahoo-3": {
+              "n": 9,
+              "p50": 311.748167,
+              "p95": null,
+              "min": 116.072125,
+              "max": 384.218708
+            },
+            "yahoo-2": {
+              "n": 9,
+              "p50": 343.796917,
+              "p95": null,
+              "min": 173.713084,
+              "max": 466.570708
+            }
+          }
+        },
+        "go": {
+          "samplesPerPage": 9,
+          "corpusSumPageMediansMs": 356.95203899999996,
+          "pageMedianDistributionMs": {
+            "n": 130,
+            "p50": 1.960958,
+            "p95": 7.994083,
+            "min": 0.015542,
+            "max": 39.910917
+          },
+          "workerPeakRSSMiB": {
+            "n": 3,
+            "p50": 113.28125,
+            "p95": null,
+            "min": 112.4375,
+            "max": 113.96875
+          },
+          "perPage": {
+            "ol": {
+              "n": 9,
+              "p50": 0.025541,
+              "p95": null,
+              "min": 0.021834,
+              "max": 0.030375
+            },
+            "js-link-replacement": {
+              "n": 9,
+              "p50": 0.031458,
+              "p95": null,
+              "min": 0.022709,
+              "max": 0.148458
+            },
+            "005-unescape-html-entities": {
+              "n": 9,
+              "p50": 0.015542,
+              "p95": null,
+              "min": 0.012042,
+              "max": 0.020709
+            },
+            "invalid-attributes": {
+              "n": 9,
+              "p50": 0.069834,
+              "p95": null,
+              "min": 0.055083,
+              "max": 0.074625
+            },
+            "remove-aria-hidden": {
+              "n": 9,
+              "p50": 0.0695,
+              "p95": null,
+              "min": 0.058208,
+              "max": 0.129291
+            },
+            "lazy-image-3": {
+              "n": 9,
+              "p50": 0.068083,
+              "p95": null,
+              "min": 0.061333,
+              "max": 0.083125
+            },
+            "normalize-spaces": {
+              "n": 9,
+              "p50": 0.042875,
+              "p95": null,
+              "min": 0.03725,
+              "max": 0.051458
+            },
+            "title-en-dash": {
+              "n": 9,
+              "p50": 0.042542,
+              "p95": null,
+              "min": 0.036583,
+              "max": 0.05
+            },
+            "replace-brs": {
+              "n": 9,
+              "p50": 0.082,
+              "p95": null,
+              "min": 0.059166,
+              "max": 0.0945
+            },
+            "remove-extra-brs": {
+              "n": 9,
+              "p50": 0.067584,
+              "p95": null,
+              "min": 0.051833,
+              "max": 0.07025
+            },
+            "rtl-1": {
+              "n": 9,
+              "p50": 0.054916,
+              "p95": null,
+              "min": 0.047166,
+              "max": 0.067333
+            },
+            "rtl-3": {
+              "n": 9,
+              "p50": 0.057709,
+              "p95": null,
+              "min": 0.047833,
+              "max": 0.2845
+            },
+            "rtl-4": {
+              "n": 9,
+              "p50": 0.053667,
+              "p95": null,
+              "min": 0.048167,
+              "max": 0.064291
+            },
+            "comment-inside-script-parsing": {
+              "n": 9,
+              "p50": 0.059291,
+              "p95": null,
+              "min": 0.04775,
+              "max": 0.065167
+            },
+            "rtl-2": {
+              "n": 9,
+              "p50": 0.052167,
+              "p95": null,
+              "min": 0.046208,
+              "max": 0.119334
+            },
+            "remove-extra-paragraphs": {
+              "n": 9,
+              "p50": 0.064542,
+              "p95": null,
+              "min": 0.0565,
+              "max": 0.076583
+            },
+            "replace-font-tags": {
+              "n": 9,
+              "p50": 0.057291,
+              "p95": null,
+              "min": 0.050291,
+              "max": 0.072292
+            },
+            "title-and-h1-discrepancy": {
+              "n": 9,
+              "p50": 0.046375,
+              "p95": null,
+              "min": 0.043333,
+              "max": 0.056291
+            },
+            "style-tags-removal": {
+              "n": 9,
+              "p50": 0.047042,
+              "p95": null,
+              "min": 0.041375,
+              "max": 0.058667
+            },
+            "basic-tags-cleaning": {
+              "n": 9,
+              "p50": 0.062541,
+              "p95": null,
+              "min": 0.05475,
+              "max": 0.086375
+            },
+            "visibility-hidden": {
+              "n": 9,
+              "p50": 0.108084,
+              "p95": null,
+              "min": 0.089625,
+              "max": 0.158958
+            },
+            "remove-script-tags": {
+              "n": 9,
+              "p50": 0.064,
+              "p95": null,
+              "min": 0.051667,
+              "max": 0.0735
+            },
+            "metadata-content-missing": {
+              "n": 9,
+              "p50": 0.048833,
+              "p95": null,
+              "min": 0.039875,
+              "max": 0.052708
+            },
+            "004-metadata-space-separated-properties": {
+              "n": 9,
+              "p50": 0.04925,
+              "p95": null,
+              "min": 0.041458,
+              "max": 0.059167
+            },
+            "parsely-metadata": {
+              "n": 9,
+              "p50": 0.046917,
+              "p95": null,
+              "min": 0.040041,
+              "max": 0.054583
+            },
+            "base-url": {
+              "n": 9,
+              "p50": 0.107375,
+              "p95": null,
+              "min": 0.09,
+              "max": 0.121709
+            },
+            "base-url-base-element": {
+              "n": 9,
+              "p50": 0.092291,
+              "p95": null,
+              "min": 0.082584,
+              "max": 0.11375
+            },
+            "base-url-base-element-relative": {
+              "n": 9,
+              "p50": 0.106334,
+              "p95": null,
+              "min": 0.084875,
+              "max": 0.148458
+            },
+            "embedded-videos": {
+              "n": 9,
+              "p50": 0.070875,
+              "p95": null,
+              "min": 0.059333,
+              "max": 0.081834
+            },
+            "reordering-paragraphs": {
+              "n": 9,
+              "p50": 0.060791,
+              "p95": null,
+              "min": 0.049042,
+              "max": 0.069083
+            },
+            "003-metadata-preferred": {
+              "n": 9,
+              "p50": 0.062,
+              "p95": null,
+              "min": 0.059125,
+              "max": 0.076333
+            },
+            "svg-parsing": {
+              "n": 9,
+              "p50": 0.086875,
+              "p95": null,
+              "min": 0.071625,
+              "max": 0.094875
+            },
+            "social-buttons": {
+              "n": 9,
+              "p50": 0.103291,
+              "p95": null,
+              "min": 0.082917,
+              "max": 0.111292
+            },
+            "hidden-nodes": {
+              "n": 9,
+              "p50": 0.054417,
+              "p95": null,
+              "min": 0.044,
+              "max": 0.062041
+            },
+            "missing-paragraphs": {
+              "n": 9,
+              "p50": 0.093334,
+              "p95": null,
+              "min": 0.07825,
+              "max": 0.112541
+            },
+            "dev418": {
+              "n": 9,
+              "p50": 0.139583,
+              "p95": null,
+              "min": 0.124792,
+              "max": 0.172792
+            },
+            "daringfireball-1": {
+              "n": 9,
+              "p50": 0.267917,
+              "p95": null,
+              "min": 0.24175,
+              "max": 0.290875
+            },
+            "001": {
+              "n": 9,
+              "p50": 0.437542,
+              "p95": null,
+              "min": 0.386625,
+              "max": 0.48
+            },
+            "table-style-attributes": {
+              "n": 9,
+              "p50": 0.5925,
+              "p95": null,
+              "min": 0.505334,
+              "max": 0.705125
+            },
+            "hukumusume": {
+              "n": 9,
+              "p50": 2.750875,
+              "p95": null,
+              "min": 2.270209,
+              "max": 3.477667
+            },
+            "mozilla-2": {
+              "n": 9,
+              "p50": 0.79425,
+              "p95": null,
+              "min": 0.654416,
+              "max": 0.865417
+            },
+            "tumblr": {
+              "n": 9,
+              "p50": 0.444958,
+              "p95": null,
+              "min": 0.373875,
+              "max": 0.558084
+            },
+            "v8-blog": {
+              "n": 9,
+              "p50": 1.3245,
+              "p95": null,
+              "min": 1.188042,
+              "max": 1.674
+            },
+            "simplyfound-1": {
+              "n": 9,
+              "p50": 0.678333,
+              "p95": null,
+              "min": 0.612084,
+              "max": 0.799208
+            },
+            "ebb-org": {
+              "n": 9,
+              "p50": 0.874708,
+              "p95": null,
+              "min": 0.763417,
+              "max": 1.020208
+            },
+            "medium-2": {
+              "n": 9,
+              "p50": 0.838958,
+              "p95": null,
+              "min": 0.741541,
+              "max": 1.157542
+            },
+            "ars-1": {
+              "n": 9,
+              "p50": 0.910292,
+              "p95": null,
+              "min": 0.803667,
+              "max": 1.072875
+            },
+            "herald-sun-1": {
+              "n": 9,
+              "p50": 1.08575,
+              "p95": null,
+              "min": 0.912417,
+              "max": 1.587875
+            },
+            "heise": {
+              "n": 9,
+              "p50": 1.225125,
+              "p95": null,
+              "min": 1.090541,
+              "max": 1.515667
+            },
+            "la-nacion": {
+              "n": 9,
+              "p50": 1.016458,
+              "p95": null,
+              "min": 0.833916,
+              "max": 1.146125
+            },
+            "keep-tabular-data": {
+              "n": 9,
+              "p50": 2.786417,
+              "p95": null,
+              "min": 2.087208,
+              "max": 3.018334
+            },
+            "mercurial": {
+              "n": 9,
+              "p50": 3.461584,
+              "p95": null,
+              "min": 3.114125,
+              "max": 3.8675
+            },
+            "ietf-1": {
+              "n": 9,
+              "p50": 1.863333,
+              "p95": null,
+              "min": 1.596833,
+              "max": 2.40225
+            },
+            "data-url-image": {
+              "n": 9,
+              "p50": 1.202166,
+              "p95": null,
+              "min": 1.05275,
+              "max": 1.496875
+            },
+            "ehow-1": {
+              "n": 9,
+              "p50": 1.437333,
+              "p95": null,
+              "min": 1.368542,
+              "max": 1.552708
+            },
+            "google-sre-book-1": {
+              "n": 9,
+              "p50": 3.362375,
+              "p95": null,
+              "min": 2.676958,
+              "max": 4.0325
+            },
+            "gitlab-blog": {
+              "n": 9,
+              "p50": 1.536916,
+              "p95": null,
+              "min": 1.277084,
+              "max": 1.799958
+            },
+            "dropbox-blog": {
+              "n": 9,
+              "p50": 3.340917,
+              "p95": null,
+              "min": 2.747375,
+              "max": 3.757333
+            },
+            "firefox-nightly-blog": {
+              "n": 9,
+              "p50": 4.622125,
+              "p95": null,
+              "min": 3.814042,
+              "max": 5.139792
+            },
+            "lwn-1": {
+              "n": 9,
+              "p50": 5.296917,
+              "p95": null,
+              "min": 4.701875,
+              "max": 6.184875
+            },
+            "lemonde-1": {
+              "n": 9,
+              "p50": 1.340417,
+              "p95": null,
+              "min": 1.126541,
+              "max": 1.499834
+            },
+            "tmz-1": {
+              "n": 9,
+              "p50": 1.138333,
+              "p95": null,
+              "min": 0.939292,
+              "max": 1.307625
+            },
+            "mozilla-1": {
+              "n": 9,
+              "p50": 1.812292,
+              "p95": null,
+              "min": 1.493167,
+              "max": 1.96775
+            },
+            "iab-1": {
+              "n": 9,
+              "p50": 1.538625,
+              "p95": null,
+              "min": 1.209,
+              "max": 1.63675
+            },
+            "ehow-2": {
+              "n": 9,
+              "p50": 1.618583,
+              "p95": null,
+              "min": 1.391208,
+              "max": 1.993083
+            },
+            "topicseed-1": {
+              "n": 9,
+              "p50": 1.366166,
+              "p95": null,
+              "min": 1.147542,
+              "max": 1.96375
+            },
+            "medium-1": {
+              "n": 9,
+              "p50": 3.433459,
+              "p95": null,
+              "min": 3.031584,
+              "max": 3.693666
+            },
+            "wapo-2": {
+              "n": 9,
+              "p50": 2.010542,
+              "p95": null,
+              "min": 1.603291,
+              "max": 2.269083
+            },
+            "lifehacker-working": {
+              "n": 9,
+              "p50": 3.433583,
+              "p95": null,
+              "min": 2.792708,
+              "max": 3.990959
+            },
+            "toc-missing": {
+              "n": 9,
+              "p50": 5.887,
+              "p95": null,
+              "min": 5.297375,
+              "max": 7.297833
+            },
+            "links-in-tables": {
+              "n": 9,
+              "p50": 1.971792,
+              "p95": null,
+              "min": 1.774292,
+              "max": 2.938708
+            },
+            "webmd-2": {
+              "n": 9,
+              "p50": 1.785459,
+              "p95": null,
+              "min": 1.563417,
+              "max": 2.113542
+            },
+            "cnet-svg-classes": {
+              "n": 9,
+              "p50": 2.24275,
+              "p95": null,
+              "min": 1.7655,
+              "max": 2.391083
+            },
+            "liberation-1": {
+              "n": 9,
+              "p50": 1.377541,
+              "p95": null,
+              "min": 1.113333,
+              "max": 1.876167
+            },
+            "keep-images": {
+              "n": 9,
+              "p50": 3.817417,
+              "p95": null,
+              "min": 3.342167,
+              "max": 4.295584
+            },
+            "002": {
+              "n": 9,
+              "p50": 3.586083,
+              "p95": null,
+              "min": 3.413333,
+              "max": 4.681875
+            },
+            "yahoo-4": {
+              "n": 9,
+              "p50": 1.578083,
+              "p95": null,
+              "min": 1.494458,
+              "max": 1.944834
+            },
+            "gmw": {
+              "n": 9,
+              "p50": 1.960958,
+              "p95": null,
+              "min": 1.77525,
+              "max": 2.444834
+            },
+            "medicalnewstoday": {
+              "n": 9,
+              "p50": 2.745875,
+              "p95": null,
+              "min": 2.21325,
+              "max": 3.346584
+            },
+            "blogger": {
+              "n": 9,
+              "p50": 2.568792,
+              "p95": null,
+              "min": 2.057458,
+              "max": 2.932583
+            },
+            "citylab-1": {
+              "n": 9,
+              "p50": 2.17,
+              "p95": null,
+              "min": 1.836708,
+              "max": 2.464625
+            },
+            "videos-2": {
+              "n": 9,
+              "p50": 2.122458,
+              "p95": null,
+              "min": 1.828,
+              "max": 2.708375
+            },
+            "wapo-1": {
+              "n": 9,
+              "p50": 3.056208,
+              "p95": null,
+              "min": 2.47925,
+              "max": 3.486459
+            },
+            "wordpress": {
+              "n": 9,
+              "p50": 1.861125,
+              "p95": null,
+              "min": 1.584792,
+              "max": 2.004583
+            },
+            "clean-links": {
+              "n": 9,
+              "p50": 6.016292,
+              "p95": null,
+              "min": 5.166334,
+              "max": 7.168625
+            },
+            "webmd-1": {
+              "n": 9,
+              "p50": 1.991334,
+              "p95": null,
+              "min": 1.619625,
+              "max": 2.2525
+            },
+            "spiceworks": {
+              "n": 9,
+              "p50": 1.619792,
+              "p95": null,
+              "min": 1.229541,
+              "max": 1.948334
+            },
+            "mathjax": {
+              "n": 9,
+              "p50": 2.855708,
+              "p95": null,
+              "min": 2.342458,
+              "max": 3.4945
+            },
+            "aclu": {
+              "n": 9,
+              "p50": 3.990875,
+              "p95": null,
+              "min": 3.316542,
+              "max": 4.765
+            },
+            "royal-road": {
+              "n": 9,
+              "p50": 5.621,
+              "p95": null,
+              "min": 4.857417,
+              "max": 6.692917
+            },
+            "videos-1": {
+              "n": 9,
+              "p50": 3.752041,
+              "p95": null,
+              "min": 3.558125,
+              "max": 4.334709
+            },
+            "telegraph": {
+              "n": 9,
+              "p50": 2.903625,
+              "p95": null,
+              "min": 2.273708,
+              "max": 3.151708
+            },
+            "theverge": {
+              "n": 9,
+              "p50": 2.786125,
+              "p95": null,
+              "min": 2.374375,
+              "max": 3.090167
+            },
+            "salon-1": {
+              "n": 9,
+              "p50": 4.201292,
+              "p95": null,
+              "min": 3.447958,
+              "max": 4.80525
+            },
+            "wikipedia": {
+              "n": 9,
+              "p50": 8.156833,
+              "p95": null,
+              "min": 6.858042,
+              "max": 9.149041
+            },
+            "lifehacker-post-comment-load": {
+              "n": 9,
+              "p50": 6.38525,
+              "p95": null,
+              "min": 5.11,
+              "max": 7.204
+            },
+            "seattletimes-1": {
+              "n": 9,
+              "p50": 2.895625,
+              "p95": null,
+              "min": 2.476584,
+              "max": 3.303083
+            },
+            "cnn": {
+              "n": 9,
+              "p50": 2.462542,
+              "p95": null,
+              "min": 2.136916,
+              "max": 3.215667
+            },
+            "bbc-1": {
+              "n": 9,
+              "p50": 2.349834,
+              "p95": null,
+              "min": 2.024125,
+              "max": 2.862333
+            },
+            "archive-of-our-own": {
+              "n": 9,
+              "p50": 5.000708,
+              "p95": null,
+              "min": 4.171167,
+              "max": 8.132458
+            },
+            "lazy-image-1": {
+              "n": 9,
+              "p50": 4.266958,
+              "p95": null,
+              "min": 3.469625,
+              "max": 4.71325
+            },
+            "cnet": {
+              "n": 9,
+              "p50": 2.84275,
+              "p95": null,
+              "min": 2.435333,
+              "max": 3.569709
+            },
+            "wikipedia-3": {
+              "n": 9,
+              "p50": 4.937291,
+              "p95": null,
+              "min": 4.011125,
+              "max": 5.745458
+            },
+            "article-author-tag": {
+              "n": 9,
+              "p50": 3.088166,
+              "p95": null,
+              "min": 2.779792,
+              "max": 3.666333
+            },
+            "wikipedia-4": {
+              "n": 9,
+              "p50": 9.815791,
+              "p95": null,
+              "min": 7.289,
+              "max": 10.341458
+            },
+            "nytimes-2": {
+              "n": 9,
+              "p50": 3.653834,
+              "p95": null,
+              "min": 2.987459,
+              "max": 4.50875
+            },
+            "aktualne": {
+              "n": 9,
+              "p50": 2.369292,
+              "p95": null,
+              "min": 1.950708,
+              "max": 2.617916
+            },
+            "quanta-1": {
+              "n": 9,
+              "p50": 3.832084,
+              "p95": null,
+              "min": 3.055833,
+              "max": 4.623417
+            },
+            "nytimes-1": {
+              "n": 9,
+              "p50": 3.679542,
+              "p95": null,
+              "min": 2.783542,
+              "max": 4.299209
+            },
+            "qq": {
+              "n": 9,
+              "p50": 2.196125,
+              "p95": null,
+              "min": 2.036041,
+              "max": 2.514542
+            },
+            "bug-1255978": {
+              "n": 9,
+              "p50": 4.51675,
+              "p95": null,
+              "min": 3.908584,
+              "max": 5.650125
+            },
+            "engadget": {
+              "n": 9,
+              "p50": 7.994083,
+              "p95": null,
+              "min": 6.319709,
+              "max": 8.720292
+            },
+            "folha": {
+              "n": 9,
+              "p50": 3.807625,
+              "p95": null,
+              "min": 3.270167,
+              "max": 4.417333
+            },
+            "buzzfeed-1": {
+              "n": 9,
+              "p50": 3.508708,
+              "p95": null,
+              "min": 2.5845,
+              "max": 3.831292
+            },
+            "medium-3": {
+              "n": 9,
+              "p50": 6.71125,
+              "p95": null,
+              "min": 5.891542,
+              "max": 7.94325
+            },
+            "pixnet": {
+              "n": 9,
+              "p50": 6.369375,
+              "p95": null,
+              "min": 5.665875,
+              "max": 7.763667
+            },
+            "schema-org-context-object": {
+              "n": 9,
+              "p50": 3.538417,
+              "p95": null,
+              "min": 2.724792,
+              "max": 3.903834
+            },
+            "youth": {
+              "n": 9,
+              "p50": 2.617166,
+              "p95": null,
+              "min": 2.236333,
+              "max": 3.281166
+            },
+            "nytimes-3": {
+              "n": 9,
+              "p50": 4.758583,
+              "p95": null,
+              "min": 3.932833,
+              "max": 5.447875
+            },
+            "msn": {
+              "n": 9,
+              "p50": 3.568792,
+              "p95": null,
+              "min": 3.185833,
+              "max": 4.061042
+            },
+            "lazy-image-2": {
+              "n": 9,
+              "p50": 13.178625,
+              "p95": null,
+              "min": 11.895291,
+              "max": 15.943875
+            },
+            "nytimes-4": {
+              "n": 9,
+              "p50": 6.290208,
+              "p95": null,
+              "min": 4.730917,
+              "max": 6.714292
+            },
+            "wikia": {
+              "n": 9,
+              "p50": 4.674958,
+              "p95": null,
+              "min": 3.936208,
+              "max": 5.778833
+            },
+            "breitbart": {
+              "n": 9,
+              "p50": 5.44825,
+              "p95": null,
+              "min": 4.523209,
+              "max": 6.139584
+            },
+            "nytimes-5": {
+              "n": 9,
+              "p50": 9.181458,
+              "p95": null,
+              "min": 7.749416,
+              "max": 10.68525
+            },
+            "wikipedia-2": {
+              "n": 9,
+              "p50": 39.910917,
+              "p95": null,
+              "min": 32.967166,
+              "max": 41.574416
+            },
+            "guardian-1": {
+              "n": 9,
+              "p50": 6.844583,
+              "p95": null,
+              "min": 5.928875,
+              "max": 7.448916
+            },
+            "yahoo-1": {
+              "n": 9,
+              "p50": 5.041917,
+              "p95": null,
+              "min": 4.342917,
+              "max": 6.117959
+            },
+            "yahoo-3": {
+              "n": 9,
+              "p50": 5.275,
+              "p95": null,
+              "min": 4.250084,
+              "max": 5.652
+            },
+            "yahoo-2": {
+              "n": 9,
+              "p50": 9.104125,
+              "p95": null,
+              "min": 7.411166,
+              "max": 9.974542
+            }
+          }
+        },
+        "rust": {
+          "samplesPerPage": 9,
+          "corpusSumPageMediansMs": 420.88267399999995,
+          "pageMedianDistributionMs": {
+            "n": 130,
+            "p50": 2.140917,
+            "p95": 7.311042,
+            "min": 0.0435,
+            "max": 60.632416
+          },
+          "workerPeakRSSMiB": {
+            "n": 3,
+            "p50": 90.921875,
+            "p95": null,
+            "min": 82.015625,
+            "max": 92.671875
+          },
+          "perPage": {
+            "ol": {
+              "n": 9,
+              "p50": 0.053042,
+              "p95": null,
+              "min": 0.044416,
+              "max": 0.058875
+            },
+            "js-link-replacement": {
+              "n": 9,
+              "p50": 0.066583,
+              "p95": null,
+              "min": 0.049458,
+              "max": 0.070084
+            },
+            "005-unescape-html-entities": {
+              "n": 9,
+              "p50": 0.0435,
+              "p95": null,
+              "min": 0.032875,
+              "max": 0.049292
+            },
+            "invalid-attributes": {
+              "n": 9,
+              "p50": 0.101709,
+              "p95": null,
+              "min": 0.085417,
+              "max": 0.105667
+            },
+            "remove-aria-hidden": {
+              "n": 9,
+              "p50": 0.095208,
+              "p95": null,
+              "min": 0.076875,
+              "max": 0.103708
+            },
+            "lazy-image-3": {
+              "n": 9,
+              "p50": 0.100375,
+              "p95": null,
+              "min": 0.081292,
+              "max": 0.108708
+            },
+            "normalize-spaces": {
+              "n": 9,
+              "p50": 0.067875,
+              "p95": null,
+              "min": 0.052584,
+              "max": 0.072042
+            },
+            "title-en-dash": {
+              "n": 9,
+              "p50": 0.055542,
+              "p95": null,
+              "min": 0.047083,
+              "max": 0.062125
+            },
+            "replace-brs": {
+              "n": 9,
+              "p50": 0.12525,
+              "p95": null,
+              "min": 0.100958,
+              "max": 0.144708
+            },
+            "remove-extra-brs": {
+              "n": 9,
+              "p50": 0.086167,
+              "p95": null,
+              "min": 0.069167,
+              "max": 0.094
+            },
+            "rtl-1": {
+              "n": 9,
+              "p50": 0.080417,
+              "p95": null,
+              "min": 0.066625,
+              "max": 0.08575
+            },
+            "rtl-3": {
+              "n": 9,
+              "p50": 0.083208,
+              "p95": null,
+              "min": 0.067333,
+              "max": 0.085917
+            },
+            "rtl-4": {
+              "n": 9,
+              "p50": 0.084292,
+              "p95": null,
+              "min": 0.066291,
+              "max": 0.102333
+            },
+            "comment-inside-script-parsing": {
+              "n": 9,
+              "p50": 0.086334,
+              "p95": null,
+              "min": 0.069209,
+              "max": 0.104916
+            },
+            "rtl-2": {
+              "n": 9,
+              "p50": 0.087583,
+              "p95": null,
+              "min": 0.072125,
+              "max": 0.092209
+            },
+            "remove-extra-paragraphs": {
+              "n": 9,
+              "p50": 0.099209,
+              "p95": null,
+              "min": 0.076709,
+              "max": 0.103
+            },
+            "replace-font-tags": {
+              "n": 9,
+              "p50": 0.111292,
+              "p95": null,
+              "min": 0.0875,
+              "max": 0.118709
+            },
+            "title-and-h1-discrepancy": {
+              "n": 9,
+              "p50": 0.063625,
+              "p95": null,
+              "min": 0.052875,
+              "max": 0.068
+            },
+            "style-tags-removal": {
+              "n": 9,
+              "p50": 0.0735,
+              "p95": null,
+              "min": 0.058042,
+              "max": 0.07825
+            },
+            "basic-tags-cleaning": {
+              "n": 9,
+              "p50": 0.102417,
+              "p95": null,
+              "min": 0.078417,
+              "max": 0.121375
+            },
+            "visibility-hidden": {
+              "n": 9,
+              "p50": 0.137292,
+              "p95": null,
+              "min": 0.117791,
+              "max": 0.141834
+            },
+            "remove-script-tags": {
+              "n": 9,
+              "p50": 0.095917,
+              "p95": null,
+              "min": 0.074166,
+              "max": 0.127917
+            },
+            "metadata-content-missing": {
+              "n": 9,
+              "p50": 0.062541,
+              "p95": null,
+              "min": 0.053709,
+              "max": 0.065166
+            },
+            "004-metadata-space-separated-properties": {
+              "n": 9,
+              "p50": 0.064125,
+              "p95": null,
+              "min": 0.056916,
+              "max": 0.0675
+            },
+            "parsely-metadata": {
+              "n": 9,
+              "p50": 0.069375,
+              "p95": null,
+              "min": 0.056125,
+              "max": 0.075959
+            },
+            "base-url": {
+              "n": 9,
+              "p50": 0.208875,
+              "p95": null,
+              "min": 0.170792,
+              "max": 0.216208
+            },
+            "base-url-base-element": {
+              "n": 9,
+              "p50": 0.203083,
+              "p95": null,
+              "min": 0.174833,
+              "max": 0.216208
+            },
+            "base-url-base-element-relative": {
+              "n": 9,
+              "p50": 0.198458,
+              "p95": null,
+              "min": 0.183125,
+              "max": 0.223
+            },
+            "embedded-videos": {
+              "n": 9,
+              "p50": 0.126792,
+              "p95": null,
+              "min": 0.108833,
+              "max": 0.168625
+            },
+            "reordering-paragraphs": {
+              "n": 9,
+              "p50": 0.092834,
+              "p95": null,
+              "min": 0.071583,
+              "max": 0.103625
+            },
+            "003-metadata-preferred": {
+              "n": 9,
+              "p50": 0.086542,
+              "p95": null,
+              "min": 0.066,
+              "max": 0.091167
+            },
+            "svg-parsing": {
+              "n": 9,
+              "p50": 0.126209,
+              "p95": null,
+              "min": 0.109583,
+              "max": 0.137292
+            },
+            "social-buttons": {
+              "n": 9,
+              "p50": 0.119,
+              "p95": null,
+              "min": 0.096583,
+              "max": 0.12325
+            },
+            "hidden-nodes": {
+              "n": 9,
+              "p50": 0.060458,
+              "p95": null,
+              "min": 0.048959,
+              "max": 0.068875
+            },
+            "missing-paragraphs": {
+              "n": 9,
+              "p50": 0.113709,
+              "p95": null,
+              "min": 0.089333,
+              "max": 0.124334
+            },
+            "dev418": {
+              "n": 9,
+              "p50": 0.27225,
+              "p95": null,
+              "min": 0.236334,
+              "max": 0.358
+            },
+            "daringfireball-1": {
+              "n": 9,
+              "p50": 0.444625,
+              "p95": null,
+              "min": 0.367792,
+              "max": 0.811542
+            },
+            "001": {
+              "n": 9,
+              "p50": 0.629333,
+              "p95": null,
+              "min": 0.5095,
+              "max": 0.711791
+            },
+            "table-style-attributes": {
+              "n": 9,
+              "p50": 1.11,
+              "p95": null,
+              "min": 0.9025,
+              "max": 1.217708
+            },
+            "hukumusume": {
+              "n": 9,
+              "p50": 2.9305,
+              "p95": null,
+              "min": 2.429834,
+              "max": 3.113
+            },
+            "mozilla-2": {
+              "n": 9,
+              "p50": 1.106125,
+              "p95": null,
+              "min": 0.836792,
+              "max": 1.238542
+            },
+            "tumblr": {
+              "n": 9,
+              "p50": 0.5785,
+              "p95": null,
+              "min": 0.457125,
+              "max": 0.66725
+            },
+            "v8-blog": {
+              "n": 9,
+              "p50": 2.565,
+              "p95": null,
+              "min": 2.138417,
+              "max": 3.198791
+            },
+            "simplyfound-1": {
+              "n": 9,
+              "p50": 0.852416,
+              "p95": null,
+              "min": 0.649542,
+              "max": 0.88775
+            },
+            "ebb-org": {
+              "n": 9,
+              "p50": 1.198334,
+              "p95": null,
+              "min": 0.974083,
+              "max": 1.308667
+            },
+            "medium-2": {
+              "n": 9,
+              "p50": 0.908167,
+              "p95": null,
+              "min": 0.743375,
+              "max": 2.28925
+            },
+            "ars-1": {
+              "n": 9,
+              "p50": 1.361959,
+              "p95": null,
+              "min": 1.102792,
+              "max": 1.978292
+            },
+            "herald-sun-1": {
+              "n": 9,
+              "p50": 1.303333,
+              "p95": null,
+              "min": 1.061125,
+              "max": 1.447666
+            },
+            "heise": {
+              "n": 9,
+              "p50": 1.12575,
+              "p95": null,
+              "min": 0.943,
+              "max": 1.367833
+            },
+            "la-nacion": {
+              "n": 9,
+              "p50": 1.128541,
+              "p95": null,
+              "min": 0.889,
+              "max": 1.206458
+            },
+            "keep-tabular-data": {
+              "n": 9,
+              "p50": 4.803042,
+              "p95": null,
+              "min": 3.534583,
+              "max": 4.9855
+            },
+            "mercurial": {
+              "n": 9,
+              "p50": 4.763458,
+              "p95": null,
+              "min": 4.105708,
+              "max": 6.262916
+            },
+            "ietf-1": {
+              "n": 9,
+              "p50": 3.494208,
+              "p95": null,
+              "min": 2.847208,
+              "max": 3.878708
+            },
+            "data-url-image": {
+              "n": 9,
+              "p50": 2.189542,
+              "p95": null,
+              "min": 1.936542,
+              "max": 2.263375
+            },
+            "ehow-1": {
+              "n": 9,
+              "p50": 1.640875,
+              "p95": null,
+              "min": 1.381333,
+              "max": 1.71525
+            },
+            "google-sre-book-1": {
+              "n": 9,
+              "p50": 4.222916,
+              "p95": null,
+              "min": 3.481708,
+              "max": 4.785042
+            },
+            "gitlab-blog": {
+              "n": 9,
+              "p50": 1.333875,
+              "p95": null,
+              "min": 1.132333,
+              "max": 1.556416
+            },
+            "dropbox-blog": {
+              "n": 9,
+              "p50": 3.693458,
+              "p95": null,
+              "min": 3.209708,
+              "max": 3.943625
+            },
+            "firefox-nightly-blog": {
+              "n": 9,
+              "p50": 4.378625,
+              "p95": null,
+              "min": 3.778917,
+              "max": 4.808875
+            },
+            "lwn-1": {
+              "n": 9,
+              "p50": 7.061,
+              "p95": null,
+              "min": 5.345417,
+              "max": 7.2035
+            },
+            "lemonde-1": {
+              "n": 9,
+              "p50": 1.752125,
+              "p95": null,
+              "min": 1.3415,
+              "max": 1.95775
+            },
+            "tmz-1": {
+              "n": 9,
+              "p50": 1.409167,
+              "p95": null,
+              "min": 1.117292,
+              "max": 1.531333
+            },
+            "mozilla-1": {
+              "n": 9,
+              "p50": 2.124459,
+              "p95": null,
+              "min": 1.765209,
+              "max": 3.167167
+            },
+            "iab-1": {
+              "n": 9,
+              "p50": 1.737084,
+              "p95": null,
+              "min": 1.37925,
+              "max": 1.847791
+            },
+            "ehow-2": {
+              "n": 9,
+              "p50": 2.202667,
+              "p95": null,
+              "min": 1.636708,
+              "max": 2.6395
+            },
+            "topicseed-1": {
+              "n": 9,
+              "p50": 1.492709,
+              "p95": null,
+              "min": 1.109791,
+              "max": 1.60375
+            },
+            "medium-1": {
+              "n": 9,
+              "p50": 3.330291,
+              "p95": null,
+              "min": 2.940791,
+              "max": 3.674041
+            },
+            "wapo-2": {
+              "n": 9,
+              "p50": 1.810708,
+              "p95": null,
+              "min": 1.491666,
+              "max": 2.870041
+            },
+            "lifehacker-working": {
+              "n": 9,
+              "p50": 3.497333,
+              "p95": null,
+              "min": 2.760666,
+              "max": 4.0285
+            },
+            "toc-missing": {
+              "n": 9,
+              "p50": 11.708375,
+              "p95": null,
+              "min": 10.039166,
+              "max": 13.653792
+            },
+            "links-in-tables": {
+              "n": 9,
+              "p50": 2.765209,
+              "p95": null,
+              "min": 2.132334,
+              "max": 2.953584
+            },
+            "webmd-2": {
+              "n": 9,
+              "p50": 1.952083,
+              "p95": null,
+              "min": 1.731,
+              "max": 2.342542
+            },
+            "cnet-svg-classes": {
+              "n": 9,
+              "p50": 3.192792,
+              "p95": null,
+              "min": 2.461583,
+              "max": 4.23875
+            },
+            "liberation-1": {
+              "n": 9,
+              "p50": 1.73025,
+              "p95": null,
+              "min": 1.517875,
+              "max": 1.874167
+            },
+            "keep-images": {
+              "n": 9,
+              "p50": 3.756667,
+              "p95": null,
+              "min": 3.189916,
+              "max": 4.3795
+            },
+            "002": {
+              "n": 9,
+              "p50": 6.936167,
+              "p95": null,
+              "min": 5.909166,
+              "max": 8.283292
+            },
+            "yahoo-4": {
+              "n": 9,
+              "p50": 1.685125,
+              "p95": null,
+              "min": 1.341875,
+              "max": 2.134792
+            },
+            "gmw": {
+              "n": 9,
+              "p50": 2.033167,
+              "p95": null,
+              "min": 1.835125,
+              "max": 2.361375
+            },
+            "medicalnewstoday": {
+              "n": 9,
+              "p50": 2.319083,
+              "p95": null,
+              "min": 1.80925,
+              "max": 2.622667
+            },
+            "blogger": {
+              "n": 9,
+              "p50": 2.674208,
+              "p95": null,
+              "min": 2.138,
+              "max": 3.170459
+            },
+            "citylab-1": {
+              "n": 9,
+              "p50": 2.140583,
+              "p95": null,
+              "min": 1.669667,
+              "max": 2.291
+            },
+            "videos-2": {
+              "n": 9,
+              "p50": 3.087,
+              "p95": null,
+              "min": 2.464584,
+              "max": 3.742541
+            },
+            "wapo-1": {
+              "n": 9,
+              "p50": 2.963584,
+              "p95": null,
+              "min": 2.49275,
+              "max": 3.261583
+            },
+            "wordpress": {
+              "n": 9,
+              "p50": 2.18675,
+              "p95": null,
+              "min": 1.741583,
+              "max": 2.395041
+            },
+            "clean-links": {
+              "n": 9,
+              "p50": 6.077083,
+              "p95": null,
+              "min": 4.966,
+              "max": 7.005541
+            },
+            "webmd-1": {
+              "n": 9,
+              "p50": 2.07,
+              "p95": null,
+              "min": 1.636,
+              "max": 2.954833
+            },
+            "spiceworks": {
+              "n": 9,
+              "p50": 1.634625,
+              "p95": null,
+              "min": 1.330709,
+              "max": 1.859208
+            },
+            "mathjax": {
+              "n": 9,
+              "p50": 6.21275,
+              "p95": null,
+              "min": 4.781291,
+              "max": 6.481792
+            },
+            "aclu": {
+              "n": 9,
+              "p50": 2.68575,
+              "p95": null,
+              "min": 2.307458,
+              "max": 3.062875
+            },
+            "royal-road": {
+              "n": 9,
+              "p50": 7.093791,
+              "p95": null,
+              "min": 5.586375,
+              "max": 7.506292
+            },
+            "videos-1": {
+              "n": 9,
+              "p50": 5.575958,
+              "p95": null,
+              "min": 4.241166,
+              "max": 5.895791
+            },
+            "telegraph": {
+              "n": 9,
+              "p50": 2.510125,
+              "p95": null,
+              "min": 2.0745,
+              "max": 2.878667
+            },
+            "theverge": {
+              "n": 9,
+              "p50": 1.954208,
+              "p95": null,
+              "min": 1.650791,
+              "max": 2.064833
+            },
+            "salon-1": {
+              "n": 9,
+              "p50": 4.317334,
+              "p95": null,
+              "min": 3.539291,
+              "max": 4.644375
+            },
+            "wikipedia": {
+              "n": 9,
+              "p50": 15.292083,
+              "p95": null,
+              "min": 11.608708,
+              "max": 16.0935
+            },
+            "lifehacker-post-comment-load": {
+              "n": 9,
+              "p50": 5.210167,
+              "p95": null,
+              "min": 4.508042,
+              "max": 6.107666
+            },
+            "seattletimes-1": {
+              "n": 9,
+              "p50": 2.72775,
+              "p95": null,
+              "min": 2.0685,
+              "max": 2.7935
+            },
+            "cnn": {
+              "n": 9,
+              "p50": 2.790709,
+              "p95": null,
+              "min": 2.38525,
+              "max": 9.407625
+            },
+            "bbc-1": {
+              "n": 9,
+              "p50": 3.316084,
+              "p95": null,
+              "min": 2.643375,
+              "max": 3.723417
+            },
+            "archive-of-our-own": {
+              "n": 9,
+              "p50": 5.317042,
+              "p95": null,
+              "min": 4.545125,
+              "max": 7.564875
+            },
+            "lazy-image-1": {
+              "n": 9,
+              "p50": 3.57,
+              "p95": null,
+              "min": 3.004166,
+              "max": 3.994125
+            },
+            "cnet": {
+              "n": 9,
+              "p50": 3.28975,
+              "p95": null,
+              "min": 2.684708,
+              "max": 3.470958
+            },
+            "wikipedia-3": {
+              "n": 9,
+              "p50": 7.311042,
+              "p95": null,
+              "min": 6.96,
+              "max": 9.437708
+            },
+            "article-author-tag": {
+              "n": 9,
+              "p50": 2.971584,
+              "p95": null,
+              "min": 2.524334,
+              "max": 3.29375
+            },
+            "wikipedia-4": {
+              "n": 9,
+              "p50": 16.249583,
+              "p95": null,
+              "min": 13.155375,
+              "max": 17.71875
+            },
+            "nytimes-2": {
+              "n": 9,
+              "p50": 4.544209,
+              "p95": null,
+              "min": 3.574792,
+              "max": 4.848458
+            },
+            "aktualne": {
+              "n": 9,
+              "p50": 2.140917,
+              "p95": null,
+              "min": 1.770833,
+              "max": 2.455209
+            },
+            "quanta-1": {
+              "n": 9,
+              "p50": 3.210666,
+              "p95": null,
+              "min": 2.581042,
+              "max": 3.541667
+            },
+            "nytimes-1": {
+              "n": 9,
+              "p50": 4.383333,
+              "p95": null,
+              "min": 3.441042,
+              "max": 4.560042
+            },
+            "qq": {
+              "n": 9,
+              "p50": 2.513167,
+              "p95": null,
+              "min": 1.985,
+              "max": 2.610834
+            },
+            "bug-1255978": {
+              "n": 9,
+              "p50": 5.083084,
+              "p95": null,
+              "min": 4.130125,
+              "max": 5.9795
+            },
+            "engadget": {
+              "n": 9,
+              "p50": 6.318584,
+              "p95": null,
+              "min": 5.129292,
+              "max": 7.775459
+            },
+            "folha": {
+              "n": 9,
+              "p50": 3.215792,
+              "p95": null,
+              "min": 2.742666,
+              "max": 3.465209
+            },
+            "buzzfeed-1": {
+              "n": 9,
+              "p50": 3.51725,
+              "p95": null,
+              "min": 3.014583,
+              "max": 4.52825
+            },
+            "medium-3": {
+              "n": 9,
+              "p50": 5.966292,
+              "p95": null,
+              "min": 4.855833,
+              "max": 7.53775
+            },
+            "pixnet": {
+              "n": 9,
+              "p50": 6.900417,
+              "p95": null,
+              "min": 5.952458,
+              "max": 7.513834
+            },
+            "schema-org-context-object": {
+              "n": 9,
+              "p50": 2.907042,
+              "p95": null,
+              "min": 2.205792,
+              "max": 2.981041
+            },
+            "youth": {
+              "n": 9,
+              "p50": 2.593791,
+              "p95": null,
+              "min": 2.162333,
+              "max": 3.355791
+            },
+            "nytimes-3": {
+              "n": 9,
+              "p50": 4.47875,
+              "p95": null,
+              "min": 3.862917,
+              "max": 5.546
+            },
+            "msn": {
+              "n": 9,
+              "p50": 4.825959,
+              "p95": null,
+              "min": 4.050125,
+              "max": 4.954417
+            },
+            "lazy-image-2": {
+              "n": 9,
+              "p50": 15.328333,
+              "p95": null,
+              "min": 12.512041,
+              "max": 18.205208
+            },
+            "nytimes-4": {
+              "n": 9,
+              "p50": 4.931334,
+              "p95": null,
+              "min": 3.952208,
+              "max": 5.342542
+            },
+            "wikia": {
+              "n": 9,
+              "p50": 5.077666,
+              "p95": null,
+              "min": 4.440375,
+              "max": 5.8285
+            },
+            "breitbart": {
+              "n": 9,
+              "p50": 5.573083,
+              "p95": null,
+              "min": 4.526625,
+              "max": 6.325791
+            },
+            "nytimes-5": {
+              "n": 9,
+              "p50": 6.622875,
+              "p95": null,
+              "min": 5.930583,
+              "max": 7.491375
+            },
+            "wikipedia-2": {
+              "n": 9,
+              "p50": 60.632416,
+              "p95": null,
+              "min": 49.01475,
+              "max": 71.434667
+            },
+            "guardian-1": {
+              "n": 9,
+              "p50": 6.059708,
+              "p95": null,
+              "min": 5.08925,
+              "max": 6.745375
+            },
+            "yahoo-1": {
+              "n": 9,
+              "p50": 4.321541,
+              "p95": null,
+              "min": 3.63875,
+              "max": 5.38475
+            },
+            "yahoo-3": {
+              "n": 9,
+              "p50": 5.133541,
+              "p95": null,
+              "min": 4.158416,
+              "max": 5.306041
+            },
+            "yahoo-2": {
+              "n": 9,
+              "p50": 7.40975,
+              "p95": null,
+              "min": 6.063542,
+              "max": 7.869625
+            }
+          }
+        }
+      },
+      "fullTextCorrectness": {
+        "go": {
+          "comparedPages": 130,
+          "matchingPages": 130,
+          "differingIds": []
+        },
+        "rust": {
+          "comparedPages": 130,
+          "matchingPages": 130,
+          "differingIds": []
+        }
+      },
+      "fullCorpusTimeRatios": {
+        "javascriptOverGo": 32.76545391858653,
+        "javascriptOverRust": 27.7884938190637
+      },
+      "fullPeakRSSRatios": {
+        "javascriptOverGo": 12.466206896551725,
+        "javascriptOverRust": 15.5318783296099
+      },
+      "detail": {
+        "rtl-4": {
+          "input": {
+            "id": "rtl-4",
+            "path": "vendor/mozilla/test/test-pages/rtl-4/source.html",
+            "bytes": 1214,
+            "sha256": "77e98fa63405c76ea2f7c44c21b6c9b23e1cf41960432696f863688b0a123160"
+          },
+          "implementations": {
+            "javascript": {
+              "residentMs": {
+                "n": 30,
+                "p50": 10.029792,
+                "p95": 12.973584,
+                "min": 5.386583,
+                "max": 16.152167
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 178.71875,
+                "p95": null,
+                "min": 175.671875,
+                "max": 179.625
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 367.157292,
+                "p95": null,
+                "min": 239.697208,
+                "max": 459.916459
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 137.0625,
+                "p95": null,
+                "min": 136.578125,
+                "max": 137.4375
+              }
+            },
+            "go": {
+              "residentMs": {
+                "n": 30,
+                "p50": 0.071291,
+                "p95": 0.107583,
+                "min": 0.049125,
+                "max": 0.108542
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 7.921875,
+                "p95": null,
+                "min": 7.8125,
+                "max": 7.921875
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 5.589458,
+                "p95": null,
+                "min": 4.245167,
+                "max": 7.060792
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 7.125,
+                "p95": null,
+                "min": 6.96875,
+                "max": 7.25
+              }
+            },
+            "rust": {
+              "residentMs": {
+                "n": 30,
+                "p50": 0.109333,
+                "p95": 0.162792,
+                "min": 0.067583,
+                "max": 0.174916
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 3.734375,
+                "p95": null,
+                "min": 3.703125,
+                "max": 3.734375
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 4.155125,
+                "p95": null,
+                "min": 3.474375,
+                "max": 7.75875
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 3.09375,
+                "p95": null,
+                "min": 3.0625,
+                "max": 3.109375
+              }
+            }
+          },
+          "coldArticleComparison": {
+            "go": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            },
+            "rust": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            }
+          },
+          "ratios": {
+            "javascriptOverGo": 140.6880531904448,
+            "javascriptOverRust": 91.73618212250648
+          },
+          "coldRatios": {
+            "javascriptOverGo": 65.68745878401806,
+            "javascriptOverRust": 88.36251424445715
+          },
+          "residentPeakRSSRatios": {
+            "javascriptOverGo": 22.560157790927022,
+            "javascriptOverRust": 47.85774058577406
+          },
+          "coldPeakRSSRatios": {
+            "javascriptOverGo": 19.236842105263158,
+            "javascriptOverRust": 44.303030303030305
+          }
+        },
+        "ehow-2": {
+          "input": {
+            "id": "ehow-2",
+            "path": "vendor/mozilla/test/test-pages/ehow-2/source.html",
+            "bytes": 107092,
+            "sha256": "b0096a4a9a6ce9b71beaa235ac1a889ec7d9850ac8d9c9c1a69c2f838cf96287"
+          },
+          "implementations": {
+            "javascript": {
+              "residentMs": {
+                "n": 30,
+                "p50": 57.917666,
+                "p95": 74.857292,
+                "min": 32.429625,
+                "max": 76.310583
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 253.0625,
+                "p95": null,
+                "min": 247.40625,
+                "max": 261.25
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 445.999,
+                "p95": null,
+                "min": 373.681208,
+                "max": 555.036792
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 181.234375,
+                "p95": null,
+                "min": 181.015625,
+                "max": 182.40625
+              }
+            },
+            "go": {
+              "residentMs": {
+                "n": 30,
+                "p50": 3.052583,
+                "p95": 3.697209,
+                "min": 1.505417,
+                "max": 3.861375
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 12.9375,
+                "p95": null,
+                "min": 12.734375,
+                "max": 13.125
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 8.247167,
+                "p95": null,
+                "min": 6.859583,
+                "max": 754.193959
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 8.9375,
+                "p95": null,
+                "min": 8.75,
+                "max": 10
+              }
+            },
+            "rust": {
+              "residentMs": {
+                "n": 30,
+                "p50": 2.291042,
+                "p95": 3.67825,
+                "min": 1.737791,
+                "max": 3.740125
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 5.6875,
+                "p95": null,
+                "min": 5.546875,
+                "max": 5.703125
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 7.380167,
+                "p95": null,
+                "min": 6.025667,
+                "max": 11.863583
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 4.859375,
+                "p95": null,
+                "min": 4.828125,
+                "max": 4.96875
+              }
+            }
+          },
+          "coldArticleComparison": {
+            "go": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            },
+            "rust": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            }
+          },
+          "ratios": {
+            "javascriptOverGo": 18.973330454896722,
+            "javascriptOverRust": 25.280054228599912
+          },
+          "coldRatios": {
+            "javascriptOverGo": 54.079055268312146,
+            "javascriptOverRust": 60.432101333208315
+          },
+          "residentPeakRSSRatios": {
+            "javascriptOverGo": 19.56038647342995,
+            "javascriptOverRust": 44.494505494505496
+          },
+          "coldPeakRSSRatios": {
+            "javascriptOverGo": 20.277972027972027,
+            "javascriptOverRust": 37.29581993569132
+          }
+        },
+        "schema-org-context-object": {
+          "input": {
+            "id": "schema-org-context-object",
+            "path": "vendor/mozilla/test/test-pages/schema-org-context-object/source.html",
+            "bytes": 459526,
+            "sha256": "b470ad3d4170fe5e9bd6d07163e3bfeaff65f22d6d03f9520f7401de532c4cac"
+          },
+          "implementations": {
+            "javascript": {
+              "residentMs": {
+                "n": 30,
+                "p50": 64.075417,
+                "p95": 102.367958,
+                "min": 44.532292,
+                "max": 107.562959
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 358.265625,
+                "p95": null,
+                "min": 358.25,
+                "max": 366.390625
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 450.421708,
+                "p95": null,
+                "min": 334.178708,
+                "max": 517.848583
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 189.984375,
+                "p95": null,
+                "min": 189.734375,
+                "max": 190.15625
+              }
+            },
+            "go": {
+              "residentMs": {
+                "n": 30,
+                "p50": 4.121958,
+                "p95": 6.688416,
+                "min": 3.297958,
+                "max": 6.806834
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 14.09375,
+                "p95": null,
+                "min": 13.625,
+                "max": 14.46875
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 11.04375,
+                "p95": null,
+                "min": 8.112084,
+                "max": 13.315833
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 12.0625,
+                "p95": null,
+                "min": 11.703125,
+                "max": 12.328125
+              }
+            },
+            "rust": {
+              "residentMs": {
+                "n": 30,
+                "p50": 4.001958,
+                "p95": 4.860584,
+                "min": 2.32925,
+                "max": 4.993625
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 7.546875,
+                "p95": null,
+                "min": 7.484375,
+                "max": 7.90625
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 8.812708,
+                "p95": null,
+                "min": 6.232375,
+                "max": 11.488666
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 6.484375,
+                "p95": null,
+                "min": 6.40625,
+                "max": 6.5625
+              }
+            }
+          },
+          "coldArticleComparison": {
+            "go": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            },
+            "rust": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            }
+          },
+          "ratios": {
+            "javascriptOverGo": 15.54489807999014,
+            "javascriptOverRust": 16.011016857248375
+          },
+          "coldRatios": {
+            "javascriptOverGo": 40.7852140803622,
+            "javascriptOverRust": 51.11047682505763
+          },
+          "residentPeakRSSRatios": {
+            "javascriptOverGo": 25.42017738359202,
+            "javascriptOverRust": 47.47204968944099
+          },
+          "coldPeakRSSRatios": {
+            "javascriptOverGo": 15.75,
+            "javascriptOverRust": 29.29879518072289
+          }
+        }
+      }
+    },
+    "mozilla": {
+      "full": {
+        "javascript": {
+          "samplesPerPage": 9,
+          "corpusSumPageMediansMs": 10096.960587,
+          "pageMedianDistributionMs": {
+            "n": 130,
+            "p50": 50.80775,
+            "p95": 225.771458,
+            "min": 4.62775,
+            "max": 1013.432709
+          },
+          "workerPeakRSSMiB": {
+            "n": 3,
+            "p50": 1455.5,
+            "p95": null,
+            "min": 1373.53125,
+            "max": 1486.796875
+          },
+          "perPage": {
+            "ol": {
+              "n": 9,
+              "p50": 5.101917,
+              "p95": null,
+              "min": 3.724875,
+              "max": 7.178167
+            },
+            "js-link-replacement": {
+              "n": 9,
+              "p50": 5.17975,
+              "p95": null,
+              "min": 3.853875,
+              "max": 9.239584
+            },
+            "005-unescape-html-entities": {
+              "n": 9,
+              "p50": 4.983,
+              "p95": null,
+              "min": 3.48975,
+              "max": 30.007917
+            },
+            "invalid-attributes": {
+              "n": 9,
+              "p50": 6.170459,
+              "p95": null,
+              "min": 4.47125,
+              "max": 7.019084
+            },
+            "remove-aria-hidden": {
+              "n": 9,
+              "p50": 5.815292,
+              "p95": null,
+              "min": 4.549583,
+              "max": 6.757833
+            },
+            "lazy-image-3": {
+              "n": 9,
+              "p50": 6.062916,
+              "p95": null,
+              "min": 4.894833,
+              "max": 6.926583
+            },
+            "normalize-spaces": {
+              "n": 9,
+              "p50": 5.298375,
+              "p95": null,
+              "min": 3.761917,
+              "max": 19.699875
+            },
+            "title-en-dash": {
+              "n": 9,
+              "p50": 5.519792,
+              "p95": null,
+              "min": 4.197167,
+              "max": 5.901625
+            },
+            "replace-brs": {
+              "n": 9,
+              "p50": 5.39,
+              "p95": null,
+              "min": 4.376625,
+              "max": 8.887958
+            },
+            "remove-extra-brs": {
+              "n": 9,
+              "p50": 5.54275,
+              "p95": null,
+              "min": 3.914834,
+              "max": 9.310959
+            },
+            "rtl-1": {
+              "n": 9,
+              "p50": 5.723084,
+              "p95": null,
+              "min": 3.51075,
+              "max": 12.18
+            },
+            "rtl-3": {
+              "n": 9,
+              "p50": 4.846875,
+              "p95": null,
+              "min": 3.822791,
+              "max": 5.146417
+            },
+            "rtl-4": {
+              "n": 9,
+              "p50": 5.125875,
+              "p95": null,
+              "min": 3.800292,
+              "max": 9.005958
+            },
+            "comment-inside-script-parsing": {
+              "n": 9,
+              "p50": 5.854792,
+              "p95": null,
+              "min": 3.803417,
+              "max": 10.909625
+            },
+            "rtl-2": {
+              "n": 9,
+              "p50": 5.286625,
+              "p95": null,
+              "min": 4.207583,
+              "max": 13.088625
+            },
+            "remove-extra-paragraphs": {
+              "n": 9,
+              "p50": 5.329917,
+              "p95": null,
+              "min": 3.898209,
+              "max": 6.580458
+            },
+            "replace-font-tags": {
+              "n": 9,
+              "p50": 5.764042,
+              "p95": null,
+              "min": 4.015833,
+              "max": 9.655583
+            },
+            "title-and-h1-discrepancy": {
+              "n": 9,
+              "p50": 5.572917,
+              "p95": null,
+              "min": 4.492083,
+              "max": 16.235834
+            },
+            "style-tags-removal": {
+              "n": 9,
+              "p50": 6.186833,
+              "p95": null,
+              "min": 5.48375,
+              "max": 6.807625
+            },
+            "basic-tags-cleaning": {
+              "n": 9,
+              "p50": 8.269167,
+              "p95": null,
+              "min": 6.442875,
+              "max": 9.513959
+            },
+            "visibility-hidden": {
+              "n": 9,
+              "p50": 10.704291,
+              "p95": null,
+              "min": 7.799125,
+              "max": 16.389584
+            },
+            "remove-script-tags": {
+              "n": 9,
+              "p50": 5.438792,
+              "p95": null,
+              "min": 4.078959,
+              "max": 6.671
+            },
+            "metadata-content-missing": {
+              "n": 9,
+              "p50": 5.126125,
+              "p95": null,
+              "min": 3.602416,
+              "max": 6.182125
+            },
+            "004-metadata-space-separated-properties": {
+              "n": 9,
+              "p50": 4.726125,
+              "p95": null,
+              "min": 3.647583,
+              "max": 5.474292
+            },
+            "parsely-metadata": {
+              "n": 9,
+              "p50": 4.62775,
+              "p95": null,
+              "min": 3.698584,
+              "max": 5.492542
+            },
+            "base-url": {
+              "n": 9,
+              "p50": 6.935125,
+              "p95": null,
+              "min": 5.948125,
+              "max": 8.929917
+            },
+            "base-url-base-element": {
+              "n": 9,
+              "p50": 6.847375,
+              "p95": null,
+              "min": 5.370208,
+              "max": 25.174916
+            },
+            "base-url-base-element-relative": {
+              "n": 9,
+              "p50": 7.426167,
+              "p95": null,
+              "min": 5.247458,
+              "max": 12.658458
+            },
+            "embedded-videos": {
+              "n": 9,
+              "p50": 18.340625,
+              "p95": null,
+              "min": 12.934167,
+              "max": 21.880292
+            },
+            "reordering-paragraphs": {
+              "n": 9,
+              "p50": 7.016916,
+              "p95": null,
+              "min": 3.838417,
+              "max": 19.20175
+            },
+            "003-metadata-preferred": {
+              "n": 9,
+              "p50": 6.109125,
+              "p95": null,
+              "min": 3.460875,
+              "max": 8.855625
+            },
+            "svg-parsing": {
+              "n": 9,
+              "p50": 6.372041,
+              "p95": null,
+              "min": 4.201917,
+              "max": 8.87425
+            },
+            "social-buttons": {
+              "n": 9,
+              "p50": 6.860084,
+              "p95": null,
+              "min": 4.129125,
+              "max": 9.615542
+            },
+            "hidden-nodes": {
+              "n": 9,
+              "p50": 5.689,
+              "p95": null,
+              "min": 3.52625,
+              "max": 7.403666
+            },
+            "missing-paragraphs": {
+              "n": 9,
+              "p50": 5.117167,
+              "p95": null,
+              "min": 3.839791,
+              "max": 5.77025
+            },
+            "dev418": {
+              "n": 9,
+              "p50": 12.197958,
+              "p95": null,
+              "min": 7.515208,
+              "max": 14.547834
+            },
+            "daringfireball-1": {
+              "n": 9,
+              "p50": 14.826625,
+              "p95": null,
+              "min": 10.913833,
+              "max": 16.091917
+            },
+            "001": {
+              "n": 9,
+              "p50": 14.042792,
+              "p95": null,
+              "min": 10.773292,
+              "max": 39.1735
+            },
+            "table-style-attributes": {
+              "n": 9,
+              "p50": 21.935708,
+              "p95": null,
+              "min": 16.448375,
+              "max": 32.277958
+            },
+            "hukumusume": {
+              "n": 9,
+              "p50": 59.485208,
+              "p95": null,
+              "min": 45.900917,
+              "max": 136.1065
+            },
+            "mozilla-2": {
+              "n": 9,
+              "p50": 21.972208,
+              "p95": null,
+              "min": 14.930541,
+              "max": 25.142458
+            },
+            "tumblr": {
+              "n": 9,
+              "p50": 23.901709,
+              "p95": null,
+              "min": 14.326584,
+              "max": 64.508875
+            },
+            "v8-blog": {
+              "n": 9,
+              "p50": 42.516292,
+              "p95": null,
+              "min": 32.861,
+              "max": 54.805625
+            },
+            "simplyfound-1": {
+              "n": 9,
+              "p50": 19.436667,
+              "p95": null,
+              "min": 15.159791,
+              "max": 30.062583
+            },
+            "ebb-org": {
+              "n": 9,
+              "p50": 31.314417,
+              "p95": null,
+              "min": 20.695084,
+              "max": 48.659292
+            },
+            "medium-2": {
+              "n": 9,
+              "p50": 19.498167,
+              "p95": null,
+              "min": 14.065416,
+              "max": 33.822584
+            },
+            "ars-1": {
+              "n": 9,
+              "p50": 31.788375,
+              "p95": null,
+              "min": 22.072459,
+              "max": 38.452458
+            },
+            "herald-sun-1": {
+              "n": 9,
+              "p50": 26.43275,
+              "p95": null,
+              "min": 23.14275,
+              "max": 287.475417
+            },
+            "heise": {
+              "n": 9,
+              "p50": 29.120541,
+              "p95": null,
+              "min": 20.520416,
+              "max": 32.926042
+            },
+            "la-nacion": {
+              "n": 9,
+              "p50": 26.321958,
+              "p95": null,
+              "min": 22.59775,
+              "max": 40.723
+            },
+            "keep-tabular-data": {
+              "n": 9,
+              "p50": 61.515792,
+              "p95": null,
+              "min": 51.788916,
+              "max": 1112.488875
+            },
+            "mercurial": {
+              "n": 9,
+              "p50": 72.9055,
+              "p95": null,
+              "min": 61.796375,
+              "max": 155.365542
+            },
+            "ietf-1": {
+              "n": 9,
+              "p50": 64.120667,
+              "p95": null,
+              "min": 39.533667,
+              "max": 81.936291
+            },
+            "data-url-image": {
+              "n": 9,
+              "p50": 30.497209,
+              "p95": null,
+              "min": 21.394208,
+              "max": 37.976875
+            },
+            "ehow-1": {
+              "n": 9,
+              "p50": 50.80775,
+              "p95": null,
+              "min": 32.061792,
+              "max": 401.554916
+            },
+            "google-sre-book-1": {
+              "n": 9,
+              "p50": 52.600458,
+              "p95": null,
+              "min": 42.347375,
+              "max": 66.752917
+            },
+            "gitlab-blog": {
+              "n": 9,
+              "p50": 30.8225,
+              "p95": null,
+              "min": 19.641291,
+              "max": 34.232709
+            },
+            "dropbox-blog": {
+              "n": 9,
+              "p50": 78.824458,
+              "p95": null,
+              "min": 44.934666,
+              "max": 96.476375
+            },
+            "firefox-nightly-blog": {
+              "n": 9,
+              "p50": 97.289416,
+              "p95": null,
+              "min": 72.9575,
+              "max": 106.994292
+            },
+            "lwn-1": {
+              "n": 9,
+              "p50": 93.179333,
+              "p95": null,
+              "min": 66.750375,
+              "max": 177.269875
+            },
+            "lemonde-1": {
+              "n": 9,
+              "p50": 35.420791,
+              "p95": null,
+              "min": 29.863792,
+              "max": 64.383125
+            },
+            "tmz-1": {
+              "n": 9,
+              "p50": 32.709542,
+              "p95": null,
+              "min": 27.899583,
+              "max": 38.811167
+            },
+            "mozilla-1": {
+              "n": 9,
+              "p50": 62.433,
+              "p95": null,
+              "min": 33.336584,
+              "max": 96.514458
+            },
+            "iab-1": {
+              "n": 9,
+              "p50": 53.502875,
+              "p95": null,
+              "min": 48.586583,
+              "max": 310.960708
+            },
+            "ehow-2": {
+              "n": 9,
+              "p50": 40.956,
+              "p95": null,
+              "min": 32.25975,
+              "max": 50.809125
+            },
+            "topicseed-1": {
+              "n": 9,
+              "p50": 30.350917,
+              "p95": null,
+              "min": 21.355833,
+              "max": 44.351917
+            },
+            "medium-1": {
+              "n": 9,
+              "p50": 43.879583,
+              "p95": null,
+              "min": 33.18625,
+              "max": 122.499041
+            },
+            "wapo-2": {
+              "n": 9,
+              "p50": 45.522917,
+              "p95": null,
+              "min": 30.2915,
+              "max": 73.903708
+            },
+            "lifehacker-working": {
+              "n": 9,
+              "p50": 128.0375,
+              "p95": null,
+              "min": 61.978291,
+              "max": 181.744042
+            },
+            "toc-missing": {
+              "n": 9,
+              "p50": 193.886083,
+              "p95": null,
+              "min": 146.030667,
+              "max": 231.078208
+            },
+            "links-in-tables": {
+              "n": 9,
+              "p50": 98.038042,
+              "p95": null,
+              "min": 72.950375,
+              "max": 149.808083
+            },
+            "webmd-2": {
+              "n": 9,
+              "p50": 41.228125,
+              "p95": null,
+              "min": 34.647875,
+              "max": 61.355208
+            },
+            "cnet-svg-classes": {
+              "n": 9,
+              "p50": 43.598,
+              "p95": null,
+              "min": 28.473208,
+              "max": 115.498292
+            },
+            "liberation-1": {
+              "n": 9,
+              "p50": 49.1185,
+              "p95": null,
+              "min": 41.252042,
+              "max": 56.353875
+            },
+            "keep-images": {
+              "n": 9,
+              "p50": 67.742958,
+              "p95": null,
+              "min": 36.776834,
+              "max": 83.441167
+            },
+            "002": {
+              "n": 9,
+              "p50": 163.163166,
+              "p95": null,
+              "min": 99.703167,
+              "max": 245.110458
+            },
+            "yahoo-4": {
+              "n": 9,
+              "p50": 68.919417,
+              "p95": null,
+              "min": 60.833792,
+              "max": 83.69325
+            },
+            "gmw": {
+              "n": 9,
+              "p50": 178.3205,
+              "p95": null,
+              "min": 94.377875,
+              "max": 299.783792
+            },
+            "medicalnewstoday": {
+              "n": 9,
+              "p50": 82.725708,
+              "p95": null,
+              "min": 48.183708,
+              "max": 578.026667
+            },
+            "blogger": {
+              "n": 9,
+              "p50": 55.865667,
+              "p95": null,
+              "min": 48.47625,
+              "max": 79.283792
+            },
+            "citylab-1": {
+              "n": 9,
+              "p50": 41.636542,
+              "p95": null,
+              "min": 36.167541,
+              "max": 56.381583
+            },
+            "videos-2": {
+              "n": 9,
+              "p50": 65.3435,
+              "p95": null,
+              "min": 47.630958,
+              "max": 1520.31725
+            },
+            "wapo-1": {
+              "n": 9,
+              "p50": 65.28975,
+              "p95": null,
+              "min": 48.188958,
+              "max": 74.199125
+            },
+            "wordpress": {
+              "n": 9,
+              "p50": 76.398542,
+              "p95": null,
+              "min": 50.5275,
+              "max": 89.663666
+            },
+            "clean-links": {
+              "n": 9,
+              "p50": 98.980917,
+              "p95": null,
+              "min": 73.517,
+              "max": 180.514417
+            },
+            "webmd-1": {
+              "n": 9,
+              "p50": 69.8265,
+              "p95": null,
+              "min": 34.8845,
+              "max": 82.333875
+            },
+            "spiceworks": {
+              "n": 9,
+              "p50": 44.298666,
+              "p95": null,
+              "min": 36.0765,
+              "max": 60.341833
+            },
+            "mathjax": {
+              "n": 9,
+              "p50": 91.251083,
+              "p95": null,
+              "min": 77.140542,
+              "max": 461.673583
+            },
+            "aclu": {
+              "n": 9,
+              "p50": 75.818083,
+              "p95": null,
+              "min": 54.333417,
+              "max": 247.455791
+            },
+            "royal-road": {
+              "n": 9,
+              "p50": 155.511917,
+              "p95": null,
+              "min": 148.856166,
+              "max": 481.399458
+            },
+            "videos-1": {
+              "n": 9,
+              "p50": 168.594292,
+              "p95": null,
+              "min": 131.070291,
+              "max": 252.947375
+            },
+            "telegraph": {
+              "n": 9,
+              "p50": 58.636084,
+              "p95": null,
+              "min": 50.224083,
+              "max": 254.267958
+            },
+            "theverge": {
+              "n": 9,
+              "p50": 49.488666,
+              "p95": null,
+              "min": 31.506459,
+              "max": 51.244833
+            },
+            "salon-1": {
+              "n": 9,
+              "p50": 67.873292,
+              "p95": null,
+              "min": 51.152541,
+              "max": 200.644625
+            },
+            "wikipedia": {
+              "n": 9,
+              "p50": 303.06425,
+              "p95": null,
+              "min": 168.447625,
+              "max": 346.617583
+            },
+            "lifehacker-post-comment-load": {
+              "n": 9,
+              "p50": 131.971292,
+              "p95": null,
+              "min": 116.962083,
+              "max": 167.559375
+            },
+            "seattletimes-1": {
+              "n": 9,
+              "p50": 47.053333,
+              "p95": null,
+              "min": 41.559,
+              "max": 84.976
+            },
+            "cnn": {
+              "n": 9,
+              "p50": 169.817666,
+              "p95": null,
+              "min": 118.712375,
+              "max": 209.73625
+            },
+            "bbc-1": {
+              "n": 9,
+              "p50": 98.569041,
+              "p95": null,
+              "min": 72.950125,
+              "max": 150.55125
+            },
+            "archive-of-our-own": {
+              "n": 9,
+              "p50": 116.703708,
+              "p95": null,
+              "min": 93.71775,
+              "max": 152.469292
+            },
+            "lazy-image-1": {
+              "n": 9,
+              "p50": 80.7905,
+              "p95": null,
+              "min": 62.7385,
+              "max": 116.543792
+            },
+            "cnet": {
+              "n": 9,
+              "p50": 127.304834,
+              "p95": null,
+              "min": 92.203583,
+              "max": 207.435417
+            },
+            "wikipedia-3": {
+              "n": 9,
+              "p50": 126.709,
+              "p95": null,
+              "min": 90.042291,
+              "max": 376.710459
+            },
+            "article-author-tag": {
+              "n": 9,
+              "p50": 80.370459,
+              "p95": null,
+              "min": 47.6385,
+              "max": 96.443833
+            },
+            "wikipedia-4": {
+              "n": 9,
+              "p50": 234.181875,
+              "p95": null,
+              "min": 192.488375,
+              "max": 371.399334
+            },
+            "nytimes-2": {
+              "n": 9,
+              "p50": 122.512917,
+              "p95": null,
+              "min": 95.477333,
+              "max": 196.470917
+            },
+            "aktualne": {
+              "n": 9,
+              "p50": 51.334709,
+              "p95": null,
+              "min": 47.015958,
+              "max": 54.608292
+            },
+            "quanta-1": {
+              "n": 9,
+              "p50": 59.973875,
+              "p95": null,
+              "min": 42.579292,
+              "max": 103.53175
+            },
+            "nytimes-1": {
+              "n": 9,
+              "p50": 125.634292,
+              "p95": null,
+              "min": 105.739416,
+              "max": 138.723875
+            },
+            "qq": {
+              "n": 9,
+              "p50": 130.653417,
+              "p95": null,
+              "min": 60.687667,
+              "max": 189.719709
+            },
+            "bug-1255978": {
+              "n": 9,
+              "p50": 178.36075,
+              "p95": null,
+              "min": 139.347625,
+              "max": 1657.932125
+            },
+            "engadget": {
+              "n": 9,
+              "p50": 116.741458,
+              "p95": null,
+              "min": 74.131875,
+              "max": 154.989417
+            },
+            "folha": {
+              "n": 9,
+              "p50": 67.545083,
+              "p95": null,
+              "min": 56.218041,
+              "max": 73.501625
+            },
+            "buzzfeed-1": {
+              "n": 9,
+              "p50": 91.352,
+              "p95": null,
+              "min": 63.004916,
+              "max": 107.337458
+            },
+            "medium-3": {
+              "n": 9,
+              "p50": 96.565166,
+              "p95": null,
+              "min": 90.022875,
+              "max": 105.7425
+            },
+            "pixnet": {
+              "n": 9,
+              "p50": 225.771458,
+              "p95": null,
+              "min": 173.040375,
+              "max": 779.6065
+            },
+            "schema-org-context-object": {
+              "n": 9,
+              "p50": 63.110625,
+              "p95": null,
+              "min": 44.374,
+              "max": 88.226084
+            },
+            "youth": {
+              "n": 9,
+              "p50": 190.038667,
+              "p95": null,
+              "min": 174.396,
+              "max": 227.426625
+            },
+            "nytimes-3": {
+              "n": 9,
+              "p50": 89.097875,
+              "p95": null,
+              "min": 59.725,
+              "max": 105.91675
+            },
+            "msn": {
+              "n": 9,
+              "p50": 130.222334,
+              "p95": null,
+              "min": 104.783667,
+              "max": 136.227666
+            },
+            "lazy-image-2": {
+              "n": 9,
+              "p50": 281.220583,
+              "p95": null,
+              "min": 220.451875,
+              "max": 314.784583
+            },
+            "nytimes-4": {
+              "n": 9,
+              "p50": 116.854417,
+              "p95": null,
+              "min": 80.963709,
+              "max": 123.572584
+            },
+            "wikia": {
+              "n": 9,
+              "p50": 189.137666,
+              "p95": null,
+              "min": 156.054291,
+              "max": 383.479959
+            },
+            "breitbart": {
+              "n": 9,
+              "p50": 468.004584,
+              "p95": null,
+              "min": 183.993291,
+              "max": 773.479291
+            },
+            "nytimes-5": {
+              "n": 9,
+              "p50": 150.195375,
+              "p95": null,
+              "min": 124.825458,
+              "max": 165.454792
+            },
+            "wikipedia-2": {
+              "n": 9,
+              "p50": 1013.432709,
+              "p95": null,
+              "min": 879.392208,
+              "max": 1873.210709
+            },
+            "guardian-1": {
+              "n": 9,
+              "p50": 155.023916,
+              "p95": null,
+              "min": 83.910125,
+              "max": 183.921791
+            },
+            "yahoo-1": {
+              "n": 9,
+              "p50": 138.879125,
+              "p95": null,
+              "min": 110.264334,
+              "max": 148.433708
+            },
+            "yahoo-3": {
+              "n": 9,
+              "p50": 153.263417,
+              "p95": null,
+              "min": 111.629333,
+              "max": 404.623084
+            },
+            "yahoo-2": {
+              "n": 9,
+              "p50": 283.415542,
+              "p95": null,
+              "min": 197.058666,
+              "max": 414.840167
+            }
+          }
+        },
+        "go": {
+          "samplesPerPage": 9,
+          "corpusSumPageMediansMs": 422.00537799999995,
+          "pageMedianDistributionMs": {
+            "n": 130,
+            "p50": 2.316625,
+            "p95": 9.499042,
+            "min": 0.018208,
+            "max": 42.368084
+          },
+          "workerPeakRSSMiB": {
+            "n": 3,
+            "p50": 112.578125,
+            "p95": null,
+            "min": 112.546875,
+            "max": 114.75
+          },
+          "perPage": {
+            "ol": {
+              "n": 9,
+              "p50": 0.035417,
+              "p95": null,
+              "min": 0.034042,
+              "max": 0.051625
+            },
+            "js-link-replacement": {
+              "n": 9,
+              "p50": 0.035708,
+              "p95": null,
+              "min": 0.026209,
+              "max": 0.04125
+            },
+            "005-unescape-html-entities": {
+              "n": 9,
+              "p50": 0.018208,
+              "p95": null,
+              "min": 0.014125,
+              "max": 0.026916
+            },
+            "invalid-attributes": {
+              "n": 9,
+              "p50": 0.079833,
+              "p95": null,
+              "min": 0.063667,
+              "max": 0.082
+            },
+            "remove-aria-hidden": {
+              "n": 9,
+              "p50": 0.068375,
+              "p95": null,
+              "min": 0.065666,
+              "max": 0.092042
+            },
+            "lazy-image-3": {
+              "n": 9,
+              "p50": 0.082125,
+              "p95": null,
+              "min": 0.067334,
+              "max": 0.109541
+            },
+            "normalize-spaces": {
+              "n": 9,
+              "p50": 0.06625,
+              "p95": null,
+              "min": 0.046333,
+              "max": 0.084792
+            },
+            "title-en-dash": {
+              "n": 9,
+              "p50": 0.056125,
+              "p95": null,
+              "min": 0.047083,
+              "max": 0.075
+            },
+            "replace-brs": {
+              "n": 9,
+              "p50": 0.088917,
+              "p95": null,
+              "min": 0.074375,
+              "max": 0.091292
+            },
+            "remove-extra-brs": {
+              "n": 9,
+              "p50": 0.077583,
+              "p95": null,
+              "min": 0.057042,
+              "max": 0.080916
+            },
+            "rtl-1": {
+              "n": 9,
+              "p50": 0.070167,
+              "p95": null,
+              "min": 0.052917,
+              "max": 0.074208
+            },
+            "rtl-3": {
+              "n": 9,
+              "p50": 0.064208,
+              "p95": null,
+              "min": 0.06125,
+              "max": 0.117166
+            },
+            "rtl-4": {
+              "n": 9,
+              "p50": 0.067333,
+              "p95": null,
+              "min": 0.05325,
+              "max": 0.075667
+            },
+            "comment-inside-script-parsing": {
+              "n": 9,
+              "p50": 0.072083,
+              "p95": null,
+              "min": 0.061709,
+              "max": 0.0855
+            },
+            "rtl-2": {
+              "n": 9,
+              "p50": 0.062875,
+              "p95": null,
+              "min": 0.052958,
+              "max": 0.084
+            },
+            "remove-extra-paragraphs": {
+              "n": 9,
+              "p50": 0.079917,
+              "p95": null,
+              "min": 0.072209,
+              "max": 0.202334
+            },
+            "replace-font-tags": {
+              "n": 9,
+              "p50": 0.0875,
+              "p95": null,
+              "min": 0.0605,
+              "max": 0.090333
+            },
+            "title-and-h1-discrepancy": {
+              "n": 9,
+              "p50": 0.076542,
+              "p95": null,
+              "min": 0.058542,
+              "max": 18.621917
+            },
+            "style-tags-removal": {
+              "n": 9,
+              "p50": 0.050375,
+              "p95": null,
+              "min": 0.046,
+              "max": 0.232584
+            },
+            "basic-tags-cleaning": {
+              "n": 9,
+              "p50": 0.07675,
+              "p95": null,
+              "min": 0.066375,
+              "max": 0.086292
+            },
+            "visibility-hidden": {
+              "n": 9,
+              "p50": 0.128333,
+              "p95": null,
+              "min": 0.104042,
+              "max": 0.151458
+            },
+            "remove-script-tags": {
+              "n": 9,
+              "p50": 0.073458,
+              "p95": null,
+              "min": 0.059833,
+              "max": 0.082792
+            },
+            "metadata-content-missing": {
+              "n": 9,
+              "p50": 0.047875,
+              "p95": null,
+              "min": 0.043792,
+              "max": 0.059833
+            },
+            "004-metadata-space-separated-properties": {
+              "n": 9,
+              "p50": 0.060541,
+              "p95": null,
+              "min": 0.051458,
+              "max": 0.092083
+            },
+            "parsely-metadata": {
+              "n": 9,
+              "p50": 0.056667,
+              "p95": null,
+              "min": 0.04,
+              "max": 0.151917
+            },
+            "base-url": {
+              "n": 9,
+              "p50": 0.144791,
+              "p95": null,
+              "min": 0.094333,
+              "max": 0.285958
+            },
+            "base-url-base-element": {
+              "n": 9,
+              "p50": 0.109667,
+              "p95": null,
+              "min": 0.105125,
+              "max": 0.144875
+            },
+            "base-url-base-element-relative": {
+              "n": 9,
+              "p50": 0.149542,
+              "p95": null,
+              "min": 0.098459,
+              "max": 0.209
+            },
+            "embedded-videos": {
+              "n": 9,
+              "p50": 0.106584,
+              "p95": null,
+              "min": 0.077875,
+              "max": 1.267
+            },
+            "reordering-paragraphs": {
+              "n": 9,
+              "p50": 0.088416,
+              "p95": null,
+              "min": 0.054333,
+              "max": 0.121958
+            },
+            "003-metadata-preferred": {
+              "n": 9,
+              "p50": 0.091625,
+              "p95": null,
+              "min": 0.078667,
+              "max": 0.093625
+            },
+            "svg-parsing": {
+              "n": 9,
+              "p50": 0.109209,
+              "p95": null,
+              "min": 0.107042,
+              "max": 0.120291
+            },
+            "social-buttons": {
+              "n": 9,
+              "p50": 0.100541,
+              "p95": null,
+              "min": 0.090583,
+              "max": 0.152083
+            },
+            "hidden-nodes": {
+              "n": 9,
+              "p50": 0.066458,
+              "p95": null,
+              "min": 0.050458,
+              "max": 0.077458
+            },
+            "missing-paragraphs": {
+              "n": 9,
+              "p50": 0.129042,
+              "p95": null,
+              "min": 0.092584,
+              "max": 0.140042
+            },
+            "dev418": {
+              "n": 9,
+              "p50": 0.175875,
+              "p95": null,
+              "min": 0.14275,
+              "max": 0.193292
+            },
+            "daringfireball-1": {
+              "n": 9,
+              "p50": 0.287625,
+              "p95": null,
+              "min": 0.244125,
+              "max": 0.410167
+            },
+            "001": {
+              "n": 9,
+              "p50": 0.541708,
+              "p95": null,
+              "min": 0.406125,
+              "max": 0.915458
+            },
+            "table-style-attributes": {
+              "n": 9,
+              "p50": 0.78825,
+              "p95": null,
+              "min": 0.633834,
+              "max": 0.887667
+            },
+            "hukumusume": {
+              "n": 9,
+              "p50": 4.022416,
+              "p95": null,
+              "min": 3.103833,
+              "max": 5.122791
+            },
+            "mozilla-2": {
+              "n": 9,
+              "p50": 1.1625,
+              "p95": null,
+              "min": 0.76325,
+              "max": 1.547209
+            },
+            "tumblr": {
+              "n": 9,
+              "p50": 0.631417,
+              "p95": null,
+              "min": 0.477583,
+              "max": 0.642375
+            },
+            "v8-blog": {
+              "n": 9,
+              "p50": 2.029417,
+              "p95": null,
+              "min": 1.448875,
+              "max": 2.76125
+            },
+            "simplyfound-1": {
+              "n": 9,
+              "p50": 0.817458,
+              "p95": null,
+              "min": 0.691875,
+              "max": 0.950042
+            },
+            "ebb-org": {
+              "n": 9,
+              "p50": 1.193291,
+              "p95": null,
+              "min": 1.112791,
+              "max": 1.4135
+            },
+            "medium-2": {
+              "n": 9,
+              "p50": 1.093416,
+              "p95": null,
+              "min": 1.005375,
+              "max": 1.213708
+            },
+            "ars-1": {
+              "n": 9,
+              "p50": 1.349959,
+              "p95": null,
+              "min": 1.076083,
+              "max": 1.620042
+            },
+            "herald-sun-1": {
+              "n": 9,
+              "p50": 1.524834,
+              "p95": null,
+              "min": 1.161167,
+              "max": 14.912375
+            },
+            "heise": {
+              "n": 9,
+              "p50": 1.233583,
+              "p95": null,
+              "min": 1.146083,
+              "max": 1.506792
+            },
+            "la-nacion": {
+              "n": 9,
+              "p50": 1.140417,
+              "p95": null,
+              "min": 0.873375,
+              "max": 1.472291
+            },
+            "keep-tabular-data": {
+              "n": 9,
+              "p50": 3.013458,
+              "p95": null,
+              "min": 2.343,
+              "max": 3.649334
+            },
+            "mercurial": {
+              "n": 9,
+              "p50": 4.649334,
+              "p95": null,
+              "min": 3.064375,
+              "max": 42.610875
+            },
+            "ietf-1": {
+              "n": 9,
+              "p50": 2.788541,
+              "p95": null,
+              "min": 1.832,
+              "max": 3.524125
+            },
+            "data-url-image": {
+              "n": 9,
+              "p50": 1.532,
+              "p95": null,
+              "min": 1.117125,
+              "max": 1.585667
+            },
+            "ehow-1": {
+              "n": 9,
+              "p50": 1.362459,
+              "p95": null,
+              "min": 1.223125,
+              "max": 1.858167
+            },
+            "google-sre-book-1": {
+              "n": 9,
+              "p50": 3.961917,
+              "p95": null,
+              "min": 3.01425,
+              "max": 4.918167
+            },
+            "gitlab-blog": {
+              "n": 9,
+              "p50": 1.65875,
+              "p95": null,
+              "min": 1.253708,
+              "max": 1.835
+            },
+            "dropbox-blog": {
+              "n": 9,
+              "p50": 3.710208,
+              "p95": null,
+              "min": 2.913166,
+              "max": 4.049208
+            },
+            "firefox-nightly-blog": {
+              "n": 9,
+              "p50": 5.368833,
+              "p95": null,
+              "min": 4.507542,
+              "max": 6.849167
+            },
+            "lwn-1": {
+              "n": 9,
+              "p50": 5.910459,
+              "p95": null,
+              "min": 5.393083,
+              "max": 9.017958
+            },
+            "lemonde-1": {
+              "n": 9,
+              "p50": 1.738291,
+              "p95": null,
+              "min": 1.34575,
+              "max": 2.1365
+            },
+            "tmz-1": {
+              "n": 9,
+              "p50": 1.222792,
+              "p95": null,
+              "min": 1.07375,
+              "max": 1.558875
+            },
+            "mozilla-1": {
+              "n": 9,
+              "p50": 1.851125,
+              "p95": null,
+              "min": 1.652667,
+              "max": 2.75175
+            },
+            "iab-1": {
+              "n": 9,
+              "p50": 1.849958,
+              "p95": null,
+              "min": 1.439792,
+              "max": 2.372083
+            },
+            "ehow-2": {
+              "n": 9,
+              "p50": 2.054667,
+              "p95": null,
+              "min": 1.611833,
+              "max": 2.538625
+            },
+            "topicseed-1": {
+              "n": 9,
+              "p50": 1.537583,
+              "p95": null,
+              "min": 1.187958,
+              "max": 1.7785
+            },
+            "medium-1": {
+              "n": 9,
+              "p50": 3.801625,
+              "p95": null,
+              "min": 3.229292,
+              "max": 4.980708
+            },
+            "wapo-2": {
+              "n": 9,
+              "p50": 2.167334,
+              "p95": null,
+              "min": 1.647084,
+              "max": 2.272041
+            },
+            "lifehacker-working": {
+              "n": 9,
+              "p50": 4.819542,
+              "p95": null,
+              "min": 3.234708,
+              "max": 31.221084
+            },
+            "toc-missing": {
+              "n": 9,
+              "p50": 6.855667,
+              "p95": null,
+              "min": 6.236167,
+              "max": 8.728125
+            },
+            "links-in-tables": {
+              "n": 9,
+              "p50": 2.317584,
+              "p95": null,
+              "min": 1.944708,
+              "max": 2.659917
+            },
+            "webmd-2": {
+              "n": 9,
+              "p50": 2.322,
+              "p95": null,
+              "min": 1.972083,
+              "max": 2.805541
+            },
+            "cnet-svg-classes": {
+              "n": 9,
+              "p50": 3.097875,
+              "p95": null,
+              "min": 1.945958,
+              "max": 7.011542
+            },
+            "liberation-1": {
+              "n": 9,
+              "p50": 1.625125,
+              "p95": null,
+              "min": 1.384709,
+              "max": 2.232542
+            },
+            "keep-images": {
+              "n": 9,
+              "p50": 4.21125,
+              "p95": null,
+              "min": 3.747209,
+              "max": 6.009667
+            },
+            "002": {
+              "n": 9,
+              "p50": 4.990708,
+              "p95": null,
+              "min": 4.67275,
+              "max": 5.541167
+            },
+            "yahoo-4": {
+              "n": 9,
+              "p50": 2.667667,
+              "p95": null,
+              "min": 1.785417,
+              "max": 19.381417
+            },
+            "gmw": {
+              "n": 9,
+              "p50": 2.316625,
+              "p95": null,
+              "min": 1.681083,
+              "max": 2.648791
+            },
+            "medicalnewstoday": {
+              "n": 9,
+              "p50": 3.735292,
+              "p95": null,
+              "min": 2.948875,
+              "max": 3.963959
+            },
+            "blogger": {
+              "n": 9,
+              "p50": 3.678167,
+              "p95": null,
+              "min": 2.5,
+              "max": 427.360625
+            },
+            "citylab-1": {
+              "n": 9,
+              "p50": 2.279084,
+              "p95": null,
+              "min": 2.113667,
+              "max": 3.095542
+            },
+            "videos-2": {
+              "n": 9,
+              "p50": 2.732708,
+              "p95": null,
+              "min": 2.179459,
+              "max": 2.982291
+            },
+            "wapo-1": {
+              "n": 9,
+              "p50": 3.628833,
+              "p95": null,
+              "min": 3.444334,
+              "max": 4.019917
+            },
+            "wordpress": {
+              "n": 9,
+              "p50": 2.072292,
+              "p95": null,
+              "min": 1.690917,
+              "max": 2.232917
+            },
+            "clean-links": {
+              "n": 9,
+              "p50": 9.30075,
+              "p95": null,
+              "min": 6.689375,
+              "max": 428.832166
+            },
+            "webmd-1": {
+              "n": 9,
+              "p50": 2.298833,
+              "p95": null,
+              "min": 1.93225,
+              "max": 2.903917
+            },
+            "spiceworks": {
+              "n": 9,
+              "p50": 1.766375,
+              "p95": null,
+              "min": 1.322125,
+              "max": 2.004
+            },
+            "mathjax": {
+              "n": 9,
+              "p50": 3.400666,
+              "p95": null,
+              "min": 2.849125,
+              "max": 13.303458
+            },
+            "aclu": {
+              "n": 9,
+              "p50": 4.85575,
+              "p95": null,
+              "min": 3.6955,
+              "max": 5.387333
+            },
+            "royal-road": {
+              "n": 9,
+              "p50": 8.153042,
+              "p95": null,
+              "min": 7.481208,
+              "max": 8.524042
+            },
+            "videos-1": {
+              "n": 9,
+              "p50": 5.401625,
+              "p95": null,
+              "min": 3.677625,
+              "max": 14.065458
+            },
+            "telegraph": {
+              "n": 9,
+              "p50": 2.721625,
+              "p95": null,
+              "min": 2.206792,
+              "max": 4.431584
+            },
+            "theverge": {
+              "n": 9,
+              "p50": 2.569125,
+              "p95": null,
+              "min": 2.361416,
+              "max": 4.060334
+            },
+            "salon-1": {
+              "n": 9,
+              "p50": 4.305708,
+              "p95": null,
+              "min": 3.668541,
+              "max": 6.002542
+            },
+            "wikipedia": {
+              "n": 9,
+              "p50": 9.547458,
+              "p95": null,
+              "min": 7.599042,
+              "max": 10.985292
+            },
+            "lifehacker-post-comment-load": {
+              "n": 9,
+              "p50": 7.134375,
+              "p95": null,
+              "min": 5.772708,
+              "max": 8.709625
+            },
+            "seattletimes-1": {
+              "n": 9,
+              "p50": 2.861083,
+              "p95": null,
+              "min": 2.51475,
+              "max": 3.957834
+            },
+            "cnn": {
+              "n": 9,
+              "p50": 3.206625,
+              "p95": null,
+              "min": 2.387958,
+              "max": 4.585708
+            },
+            "bbc-1": {
+              "n": 9,
+              "p50": 3.551167,
+              "p95": null,
+              "min": 2.701792,
+              "max": 4.104125
+            },
+            "archive-of-our-own": {
+              "n": 9,
+              "p50": 6.320584,
+              "p95": null,
+              "min": 4.78225,
+              "max": 7.787791
+            },
+            "lazy-image-1": {
+              "n": 9,
+              "p50": 5.307291,
+              "p95": null,
+              "min": 3.754125,
+              "max": 6.370708
+            },
+            "cnet": {
+              "n": 9,
+              "p50": 3.670167,
+              "p95": null,
+              "min": 2.647917,
+              "max": 4.067125
+            },
+            "wikipedia-3": {
+              "n": 9,
+              "p50": 4.83425,
+              "p95": null,
+              "min": 4.325833,
+              "max": 6.747584
+            },
+            "article-author-tag": {
+              "n": 9,
+              "p50": 3.881083,
+              "p95": null,
+              "min": 3.787458,
+              "max": 4.391125
+            },
+            "wikipedia-4": {
+              "n": 9,
+              "p50": 10.969,
+              "p95": null,
+              "min": 8.152875,
+              "max": 13.49875
+            },
+            "nytimes-2": {
+              "n": 9,
+              "p50": 3.6955,
+              "p95": null,
+              "min": 3.36625,
+              "max": 4.838167
+            },
+            "aktualne": {
+              "n": 9,
+              "p50": 2.695042,
+              "p95": null,
+              "min": 2.119042,
+              "max": 3.597375
+            },
+            "quanta-1": {
+              "n": 9,
+              "p50": 3.734584,
+              "p95": null,
+              "min": 3.370667,
+              "max": 5.547833
+            },
+            "nytimes-1": {
+              "n": 9,
+              "p50": 4.656208,
+              "p95": null,
+              "min": 3.528417,
+              "max": 5.241875
+            },
+            "qq": {
+              "n": 9,
+              "p50": 2.7625,
+              "p95": null,
+              "min": 2.022291,
+              "max": 3.175583
+            },
+            "bug-1255978": {
+              "n": 9,
+              "p50": 5.356041,
+              "p95": null,
+              "min": 4.329417,
+              "max": 6.206125
+            },
+            "engadget": {
+              "n": 9,
+              "p50": 9.499042,
+              "p95": null,
+              "min": 9.219291,
+              "max": 16.422958
+            },
+            "folha": {
+              "n": 9,
+              "p50": 4.319417,
+              "p95": null,
+              "min": 3.994875,
+              "max": 5.721958
+            },
+            "buzzfeed-1": {
+              "n": 9,
+              "p50": 3.558417,
+              "p95": null,
+              "min": 2.887542,
+              "max": 4.216917
+            },
+            "medium-3": {
+              "n": 9,
+              "p50": 7.787208,
+              "p95": null,
+              "min": 7.200334,
+              "max": 8.069667
+            },
+            "pixnet": {
+              "n": 9,
+              "p50": 6.849584,
+              "p95": null,
+              "min": 5.740834,
+              "max": 9.503334
+            },
+            "schema-org-context-object": {
+              "n": 9,
+              "p50": 3.511125,
+              "p95": null,
+              "min": 3.028166,
+              "max": 4.5365
+            },
+            "youth": {
+              "n": 9,
+              "p50": 3.467292,
+              "p95": null,
+              "min": 2.613292,
+              "max": 4.437125
+            },
+            "nytimes-3": {
+              "n": 9,
+              "p50": 5.50675,
+              "p95": null,
+              "min": 5.304625,
+              "max": 7.209334
+            },
+            "msn": {
+              "n": 9,
+              "p50": 4.004959,
+              "p95": null,
+              "min": 3.727708,
+              "max": 5.059417
+            },
+            "lazy-image-2": {
+              "n": 9,
+              "p50": 16.38825,
+              "p95": null,
+              "min": 15.035458,
+              "max": 21.020583
+            },
+            "nytimes-4": {
+              "n": 9,
+              "p50": 7.055417,
+              "p95": null,
+              "min": 6.032375,
+              "max": 8.784542
+            },
+            "wikia": {
+              "n": 9,
+              "p50": 5.449958,
+              "p95": null,
+              "min": 4.565292,
+              "max": 6.720667
+            },
+            "breitbart": {
+              "n": 9,
+              "p50": 6.831542,
+              "p95": null,
+              "min": 5.696417,
+              "max": 8.449958
+            },
+            "nytimes-5": {
+              "n": 9,
+              "p50": 11.187833,
+              "p95": null,
+              "min": 8.6675,
+              "max": 12.124292
+            },
+            "wikipedia-2": {
+              "n": 9,
+              "p50": 42.368084,
+              "p95": null,
+              "min": 35.2585,
+              "max": 50.123625
+            },
+            "guardian-1": {
+              "n": 9,
+              "p50": 8.190417,
+              "p95": null,
+              "min": 6.036,
+              "max": 9.171166
+            },
+            "yahoo-1": {
+              "n": 9,
+              "p50": 5.402083,
+              "p95": null,
+              "min": 4.784334,
+              "max": 7.974083
+            },
+            "yahoo-3": {
+              "n": 9,
+              "p50": 6.898042,
+              "p95": null,
+              "min": 5.52825,
+              "max": 7.518291
+            },
+            "yahoo-2": {
+              "n": 9,
+              "p50": 10.472542,
+              "p95": null,
+              "min": 7.772,
+              "max": 12.527458
+            }
+          }
+        },
+        "rust": {
+          "samplesPerPage": 9,
+          "corpusSumPageMediansMs": 541.2732919999997,
+          "pageMedianDistributionMs": {
+            "n": 130,
+            "p50": 2.877625,
+            "p95": 10.195625,
+            "min": 0.055042,
+            "max": 70.417167
+          },
+          "workerPeakRSSMiB": {
+            "n": 3,
+            "p50": 80.75,
+            "p95": null,
+            "min": 80.65625,
+            "max": 91.875
+          },
+          "perPage": {
+            "ol": {
+              "n": 9,
+              "p50": 0.055666,
+              "p95": null,
+              "min": 0.052,
+              "max": 0.100042
+            },
+            "js-link-replacement": {
+              "n": 9,
+              "p50": 0.085875,
+              "p95": null,
+              "min": 0.057959,
+              "max": 0.115417
+            },
+            "005-unescape-html-entities": {
+              "n": 9,
+              "p50": 0.055042,
+              "p95": null,
+              "min": 0.03625,
+              "max": 0.180709
+            },
+            "invalid-attributes": {
+              "n": 9,
+              "p50": 0.147042,
+              "p95": null,
+              "min": 0.093875,
+              "max": 0.21625
+            },
+            "remove-aria-hidden": {
+              "n": 9,
+              "p50": 0.117084,
+              "p95": null,
+              "min": 0.077125,
+              "max": 0.250792
+            },
+            "lazy-image-3": {
+              "n": 9,
+              "p50": 0.13325,
+              "p95": null,
+              "min": 0.093167,
+              "max": 0.139167
+            },
+            "normalize-spaces": {
+              "n": 9,
+              "p50": 0.079417,
+              "p95": null,
+              "min": 0.070583,
+              "max": 0.176875
+            },
+            "title-en-dash": {
+              "n": 9,
+              "p50": 0.059792,
+              "p95": null,
+              "min": 0.0525,
+              "max": 0.395458
+            },
+            "replace-brs": {
+              "n": 9,
+              "p50": 0.204166,
+              "p95": null,
+              "min": 0.112875,
+              "max": 0.327334
+            },
+            "remove-extra-brs": {
+              "n": 9,
+              "p50": 0.119334,
+              "p95": null,
+              "min": 0.078916,
+              "max": 0.157959
+            },
+            "rtl-1": {
+              "n": 9,
+              "p50": 0.115083,
+              "p95": null,
+              "min": 0.076583,
+              "max": 0.198125
+            },
+            "rtl-3": {
+              "n": 9,
+              "p50": 0.088875,
+              "p95": null,
+              "min": 0.077916,
+              "max": 0.118625
+            },
+            "rtl-4": {
+              "n": 9,
+              "p50": 0.117583,
+              "p95": null,
+              "min": 0.077334,
+              "max": 0.219625
+            },
+            "comment-inside-script-parsing": {
+              "n": 9,
+              "p50": 0.119333,
+              "p95": null,
+              "min": 0.079292,
+              "max": 0.158
+            },
+            "rtl-2": {
+              "n": 9,
+              "p50": 0.1205,
+              "p95": null,
+              "min": 0.085542,
+              "max": 0.524458
+            },
+            "remove-extra-paragraphs": {
+              "n": 9,
+              "p50": 0.101625,
+              "p95": null,
+              "min": 0.092959,
+              "max": 0.580625
+            },
+            "replace-font-tags": {
+              "n": 9,
+              "p50": 0.152167,
+              "p95": null,
+              "min": 0.116959,
+              "max": 0.270542
+            },
+            "title-and-h1-discrepancy": {
+              "n": 9,
+              "p50": 0.083084,
+              "p95": null,
+              "min": 0.062542,
+              "max": 0.093542
+            },
+            "style-tags-removal": {
+              "n": 9,
+              "p50": 0.102917,
+              "p95": null,
+              "min": 0.063334,
+              "max": 0.933916
+            },
+            "basic-tags-cleaning": {
+              "n": 9,
+              "p50": 0.119209,
+              "p95": null,
+              "min": 0.092959,
+              "max": 0.158459
+            },
+            "visibility-hidden": {
+              "n": 9,
+              "p50": 0.175375,
+              "p95": null,
+              "min": 0.123,
+              "max": 0.48975
+            },
+            "remove-script-tags": {
+              "n": 9,
+              "p50": 0.125,
+              "p95": null,
+              "min": 0.083791,
+              "max": 0.188958
+            },
+            "metadata-content-missing": {
+              "n": 9,
+              "p50": 0.094958,
+              "p95": null,
+              "min": 0.062584,
+              "max": 0.144417
+            },
+            "004-metadata-space-separated-properties": {
+              "n": 9,
+              "p50": 0.096792,
+              "p95": null,
+              "min": 0.0655,
+              "max": 0.1835
+            },
+            "parsely-metadata": {
+              "n": 9,
+              "p50": 0.093416,
+              "p95": null,
+              "min": 0.063542,
+              "max": 0.175167
+            },
+            "base-url": {
+              "n": 9,
+              "p50": 0.294208,
+              "p95": null,
+              "min": 0.198333,
+              "max": 0.3565
+            },
+            "base-url-base-element": {
+              "n": 9,
+              "p50": 0.296542,
+              "p95": null,
+              "min": 0.198,
+              "max": 0.555375
+            },
+            "base-url-base-element-relative": {
+              "n": 9,
+              "p50": 0.297333,
+              "p95": null,
+              "min": 0.206417,
+              "max": 0.398209
+            },
+            "embedded-videos": {
+              "n": 9,
+              "p50": 0.166458,
+              "p95": null,
+              "min": 0.124542,
+              "max": 0.189542
+            },
+            "reordering-paragraphs": {
+              "n": 9,
+              "p50": 0.120125,
+              "p95": null,
+              "min": 0.083291,
+              "max": 0.125084
+            },
+            "003-metadata-preferred": {
+              "n": 9,
+              "p50": 0.113625,
+              "p95": null,
+              "min": 0.085792,
+              "max": 0.256458
+            },
+            "svg-parsing": {
+              "n": 9,
+              "p50": 0.183083,
+              "p95": null,
+              "min": 0.129333,
+              "max": 0.251875
+            },
+            "social-buttons": {
+              "n": 9,
+              "p50": 0.161125,
+              "p95": null,
+              "min": 0.10525,
+              "max": 0.188125
+            },
+            "hidden-nodes": {
+              "n": 9,
+              "p50": 0.089708,
+              "p95": null,
+              "min": 0.058084,
+              "max": 0.109666
+            },
+            "missing-paragraphs": {
+              "n": 9,
+              "p50": 0.149291,
+              "p95": null,
+              "min": 0.097333,
+              "max": 0.244209
+            },
+            "dev418": {
+              "n": 9,
+              "p50": 0.430417,
+              "p95": null,
+              "min": 0.270625,
+              "max": 0.533292
+            },
+            "daringfireball-1": {
+              "n": 9,
+              "p50": 0.613167,
+              "p95": null,
+              "min": 0.423875,
+              "max": 0.629833
+            },
+            "001": {
+              "n": 9,
+              "p50": 0.697333,
+              "p95": null,
+              "min": 0.548791,
+              "max": 1.231916
+            },
+            "table-style-attributes": {
+              "n": 9,
+              "p50": 1.955,
+              "p95": null,
+              "min": 1.081667,
+              "max": 2.300917
+            },
+            "hukumusume": {
+              "n": 9,
+              "p50": 2.9575,
+              "p95": null,
+              "min": 2.569292,
+              "max": 5.353875
+            },
+            "mozilla-2": {
+              "n": 9,
+              "p50": 0.986209,
+              "p95": null,
+              "min": 0.862667,
+              "max": 1.93575
+            },
+            "tumblr": {
+              "n": 9,
+              "p50": 0.834541,
+              "p95": null,
+              "min": 0.584583,
+              "max": 1.474375
+            },
+            "v8-blog": {
+              "n": 9,
+              "p50": 3.802834,
+              "p95": null,
+              "min": 2.372334,
+              "max": 5.333333
+            },
+            "simplyfound-1": {
+              "n": 9,
+              "p50": 1.128333,
+              "p95": null,
+              "min": 0.689625,
+              "max": 1.270625
+            },
+            "ebb-org": {
+              "n": 9,
+              "p50": 1.638542,
+              "p95": null,
+              "min": 1.259917,
+              "max": 1.772166
+            },
+            "medium-2": {
+              "n": 9,
+              "p50": 1.111541,
+              "p95": null,
+              "min": 0.868583,
+              "max": 1.446292
+            },
+            "ars-1": {
+              "n": 9,
+              "p50": 1.73975,
+              "p95": null,
+              "min": 1.323292,
+              "max": 1.807292
+            },
+            "herald-sun-1": {
+              "n": 9,
+              "p50": 1.6605,
+              "p95": null,
+              "min": 1.15,
+              "max": 2.411167
+            },
+            "heise": {
+              "n": 9,
+              "p50": 1.548292,
+              "p95": null,
+              "min": 1.010166,
+              "max": 1.67525
+            },
+            "la-nacion": {
+              "n": 9,
+              "p50": 1.514834,
+              "p95": null,
+              "min": 1.02025,
+              "max": 5.108916
+            },
+            "keep-tabular-data": {
+              "n": 9,
+              "p50": 6.468292,
+              "p95": null,
+              "min": 3.731958,
+              "max": 7.694292
+            },
+            "mercurial": {
+              "n": 9,
+              "p50": 5.609125,
+              "p95": null,
+              "min": 4.668459,
+              "max": 6.425625
+            },
+            "ietf-1": {
+              "n": 9,
+              "p50": 3.65575,
+              "p95": null,
+              "min": 3.204209,
+              "max": 6.46725
+            },
+            "data-url-image": {
+              "n": 9,
+              "p50": 2.602417,
+              "p95": null,
+              "min": 2.012208,
+              "max": 8.185959
+            },
+            "ehow-1": {
+              "n": 9,
+              "p50": 2.332375,
+              "p95": null,
+              "min": 1.515291,
+              "max": 8.798791
+            },
+            "google-sre-book-1": {
+              "n": 9,
+              "p50": 6.102583,
+              "p95": null,
+              "min": 3.72725,
+              "max": 8.257167
+            },
+            "gitlab-blog": {
+              "n": 9,
+              "p50": 1.857083,
+              "p95": null,
+              "min": 1.2665,
+              "max": 3.1675
+            },
+            "dropbox-blog": {
+              "n": 9,
+              "p50": 5.37575,
+              "p95": null,
+              "min": 3.699667,
+              "max": 7.904875
+            },
+            "firefox-nightly-blog": {
+              "n": 9,
+              "p50": 6.412833,
+              "p95": null,
+              "min": 4.239667,
+              "max": 8.977459
+            },
+            "lwn-1": {
+              "n": 9,
+              "p50": 6.997167,
+              "p95": null,
+              "min": 6.133417,
+              "max": 19.404875
+            },
+            "lemonde-1": {
+              "n": 9,
+              "p50": 2.228667,
+              "p95": null,
+              "min": 1.537709,
+              "max": 3.316042
+            },
+            "tmz-1": {
+              "n": 9,
+              "p50": 1.593125,
+              "p95": null,
+              "min": 1.198541,
+              "max": 2.086583
+            },
+            "mozilla-1": {
+              "n": 9,
+              "p50": 3.117791,
+              "p95": null,
+              "min": 2.250125,
+              "max": 4.822875
+            },
+            "iab-1": {
+              "n": 9,
+              "p50": 2.453875,
+              "p95": null,
+              "min": 1.584417,
+              "max": 2.797833
+            },
+            "ehow-2": {
+              "n": 9,
+              "p50": 3.764083,
+              "p95": null,
+              "min": 1.875625,
+              "max": 4.622
+            },
+            "topicseed-1": {
+              "n": 9,
+              "p50": 2.02075,
+              "p95": null,
+              "min": 1.278333,
+              "max": 2.781625
+            },
+            "medium-1": {
+              "n": 9,
+              "p50": 6.79225,
+              "p95": null,
+              "min": 3.229667,
+              "max": 12.144917
+            },
+            "wapo-2": {
+              "n": 9,
+              "p50": 2.500916,
+              "p95": null,
+              "min": 1.664708,
+              "max": 3.775375
+            },
+            "lifehacker-working": {
+              "n": 9,
+              "p50": 4.134333,
+              "p95": null,
+              "min": 3.333458,
+              "max": 4.718541
+            },
+            "toc-missing": {
+              "n": 9,
+              "p50": 16.668084,
+              "p95": null,
+              "min": 11.334667,
+              "max": 199.114666
+            },
+            "links-in-tables": {
+              "n": 9,
+              "p50": 3.549292,
+              "p95": null,
+              "min": 2.316625,
+              "max": 6.728083
+            },
+            "webmd-2": {
+              "n": 9,
+              "p50": 1.803708,
+              "p95": null,
+              "min": 1.604083,
+              "max": 2.514125
+            },
+            "cnet-svg-classes": {
+              "n": 9,
+              "p50": 4.027833,
+              "p95": null,
+              "min": 2.583958,
+              "max": 5.913791
+            },
+            "liberation-1": {
+              "n": 9,
+              "p50": 2.429125,
+              "p95": null,
+              "min": 1.489875,
+              "max": 3.780625
+            },
+            "keep-images": {
+              "n": 9,
+              "p50": 5.556834,
+              "p95": null,
+              "min": 3.516417,
+              "max": 66.027416
+            },
+            "002": {
+              "n": 9,
+              "p50": 10.958375,
+              "p95": null,
+              "min": 7.16825,
+              "max": 18.067
+            },
+            "yahoo-4": {
+              "n": 9,
+              "p50": 1.672333,
+              "p95": null,
+              "min": 1.425583,
+              "max": 2.100083
+            },
+            "gmw": {
+              "n": 9,
+              "p50": 2.877625,
+              "p95": null,
+              "min": 1.984625,
+              "max": 3.865458
+            },
+            "medicalnewstoday": {
+              "n": 9,
+              "p50": 3.260708,
+              "p95": null,
+              "min": 2.250084,
+              "max": 3.458792
+            },
+            "blogger": {
+              "n": 9,
+              "p50": 3.134083,
+              "p95": null,
+              "min": 2.458125,
+              "max": 3.481709
+            },
+            "citylab-1": {
+              "n": 9,
+              "p50": 2.857875,
+              "p95": null,
+              "min": 1.923292,
+              "max": 3.227791
+            },
+            "videos-2": {
+              "n": 9,
+              "p50": 3.940583,
+              "p95": null,
+              "min": 2.548042,
+              "max": 5.342625
+            },
+            "wapo-1": {
+              "n": 9,
+              "p50": 4.372416,
+              "p95": null,
+              "min": 2.755208,
+              "max": 6.516334
+            },
+            "wordpress": {
+              "n": 9,
+              "p50": 3.4,
+              "p95": null,
+              "min": 1.994792,
+              "max": 4.719833
+            },
+            "clean-links": {
+              "n": 9,
+              "p50": 7.638542,
+              "p95": null,
+              "min": 5.61375,
+              "max": 8.577792
+            },
+            "webmd-1": {
+              "n": 9,
+              "p50": 2.804,
+              "p95": null,
+              "min": 1.798292,
+              "max": 6.905667
+            },
+            "spiceworks": {
+              "n": 9,
+              "p50": 2.006667,
+              "p95": null,
+              "min": 1.3375,
+              "max": 2.473708
+            },
+            "mathjax": {
+              "n": 9,
+              "p50": 6.168083,
+              "p95": null,
+              "min": 5.309166,
+              "max": 9.542709
+            },
+            "aclu": {
+              "n": 9,
+              "p50": 4.2025,
+              "p95": null,
+              "min": 2.703417,
+              "max": 5.678
+            },
+            "royal-road": {
+              "n": 9,
+              "p50": 9.946875,
+              "p95": null,
+              "min": 6.694667,
+              "max": 11.158542
+            },
+            "videos-1": {
+              "n": 9,
+              "p50": 7.723958,
+              "p95": null,
+              "min": 5.159584,
+              "max": 9.570375
+            },
+            "telegraph": {
+              "n": 9,
+              "p50": 2.533666,
+              "p95": null,
+              "min": 2.248083,
+              "max": 10.515584
+            },
+            "theverge": {
+              "n": 9,
+              "p50": 2.640667,
+              "p95": null,
+              "min": 1.848083,
+              "max": 5.563083
+            },
+            "salon-1": {
+              "n": 9,
+              "p50": 6.331125,
+              "p95": null,
+              "min": 3.758459,
+              "max": 28.299375
+            },
+            "wikipedia": {
+              "n": 9,
+              "p50": 19.533917,
+              "p95": null,
+              "min": 14.5875,
+              "max": 28.659875
+            },
+            "lifehacker-post-comment-load": {
+              "n": 9,
+              "p50": 6.23675,
+              "p95": null,
+              "min": 5.09875,
+              "max": 9.347958
+            },
+            "seattletimes-1": {
+              "n": 9,
+              "p50": 2.985709,
+              "p95": null,
+              "min": 2.264958,
+              "max": 3.772875
+            },
+            "cnn": {
+              "n": 9,
+              "p50": 3.702291,
+              "p95": null,
+              "min": 2.593916,
+              "max": 4.839125
+            },
+            "bbc-1": {
+              "n": 9,
+              "p50": 2.971042,
+              "p95": null,
+              "min": 2.858583,
+              "max": 5.388833
+            },
+            "archive-of-our-own": {
+              "n": 9,
+              "p50": 5.277667,
+              "p95": null,
+              "min": 4.60875,
+              "max": 8.964875
+            },
+            "lazy-image-1": {
+              "n": 9,
+              "p50": 5.383958,
+              "p95": null,
+              "min": 3.309333,
+              "max": 8.948416
+            },
+            "cnet": {
+              "n": 9,
+              "p50": 4.467334,
+              "p95": null,
+              "min": 2.985167,
+              "max": 7.162667
+            },
+            "wikipedia-3": {
+              "n": 9,
+              "p50": 7.780333,
+              "p95": null,
+              "min": 7.157167,
+              "max": 18.457584
+            },
+            "article-author-tag": {
+              "n": 9,
+              "p50": 4.279959,
+              "p95": null,
+              "min": 3.084041,
+              "max": 6.068375
+            },
+            "wikipedia-4": {
+              "n": 9,
+              "p50": 17.839458,
+              "p95": null,
+              "min": 14.708083,
+              "max": 52.093458
+            },
+            "nytimes-2": {
+              "n": 9,
+              "p50": 6.108708,
+              "p95": null,
+              "min": 3.918459,
+              "max": 10.762542
+            },
+            "aktualne": {
+              "n": 9,
+              "p50": 2.946042,
+              "p95": null,
+              "min": 2.243667,
+              "max": 3.294166
+            },
+            "quanta-1": {
+              "n": 9,
+              "p50": 4.355458,
+              "p95": null,
+              "min": 2.777166,
+              "max": 7.726208
+            },
+            "nytimes-1": {
+              "n": 9,
+              "p50": 5.93325,
+              "p95": null,
+              "min": 3.763625,
+              "max": 7.177041
+            },
+            "qq": {
+              "n": 9,
+              "p50": 3.378334,
+              "p95": null,
+              "min": 2.408333,
+              "max": 11.196208
+            },
+            "bug-1255978": {
+              "n": 9,
+              "p50": 7.126958,
+              "p95": null,
+              "min": 4.301542,
+              "max": 10.220125
+            },
+            "engadget": {
+              "n": 9,
+              "p50": 8.306792,
+              "p95": null,
+              "min": 6.395417,
+              "max": 10.077167
+            },
+            "folha": {
+              "n": 9,
+              "p50": 3.440041,
+              "p95": null,
+              "min": 3.052416,
+              "max": 7.884541
+            },
+            "buzzfeed-1": {
+              "n": 9,
+              "p50": 4.796208,
+              "p95": null,
+              "min": 3.286417,
+              "max": 6.519625
+            },
+            "medium-3": {
+              "n": 9,
+              "p50": 7.761625,
+              "p95": null,
+              "min": 5.996375,
+              "max": 15.173583
+            },
+            "pixnet": {
+              "n": 9,
+              "p50": 9.430417,
+              "p95": null,
+              "min": 6.360541,
+              "max": 12.346208
+            },
+            "schema-org-context-object": {
+              "n": 9,
+              "p50": 4.153375,
+              "p95": null,
+              "min": 2.674916,
+              "max": 22.385834
+            },
+            "youth": {
+              "n": 9,
+              "p50": 3.268875,
+              "p95": null,
+              "min": 2.499417,
+              "max": 3.893666
+            },
+            "nytimes-3": {
+              "n": 9,
+              "p50": 6.214625,
+              "p95": null,
+              "min": 4.24425,
+              "max": 8.826625
+            },
+            "msn": {
+              "n": 9,
+              "p50": 6.376042,
+              "p95": null,
+              "min": 4.435459,
+              "max": 7.178417
+            },
+            "lazy-image-2": {
+              "n": 9,
+              "p50": 16.813208,
+              "p95": null,
+              "min": 14.473583,
+              "max": 21.408125
+            },
+            "nytimes-4": {
+              "n": 9,
+              "p50": 6.495833,
+              "p95": null,
+              "min": 4.321542,
+              "max": 8.649458
+            },
+            "wikia": {
+              "n": 9,
+              "p50": 7.317167,
+              "p95": null,
+              "min": 4.688334,
+              "max": 7.800333
+            },
+            "breitbart": {
+              "n": 9,
+              "p50": 7.757458,
+              "p95": null,
+              "min": 5.032667,
+              "max": 23.754917
+            },
+            "nytimes-5": {
+              "n": 9,
+              "p50": 9.720792,
+              "p95": null,
+              "min": 6.312375,
+              "max": 10.122792
+            },
+            "wikipedia-2": {
+              "n": 9,
+              "p50": 70.417167,
+              "p95": null,
+              "min": 55.005208,
+              "max": 114.241209
+            },
+            "guardian-1": {
+              "n": 9,
+              "p50": 8.950917,
+              "p95": null,
+              "min": 5.826416,
+              "max": 10.720542
+            },
+            "yahoo-1": {
+              "n": 9,
+              "p50": 6.271667,
+              "p95": null,
+              "min": 4.2285,
+              "max": 7.283375
+            },
+            "yahoo-3": {
+              "n": 9,
+              "p50": 7.501292,
+              "p95": null,
+              "min": 4.880167,
+              "max": 12.08375
+            },
+            "yahoo-2": {
+              "n": 9,
+              "p50": 10.195625,
+              "p95": null,
+              "min": 6.699125,
+              "max": 13.363625
+            }
+          }
+        }
+      },
+      "fullTextCorrectness": {
+        "go": {
+          "comparedPages": 130,
+          "matchingPages": 130,
+          "differingIds": []
+        },
+        "rust": {
+          "comparedPages": 130,
+          "matchingPages": 130,
+          "differingIds": []
+        }
+      },
+      "fullCorpusTimeRatios": {
+        "javascriptOverGo": 23.926141972057998,
+        "javascriptOverRust": 18.65408978464802
+      },
+      "fullPeakRSSRatios": {
+        "javascriptOverGo": 12.928799444829979,
+        "javascriptOverRust": 18.024767801857585
+      },
+      "detail": {
+        "rtl-4": {
+          "input": {
+            "id": "rtl-4",
+            "path": "vendor/mozilla/test/test-pages/rtl-4/source.html",
+            "bytes": 1214,
+            "sha256": "77e98fa63405c76ea2f7c44c21b6c9b23e1cf41960432696f863688b0a123160"
+          },
+          "implementations": {
+            "javascript": {
+              "residentMs": {
+                "n": 30,
+                "p50": 8.910917,
+                "p95": 11.726541,
+                "min": 6.0725,
+                "max": 11.81625
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 178.921875,
+                "p95": null,
+                "min": 178.90625,
+                "max": 179.6875
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 329.926625,
+                "p95": null,
+                "min": 304.234,
+                "max": 452.636875
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 136.921875,
+                "p95": null,
+                "min": 136.3125,
+                "max": 137.359375
+              }
+            },
+            "go": {
+              "residentMs": {
+                "n": 30,
+                "p50": 0.069625,
+                "p95": 0.094417,
+                "min": 0.061959,
+                "max": 0.109125
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 7.859375,
+                "p95": null,
+                "min": 7.65625,
+                "max": 7.90625
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 5.344917,
+                "p95": null,
+                "min": 4.87925,
+                "max": 6.242375
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 7.203125,
+                "p95": null,
+                "min": 7.0625,
+                "max": 7.25
+              }
+            },
+            "rust": {
+              "residentMs": {
+                "n": 30,
+                "p50": 0.1035,
+                "p95": 0.139792,
+                "min": 0.087375,
+                "max": 0.1525
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 3.75,
+                "p95": null,
+                "min": 3.671875,
+                "max": 3.765625
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 4.172708,
+                "p95": null,
+                "min": 3.393708,
+                "max": 5.623459
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 3.09375,
+                "p95": null,
+                "min": 3.046875,
+                "max": 3.09375
+              }
+            }
+          },
+          "coldArticleComparison": {
+            "go": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            },
+            "rust": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            }
+          },
+          "ratios": {
+            "javascriptOverGo": 127.98444524236982,
+            "javascriptOverRust": 86.09581642512077
+          },
+          "coldRatios": {
+            "javascriptOverGo": 61.727174622169066,
+            "javascriptOverRust": 79.06774809068835
+          },
+          "residentPeakRSSRatios": {
+            "javascriptOverGo": 22.765407554671967,
+            "javascriptOverRust": 47.7125
+          },
+          "coldPeakRSSRatios": {
+            "javascriptOverGo": 19.008676789587852,
+            "javascriptOverRust": 44.25757575757576
+          }
+        },
+        "ehow-2": {
+          "input": {
+            "id": "ehow-2",
+            "path": "vendor/mozilla/test/test-pages/ehow-2/source.html",
+            "bytes": 107092,
+            "sha256": "b0096a4a9a6ce9b71beaa235ac1a889ec7d9850ac8d9c9c1a69c2f838cf96287"
+          },
+          "implementations": {
+            "javascript": {
+              "residentMs": {
+                "n": 30,
+                "p50": 55.239625,
+                "p95": 78.583709,
+                "min": 43.3355,
+                "max": 78.676166
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 247.515625,
+                "p95": null,
+                "min": 246.796875,
+                "max": 249.046875
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 411.648834,
+                "p95": null,
+                "min": 325.671875,
+                "max": 511.500917
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 181.203125,
+                "p95": null,
+                "min": 180.9375,
+                "max": 181.40625
+              }
+            },
+            "go": {
+              "residentMs": {
+                "n": 30,
+                "p50": 2.42075,
+                "p95": 2.765792,
+                "min": 1.865625,
+                "max": 2.889542
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 12.96875,
+                "p95": null,
+                "min": 12.90625,
+                "max": 13.390625
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 7.844792,
+                "p95": null,
+                "min": 6.745375,
+                "max": 9.278084
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 8.953125,
+                "p95": null,
+                "min": 8.765625,
+                "max": 8.984375
+              }
+            },
+            "rust": {
+              "residentMs": {
+                "n": 30,
+                "p50": 2.281958,
+                "p95": 2.600791,
+                "min": 2.071292,
+                "max": 2.806167
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 5.65625,
+                "p95": null,
+                "min": 5.59375,
+                "max": 5.671875
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 7.05675,
+                "p95": null,
+                "min": 5.721541,
+                "max": 8.121583
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 4.828125,
+                "p95": null,
+                "min": 4.8125,
+                "max": 4.953125
+              }
+            }
+          },
+          "coldArticleComparison": {
+            "go": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            },
+            "rust": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            }
+          },
+          "ratios": {
+            "javascriptOverGo": 22.819219250232365,
+            "javascriptOverRust": 24.207117308907524
+          },
+          "coldRatios": {
+            "javascriptOverGo": 52.474155337706854,
+            "javascriptOverRust": 58.334053778297374
+          },
+          "residentPeakRSSRatios": {
+            "javascriptOverGo": 19.0855421686747,
+            "javascriptOverRust": 43.75966850828729
+          },
+          "coldPeakRSSRatios": {
+            "javascriptOverGo": 20.239092495637,
+            "javascriptOverRust": 37.530744336569576
+          }
+        },
+        "schema-org-context-object": {
+          "input": {
+            "id": "schema-org-context-object",
+            "path": "vendor/mozilla/test/test-pages/schema-org-context-object/source.html",
+            "bytes": 459526,
+            "sha256": "b470ad3d4170fe5e9bd6d07163e3bfeaff65f22d6d03f9520f7401de532c4cac"
+          },
+          "implementations": {
+            "javascript": {
+              "residentMs": {
+                "n": 30,
+                "p50": 67.618667,
+                "p95": 93.238667,
+                "min": 57.236666,
+                "max": 125.199291
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 357.953125,
+                "p95": null,
+                "min": 354.8125,
+                "max": 358.859375
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 430.129917,
+                "p95": null,
+                "min": 387.744791,
+                "max": 534.26925
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 189.78125,
+                "p95": null,
+                "min": 189.640625,
+                "max": 190.15625
+              }
+            },
+            "go": {
+              "residentMs": {
+                "n": 30,
+                "p50": 4.59975,
+                "p95": 5.5235,
+                "min": 4.176958,
+                "max": 5.94625
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 14.453125,
+                "p95": null,
+                "min": 14.03125,
+                "max": 15.375
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 10.4465,
+                "p95": null,
+                "min": 9.849083,
+                "max": 11.403958
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 12.015625,
+                "p95": null,
+                "min": 11.765625,
+                "max": 12.609375
+              }
+            },
+            "rust": {
+              "residentMs": {
+                "n": 30,
+                "p50": 3.274333,
+                "p95": 4.464916,
+                "min": 2.487792,
+                "max": 4.5465
+              },
+              "workerPeakRSSMiB": {
+                "n": 3,
+                "p50": 7.4375,
+                "p95": null,
+                "min": 7.4375,
+                "max": 7.5625
+              },
+              "coldWallMs": {
+                "n": 9,
+                "p50": 8.393291,
+                "p95": null,
+                "min": 7.942958,
+                "max": 10.874083
+              },
+              "coldPeakRSSMiB": {
+                "n": 9,
+                "p50": 6.40625,
+                "p95": null,
+                "min": 6.34375,
+                "max": 6.46875
+              }
+            }
+          },
+          "coldArticleComparison": {
+            "go": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            },
+            "rust": {
+              "comparedOutputs": 9,
+              "mismatchingOutputs": 0,
+              "differingFields": []
+            }
+          },
+          "ratios": {
+            "javascriptOverGo": 14.700509158106419,
+            "javascriptOverRust": 20.651127115049082
+          },
+          "coldRatios": {
+            "javascriptOverGo": 41.174548126166655,
+            "javascriptOverRust": 51.246872889311234
+          },
+          "residentPeakRSSRatios": {
+            "javascriptOverGo": 24.766486486486485,
+            "javascriptOverRust": 48.128151260504204
+          },
+          "coldPeakRSSRatios": {
+            "javascriptOverGo": 15.794538361508453,
+            "javascriptOverRust": 29.62439024390244
+          }
+        }
+      }
+    }
+  },
+  "startup": {
+    "javascript": {
+      "wallMs": {
+        "n": 9,
+        "p50": 264.949958,
+        "p95": null,
+        "min": 241.443042,
+        "max": 382.795709
+      },
+      "peakRSSMiB": {
+        "n": 9,
+        "p50": 120.5625,
+        "p95": null,
+        "min": 120.125,
+        "max": 121.015625
+      }
+    },
+    "go": {
+      "wallMs": {
+        "n": 9,
+        "p50": 4.874,
+        "p95": null,
+        "min": 4.313292,
+        "max": 5.669125
+      },
+      "peakRSSMiB": {
+        "n": 9,
+        "p50": 6.453125,
+        "p95": null,
+        "min": 6.28125,
+        "max": 6.53125
+      }
+    },
+    "rust": {
+      "wallMs": {
+        "n": 9,
+        "p50": 3.714125,
+        "p95": null,
+        "min": 3.223292,
+        "max": 4.377708
+      },
+      "peakRSSMiB": {
+        "n": 9,
+        "p50": 1.859375,
+        "p95": null,
+        "min": 1.859375,
+        "max": 1.859375
+      }
+    }
+  },
+  "startupRatios": {
+    "javascriptOverGo": 54.359860073861306,
+    "javascriptOverRust": 71.33576764379227
+  },
+  "startupPeakRSSRatios": {
+    "javascriptOverGo": 18.682808716707022,
+    "javascriptOverRust": 64.84033613445378
+  }
+}
