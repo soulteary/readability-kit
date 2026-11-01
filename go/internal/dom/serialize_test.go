@@ -7,12 +7,12 @@ import (
 )
 
 func TestDOMSerialization(t *testing.T) {
-	doc, err := html.Parse(strings.NewReader(`<p title='a &amp; b " &lt;x&gt;'>It's &lt;code&gt; &amp; ` + "\u00a0" + `<br><img src="x"></p><svg viewBox="0 0 1 1"><path d="M1"></path></svg>`))
+	doc, err := html.Parse(strings.NewReader(`<p title='a &amp; b " &lt;x&gt; &amp;lt;'>It's &lt;code&gt; &amp; ` + "\u00a0" + `<br><img src="x"></p><svg viewBox="0 0 1 1"><path d="M1"></path></svg>`))
 	if err != nil {
 		t.Fatal(err)
 	}
 	got := Inner(Find(doc, "body"))
-	want := `<p title="a &amp; b &quot; &lt;x&gt;">It's &lt;code&gt; &amp; &nbsp;<br><img src="x"></p><svg viewBox="0 0 1 1"><path d="M1"></path></svg>`
+	want := `<p title="a &amp; b &quot; &lt;x&gt; &amp;lt;">It's &lt;code&gt; &amp; &nbsp;<br><img src="x"></p><svg viewBox="0 0 1 1"><path d="M1"></path></svg>`
 	if got != want {
 		t.Fatalf("got %s want %s", got, want)
 	}
