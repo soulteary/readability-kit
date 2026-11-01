@@ -62,10 +62,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: soulteary/goreportcard-action@fc43049a5fe61c3313294d217c2a783f375a7970 # v1.1.3
+      - uses: soulteary/goreportcard-action@d4669a9fbea514f5995d749177630ebfee755789 # v1.1.4
         with:
           directory: go
-          version: v1.1.3
+          version: v1.1.4
           threshold: '95.0'
           commit: 'false'
           output: go-reports/quality/goreportcard.svg

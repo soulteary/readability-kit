@@ -1,10 +1,10 @@
 # Go Report Card
 
-**Grade: A+** (95.1%)
+**Grade: A+** (95.2%)
 
 | Metric | Value |
 | ------ | ----- |
-| Files | 50 |
+| Files | 51 |
 | Issues | 22 |
 
 ## Checks
@@ -13,7 +13,7 @@
 | ----- | ----- |
 | gofmt | 100% |
 | go_vet | 100% |
-| gocyclo | 57% |
+| gocyclo | 58% |
 | ineffassign | 100% |
 | license | 100% |
 | misspell | 98% |
@@ -22,12 +22,59 @@
 
 ### gocyclo
 
+- `go/extraction.go`
+  - Line 102: cyclomatic complexity 23 for function extractHTML
+  - Line 51: cyclomatic complexity 20 for function parseInput
+- `go/internal/metadata/metadata.go`
+  - Line 121: cyclomatic complexity 36 for function jsonMetadata
+  - Line 46: cyclomatic complexity 19 for function articleTitle
+- `go/internal/cli/cli.go`
+  - Line 39: cyclomatic complexity 31 for function parse
+  - Line 117: cyclomatic complexity 21 for function run
+- `go/internal/html/doctype.go`
+  - Line 16: cyclomatic complexity 24 for function parseDoctype
+- `go/content_test.go`
+  - Line 107: cyclomatic complexity 20 for function TestContentCorpusParity
+- `go/internal/dom/serialize.go`
+  - Line 122: cyclomatic complexity 17 for function serialize
+- `go/internal/html/parse.go`
+  - Line 898: cyclomatic complexity 109 for function inBodyIM
+  - Line 1448: cyclomatic complexity 30 for function inTableIM
+  - Line 1819: cyclomatic complexity 27 for function inSelectIM
+  - Line 1244: cyclomatic complexity 26 for function (*parser).inBodyEndTagFormatting
+  - Line 2195: cyclomatic complexity 25 for function parseForeignContent
+  - Line 653: cyclomatic complexity 25 for function inHeadIM
+  - Line 471: cyclomatic complexity 23 for function (*parser).resetInsertionMode
+  - Line 115: cyclomatic complexity 21 for function (*parser).indexOfElementInScope
+  - Line 1599: cyclomatic complexity 17 for function inColumnGroupIM
+  - Line 2290: cyclomatic complexity 16 for function (*parser).inForeignContent
+  - Line 817: cyclomatic complexity 16 for function afterHeadIM
+  - Line 167: cyclomatic complexity 16 for function (*parser).clearStackToContext
+- `go/internal/engine/engine.go`
+  - Line 107: cyclomatic complexity 107 for function extract
+- `go/internal/html/render.go`
+  - Line 68: cyclomatic complexity 57 for function render1
 - `go/internal/html/token.go`
   - Line 394: cyclomatic complexity 50 for function (*Tokenizer).readScript
   - Line 1016: cyclomatic complexity 30 for function (*Tokenizer).Next
   - Line 949: cyclomatic complexity 16 for function (*Tokenizer).readTagAttrVal
 - `go/internal/html/escape.go`
   - Line 57: cyclomatic complexity 43 for function unescapeEntity
+- `go/internal/engine/prep.go`
+  - Line 328: cyclomatic complexity 22 for function unwrapNoscript
+  - Line 215: cyclomatic complexity 22 for function prepDocument
+- `go/internal/dom/style.go`
+  - Line 115: cyclomatic complexity 20 for function validDisplay
+  - Line 67: cyclomatic complexity 16 for function cssDeclarations
+- `go/cmd/readability-kit-bench/main_test.go`
+  - Line 20: cyclomatic complexity 17 for function TestWorkerProtocol
+- `go/internal/engine/clean.go`
+  - Line 60: cyclomatic complexity 114 for function prepArticle
+  - Line 278: cyclomatic complexity 21 for function fixLazy
+- `go/content.go`
+  - Line 170: cyclomatic complexity 37 for function cleanContentNode
+  - Line 89: cyclomatic complexity 37 for function sanitizeContentNode
+  - Line 55: cyclomatic complexity 17 for function contentNamespaceValid
 - `go/internal/urlutil/url.go`
   - Line 13: cyclomatic complexity 32 for function Resolve
   - Line 146: cyclomatic complexity 24 for function fixSrcset
@@ -37,57 +84,10 @@
   - Line 86: cyclomatic complexity 24 for function DecodeExtractOptions
 - `go/internal/engine/literal_match.go`
   - Line 23: cyclomatic complexity 19 for function compileLiteralMatcher
-- `go/cmd/readability-kit-bench/main.go`
-  - Line 52: cyclomatic complexity 18 for function run
-- `go/internal/dom/serialize.go`
-  - Line 122: cyclomatic complexity 17 for function serialize
-- `go/internal/html/render.go`
-  - Line 68: cyclomatic complexity 57 for function render1
-- `go/cmd/readability-kit-bench/main_test.go`
-  - Line 20: cyclomatic complexity 17 for function TestWorkerProtocol
-- `go/content.go`
-  - Line 170: cyclomatic complexity 37 for function cleanContentNode
-  - Line 89: cyclomatic complexity 37 for function sanitizeContentNode
-  - Line 55: cyclomatic complexity 17 for function contentNamespaceValid
-- `go/internal/metadata/metadata.go`
-  - Line 121: cyclomatic complexity 36 for function jsonMetadata
-  - Line 46: cyclomatic complexity 19 for function articleTitle
-- `go/internal/html/doctype.go`
-  - Line 16: cyclomatic complexity 24 for function parseDoctype
-- `go/extraction.go`
-  - Line 102: cyclomatic complexity 23 for function extractHTML
-  - Line 51: cyclomatic complexity 20 for function parseInput
-- `go/internal/engine/prep.go`
-  - Line 328: cyclomatic complexity 22 for function unwrapNoscript
-  - Line 215: cyclomatic complexity 22 for function prepDocument
 - `go/internal/compat/compat.go`
   - Line 27: cyclomatic complexity 18 for function evaluate
-- `go/internal/engine/clean.go`
-  - Line 60: cyclomatic complexity 114 for function prepArticle
-  - Line 278: cyclomatic complexity 21 for function fixLazy
-- `go/internal/html/parse.go`
-  - Line 883: cyclomatic complexity 109 for function inBodyIM
-  - Line 1433: cyclomatic complexity 30 for function inTableIM
-  - Line 1804: cyclomatic complexity 27 for function inSelectIM
-  - Line 1229: cyclomatic complexity 26 for function (*parser).inBodyEndTagFormatting
-  - Line 2180: cyclomatic complexity 25 for function parseForeignContent
-  - Line 638: cyclomatic complexity 25 for function inHeadIM
-  - Line 456: cyclomatic complexity 23 for function (*parser).resetInsertionMode
-  - Line 112: cyclomatic complexity 21 for function (*parser).indexOfElementInScope
-  - Line 1584: cyclomatic complexity 17 for function inColumnGroupIM
-  - Line 2275: cyclomatic complexity 16 for function (*parser).inForeignContent
-  - Line 802: cyclomatic complexity 16 for function afterHeadIM
-  - Line 164: cyclomatic complexity 16 for function (*parser).clearStackToContext
-- `go/internal/cli/cli.go`
-  - Line 39: cyclomatic complexity 31 for function parse
-  - Line 117: cyclomatic complexity 21 for function run
-- `go/internal/dom/style.go`
-  - Line 115: cyclomatic complexity 20 for function validDisplay
-  - Line 67: cyclomatic complexity 16 for function cssDeclarations
-- `go/content_test.go`
-  - Line 107: cyclomatic complexity 20 for function TestContentCorpusParity
-- `go/internal/engine/engine.go`
-  - Line 107: cyclomatic complexity 107 for function extract
+- `go/cmd/readability-kit-bench/main.go`
+  - Line 52: cyclomatic complexity 18 for function run
 
 ### misspell
 

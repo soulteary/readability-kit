@@ -37,4 +37,4 @@ with `package-python-reviewed.py`. See [the measured protocol and results](../do
 - Go quality: `python3 tools/go-quality.py` generates all six checker results;
   `python3 tools/go-quality.py --check` rejects incomplete runs and new findings.
   Install `goreportcard-cli` and its native checker tools from
-  `soulteary/goreportcard-action` v1.1.3 before running it.
+  `soulteary/goreportcard-action` v1.1.4 before running it.

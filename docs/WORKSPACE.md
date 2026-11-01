@@ -89,3 +89,19 @@ sdists live in `python/dist/`; staged notices and corresponding MPL sources live
 in `python/src/readability_kit/_licenses/`. Both are ignored. Build and validate
 with `tools/build-python-package.py` and `tools/check-python-package.py` using a
 Python environment with the pinned maturin version. See [Python](../python/README.md).
+
+## Dependency maintenance and serialization
+
+The root overrides `glob` 14.0.3 and `minimatch` 11.0.3 for the Mocha,
+js-beautify/editorconfig development tool graph, addressing
+[GHSA-3g3m-2fjr-6pw4](https://github.com/advisories/GHSA-3g3m-2fjr-6pw4) and
+[GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249).
+Neither is a runtime dependency of the published JavaScript/WASM packages.
+Keep the full upstream tests and isolated package smoke checks when changing
+these overrides; remove them once the owning tools declare patched ranges.
+
+parse5 8.1.0 serializes `<` and `>` in attribute values as `&lt;` and `&gt;`.
+The Go and Rust serializers follow that rule too, preserving parsed attribute
+values while matching the refreshed JavaScript reference. This changes the
+HTML string representation of those attributes, not extracted text/metadata.
+The strict cross-language corpus and sanitizer gates remain mandatory.

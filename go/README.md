@@ -78,7 +78,7 @@ spelling corrections. The report is not a claim that
 all findings have been fixed.
 
 From the repository root, `python3 tools/go-quality.py` regenerates evidence
-using goreportcard-action v1.1.3's CLI and native tools. CI requires every checker
+using goreportcard-action v1.1.4's CLI and native tools. CI requires every checker
 to finish successfully and rejects new diagnostics against this baseline; it
 does not exclude the bundled parser or test files. Parser/engine complexity
 requires separately validated refactoring against the strict corpus, rather

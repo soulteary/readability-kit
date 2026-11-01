@@ -12,7 +12,7 @@ func TestDOMSerialization(t *testing.T) {
 		t.Fatal(err)
 	}
 	got := Inner(Find(doc, "body"))
-	want := `<p title="a &amp; b &quot; <x>">It's &lt;code&gt; &amp; &nbsp;<br><img src="x"></p><svg viewBox="0 0 1 1"><path d="M1"></path></svg>`
+	want := `<p title="a &amp; b &quot; &lt;x&gt;">It's &lt;code&gt; &amp; &nbsp;<br><img src="x"></p><svg viewBox="0 0 1 1"><path d="M1"></path></svg>`
 	if got != want {
 		t.Fatalf("got %s want %s", got, want)
 	}

@@ -1422,6 +1422,8 @@ fn escape_attr(s: &str) -> String {
     s.replace('&', "&amp;")
         .replace('\u{a0}', "&nbsp;")
         .replace('"', "&quot;")
+        .replace('<', "&lt;")
+        .replace('>', "&gt;")
 }
 pub(crate) fn exact_inner(n: NodeRef<'_>) -> String {
     let mut out = String::new();
