@@ -132,7 +132,7 @@ try {
     }
     const items = await Promise.all(Array.from({length: 8}, (_, i) => reader.isProbablyReaderable(i % 2 ? '<p>' + 'substantial article prose '.repeat(100) + '</p>' : '', {minContentLength: 5, minScore: 1})));
     if (items.some((value, i) => value !== Boolean(i % 2))) throw new Error('Concurrent request correlation failed');
-    await expectReject(() => api.createWorkerReader({wasmURL: '/missing.wasm'}), 'HTTP status code');
+    await expectReject(() => api.createWorkerReader({wasmURL: '/missing.wasm'}), '404');
     await expectReject(() => api.createWorkerReader({workerURL: '/stall-worker.js', timeoutMs: 100}), 'timed out');
     const owned = await api.createWorkerReader();
     const pending = owned.isProbablyReaderable('');
