@@ -48,7 +48,7 @@ JS 边界测试覆盖非字符串输入、NaN/Infinity、未知循环引用及 B
 ```sh
 bun install --frozen-lockfile
 rustup target add wasm32-unknown-unknown
-cargo install wasm-bindgen-cli --version 0.2.117 --locked
+cargo install wasm-bindgen-cli --version 0.2.130 --locked
 bun run build
 bun run build:wasm
 bunx playwright install chromium firefox webkit

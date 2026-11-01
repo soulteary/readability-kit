@@ -21,6 +21,8 @@ const payloads = [
   ['svg namespace', '<svg><a xlink:href="javascript:top.__goProbe++"><text>link</text></a><g onload="top.__goProbe++"></g><foreignObject><img src=x onerror="top.__goProbe++"></foreignObject></svg>'],
   ['math namespace', '<math><annotation-xml encoding="text/html"><img src=x onerror="top.__goProbe++"></annotation-xml></math>'],
   ['namespace mutation', '<math><mtext><table><mglyph><style><!--</style><img title="--><img src=x onerror=top.__goProbe++>">'],
+  ['nested foreign mglyph transition', '<math><mtext><table><mglyph><svg><desc><style><img src=x onerror=top.__goProbe++>'],
+  ['nested foreign malignmark transition', '<math><mtext><table><malignmark><svg><desc><style><img src=x onerror=top.__goProbe++>'],
   ['responsive images', '<picture><source srcset="javascript:top.__goProbe++ 1x"><img src="https://example.invalid/photo" srcset="/safe.jpg 1x,javascript:top.__goProbe++ 2x" onerror="top.__goProbe++"></picture>'],
   ['safe foreign media', '<svg viewBox="0 0 10 10"><a href="https://example.test/reference"><text>Diagram</text></a><path d="M0 0L10 10"></path></svg><math><mrow><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math>'],
   ['data image', '<img alt="embedded" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 onload=%22top.__goProbe++%22/%3E">'],

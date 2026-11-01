@@ -105,11 +105,10 @@ class ApiTests(unittest.TestCase):
         self.assertTrue(all(reference() is None for reference in references))
 
     def test_native_calls_release_the_gil(self):
-        # Disable periodic bytecode switching: the observer gets to run only
-        # when the extraction/readerability call detaches from Python.
-        html = '<article><p>' + 'Readable text, with detail. ' * 60000 + '</p></article>'
-        for operation in (lambda: extract_html(html, url=URL),
-                          lambda: is_probably_readerable(html)):
+        # Disable periodic bytecode switching. A bounded batch lets the OS
+        # schedule the observer during a detached call; one fast call need not
+        # give an awakened thread a timeslice before it returns.
+        def observer_progresses(operation):
             ready, start, progressed = threading.Event(), threading.Event(), threading.Event()
             def observer():
                 ready.set()
@@ -117,18 +116,31 @@ class ApiTests(unittest.TestCase):
                 progressed.set()
             thread = threading.Thread(target=observer)
             thread.start()
-            ready.wait(5)
             old_interval = sys.getswitchinterval()
             try:
+                self.assertTrue(ready.wait(5), 'observer did not become ready')
                 sys.setswitchinterval(1000)
                 start.set()
-                operation()
-                self.assertTrue(progressed.is_set(), 'native call held the GIL throughout')
+                for _ in range(25):
+                    operation()
+                    if progressed.is_set():
+                        return True
+                return False
             finally:
                 sys.setswitchinterval(old_interval)
                 start.set()
                 thread.join(5)
-            self.assertFalse(thread.is_alive())
+                self.assertFalse(thread.is_alive())
+
+        # This control holds the GIL throughout every call. It must not pass
+        # because of an implicit sleep, wait, or periodic interpreter switch.
+        self.assertFalse(observer_progresses(lambda: sum(range(100000))))
+        html = '<article><p>' + 'Readable text, with detail. ' * 60000 + '</p></article>'
+        for name, operation in (
+                ('extract', lambda: extract_html(html, url=URL)),
+                ('readerable', lambda: is_probably_readerable(html))):
+            with self.subTest(operation=name):
+                self.assertTrue(observer_progresses(operation), 'native calls held the GIL throughout')
 
     def test_empty(self):
         self.assertIsNone(extract_html('', url=URL))

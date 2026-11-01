@@ -33,3 +33,8 @@ interleaved run. `summarize-python-regression.py` resamples whole paired replica
 Render with `render-python-reviewed.mjs` then `augment-python-reviewed.mjs`, check
 with both `check-python-benchmark.mjs` and `check-python-reviewed.mjs`, and archive
 with `package-python-reviewed.py`. See [the measured protocol and results](../docs/PYTHON_REVIEW_PERFORMANCE.md).
+
+- Go quality: `python3 tools/go-quality.py` generates all six checker results;
+  `python3 tools/go-quality.py --check` rejects incomplete runs and new findings.
+  Install `goreportcard-cli` and its native checker tools from
+  `soulteary/goreportcard-action` v1.1.4 before running it.

@@ -82,8 +82,8 @@ fn removes_clobbering_names_and_retains_safe_data_attributes() {
 }
 #[test]
 fn preserves_namespace_attributes_and_html_attribute_escaping() {
-    let (html, _) = process_content("<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><image xlink:href='data:image/png;base64,AA=='/></svg><p title='&lt;quoted&gt;&quot;&amp;'>Text</p>", true).unwrap();
-    assert_eq!(html, "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><image xlink:href=\"data:image/png;base64,AA==\"></image></svg><p title=\"<quoted>&quot;&amp;\">Text</p>");
+    let (html, _) = process_content("<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><image xlink:href='data:image/png;base64,AA=='/></svg><p title='&lt;quoted&gt;&quot;&amp;&amp;lt;'>Text</p>", true).unwrap();
+    assert_eq!(html, "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><image xlink:href=\"data:image/png;base64,AA==\"></image></svg><p title=\"&lt;quoted&gt;&quot;&amp;&amp;lt;\">Text</p>");
 }
 #[test]
 fn exact_text_keeps_whitespace_and_sanitize_false_keeps_attributes() {

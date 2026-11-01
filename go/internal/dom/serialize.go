@@ -64,7 +64,7 @@ func NormalizeSpace(s string) string {
 var voidTags = map[string]bool{"area": true, "base": true, "basefont": true, "bgsound": true, "br": true, "col": true, "embed": true, "frame": true, "hr": true, "img": true, "input": true, "keygen": true, "link": true, "meta": true, "param": true, "source": true, "track": true, "wbr": true}
 var rawTags = map[string]bool{"style": true, "script": true, "xmp": true, "iframe": true, "noembed": true, "noframes": true, "plaintext": true, "noscript": true}
 var textEscaper = strings.NewReplacer("&", "&amp;", "\u00a0", "&nbsp;", "<", "&lt;", ">", "&gt;")
-var attrEscaper = strings.NewReplacer("&", "&amp;", "\u00a0", "&nbsp;", "\"", "&quot;")
+var attrEscaper = strings.NewReplacer("&", "&amp;", "\u00a0", "&nbsp;", "\"", "&quot;", "<", "&lt;", ">", "&gt;")
 
 // Inner serializes like HTML DOM innerHTML, preserving attribute order and using
 // HTML void-element syntax rather than x/net/html's XML-style self-closing tags.

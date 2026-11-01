@@ -34,7 +34,7 @@ musl/Alpine, Windows ARM64, PyPy, or free-threaded CPython.
 
 ## Build and install locally
 
-Requires CPython 3.10 or later, a Rust toolchain, and maturin 1.15.0 at build time.
+Requires CPython 3.10 or later, a Rust toolchain, and maturin 1.16.0 at build time.
 A matching prebuilt wheel only requires Python at runtime. Ordinary GIL-enabled
 CPython is the supported target; free-threaded Python and PyPy are not currently
 in the validation matrix. The abi3 wheel targets CPython 3.10+ on its own OS and
@@ -44,7 +44,7 @@ From the repository root:
 
 ```sh
 python3 -m venv python/.venv
-python/.venv/bin/python -m pip install maturin==1.15.0
+python/.venv/bin/python -m pip install maturin==1.16.0
 cargo fetch --locked
 python/.venv/bin/python tools/build-python-package.py
 python/.venv/bin/python -m pip install --no-deps python/dist/*.whl
@@ -56,7 +56,7 @@ Windows PowerShell, from the repository root:
 
 ```powershell
 py -3.13 -m venv python/.venv
-& python/.venv/Scripts/python.exe -m pip install maturin==1.15.0
+& python/.venv/Scripts/python.exe -m pip install maturin==1.16.0
 cargo fetch --locked
 & python/.venv/Scripts/python.exe tools/build-python-package.py
 $wheel = @(Get-ChildItem python/dist/*.whl)

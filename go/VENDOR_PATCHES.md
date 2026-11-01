@@ -1,6 +1,8 @@
 # Local HTML parser changes
 
-Base: golang.org/x/net v0.55.0, pinned by go.mod/go.sum.
+Bundled parser source base: golang.org/x/net v0.55.0.
+The separate atom dependency is now golang.org/x/net v0.58.0, pinned by
+go.mod/go.sum; its atom sources are unchanged between these two versions.
 The HTML parser sources are retained under internal/html with upstream copyright,
 LICENSE and PATENTS; atom remains an ordinary x/net dependency. This internal
 package ensures consumers of the module receive the patches: Go ignores a
@@ -23,3 +25,30 @@ content. HTML comments treat ampersands literally, and browser DOM serialization
 preserves those references. Skip entity decoding for CommentToken while retaining
 newline and null replacement. Regression: internal/dom/parse_test.go tests both
 comment text and serialized output alongside normal text entity decoding.
+
+## Backported upstream parser security fixes
+
+The bundled copy does not acquire upstream fixes when only the separate atom
+module requirement changes. Apply these exact Go Authors fixes to the v0.55.0
+base while retaining the two DOM compatibility changes above:
+
+- [GO-2026-6860](https://pkg.go.dev/vuln/GO-2026-6860), upstream
+  [4af4fce62e93c5621a316363718b9dc78fbb0355](https://go.googlesource.com/net/+/4af4fce62e93c5621a316363718b9dc78fbb0355):
+  accumulate coalesced parser text in byte buffers, then materialize node strings
+  once parsing finishes, avoiding quadratic allocation/copying.
+- [GO-2026-6866](https://pkg.go.dev/vuln/GO-2026-6866), upstream
+  [3de643db506517b3e652a13cc0b56034cea6b8e6](https://go.googlesource.com/net/+/3de643db506517b3e652a13cc0b56034cea6b8e6):
+  check the complete foreign-namespace ancestor chain in the retained upstream
+  renderer. Extraction uses its own DOM serializer and default sanitization;
+  this fix does not make unsanitized extraction output safe to render.
+
+`internal/html/security_backport_test.go` retains the upstream Go Authors
+regressions. Before the backports, the namespace cases fail and 10,000 coalesced
+text tokens allocate over 50 MiB; afterwards the same tests require escaped
+foreign raw text and at most 5 MiB for each coalescing workload. Keep these tests
+and the full strict extraction/readerability corpus when refreshing this copy.
+
+The Go module keeps Go 1.25 compatibility: x/net v0.59.0 and later require Go 1.26.
+`govulncheck` sees the atom import but cannot associate this renamed bundled
+parser with upstream advisories. A zero reachable-symbol result is therefore
+not evidence that copied parser sources need no maintenance.
