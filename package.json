@@ -27,7 +27,7 @@
   "devDependencies": {
     "@playwright/test": "^1.64.1",
     "@types/jsdom": "^30.0.0",
-    "@types/node": "^26.6.5",
+    "@types/node": "^26.6.6",
     "chai": "^4.5.0",
     "esbuild": "^0.28.2",
     "js-beautify": "^2.0.3",

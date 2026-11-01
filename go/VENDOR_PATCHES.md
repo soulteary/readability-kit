@@ -1,6 +1,8 @@
 # Local HTML parser changes
 
-Base: golang.org/x/net v0.55.0, pinned by go.mod/go.sum.
+Bundled parser source base: golang.org/x/net v0.55.0.
+The separate atom dependency is now golang.org/x/net v0.58.0, pinned by
+go.mod/go.sum; its atom sources are unchanged between these two versions.
 The HTML parser sources are retained under internal/html with upstream copyright,
 LICENSE and PATENTS; atom remains an ordinary x/net dependency. This internal
 package ensures consumers of the module receive the patches: Go ignores a

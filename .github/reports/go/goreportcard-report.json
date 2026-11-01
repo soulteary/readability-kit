@@ -1,0 +1,379 @@
+{
+  "checks": [
+    {
+      "name": "go_vet",
+      "description": "<code>go vet</code> examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string.",
+      "file_summaries": [],
+      "weight": 0.3,
+      "percentage": 1,
+      "error": ""
+    },
+    {
+      "name": "gocyclo",
+      "description": "<a href=\"https://github.com/fzipp/gocyclo\">Gocyclo</a> calculates cyclomatic complexities of functions in Go source code.\n\nThe cyclomatic complexity of a function is calculated according to the following rules:\n\n1 is the base complexity of a function\n+1 for each 'if', 'for', 'case', '&&' or '||'\n\nGo Report Card warns on functions with cyclomatic complexity > 15.",
+      "file_summaries": [
+        {
+          "filename": "go/internal/html/token.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 394,
+              "error_string": " cyclomatic complexity 50 for function (*Tokenizer).readScript"
+            },
+            {
+              "line_number": 1016,
+              "error_string": " cyclomatic complexity 30 for function (*Tokenizer).Next"
+            },
+            {
+              "line_number": 949,
+              "error_string": " cyclomatic complexity 16 for function (*Tokenizer).readTagAttrVal"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/html/escape.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 57,
+              "error_string": " cyclomatic complexity 43 for function unescapeEntity"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/urlutil/url.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 13,
+              "error_string": " cyclomatic complexity 32 for function Resolve"
+            },
+            {
+              "line_number": 146,
+              "error_string": " cyclomatic complexity 24 for function fixSrcset"
+            },
+            {
+              "line_number": 80,
+              "error_string": " cyclomatic complexity 19 for function FixWithSource"
+            }
+          ]
+        },
+        {
+          "filename": "go/json_options.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 198,
+              "error_string": " cyclomatic complexity 28 for function decodeRawOptions"
+            },
+            {
+              "line_number": 86,
+              "error_string": " cyclomatic complexity 24 for function DecodeExtractOptions"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/engine/literal_match.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 23,
+              "error_string": " cyclomatic complexity 19 for function compileLiteralMatcher"
+            }
+          ]
+        },
+        {
+          "filename": "go/cmd/readability-kit-bench/main.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 52,
+              "error_string": " cyclomatic complexity 18 for function run"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/dom/serialize.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 122,
+              "error_string": " cyclomatic complexity 17 for function serialize"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/html/render.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 68,
+              "error_string": " cyclomatic complexity 57 for function render1"
+            }
+          ]
+        },
+        {
+          "filename": "go/cmd/readability-kit-bench/main_test.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 20,
+              "error_string": " cyclomatic complexity 17 for function TestWorkerProtocol"
+            }
+          ]
+        },
+        {
+          "filename": "go/content.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 170,
+              "error_string": " cyclomatic complexity 37 for function cleanContentNode"
+            },
+            {
+              "line_number": 89,
+              "error_string": " cyclomatic complexity 37 for function sanitizeContentNode"
+            },
+            {
+              "line_number": 55,
+              "error_string": " cyclomatic complexity 17 for function contentNamespaceValid"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/metadata/metadata.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 121,
+              "error_string": " cyclomatic complexity 36 for function jsonMetadata"
+            },
+            {
+              "line_number": 46,
+              "error_string": " cyclomatic complexity 19 for function articleTitle"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/html/doctype.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 16,
+              "error_string": " cyclomatic complexity 24 for function parseDoctype"
+            }
+          ]
+        },
+        {
+          "filename": "go/extraction.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 102,
+              "error_string": " cyclomatic complexity 23 for function extractHTML"
+            },
+            {
+              "line_number": 51,
+              "error_string": " cyclomatic complexity 20 for function parseInput"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/engine/prep.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 328,
+              "error_string": " cyclomatic complexity 22 for function unwrapNoscript"
+            },
+            {
+              "line_number": 215,
+              "error_string": " cyclomatic complexity 22 for function prepDocument"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/compat/compat.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 27,
+              "error_string": " cyclomatic complexity 18 for function evaluate"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/engine/clean.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 60,
+              "error_string": " cyclomatic complexity 114 for function prepArticle"
+            },
+            {
+              "line_number": 278,
+              "error_string": " cyclomatic complexity 21 for function fixLazy"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/html/parse.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 883,
+              "error_string": " cyclomatic complexity 109 for function inBodyIM"
+            },
+            {
+              "line_number": 1433,
+              "error_string": " cyclomatic complexity 30 for function inTableIM"
+            },
+            {
+              "line_number": 1804,
+              "error_string": " cyclomatic complexity 27 for function inSelectIM"
+            },
+            {
+              "line_number": 1229,
+              "error_string": " cyclomatic complexity 26 for function (*parser).inBodyEndTagFormatting"
+            },
+            {
+              "line_number": 2180,
+              "error_string": " cyclomatic complexity 25 for function parseForeignContent"
+            },
+            {
+              "line_number": 638,
+              "error_string": " cyclomatic complexity 25 for function inHeadIM"
+            },
+            {
+              "line_number": 456,
+              "error_string": " cyclomatic complexity 23 for function (*parser).resetInsertionMode"
+            },
+            {
+              "line_number": 112,
+              "error_string": " cyclomatic complexity 21 for function (*parser).indexOfElementInScope"
+            },
+            {
+              "line_number": 1584,
+              "error_string": " cyclomatic complexity 17 for function inColumnGroupIM"
+            },
+            {
+              "line_number": 2275,
+              "error_string": " cyclomatic complexity 16 for function (*parser).inForeignContent"
+            },
+            {
+              "line_number": 802,
+              "error_string": " cyclomatic complexity 16 for function afterHeadIM"
+            },
+            {
+              "line_number": 164,
+              "error_string": " cyclomatic complexity 16 for function (*parser).clearStackToContext"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/cli/cli.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 39,
+              "error_string": " cyclomatic complexity 31 for function parse"
+            },
+            {
+              "line_number": 117,
+              "error_string": " cyclomatic complexity 21 for function run"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/dom/style.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 115,
+              "error_string": " cyclomatic complexity 20 for function validDisplay"
+            },
+            {
+              "line_number": 67,
+              "error_string": " cyclomatic complexity 16 for function cssDeclarations"
+            }
+          ]
+        },
+        {
+          "filename": "go/content_test.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 107,
+              "error_string": " cyclomatic complexity 20 for function TestContentCorpusParity"
+            }
+          ]
+        },
+        {
+          "filename": "go/internal/engine/engine.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 107,
+              "error_string": " cyclomatic complexity 107 for function extract"
+            }
+          ]
+        }
+      ],
+      "weight": 0.1,
+      "percentage": 0.58,
+      "error": ""
+    },
+    {
+      "name": "gofmt",
+      "description": "Gofmt formats Go programs. We run <code>gofmt -s</code> on your code, where <code>-s</code> is for the <a href=\"https://golang.org/cmd/gofmt/#hdr-The_simplify_command\">\"simplify\" command</a>",
+      "file_summaries": [],
+      "weight": 0.3,
+      "percentage": 1,
+      "error": ""
+    },
+    {
+      "name": "ineffassign",
+      "description": "<a href=\"https://github.com/gordonklaus/ineffassign\">IneffAssign</a> detects ineffectual assignments in Go code.",
+      "file_summaries": [],
+      "weight": 0.1,
+      "percentage": 1,
+      "error": ""
+    },
+    {
+      "name": "license",
+      "description": "Checks whether your project has a LICENSE file.",
+      "file_summaries": [],
+      "weight": 0.05,
+      "percentage": 1,
+      "error": ""
+    },
+    {
+      "name": "misspell",
+      "description": "<a href=\"https://github.com/client9/misspell\">Misspell</a> Finds commonly misspelled English words",
+      "file_summaries": [
+        {
+          "filename": "go/internal/html/entity.go",
+          "file_url": "",
+          "errors": [
+            {
+              "line_number": 614,
+              "error_string": " \"andd\" is a misspelling of \"and\""
+            },
+            {
+              "line_number": 1129,
+              "error_string": " \"infintie\" is a misspelling of \"infinite\""
+            }
+          ]
+        }
+      ],
+      "weight": 0,
+      "percentage": 0.98,
+      "error": ""
+    }
+  ],
+  "average": 0.9505882352941176,
+  "GradeFromPercentage": "A+",
+  "files": 50,
+  "issues": 22,
+  "did_error": false
+}

@@ -10,7 +10,7 @@ From the repository root (Node, npm, Python 3 and the existing JS dependencies a
 
 ```sh
 rustup target add wasm32-unknown-unknown
-cargo install wasm-bindgen-cli --version 0.2.117 --locked
+cargo install wasm-bindgen-cli --version 0.2.130 --locked
 bun run build:wasm
 cd packages/wasm
 npm pack

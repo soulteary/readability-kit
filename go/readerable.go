@@ -19,6 +19,34 @@ func IsProbablyReaderable(ctx context.Context, input string, o ReaderableOptions
 	if err != nil {
 		return false, err
 	}
+	nodes := readerableNodes(doc)
+	score := 0.
+	min := intValue(o.MinContentLength, 140)
+	for _, n := range nodes {
+		if err := checkContext(ctx); err != nil {
+			return false, err
+		}
+		if !dom.Visible(n) || engine.Unlikely(dom.Attr(n, "class")+" "+dom.Attr(n, "id"), string(e)) {
+			continue
+		}
+		if isListParagraph(n) {
+			continue
+		}
+		length := UTF16Len(strings.TrimSpace(dom.Text(n)))
+		if length < min {
+			continue
+		}
+		score += math.Sqrt(float64(length - min))
+		if score > floatValue(o.MinScore, 20) {
+			return true, nil
+		}
+	}
+	return false, nil
+}
+
+// readerableNodes keeps ordinary candidates before divs containing line breaks,
+// matching the pinned engines' scoring order.
+func readerableNodes(doc *html.Node) []*html.Node {
 	nodes := []*html.Node{}
 	divs := []*html.Node{}
 	seen := map[*html.Node]bool{}
@@ -35,35 +63,17 @@ func IsProbablyReaderable(ctx context.Context, input string, o ReaderableOptions
 		}
 	}
 	nodes = append(nodes, divs...)
-	score := 0.
-	min := intValue(o.MinContentLength, 140)
-	for _, n := range nodes {
-		if err := checkContext(ctx); err != nil {
-			return false, err
-		}
-		if !dom.Visible(n) || engine.Unlikely(dom.Attr(n, "class")+" "+dom.Attr(n, "id"), string(e)) {
-			continue
-		}
-		li := false
-		if n.Data == "p" {
-			for p := n.Parent; p != nil; p = p.Parent {
-				if p.Data == "li" {
-					li = true
-					break
-				}
-			}
-		}
-		if li {
-			continue
-		}
-		length := UTF16Len(strings.TrimSpace(dom.Text(n)))
-		if length < min {
-			continue
-		}
-		score += math.Sqrt(float64(length - min))
-		if score > floatValue(o.MinScore, 20) {
-			return true, nil
+	return nodes
+}
+
+func isListParagraph(n *html.Node) bool {
+	if n.Data != "p" {
+		return false
+	}
+	for parent := n.Parent; parent != nil; parent = parent.Parent {
+		if parent.Data == "li" {
+			return true
 		}
 	}
-	return false, nil
+	return false
 }

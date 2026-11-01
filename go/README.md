@@ -67,3 +67,19 @@ neither Node nor the adapter. Source attribution is in [NOTICE](NOTICE), the roo
 The [shared benchmark report](../docs/PERFORMANCE.md) compares JavaScript, Go and Rust on the same locked corpus and protocol. See [Go optimization notes](../docs/GO_OPTIMIZATION.md) for the changes and strict validation. Previous measurements and raw evidence are retained.
 
 The subsequent [memory and matching optimization](../docs/GO_MEMORY_OPTIMIZATION.md) retains the strict gate and includes reproducible allocation diagnostics.
+
+## Quality evidence
+
+[Go Report Card](../.github/reports/go/goreportcard-report.md) and the
+[raw checker results](../.github/reports/go/goreportcard-report.json) retain the
+complete result, including inherited parser state-machine complexity and the
+HTML entity keys flagged by the spelling checker. Those keys are data, not
+spelling corrections. The report is not a claim that
+all findings have been fixed.
+
+From the repository root, `python3 tools/go-quality.py` regenerates evidence
+using goreportcard-action v1.1.3's CLI and native tools. CI requires every checker
+to finish successfully and rejects new diagnostics against this baseline; it
+does not exclude the bundled parser or test files. Parser/engine complexity
+requires separately validated refactoring against the strict corpus, rather
+than changes solely to raise the score.

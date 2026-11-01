@@ -7,7 +7,7 @@ import {build, transform} from 'esbuild';
 const root = fileURLToPath(new URL('../', import.meta.url));
 process.chdir(root);
 const cli = process.env.WASM_BINDGEN ?? 'wasm-bindgen';
-const version = '0.2.117';
+const version = '0.2.130';
 if (execFileSync(cli, ['--version'], {encoding: 'utf8'}).trim() !== `wasm-bindgen ${version}`) {
   throw new Error(`Install wasm-bindgen-cli ${version} to match Cargo.lock.`);
 }

@@ -76,3 +76,9 @@ For each future local change, record:
 - Any change to a supported option, output field, or license notice.
 
 Prefer contributing general extraction improvements upstream. Keep integration-specific behavior in the standalone adapters so engine updates remain reviewable.
+
+## Dependency maintenance
+
+The vendored dom_smoothie development manifest uses wasm-bindgen-test 0.3.80
+to match wasm-bindgen/CLI 0.2.130. Cargo.toml.orig retains the upstream manifest;
+this changes test tooling, not the imported extraction algorithm.

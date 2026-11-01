@@ -151,7 +151,7 @@ features = ["derive"]
 version = "1.0"
 
 [dev-dependencies.wasm-bindgen-test]
-version = "=0.3.67"
+version = "=0.3.80"
 
 [lints.clippy]
 # syn 2 and 3 are required by distinct locked proc-macro dependencies.
