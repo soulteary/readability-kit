@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 """Generate complete GoReportCard evidence, or reject new findings against it."""
 import argparse
+from collections import Counter
 import json
 import math
 from pathlib import Path
@@ -30,9 +31,9 @@ def validate(report):
 def findings(report):
     # Line numbers move during refactoring; checker, file and diagnostic identify
     # the finding. No source files, checks or diagnostics are suppressed.
-    return {(c['name'], f['filename'], e['error_string'].strip())
+    return Counter((c['name'], f['filename'], e['error_string'].strip())
             for c in report['checks'] for f in c.get('file_summaries') or []
-            for e in f.get('errors') or []}
+            for e in f.get('errors') or [])
 
 
 def main():
@@ -53,7 +54,7 @@ def main():
             evidence.mkdir(parents=True, exist_ok=True)
             (evidence / 'goreportcard-report.json').write_text(json.dumps(report, indent=2) + '\n')
             if added:
-                raise SystemExit('New Go quality findings:\n' + '\n'.join(': '.join(item) for item in sorted(added)))
+                raise SystemExit('New Go quality findings:\n' + '\n'.join(': '.join(item) for item in sorted(added.elements())))
         else:
             REPORTS.mkdir(parents=True, exist_ok=True)
             for name in ('goreportcard.svg', 'goreportcard-report.md'):

@@ -71,7 +71,9 @@ jobs:
           output: go-reports/quality/goreportcard.svg
           report_output: go-reports/quality/goreportcard-report.md
       - name: Require all checkers and reject new findings
-        run: python3 tools/go-quality.py --check
+        run: |
+          python3 -m unittest discover -s tests -p test_go_quality.py
+          python3 tools/go-quality.py --check
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
